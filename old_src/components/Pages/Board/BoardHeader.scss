@@ -1,0 +1,184 @@
+/* HEADER =========================================== */
+
+header.board-header {
+
+  font-family: $font-primary;
+  display: flex;
+  min-height: 76px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 2;
+
+  .board-header-bar {
+    background-color: $hackachieve-medium-gray;
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    .board-header-logo {
+      background-size: 54%;
+      width: 76px;
+      height: inherit;
+      background: $hackachieve-darker-purple url('/images/board/hackachieve-symbol.svg') center no-repeat;
+      flex: 0 0 76px;
+      position: relative;
+
+      .mobile-menu {
+
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $hackachieve-white;
+
+        //Destkop only
+        @media screen and (min-width: 850px) {
+          display: none;
+
+        }
+
+      }
+
+      /*MOBILE ONLY CODE*/
+      @media screen and (max-width: 850px) {
+        flex: 1 1 100%;
+        height: 4rem;
+      }
+
+    }
+
+    .board-profile {
+
+      align-items: center;
+      justify-self: flex-end;
+      flex: 0 1 175px;
+      width: 175px;
+
+      display: flex;
+      flex-wrap: nowrap;
+
+      .board-profile-username {
+        flex: 1 1 60%;
+        font-size: 16px;
+        text-align: right;
+        padding-right: .8rem;
+        min-width: 76px;
+        font-weight: bold;
+        color: $hackachieve-dark-grey;
+      }
+      .board-profile-user-picture {
+        flex: 1 1 auto;
+        background-color: $hackachieve-medium-gray;
+        width: 36px;
+        height: 36px;
+        margin-right: 1rem;
+
+        img {
+          border-radius: 100%;
+        }
+      }
+
+      /*MOBILE ONLY CODE*/
+      @media screen and (max-width: 850px) {
+        display: none;
+      }
+
+    }
+
+    .board-switch {
+      flex: 1 1 auto;
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      /*MOBILE ONLY CODE*/
+      @media screen and (max-width: 850px) {
+        flex: 1 1 100%;
+      }
+
+      .board-switch-item {
+
+        cursor: pointer;
+        min-width: 131px;
+        height: 76px;
+
+        &.switch-active {
+          background-color: $hackachieve-light-gray;;
+        }
+
+        //Positioning
+        position: relative;
+        top: 0.4rem;
+
+        display: flex;
+        flex-wrap: wrap;
+
+        .board-switch-icon {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+
+          color: $hackachieve-pink;
+          text-align: center;
+          font-size: 1.3rem;
+          flex: 1 1 100%;
+        }
+
+        .board-switch-text {
+          color: $hackachieve-pink;
+          text-align: center;
+          font-size: 12px;
+          flex: 1 1 100%;
+          font-weight: bold;
+          padding-top: 0.1rem;
+        }
+
+      }
+
+    }
+
+    .board-selector {
+      max-width: 331px;
+      height: 40px;
+      display: flex;
+
+      align-items: center;
+      align-self: center;
+
+      /*MOBILE ONLY CODE*/
+      @media screen and (max-width: 850px) {
+        flex: 1 1 100%;
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 1.6rem;
+        padding-bottom: 1.6rem;
+      }
+
+      .board-selector-title, .board-dropdown {
+        display: inline-block;
+        float: left;
+        margin-left: 13px;
+      }
+
+      .board-selector-title {
+        font-family: $font-primary;
+        color: $hackachieve-dark-grey;
+        font-size: 19px;
+        font-weight: bold;
+        margin-right: 13px;
+        min-width: 100px;
+        height: 24px;
+      }
+
+      .board-dropdown {
+        flex: 1 1 auto;
+      }
+
+    }
+
+  }
+
+}

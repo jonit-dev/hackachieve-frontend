@@ -1,0 +1,57 @@
+//White x Gray variations
+$hackachieve-light-gray: #F4F4FC;
+$hackachieve-white: #F8F8FF;
+$hackachieve-medium-gray: #E0E0EC;
+$hackachieve-grey: #CCCCD0;
+$hackachieve-dark-grey: #54575D;
+
+//Logo colors
+$hackachieve-darker-purple: #1F2350;
+$hackachieve-dark-purple: #36387C;
+$hackachieve-light-purple: #756CAE;
+$hackachieve-green: #58CAD1;
+
+//Other
+$hackachieve-purple: #796DB6;
+$hackachieve-orange: #F89767;
+$hackachieve-yellow: #FEDD93;
+$hackachieve-dark-yellow: #FEB732;
+$hackachieve-blue: #5DC8E2;
+$hackachieve-dark-blue: #354AA4;
+$hackachieve-light-pink: #F1AFBA;
+$hackachieve-pink: #F15864;
+$hackachieve-light-green: #17E09D;
+
+/* Colors classes =========================================== */
+
+.color-other {
+  color: $hackachieve-darker-purple;
+}
+
+.color-health {
+  color: $hackachieve-blue;
+}
+
+.color-career {
+  color: $hackachieve-dark-blue;
+}
+
+.color-family {
+  color: $hackachieve-orange;
+}
+
+.color-finances {
+  color: $hackachieve-green;
+}
+
+.color-leisure-and-fun {
+  color: $hackachieve-light-green;
+}
+
+.color-spiritual {
+  color: $hackachieve-light-purple;
+}
+
+.color-personal-development {
+  color: $hackachieve-dark-yellow;
+}
