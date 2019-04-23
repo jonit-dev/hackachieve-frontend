@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import history from './../history';
 import {connect} from 'react-redux'
 import {Route, Router, Switch} from "react-router-dom";
-
+import './App.scss';
 
 /* Pages =========================================== */
 import Landing from './pages/Landing/Landing';
