@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {clearAlert} from "../../actions";
+import {clearAlert} from "../../actions/uiActions";
 
 class Alert extends Component {
 
@@ -34,7 +34,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    //actions here
     clearAlert
 })(Alert);
 

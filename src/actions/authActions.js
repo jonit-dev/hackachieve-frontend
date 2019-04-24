@@ -1,17 +1,8 @@
-import {auth_axios} from "../classes/API";
-import {CLEAR_ALERT, LOGIN_USER, SHOW_ALERT} from "./types";
-import * as qs from "qs";
-
-
-/* Messages =========================================== */
-
-export const clearAlert = () => dispatch => {
-
-    dispatch({type: CLEAR_ALERT})
-};
-
-
 /* Authentication =========================================== */
+
+import {auth_axios} from "../classes/API";
+import * as qs from "qs";
+import {LOGIN_USER, SHOW_ALERT} from "./types";
 
 export const userLogin = (credentials) => async (dispatch) => {
 
@@ -26,8 +17,14 @@ export const userLogin = (credentials) => async (dispatch) => {
             }
         });
 
-        console.log('User logged in successfully!');
-        console.log(response.data);
+        //show success message
+        dispatch({
+            type: SHOW_ALERT, payload: {
+                type: 'positive',
+                title: 'Welcome back!',
+                content: "You've logged in successfully!"
+            }
+        });
 
         //update our store with user credentials
         dispatch({type: LOGIN_USER, payload: response.data})

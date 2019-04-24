@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {userLogin} from "../../../../actions";
+import {userLogin} from "../../../../actions/authActions";
 import Alert from "../../../UI/Alert";
 
 class Login extends Component {
@@ -21,13 +21,13 @@ class Login extends Component {
         this.props.userLogin(formValues); //login our user with credentials
     };
 
-    componentDidUpdate() {
-        console.log(this.props.alert);
+    onRenderAlert() {
+        return (this.props.alert.type ? <Alert type={this.props.alert.type} title={this.props.alert.title}
+                                               content={this.props.alert.content}/> : null)
     }
 
+
     render() {
-
-
 
         return (
             <main>
@@ -36,7 +36,7 @@ class Login extends Component {
 
                     <h1>Login</h1>
 
-                    {(this.props.alert.type ? <Alert type={this.props.alert.type} title={this.props.alert.title} content={this.props.alert.content}/> : null)}
+                    {this.onRenderAlert()}
 
                     <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
 
