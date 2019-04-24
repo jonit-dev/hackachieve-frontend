@@ -1,4 +1,4 @@
-import {CLEAR_ALERT, SHOW_ALERT} from "../actions/types";
+import {CLEAR_ALERT, SHOW_ALERT} from "../../actions/types";
 
 const INITIAL_STATE = {
     message: {
