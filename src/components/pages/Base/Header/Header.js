@@ -31,7 +31,7 @@ class Header extends Component {
                             </a>
 
                             <Link to={`/`} className="logo-link">
-                                <img src="images/logo_dark.png" alt="Logo" class="app-logo"/>
+                                <img src="images/logo_dark.png" alt="Logo" className="app-logo"/>
                             </Link>
                             <div className="right item">
                                 <Link className="item" to="/">Home</Link>

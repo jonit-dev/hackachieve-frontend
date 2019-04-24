@@ -1,30 +1,38 @@
-import {LOGIN_USER} from "../actions/types";
+import {CLEAR_ALERT, SHOW_ALERT} from "../actions/types";
 
 const INITIAL_STATE = {
-    isLoggedIn: null,
-    token: {
-        access: null,
-        refresh: null
+    message: {
+        type: null,
+        title: null,
+        content: null
     }
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case LOGIN_USER:
+        case SHOW_ALERT:
 
-            const {access, refresh} = action.payload;
+            const {type, title, content} = action.payload;
 
             return {
-                ...state, isLoggedIn: true, token: {
-                    access, refresh
+                ...state, message: {
+                    type,
+                    title,
+                    content
                 }
             };
+
+        case CLEAR_ALERT:
+            return {...state, message: INITIAL_STATE.message};
+
         default:
             return state;
     }
 }
 
+
 /*
+
  =========  Safe state update in reducers =========
 
 // From arrays
