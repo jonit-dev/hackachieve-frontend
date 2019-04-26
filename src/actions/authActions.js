@@ -3,6 +3,7 @@
 import {auth_axios} from "../classes/API";
 import * as qs from "qs";
 import {LOGIN_USER, LOGOUT_USER, SHOW_ALERT} from "./types";
+import history from '../history';
 
 export const userLogin = (credentials) => async (dispatch) => {
 
@@ -40,6 +41,10 @@ export const userLogin = (credentials) => async (dispatch) => {
             }
         }))
 
+        //then move the user to the board
+
+        history.push('/board');
+
     }
     catch (error) {
 
@@ -60,7 +65,7 @@ export const userLogin = (credentials) => async (dispatch) => {
 
 
 export const userLogout = () => dispatch => {
-    
+
     console.log('logging out user!');
 
     //clear localstorage
@@ -76,10 +81,12 @@ export const checkLoggedIn = () => async (dispatch) => {
 
     const user = JSON.parse(localStorage.getItem('user'));
 
-    if (user.token !== undefined) {
-
+    try {
         if (user.token.access) {
             const {access, refresh} = user.token;
+
+
+            //if some token cache was found on localStorage, let's login the user!
             dispatch({
                 type: LOGIN_USER, payload: {
                     access,
@@ -87,8 +94,9 @@ export const checkLoggedIn = () => async (dispatch) => {
                 }
             })
         }
-
-
+    }
+    catch (error) {
+        //do nothing on error! It simply means that there's no cache information!
     }
 
 

@@ -19,10 +19,6 @@ class App extends Component {
         this.props.checkLoggedIn(); //check logged in on app init
     }
 
-    componentDidUpdate() {
-        console.log(this.props);
-    }
-
     render() {
         return (
             <Router history={history}>
