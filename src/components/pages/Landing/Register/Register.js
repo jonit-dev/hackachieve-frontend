@@ -3,18 +3,9 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import Alert from "../../../UI/Alert";
 import {userLogin, userRegister} from "../../../../actions/authActions";
+import ValidationMessage from '../../../UI/ValidationMessage';
 
 class Register extends Component {
-
-    renderInput({type, placeholder, input, label, meta}) {
-        return (
-            <div className="field">
-                <label>{label}</label>
-                <input {...input} placeholder={placeholder} type={type}/>
-
-            </div>
-        )
-    }
 
 
     onSubmit = (formValues) => {
@@ -44,6 +35,17 @@ class Register extends Component {
                                                content={this.props.alert.content}/> : null)
     }
 
+
+    renderInput({type, placeholder, input, label, meta}) {
+        return (
+            <div className="field">
+                <label>{label}</label>
+                <input {...input} placeholder={placeholder} type={type}/>
+                {(meta.touched && meta.error ? <ValidationMessage message={meta.error}/> : null)}
+            </div>
+        )
+    }
+
     render() {
 
         return (
@@ -60,16 +62,16 @@ class Register extends Component {
                     <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
 
                         <Field name="firstName" component={this.renderInput} label="First name"
-                               placeholder="First name" type="text"/>
+                               placeholder="First name" type="text" validate={required}/>
 
                         <Field name="lastName" component={this.renderInput} label="Last name"
-                               placeholder="Last name" type="text"/>
+                               placeholder="Last name" type="text" validate={required}/>
 
                         <Field type="email" name="email" component={this.renderInput} label="Email"
-                               placeholder="Email"/>
+                               placeholder="Email" validate={required}/>
 
                         <Field type="password" name="password" component={this.renderInput} label="Password"
-                               placeholder="Password"/>
+                               placeholder="Password" validate={required}/>
 
                         {/*<div className="field">*/}
                         {/*<div className="ui checkbox">*/}
@@ -77,7 +79,7 @@ class Register extends Component {
                         {/*<label>I agree to the Terms and Conditions</label>*/}
                         {/*</div>*/}
                         {/*</div>*/}
-                        <button className="ui button positive" type="submit">Register
+                        <button className="ui button positive" disabled={!this.props.valid} type="submit">Register
                         </button>
                     </form>
                 </div>
@@ -86,23 +88,18 @@ class Register extends Component {
     }
 }
 
-
-const validate = (formValues) => {
-
-    const errors = {};
-
-
-    if (!formValues.firstName) {
-        errors.firstName = 'You must enter a title'
+const required = v => {
+    if (!v || v === '') {
+        return "This field is required"
     }
 
+    return undefined;
 
-    return errors;
 };
+
 
 const formWrapped = reduxForm({
     form: 'Register',
-    validate: validate,
     enableReinitialize: true
 })(Register);
 
