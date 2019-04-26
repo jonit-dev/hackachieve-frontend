@@ -1,4 +1,4 @@
-import {LOGIN_USER} from "../actions/types";
+import {LOGIN_USER, LOGOUT_USER} from "../actions/types";
 
 const INITIAL_STATE = {
     isLoggedIn: null,
@@ -19,6 +19,11 @@ export default (state = INITIAL_STATE, action) => {
                     access, refresh
                 }
             };
+
+        case LOGOUT_USER:
+
+            return {...state, isLoggedIn: INITIAL_STATE.isLoggedIn, token: INITIAL_STATE.token};
+
         default:
             return state;
     }

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 
 import {Link} from "react-router-dom";
+import {userLogout} from "../../../../actions/authActions";
 
 
 class Header extends Component {
@@ -35,17 +36,17 @@ class Header extends Component {
                             </Link>
                             <div className="right item">
                                 <Link className="item" to="/">Home</Link>
-                                {/*{(User.isLoggedIn() ?*/}
-                                {/*<Link className="item" to="/board">Board</Link> : null)}*/}
-                                {/*{(!User.isLoggedIn() ?*/}
-                                {/*<React.Fragment>*/}
-                                <Link id="btnLogin" to="/login" className="ui grey login button">Log
-                                    in</Link>
-                                <Link id="btnRegister" to="/register"
-                                      className="ui signup green button">Sign
-                                    Up</Link>
-                                {/*</React.Fragment> : <button id="btnLogout" onClick={User.logout}*/}
-                                {/*className="ui inverted button">Logout</button>)}*/}
+                                {(this.props.isLoggedIn ?
+                                    <Link className="item" to="/board">Board</Link> : null)}
+                                {(!this.props.isLoggedIn ?
+                                    <React.Fragment>
+                                        <Link id="btnLogin" to="/login" className="ui grey login button">Log
+                                            in</Link>
+                                        <Link id="btnRegister" to="/register"
+                                              className="ui signup green button">Sign
+                                            Up</Link>
+                                    </React.Fragment> : <button id="btnLogout" onClick={() => this.props.userLogout()}
+                                                                className="ui inverted button">Logout</button>)}
 
                             </div>
                         </div>
@@ -62,10 +63,13 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        isLoggedIn: state.auth.isLoggedIn
+    };
 };
 
 export default connect(mapStateToProps, {
     //actions here
+    userLogout
 })(Header);
 

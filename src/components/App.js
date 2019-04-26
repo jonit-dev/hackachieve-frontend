@@ -9,9 +9,19 @@ import Landing from './pages/Landing/Landing';
 import Header from "./pages/Base/Header/Header";
 import Login from "./pages/Landing/Login/Login";
 import Register from "./pages/Landing/Register/Register";
+import {checkLoggedIn} from "../actions/authActions";
+import Board from "./pages/Board/Board";
 
 
 class App extends Component {
+
+    componentDidMount() {
+        this.props.checkLoggedIn(); //check logged in on app init
+    }
+
+    componentDidUpdate() {
+        console.log(this.props);
+    }
 
     render() {
         return (
@@ -21,6 +31,7 @@ class App extends Component {
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/board" component={Board}/>
                 </Switch>
             </Router>
         );
@@ -28,11 +39,15 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        token: state.auth.token,
+        isLoggedIn: state.auth.isLoggedIn
+    };
 };
 
 export default connect(mapStateToProps, {
     //actions here
+    checkLoggedIn
 
 
 })(App);
