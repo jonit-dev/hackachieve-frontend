@@ -6,18 +6,18 @@ import Alert from "../../../UI/Alert";
 
 class Login extends Component {
 
-    renderInput({input, label, meta}) {
+    renderInput({placeholder, input, label, meta}) {
+
+
         return (
             <div className="field">
                 <label>{label}</label>
-                <input {...input}/>
+                <input {...input} placeholder={placeholder}/>
             </div>
         )
     }
 
     onSubmit = (formValues) => {
-        console.log('Form reducer: starting user login!');
-        console.log(formValues);
         this.props.userLogin(formValues); //login our user with credentials
     };
 

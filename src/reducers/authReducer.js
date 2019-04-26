@@ -1,10 +1,16 @@
-import {LOGIN_USER, LOGOUT_USER} from "../actions/types";
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "../actions/types";
 
 const INITIAL_STATE = {
     isLoggedIn: null,
+    canRedirectLogin: false,
     token: {
         access: null,
         refresh: null
+    },
+    user: {
+        firstName: null,
+        lastName: null,
+        email: null
     }
 };
 
@@ -21,8 +27,27 @@ export default (state = INITIAL_STATE, action) => {
             };
 
         case LOGOUT_USER:
+            return {
+                ...state,
+                isLoggedIn: INITIAL_STATE.isLoggedIn,
+                canRedirectLogin: INITIAL_STATE.canRedirectLogin,
+                token: INITIAL_STATE.token,
+                user: INITIAL_STATE.user
+            };
 
-            return {...state, isLoggedIn: INITIAL_STATE.isLoggedIn, token: INITIAL_STATE.token};
+        case REGISTER_USER:
+
+            const {firstName, lastName, email} = action.payload;
+
+            return {
+                ...state, user: {
+                    firstName,
+                    lastName,
+                    email
+                },
+                canRedirectLogin: true //allow user auto login after register
+            };
+
 
         default:
             return state;
