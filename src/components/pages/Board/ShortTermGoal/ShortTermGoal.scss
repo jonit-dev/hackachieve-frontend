@@ -9,7 +9,6 @@
   display: flex;
   flex-wrap: wrap;
 
-
   .column-card {
     position: relative;
     padding: 1.2rem 0rem 0rem;
@@ -54,6 +53,8 @@
         flex: 0 0 auto;
         display: flex;
         align-items: center;
+        position: absolute;
+        top: 7.7rem;
 
         .column-card-deadline-icon {
           background-image: url('/images/icons/calelndar-icon.svg');

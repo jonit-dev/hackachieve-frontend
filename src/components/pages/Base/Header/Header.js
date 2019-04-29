@@ -51,7 +51,7 @@ class Header extends Component {
 
                             <div className="board-switch">
 
-                                <div className={``}>
+                                <div className={`board-switch-item switch-active`}>
                                     <div className="board-switch-icon">
                                         <i className="fas fa-check"></i>
 
@@ -63,7 +63,7 @@ class Header extends Component {
 
                                 </div>
 
-                                <div className={``}>
+                                <div className={`board-switch-item`}>
                                     <div className="board-switch-icon">
                                         <i className="fas fa-check"></i>
 

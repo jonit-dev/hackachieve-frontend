@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import Alert from "../../../UI/Alert";
+import Alert from "../../../UI/Alert/Alert";
 import {userLogin, userRegister} from "../../../../actions/authActions";
-import ValidationMessage from '../../../UI/ValidationMessage';
+import ValidationMessage from '../../../UI/ValidationMessage/ValidationMessage';
 
 class Register extends Component {
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {userLogin} from "../../../../actions/authActions";
-import Alert from "../../../UI/Alert";
+import Alert from "../../../UI/Alert/Alert";
 
 class Login extends Component {
 

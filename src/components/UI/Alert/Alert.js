@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {clearAlert} from "../../actions/uiActions";
+import {clearAlert} from "../../../actions/uiActions";
 
 class Alert extends Component {
 
