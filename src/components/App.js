@@ -22,7 +22,7 @@ class App extends Component {
     render() {
         return (
             <Router history={history}>
-                <Header/>
+                <Header />
                 <Switch>
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>
@@ -36,6 +36,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
+
         token: state.auth.token,
         isLoggedIn: state.auth.isLoggedIn
     };

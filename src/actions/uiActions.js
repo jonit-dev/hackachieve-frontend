@@ -1,4 +1,4 @@
-import {CLEAR_ALERT, SHOW_ALERT} from "./types";
+import {CLEAR_ALERT, SHOW_ALERT, UPDATE_LOCATION} from "./types";
 
 /* Messages =========================================== */
 
@@ -17,3 +17,7 @@ export const showAlert = (type, message, content) => dispatch => {
     })
 };
 
+export const updateLocation = (location) => async (dispatch) => {
+
+    dispatch({type: UPDATE_LOCATION, payload: location})
+};
