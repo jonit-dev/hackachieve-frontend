@@ -1,4 +1,4 @@
-import {auth_axios} from "../classes/API";
+import API from "../classes/API";
 import {DELETE_GOAL, LOAD_GOALS} from "./types";
 
 
@@ -14,16 +14,16 @@ export const loadGoals = (id, status) => async (dispatch, getState) => {
     - ongoing
     - completed
     */
-
-    const response = await auth_axios.get(`/boards/show/${id}/${status}`);
-
-    dispatch({type: LOAD_GOALS, payload: response.data})
+    return API.request(`/boards/show/${id}/${status}`, 'GET', null, 'auth').then((response) => {
+        dispatch({type: LOAD_GOALS, payload: response.data})
+    });
 };
 
 
 export const deleteGoal = (id) => async (dispatch) => {
 
-    await auth_axios.delete(`/goals/delete/${id}`); //send request to server
-
-    dispatch({type: DELETE_GOAL, payload: id})
+    // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
+    return API.request(`/goals/delete/${id}`, 'DELETE', null, 'auth').then(() => {
+        dispatch({type: DELETE_GOAL, payload: id})
+    });
 };

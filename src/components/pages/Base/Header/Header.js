@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link, NavLink} from "react-router-dom";
 import {userLogout} from "../../../../actions/authActions";
 import history from './../../../../history';
-import {updateLocation} from "../../../../actions/uiActions";
+import {showAlert, updateLocation} from "../../../../actions/uiActions";
 
 
 class Header extends Component {
@@ -15,7 +15,15 @@ class Header extends Component {
 
         //listen for history changes and then update our current state properly
         this.unlisten = history.listen((location, action) => {
-            //update current location (pathname)
+
+            //check for messages to display
+            if (location.state !== undefined) {
+                if(location.state.alert !== undefined) { //if there's an alert message coming from out history.push
+                    this.props.showAlert('negative', 'Error', location.state.alert);
+                }
+            }
+
+            //update current location (pathname) ==> useful for header dynamic change
             this.props.updateLocation(location);
         });
     }
@@ -158,6 +166,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     //actions here
     userLogout,
-    updateLocation
+    updateLocation,
+    showAlert
 })(Header);
 

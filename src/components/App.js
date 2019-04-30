@@ -19,6 +19,11 @@ class App extends Component {
 
     componentDidMount() {
         this.props.checkLoggedIn(); //check logged in on app init
+
+
+
+
+
     }
 
     render() {

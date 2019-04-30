@@ -1,16 +1,18 @@
 /* Authentication =========================================== */
 
-import {guest_axios} from "../classes/API";
+import axios from "axios";
 import * as qs from "qs";
 import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, SHOW_ALERT} from "./types";
 import history from '../history';
+import API from '../classes/API';
 
 export const userLogin = (credentials) => async (dispatch) => {
 
 
     try {
         //here we use guest_axios because we have no token on headers to pass (obviously, because we're TRYING to log in!)
-        const response = await guest_axios.post(`/api/token/`, qs.stringify(credentials), {
+        const response = await axios.post(`/api/token/`, qs.stringify(credentials), {
+            baseURL: API.getConfig().url,
             withCredentials: true,
             headers: {
                 "Authorization": "Basic Og==",
@@ -102,36 +104,41 @@ export const checkLoggedIn = () => async (dispatch) => {
 
 export const userRegister = (userInfo) => async (dispatch) => {
 
-    const response = await guest_axios.post('/user/register', userInfo);
+    // const response = await guest_axios.post('/user/register', userInfo);
+    return API.request('/user/register', 'POST', userInfo, 'guest').then((response) => {
 
-    if (response.data.status === 'success') {
+        if (response.data.status === 'success') {
 
-        dispatch({
-            type: SHOW_ALERT, payload: {
-                type: 'positive',
-                title: 'User created successfully!',
-                content: 'Are you ready to hack your productivity?'
-            }
-        });
+            dispatch({
+                type: SHOW_ALERT, payload: {
+                    type: 'positive',
+                    title: 'User created successfully!',
+                    content: 'Are you ready to hack your productivity?'
+                }
+            });
 
-        localStorage.setItem('userInfo', JSON.stringify({
-            'firstName': userInfo.firstName,
-            'lastName': userInfo.lastName,
-            'email': userInfo.email
-        }));
+            localStorage.setItem('userInfo', JSON.stringify({
+                'firstName': userInfo.firstName,
+                'lastName': userInfo.lastName,
+                'email': userInfo.email
+            }));
 
-        dispatch({type: REGISTER_USER, payload: userInfo}); //register user
+            dispatch({type: REGISTER_USER, payload: userInfo}); //register user
 
-    } else {
 
-        dispatch({
-            type: SHOW_ALERT, payload: {
-                type: 'negative',
-                title: 'Failed to Register your user',
-                content: response.data.message
-            }
-        })
-    }
+        } else {
+
+            dispatch({
+                type: SHOW_ALERT, payload: {
+                    type: 'negative',
+                    title: 'Failed to Register your user',
+                    content: response.data.message
+                }
+            })
+        }
+
+    })
+
 };
 
 

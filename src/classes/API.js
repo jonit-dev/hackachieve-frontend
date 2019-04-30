@@ -1,19 +1,134 @@
 import axios from 'axios';
+import history from '../history';
 
-let token = JSON.parse(localStorage.getItem('userToken'));
+export default class API {
 
+    static getConfig() {
 
-
-export const auth_axios = axios.create({
-    baseURL: 'http://localhost:8000/',
-    headers: {
-        Authorization: `Bearer ${token_access}`
-    },
-});
-
-export const guest_axios = axios.create({
-    baseURL: 'http://localhost:8000/'
-});
+        return {
+            url: 'http://localhost:8000/'
+        }
 
 
+    }
 
+    static request(url, method, data = {}, type = 'auth') {
+
+        let customHeader = {};
+
+        if (type === 'auth') { //if we're trying to access a authenticated route
+            try {
+                const token = JSON.parse(localStorage.getItem('userToken')); //set token as Authorization Bearer
+                customHeader = {
+                    Authorization: `Bearer ${token.access}`
+                }
+            }
+            catch (error) { //if something wrong happens, lets just redirect the user to login and show an error message
+                // console.log(error);
+                history.push({pathname: '/login', state: {alert: 'Please, login before accessing this page'}})
+            }
+        }
+
+        const customAxios = axios.create({
+            baseURL: API.getConfig().url,
+            headers: customHeader
+        });
+
+        return new Promise((resolve, reject) => {
+            try {
+                (async () => {
+                    const response = await customAxios({
+                        method,
+                        url,
+                        data
+                    });
+                    resolve(response);
+                })();
+            }
+            catch (error) {
+                console.error(error);
+                reject(error)
+            }
+        });
+
+
+        // switch (method) {
+        //
+        //     case 'GET':
+        //
+        //         return new Promise((resolve, reject) => {
+        //             try {
+        //                 (async () => {
+        //                     const response = await customAxios.get(url);
+        //
+        //                     resolve(response);
+        //                 })();
+        //             }
+        //             catch (error) {
+        //                 console.error(error);
+        //                 reject(error)
+        //             }
+        //         });
+        //
+        //     case 'DELETE':
+        //         return new Promise((resolve, reject) => {
+        //             try {
+        //                 (async () => {
+        //                     const response = await customAxios.delete(url);
+        //                     resolve(response);
+        //                 })();
+        //             }
+        //             catch (error) {
+        //                 console.error(error);
+        //                 reject(error)
+        //             }
+        //         });
+        //
+        //     case 'POST':
+        //         return new Promise((resolve, reject) => {
+        //             try {
+        //                 (async () => {
+        //                     const response = await customAxios.post(url, data);
+        //                     resolve(response);
+        //                 })();
+        //             }
+        //             catch (error) {
+        //                 console.error(error);
+        //                 reject(error);
+        //             }
+        //         });
+        //
+        //     case 'PATCH':
+        //         return new Promise((resolve, reject) => {
+        //             try {
+        //                 (async () => {
+        //                     const response = await customAxios.patch(url, data);
+        //                     resolve(response);
+        //                 })();
+        //             }
+        //             catch (error) {
+        //                 console.error(error);
+        //                 reject(error);
+        //             }
+        //         });
+        //
+        //     default:
+        //         return new Promise((resolve, reject) => {
+        //             try {
+        //                 (async () => {
+        //                     const response = await customAxios.get(url);
+        //
+        //                     resolve(response);
+        //                 })();
+        //             }
+        //             catch (error) {
+        //                 console.error(error);
+        //                 reject(error)
+        //             }
+        //         });
+        //
+        //
+        // }
+
+    }
+}
