@@ -4,12 +4,9 @@ import history from '../history';
 export default class API {
 
     static getConfig() {
-
         return {
             url: 'http://localhost:8000/'
         }
-
-
     }
 
     static request(url, method, data = {}, type = 'auth') {
@@ -50,85 +47,6 @@ export default class API {
                 reject(error)
             }
         });
-
-
-        // switch (method) {
-        //
-        //     case 'GET':
-        //
-        //         return new Promise((resolve, reject) => {
-        //             try {
-        //                 (async () => {
-        //                     const response = await customAxios.get(url);
-        //
-        //                     resolve(response);
-        //                 })();
-        //             }
-        //             catch (error) {
-        //                 console.error(error);
-        //                 reject(error)
-        //             }
-        //         });
-        //
-        //     case 'DELETE':
-        //         return new Promise((resolve, reject) => {
-        //             try {
-        //                 (async () => {
-        //                     const response = await customAxios.delete(url);
-        //                     resolve(response);
-        //                 })();
-        //             }
-        //             catch (error) {
-        //                 console.error(error);
-        //                 reject(error)
-        //             }
-        //         });
-        //
-        //     case 'POST':
-        //         return new Promise((resolve, reject) => {
-        //             try {
-        //                 (async () => {
-        //                     const response = await customAxios.post(url, data);
-        //                     resolve(response);
-        //                 })();
-        //             }
-        //             catch (error) {
-        //                 console.error(error);
-        //                 reject(error);
-        //             }
-        //         });
-        //
-        //     case 'PATCH':
-        //         return new Promise((resolve, reject) => {
-        //             try {
-        //                 (async () => {
-        //                     const response = await customAxios.patch(url, data);
-        //                     resolve(response);
-        //                 })();
-        //             }
-        //             catch (error) {
-        //                 console.error(error);
-        //                 reject(error);
-        //             }
-        //         });
-        //
-        //     default:
-        //         return new Promise((resolve, reject) => {
-        //             try {
-        //                 (async () => {
-        //                     const response = await customAxios.get(url);
-        //
-        //                     resolve(response);
-        //                 })();
-        //             }
-        //             catch (error) {
-        //                 console.error(error);
-        //                 reject(error)
-        //             }
-        //         });
-        //
-        //
-        // }
 
     }
 }
