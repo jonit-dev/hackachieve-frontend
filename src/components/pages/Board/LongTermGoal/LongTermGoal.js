@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import Moment from 'react-moment';
 import ShortTermGoal from "../ShortTermGoal/ShortTermGoal";
+import {deleteGoal, loadGoals} from "../../../../actions/goalsActions";
 
 class LongTermGoal extends Component {
 
@@ -14,6 +15,8 @@ class LongTermGoal extends Component {
             return boardName.toLowerCase();
         }
     }
+
+
 
     onRenderShortTermGoals() {
 
@@ -89,7 +92,7 @@ class LongTermGoal extends Component {
                     </div>
 
                     <div className="column-body" data-simplebar data-simplebar-auto-hide="false">
-                        {this.onRenderShortTermGoals()}
+                        <div>{this.onRenderShortTermGoals()}</div>
                     </div>
 
                     <div className="column-footer">
@@ -142,5 +145,7 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
     //actions here
+    deleteGoal,
+    loadGoals
 })(LongTermGoal);
 

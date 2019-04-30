@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import Moment from "react-moment";
+import Dropdown from "../../../UI/Dropdown/Dropdown";
+import {deleteGoal, loadGoals} from "../../../../actions/goalsActions";
 
 class ShortTermGoal extends Component {
 
@@ -8,9 +10,10 @@ class ShortTermGoal extends Component {
         return null; //todo:goalsetstatus
     }
 
-    onGoalDelete() {
-        return null; //todo: onGoalDelete
+    onDeleteGoal(id) {
+        this.props.deleteGoal(id)
     }
+
 
     onRenderActions() {
         switch (this.props.myProps.status) {
@@ -79,42 +82,27 @@ class ShortTermGoal extends Component {
         return (
             <div className={goalStyle}>
 
-                {/*<Dropdown triggerParentDelete={() => {*/}
-                {/*this.onGoalDelete()*/}
-                {/*}} triggerParentOpenModal={this.props.triggerParentOpenModal}/>*/}
 
+                <Dropdown triggerParentDelete={() => this.onDeleteGoal(this.props.myProps.id)}/>
 
                 <div className="column-card-body">
-
-
                     <div className="column-card-title">{this.props.myProps.title}</div>
-
                     <div className="column-card-description">{this.props.myProps.description}
                     </div>
-
-
                     <div className="column-card-deadline">
                         <div className="column-card-deadline-icon"></div>
                         <div className="column-card-deadline-text">
                             <Moment format="D MMMM, YY">{this.props.myProps.deadline}</Moment>
                         </div>
                     </div>
-
                 </div>
 
                 <div className="column-card-footer">
-
                     <div className="priority-icon"></div>
-
                     <div className="column-footer-actions-group">
-
                         {this.onRenderActions()}
-
                     </div>
-
-
                 </div>
-
             </div>
         );
     }
@@ -127,5 +115,7 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
     //actions here
+    deleteGoal,
+    loadGoals
 })(ShortTermGoal);
 

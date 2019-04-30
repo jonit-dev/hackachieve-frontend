@@ -36,7 +36,7 @@ class Board extends Component {
                                 key={long_term_goal.id}
                                 id={long_term_goal.id}
                                 boardName={goal.name}
-                                title={goal.description}
+                                title={long_term_goal.name}
                                 completedGoalsProportion={completedGoalsString}
                                 deadline={long_term_goal.deadline}
                                 shortTermGoals={long_term_goal.short_term_goals}

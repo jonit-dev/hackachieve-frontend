@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-let token = JSON.parse(localStorage.getItem('userToken')).access;
+let token = JSON.parse(localStorage.getItem('userToken'));
+
+
 
 export const auth_axios = axios.create({
     baseURL: 'http://localhost:8000/',
     headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token_access}`
     },
 });
 
