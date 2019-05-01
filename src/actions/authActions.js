@@ -21,6 +21,7 @@ export const userLogin = (credentials) => async (dispatch) => {
             }
         });
 
+
         //show success message
         dispatch({
             type: SHOW_ALERT, payload: {
@@ -30,21 +31,33 @@ export const userLogin = (credentials) => async (dispatch) => {
             }
         });
 
-        //update our store with user credentials
-        dispatch({type: LOGIN_USER, payload: response.data});
 
-        const {access, refresh} = response.data;
 
-        //also update our localStorage
+        setTimeout(() => {
 
-        localStorage.setItem('userToken', JSON.stringify({
-            'access': access,
-            'refresh': refresh
-        }));
 
-        //then move the user to the board
+            //update our store with user credentials
+            dispatch({type: LOGIN_USER, payload: response.data});
 
-        history.push('/board');
+            const {access, refresh} = response.data;
+
+            //also update our localStorage
+
+            localStorage.setItem('userToken', JSON.stringify({
+                'access': access,
+                'refresh': refresh
+            }));
+
+            //then move the user to the board
+
+            history.push('/board');
+
+
+
+
+        },3000);
+
+
 
     }
     catch (error) {
