@@ -3,6 +3,8 @@
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const CLEAR_ALERT = 'CLEAR_ALERT';
 export const UPDATE_LOCATION = 'UPDATE_LOCATION';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 
 /* Authentication =========================================== */

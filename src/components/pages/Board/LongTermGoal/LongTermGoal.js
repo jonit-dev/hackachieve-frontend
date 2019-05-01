@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import Moment from 'react-moment';
 import ShortTermGoal from "../ShortTermGoal/ShortTermGoal";
 import {deleteGoal, loadGoals} from "../../../../actions/goalsActions";
+import {toggleModal} from "../../../../actions/uiActions";
+import AddShortTermGoal from "../ShortTermGoal/AddShortTermGoal";
 
 class LongTermGoal extends Component {
 
@@ -16,7 +18,20 @@ class LongTermGoal extends Component {
         }
     }
 
+    onRenderShortTermGoalModal() {
+        if (this.props.modals.shortTermGoal) {
+            return <AddShortTermGoal/>
+        } else {
+            return null
+        }
+    }
 
+
+    onOpenShortTermGoalModal(long_term_goal_id) {
+        console.log(`Opening short term goal modal for long term column id => ${long_term_goal_id}`);
+
+        this.props.toggleModal('shortTermGoal'); //toggle a specific modal by triggering this action
+    }
 
     onRenderShortTermGoals() {
 
@@ -97,7 +112,8 @@ class LongTermGoal extends Component {
 
                     <div className="column-footer">
 
-                        <div className="column-add-short-term-goal" onClick={() => { /*this.onOpenShortTermGoalModal()*/
+                        <div className="column-add-short-term-goal" onClick={() => {
+                            this.onOpenShortTermGoalModal(this.props.myProps.id)
                         }}>
                             <div className="column-add-short-term-goal-btn"></div>
                             <div className="column-add-short-term-goal-text">Add Short Term Goal
@@ -109,6 +125,8 @@ class LongTermGoal extends Component {
 
 
                 </div>
+
+                {this.onRenderShortTermGoalModal()}
 
 
                 {/*{(this.props.myProps.isShortGoalModalVisible ?*/}
@@ -139,13 +157,15 @@ class LongTermGoal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        myProps: ownProps
+        myProps: ownProps,
+        modals: state.ui.modals
     };
 };
 
 export default connect(mapStateToProps, {
     //actions here
     deleteGoal,
-    loadGoals
+    loadGoals,
+    toggleModal
 })(LongTermGoal);
 
