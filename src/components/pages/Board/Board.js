@@ -65,7 +65,7 @@ class Board extends Component {
 
                         <div className="board-column-add column-add-short-term-goal">
                             <div className="column-add-short-term-goal-btn"></div>
-                            <div className="column-add-short-term-goal-text">Add Main Goal</div>
+                            <div className="column-add-short-term-goal-text">Add Long Term Goal</div>
 
                         </div>
 

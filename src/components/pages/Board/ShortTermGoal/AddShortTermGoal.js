@@ -91,18 +91,20 @@ class AddShortTermGoalModal extends Component {
 
         let formOutput = {...formValues, column_id: this.props.myProps.longTermGoalId};
 
-        console.log('creating new goal ==> ');
-        console.log(formOutput);
+        // console.log('creating new goal ==> ');
+        // console.log(formOutput);
 
-        // this.props.createGoal(formOutput).then(() => {
-        //
-        //     setTimeout(() => {
-        //         this.props.toggleModal('shortTermGoal'); //close modal once goal is created
-        //         this.props.loadGoals(0, 'all');
-        //     }, 5000)
-        //
-        //
-        // });
+        this.props.createGoal(formOutput).then(() => {
+
+            this.props.loadGoals(0, 'all');
+
+            setTimeout(() => {
+                this.props.toggleModal('shortTermGoal'); //close modal once goal is created
+
+            }, 4000)
+
+
+        });
 
     };
 }
