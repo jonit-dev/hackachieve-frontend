@@ -2,15 +2,19 @@ import React, {Component} from 'react';
 import * as ReactDOM from "react-dom";
 import {connect} from 'react-redux'
 import {toggleModal} from "../../../actions/uiActions";
+import Alert from "../Alert/Alert";
 
 class Modal extends Component {
 
 
     onClose() {
-        console.log('closing modal');
         this.props.toggleModal(this.props.myProps.name); //close this modal
     }
 
+    onRenderAlert() {
+        return (this.props.alert.type ? <Alert type={this.props.alert.type} title={this.props.alert.title}
+                                               content={this.props.alert.content}/> : null)
+    }
 
     render() {
         return ReactDOM.createPortal(
@@ -18,6 +22,9 @@ class Modal extends Component {
                 <div className="ui standard modal visible active" onClick={(e) => e.stopPropagation()}>
                     <i className="close icon" onClick={(e) => this.onClose()}></i>
                     <div className="header">{this.props.myProps.title}</div>
+
+                    {this.onRenderAlert()}
+
                     <div className="content">
                         {this.props.myProps.content}
                     </div>
@@ -33,6 +40,7 @@ class Modal extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         myProps: ownProps,
+        alert: state.alert.message,
         modals: state.ui.modals
     };
 };

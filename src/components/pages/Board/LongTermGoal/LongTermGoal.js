@@ -20,7 +20,7 @@ class LongTermGoal extends Component {
 
     onRenderShortTermGoalModal() {
         if (this.props.modals.shortTermGoal) {
-            return <AddShortTermGoal/>
+            return <AddShortTermGoal longTermGoalId={this.props.myProps.id}/>
         } else {
             return null
         }
@@ -28,8 +28,6 @@ class LongTermGoal extends Component {
 
 
     onOpenShortTermGoalModal(long_term_goal_id) {
-        console.log(`Opening short term goal modal for long term column id => ${long_term_goal_id}`);
-
         this.props.toggleModal('shortTermGoal'); //toggle a specific modal by triggering this action
     }
 
