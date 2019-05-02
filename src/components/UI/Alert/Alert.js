@@ -9,7 +9,7 @@ class Alert extends Component {
 
         window.setTimeout(() => {
             this.props.clearAlert();
-        }, 4000);
+        }, 6000);
 
 
     }

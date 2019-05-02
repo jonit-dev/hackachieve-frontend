@@ -1,5 +1,5 @@
 import API from "../classes/API";
-import {DELETE_GOAL, LOAD_GOALS, SHOW_ALERT} from "./types";
+import {LOAD_GOALS, SHOW_ALERT} from "./types";
 
 
 export const loadGoals = (id, status) => async (dispatch, getState) => {
@@ -23,25 +23,24 @@ export const loadGoals = (id, status) => async (dispatch, getState) => {
 export const deleteGoal = (id) => async (dispatch) => {
 
     // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
-    return API.request(`/goals/delete/${id}`, 'DELETE', null, 'auth').then(() => {
-        dispatch({type: DELETE_GOAL, payload: id})
-    });
+    return API.request(`/goals/delete/${id}`, 'DELETE', null, 'auth')
 };
 
 export const createGoal = (data) => async (dispatch) => {
 
-    return API.request('/goals/create/', 'POST', data, 'auth').then((response) => {
+        return API.request('/goals/create/', 'POST', data, 'auth').then((response) => {
 
-        const {status, message} = response.data;
+            const {status, message} = response.data;
 
-        dispatch({
-            type: SHOW_ALERT, payload: {
-                type: (status === 'success' ? 'positive' : 'negative'),
-                title: (status === 'success' ? 'Your goal was created!' : 'Oops!'),
-                content: message
-            }
+            dispatch({
+                type: SHOW_ALERT, payload: {
+                    type: (status === 'success' ? 'positive' : 'negative'),
+                    title: (status === 'success' ? 'Your goal was created!' : 'Oops!'),
+                    content: message
+                }
+            });
+
+            return response;
         });
-
-    });
 
 };

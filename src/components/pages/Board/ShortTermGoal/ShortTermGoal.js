@@ -11,7 +11,9 @@ class ShortTermGoal extends Component {
     }
 
     onDeleteGoal(id) {
-        this.props.deleteGoal(id)
+        this.props.deleteGoal(id).then(() => {
+            this.props.loadGoals(0,'all');
+        })
     }
 
 
