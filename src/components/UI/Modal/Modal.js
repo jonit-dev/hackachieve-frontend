@@ -23,7 +23,7 @@ class Modal extends Component {
                     <i className="close icon" onClick={(e) => this.onClose()}></i>
                     <div className="header">{this.props.myProps.title}</div>
 
-                    {this.onRenderAlert()}
+                   <div className="content"> {this.onRenderAlert()} </div>
 
                     <div className="content">
                         {this.props.myProps.content}

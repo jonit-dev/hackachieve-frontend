@@ -1,5 +1,5 @@
 import API from "../classes/API";
-import {DELETE_GOAL, LOAD_GOALS} from "./types";
+import {DELETE_GOAL, LOAD_GOALS, SHOW_ALERT} from "./types";
 
 
 export const loadGoals = (id, status) => async (dispatch, getState) => {
@@ -26,4 +26,22 @@ export const deleteGoal = (id) => async (dispatch) => {
     return API.request(`/goals/delete/${id}`, 'DELETE', null, 'auth').then(() => {
         dispatch({type: DELETE_GOAL, payload: id})
     });
+};
+
+export const createGoal = (data) => async (dispatch) => {
+
+    return API.request('/goals/create/', 'POST', data, 'auth').then((response) => {
+
+        const {status, message} = response.data;
+
+        dispatch({
+            type: SHOW_ALERT, payload: {
+                type: (status === 'success' ? 'positive' : 'negative'),
+                title: (status === 'success' ? 'Your goal was created!' : 'Oops!'),
+                content: message
+            }
+        });
+
+    });
+
 };

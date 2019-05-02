@@ -3,31 +3,13 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
+import {createGoal, loadGoals} from "../../../../actions/goalsActions";
 
 class AddShortTermGoalModal extends Component {
-    /*
-    * Output sample
-    {
-	"title":"test goal2",
-	"description": "updated goal",
-	"duration_hrs": 0,
-	"deadline": "2019-02-27",
-	"column_id": "1",
-	"priority": 0
-}
-    *
-    *
-    * */
-
-    componentDidMount() {
-        console.log(`Adding short term goal for long term goal ID: ${this.props.myProps.longTermGoalId}`);
-    }
-
 
     onClose() {
         this.props.toggleModal('shortTermGoal');
     }
-
 
     renderInput({input, label, meta, optional, type, textarea, placeholder}) {
         return (
@@ -109,7 +91,18 @@ class AddShortTermGoalModal extends Component {
 
         let formOutput = {...formValues, column_id: this.props.myProps.longTermGoalId};
 
+        console.log('creating new goal ==> ');
         console.log(formOutput);
+
+        // this.props.createGoal(formOutput).then(() => {
+        //
+        //     setTimeout(() => {
+        //         this.props.toggleModal('shortTermGoal'); //close modal once goal is created
+        //         this.props.loadGoals(0, 'all');
+        //     }, 5000)
+        //
+        //
+        // });
 
     };
 }
@@ -136,5 +129,7 @@ const formWrapped = reduxForm({
 
 export default connect(mapStateToProps, {
     //some actions here
-    toggleModal
+    toggleModal,
+    createGoal,
+    loadGoals
 })(formWrapped)
