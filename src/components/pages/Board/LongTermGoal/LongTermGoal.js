@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import Moment from 'react-moment';
 import ShortTermGoal from "../ShortTermGoal/ShortTermGoal";
-import {deleteGoal, loadGoals} from "../../../../actions/goalsActions";
+import {deleteGoal, deleteLongTermGoal, loadGoals} from "../../../../actions/goalsActions";
 import {toggleModal} from "../../../../actions/uiActions";
 import Dropdown from "../../../UI/Dropdown/Dropdown";
 import AddShortTermGoalModal from "../ShortTermGoal/AddShortTermGoalModal";
@@ -30,16 +30,9 @@ class LongTermGoal extends Component {
     }
 
     onRenderLongTermGoalModal() {
-        if (this.props.modals.longTermGoal.status === true && this.props.modals.longTermGoal.id === this.props.myProps.id) { //make sure we are opening the right modal
+        if (this.props.modals.longTermGoal.status === true && this.props.modals.longTermGoal.id === this.props.myProps.id) { //make sure we are opening the modal corresponding to this component
 
-
-
-
-
-            return <AddLongTermGoalModal longTermGoalId={this.props.myProps.id}/>
-
-
-
+            return <AddLongTermGoalModal/>
 
 
         } else {
@@ -49,7 +42,9 @@ class LongTermGoal extends Component {
 
 
     onDeleteLongTermGoal() {
-        console.log('deleting long term goal');
+        this.props.deleteLongTermGoal(this.props.myProps.id).then(() => {
+            this.props.loadGoals(0, 'all')
+        });
     }
 
 
@@ -57,8 +52,8 @@ class LongTermGoal extends Component {
         this.props.toggleModal('shortTermGoal', longTermGoalId); //toggle a specific modal by triggering this action
     }
 
-    onOpenLongTermGoalModal(longTermGoalId) {
-        this.props.toggleModal('longTermGoal', longTermGoalId);
+    onOpenLongTermGoalModal() {
+        this.props.toggleModal('longTermGoal', this.props.myProps.id);
     }
 
     onRenderShortTermGoals() {
@@ -174,6 +169,7 @@ export default connect(mapStateToProps, {
     //actions here
     deleteGoal,
     loadGoals,
-    toggleModal
+    toggleModal,
+    deleteLongTermGoal
 })(LongTermGoal);
 

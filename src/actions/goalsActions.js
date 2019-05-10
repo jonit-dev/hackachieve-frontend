@@ -1,5 +1,5 @@
 import API from "../classes/API";
-import {LOAD_GOALS, SHOW_ALERT} from "./types";
+import {LOAD_CATEGORIES, LOAD_GOALS, SHOW_ALERT} from "./types";
 
 
 export const loadGoals = (id, status) => async (dispatch, getState) => {
@@ -23,8 +23,26 @@ export const loadGoals = (id, status) => async (dispatch, getState) => {
 export const deleteGoal = (id) => async (dispatch) => {
 
     // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
-    return API.request(`/goals/delete/${id}`, 'DELETE', null, 'auth')
+    return API.request(`/goals/delete/${id}/`, 'DELETE', null, 'auth')
 };
+
+export const deleteLongTermGoal = (id) => async (dispatch) => {
+
+    // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
+    return API.request(`/columns/delete/${id}/`, 'DELETE', null, 'auth')
+};
+
+export const loadUserGoalsCategories = () => async (dispatch)=> {
+
+    return API.request(`/boards/`, 'GET', null, 'auth').then((response) => {
+
+        dispatch({type: LOAD_CATEGORIES, payload: response.data})
+
+    });
+
+};
+
+
 
 export const createGoal = (data) => async (dispatch) => {
 

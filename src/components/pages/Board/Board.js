@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {loadGoals} from "../../../actions/goalsActions";
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
+import {toggleModal} from "../../../actions/uiActions";
 
 
 class Board extends Component {
@@ -11,6 +12,15 @@ class Board extends Component {
 
         //load all short term and long term goals
         this.props.loadGoals(0, 'all');
+    }
+
+    onOpenLongTermModal() {
+
+        console.log('opening long term modal');
+
+
+        this.props.toggleModal('longTermGoal')
+
     }
 
     onRenderGoals() {
@@ -63,23 +73,13 @@ class Board extends Component {
 
                         {this.onRenderGoals()}
 
-                        <div className="board-column-add column-add-short-term-goal">
+                        <div className="board-column-add column-add-short-term-goal" onClick={() => this.onOpenLongTermModal()}>
                             <div className="column-add-short-term-goal-btn"></div>
                             <div className="column-add-short-term-goal-text">Add Long Term Goal</div>
 
                         </div>
 
 
-                        {/*{(this.state.isMainGoalModalVisible ?*/}
-                        {/*<Modal title="Add a Main Goal"*/}
-                        {/*hasActions={false} visible={true}*/}
-                        {/*onOpenMainGoalModal={() => {*/}
-                        {/*this.onOpenMainGoalModal()*/}
-                        {/*}}*/}
-                        {/*>*/}
-                        {/*<AddMainGoalPartial/>*/}
-                        {/*</Modal>*/}
-                        {/*: null)}*/}
 
 
                     </div>
@@ -99,6 +99,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     //actions here
-    loadGoals
+    loadGoals,
+    toggleModal
 })(Board);
 

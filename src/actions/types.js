@@ -16,4 +16,3 @@ export const REGISTER_USER = 'REGISTER_USER';
 
 /* Goals =========================================== */
 export const LOAD_GOALS = 'LOAD_GOALS';
-export const DELETE_GOAL = 'DELETE_GOAL';

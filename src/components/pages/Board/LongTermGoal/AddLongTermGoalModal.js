@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
-import {loadUserGoalsCategories, toggleModal} from "../../../../actions/uiActions";
-import {createLongTermGoal, loadGoals} from "../../../../actions/goalsActions";
+import {toggleModal} from "../../../../actions/uiActions";
+import {createLongTermGoal, loadGoals, loadUserGoalsCategories} from "../../../../actions/goalsActions";
 import Loading from "../../../UI/Loading/Loading";
 
 class AddLongTermGoalModal extends Component {
 
 
     componentDidMount() {
+
         this.props.loadUserGoalsCategories().then(() => {
             //set first option as selected
             this.props.change('board_id',this.props.boardCategories[0].id)
@@ -118,7 +119,7 @@ class AddLongTermGoalModal extends Component {
 
     onSubmit = (formValues) => {
 
-        let formOutput = {...formValues, board_id: this.props.myProps.longTermGoalId};
+        let formOutput = {...formValues};
 
         // console.log('creating new goal ==> ');
         console.log(formOutput);

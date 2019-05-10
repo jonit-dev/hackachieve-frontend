@@ -15,19 +15,6 @@ export default (state = INITIAL_STATE, action) => {
 
             };
 
-        // case DELETE_GOAL:
-        //
-        //     const updatedGoals = state.goals.map((goal) => {
-        //         goal.long_term_goals.forEach((ltg) => {
-        //             if (ltg.short_term_goals.length > 0) {
-        //                 ltg.short_term_goals = ltg.short_term_goals.filter((stg) => stg.id !== action.payload)
-        //             }
-        //         });
-        //         return goal;
-        //     });
-        //     return {...state, goals: updatedGoals};
-
-
         default:
             return state;
     }
