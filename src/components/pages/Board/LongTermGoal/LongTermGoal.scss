@@ -232,13 +232,12 @@ main.board-main {
       }
 
       .column-dropdown {
-
-        width: 3px;
-        height: 15px;
+        width: 32px;
+        height: 19.1px;
         position: absolute;
-        top: 1rem;
-        right: 1.2rem;
-        background: url('/images/icons/more.svg') no-repeat center;
+        top: 1.2rem;
+        right: 0.1rem;
+        background-size: contain; background: url('/images/icons/more.svg') no-repeat center;
         background-size: contain;
 
       }

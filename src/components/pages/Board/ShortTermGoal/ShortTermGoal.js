@@ -85,7 +85,10 @@ class ShortTermGoal extends Component {
             <div className={goalStyle}>
 
 
-                <Dropdown triggerParentDelete={() => this.onDeleteGoal(this.props.myProps.id)}/>
+                <Dropdown
+                    triggerParentDelete={() => this.onDeleteGoal(this.props.myProps.id)}
+                    triggerParentOpenModal={this.props.myProps.onOpenModal}
+                />
 
                 <div className="column-card-body">
                     <div className="column-card-title">{this.props.myProps.title}</div>

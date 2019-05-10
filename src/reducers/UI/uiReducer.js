@@ -1,29 +1,60 @@
-import {OPEN_MODAL, CLOSE_MODAL, UPDATE_LOCATION} from "../../actions/types";
+import {OPEN_MODAL, CLOSE_MODAL, UPDATE_LOCATION, LOAD_CATEGORIES} from "../../actions/types";
 
 // This is a generic UI reducer to handle state related with location, etc...
 
 const INITIAL_STATE = {
     location: {pathname: '/'},
     modals: { //controls opening and closing of modals
-        shortTermGoal: false
-    }
+        shortTermGoal: {
+            status: false,
+            id: null
+        },
+        longTermGoal: {
+            status: false,
+            id: null
+        }
+    },
+    boardCategories: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
+
     switch (action.type) {
         case UPDATE_LOCATION:
             return {...state, location: action.payload};
 
-
         case OPEN_MODAL:
-            return {...state, modals: {
-                    ...state, [action.payload]: true
-                }};
+
+            return {
+                ...state, modals: {
+                    ...state.modals,
+                    [action.payload.name]: {
+                        status: true,
+                        id: action.payload.id
+                    }
+                }
+            };
 
         case CLOSE_MODAL:
-            return {...state, modals: {
-                    ...state, [action.payload]: false
-                }};
+
+            return {
+                ...state, modals: {
+                    ...state.modals,
+                    [action.payload.name]: {
+                        status: false,
+                        id: action.payload.id
+                    }
+                }
+            };
+
+        case LOAD_CATEGORIES:
+
+            return {
+                ...state,
+                boardCategories: action.payload
+            };
+
+
 
 
         default:

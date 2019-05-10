@@ -45,6 +45,7 @@ class Dropdown extends Component {
                 <div className={uiDropdownClass} tabIndex="0" onClick={() => {
                     this.onToggleDropdown()
                 }} style={{'opacity': '1 !important'}}>
+
                     {this.props.children}
 
                     <div className={uiDropdownMenuClass} tabIndex="-1" style={uiDropdownMenuStyle}>

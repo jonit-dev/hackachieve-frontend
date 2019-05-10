@@ -44,3 +44,25 @@ export const createGoal = (data) => async (dispatch) => {
         });
 
 };
+
+export const createLongTermGoal = (data) => async (dispatch) => {
+    
+    console.log('Action: createLongTermGoal');
+
+    return API.request('/columns/create/', 'POST', data, 'auth').then((response) => {
+
+        const {status, message} = response.data;
+
+        dispatch({
+            type: SHOW_ALERT, payload: {
+                type: (status === 'success' ? 'positive' : 'negative'),
+                title: (status === 'success' ? 'Your long term goal was created!' : 'Oops!'),
+                content: message
+            }
+        });
+
+        return response;
+    });
+
+};
+

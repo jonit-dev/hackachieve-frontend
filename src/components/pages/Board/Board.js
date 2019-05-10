@@ -22,7 +22,7 @@ class Board extends Component {
             return this.props.goals.map((goal) => {
                 if (goal.long_term_goals !== undefined) {
                     //lets render only long term goals that have nested short term goals (to save space on user board!)
-                    if (goal.long_term_goals.length > 0) {
+                    if (goal.long_term_goals.length > 0) { // if there's goals to load...
 
 
                         return goal.long_term_goals.map((long_term_goal) => {

@@ -5,7 +5,9 @@ import Moment from 'react-moment';
 import ShortTermGoal from "../ShortTermGoal/ShortTermGoal";
 import {deleteGoal, loadGoals} from "../../../../actions/goalsActions";
 import {toggleModal} from "../../../../actions/uiActions";
-import AddShortTermGoal from "../ShortTermGoal/AddShortTermGoal";
+import Dropdown from "../../../UI/Dropdown/Dropdown";
+import AddShortTermGoalModal from "../ShortTermGoal/AddShortTermGoalModal";
+import AddLongTermGoalModal from "./AddLongTermGoalModal";
 
 class LongTermGoal extends Component {
 
@@ -19,16 +21,44 @@ class LongTermGoal extends Component {
     }
 
     onRenderShortTermGoalModal() {
-        if (this.props.modals.shortTermGoal) {
-            return <AddShortTermGoal longTermGoalId={this.props.myProps.id}/>
+
+        if (this.props.modals.shortTermGoal.status === true && this.props.modals.shortTermGoal.id === this.props.myProps.id) {
+            return <AddShortTermGoalModal longTermGoalId={this.props.myProps.id}/>
+        } else {
+            return null
+        }
+    }
+
+    onRenderLongTermGoalModal() {
+        if (this.props.modals.longTermGoal.status === true && this.props.modals.longTermGoal.id === this.props.myProps.id) { //make sure we are opening the right modal
+
+
+
+
+
+            return <AddLongTermGoalModal longTermGoalId={this.props.myProps.id}/>
+
+
+
+
+
         } else {
             return null
         }
     }
 
 
-    onOpenShortTermGoalModal(long_term_goal_id) {
-        this.props.toggleModal('shortTermGoal'); //toggle a specific modal by triggering this action
+    onDeleteLongTermGoal() {
+        console.log('deleting long term goal');
+    }
+
+
+    onOpenShortTermGoalModal(longTermGoalId) {
+        this.props.toggleModal('shortTermGoal', longTermGoalId); //toggle a specific modal by triggering this action
+    }
+
+    onOpenLongTermGoalModal(longTermGoalId) {
+        this.props.toggleModal('longTermGoal', longTermGoalId);
     }
 
     onRenderShortTermGoals() {
@@ -36,13 +66,13 @@ class LongTermGoal extends Component {
         if (this.props.myProps.shortTermGoals !== undefined) {
             return this.props.myProps.shortTermGoals.map((short_term_goal) => {
 
-                return <ShortTermGoal
-                    key={short_term_goal.id}
-                    id={short_term_goal.id}
-                    title={short_term_goal.title}
-                    description={short_term_goal.description}
-                    deadline={short_term_goal.deadline}
-                    status={short_term_goal.status}
+                return <ShortTermGoal onOpenModal={() => this.onOpenShortTermGoalModal(this.props.myProps.id)}
+                                      key={short_term_goal.id}
+                                      id={short_term_goal.id}
+                                      title={short_term_goal.title}
+                                      description={short_term_goal.description}
+                                      deadline={short_term_goal.deadline}
+                                      status={short_term_goal.status}
                 />
 
             });
@@ -72,9 +102,9 @@ class LongTermGoal extends Component {
                         <div className="column-title">
                             {this.props.myProps.title}
                         </div>
-                        {/*<Dropdown triggerParentDelete={() => {*/}
-                        {/*this.onDeleteColumn(this.props.myProps.id)*/}
-                        {/*}} triggerParentOpenModal={() => this.onOpenMainTermGoalModal()}/>*/}
+                        <Dropdown
+                            triggerParentDelete={() => this.onDeleteLongTermGoal()}
+                            triggerParentOpenModal={() => this.onOpenLongTermGoalModal(this.props.myProps.id)}/>
                     </div>
 
                     <div className="column-status">
@@ -126,27 +156,7 @@ class LongTermGoal extends Component {
 
                 {this.onRenderShortTermGoalModal()}
 
-
-                {/*{(this.props.myProps.isShortGoalModalVisible ?*/}
-                {/*<Modal title="Add a Short Term Goal"*/}
-                {/*hasActions={false} visible={true}*/}
-                {/*onOpenShortTermGoalModal={() => {*/}
-                {/*this.onOpenShortTermGoalModal()*/}
-                {/*}}> <AddShortTermGoalPartial columnId={this.props.myProps.id}/>*/}
-                {/*</Modal>*/}
-                {/*: null)}*/}
-
-
-                {/*{(this.props.myProps.isMainGoalModalVisible ?*/}
-                {/*<Modal title="Add a Main Goal"*/}
-                {/*hasActions={false} visible={true}*/}
-                {/*onOpenMainGoalModal={() => {*/}
-                {/*this.onOpenMainTermGoalModal()*/}
-                {/*}}*/}
-                {/*>*/}
-                {/*<AddMainGoalPartial/>*/}
-                {/*</Modal>*/}
-                {/*: null)}*/}
+                {this.onRenderLongTermGoalModal()}
 
             </React.Fragment>
         );
