@@ -43,7 +43,7 @@ class LongTermGoal extends Component {
 
     onDeleteLongTermGoal() {
         this.props.deleteLongTermGoal(this.props.myProps.id).then(() => {
-            this.props.loadGoals(0, 'all')
+            this.props.loadGoals(0, this.props.boardShowGoals)
         });
     }
 
@@ -123,53 +123,57 @@ class LongTermGoal extends Component {
 
                         <div className="hackachieve-progress-bar w3-light-grey w3-round" id="goal-progress">
                             <div className="w3-container w3-round hackachieve-bar"
-                                 style={{"width": (this.props.myProps.percentageComplete * 100)+'%' }}> &nbsp;</div>
-                                     </div>
+                                 style={{"width": (this.props.myProps.percentageComplete * 100) + '%'}}> &nbsp;</div>
+                        </div>
 
 
-                                     </div>
+                    </div>
 
-                                     <div className="column-body" data-simplebar data-simplebar-auto-hide="false">
-                                     <div>{this.onRenderShortTermGoals()}</div>
-                                     </div>
+                    <div className="column-body" data-simplebar data-simplebar-auto-hide="false">
+                        <div>{this.onRenderShortTermGoals()}</div>
+                    </div>
 
-                                     <div className="column-footer">
+                    <div className="column-footer">
 
-                                     <div className="column-add-short-term-goal" onClick={() => {
-                                         this.onOpenShortTermGoalModal(this.props.myProps.id)
-                                     }}>
-                                     <div className="column-add-short-term-goal-btn"></div>
-                                     <div className="column-add-short-term-goal-text">Add Short Term Goal
-                                     </div>
-                                     </div>
-
-
-                                     </div>
+                        <div className="column-add-short-term-goal" onClick={() => {
+                            this.onOpenShortTermGoalModal(this.props.myProps.id)
+                        }}>
+                            <div className="column-add-short-term-goal-btn"></div>
+                            <div className="column-add-short-term-goal-text">Add Short Term Goal
+                            </div>
+                        </div>
 
 
-                                     </div>
+                    </div>
 
-                                 {this.onRenderShortTermGoalModal()}
 
-                                 {this.onRenderLongTermGoalModal()}
+                </div>
 
-                                     </React.Fragment>
-                                     );
-                                 }
-                            }
+                {this.onRenderShortTermGoalModal()}
 
-                            const mapStateToProps=(state, ownProps) => {
-                            return {
-                            myProps: ownProps,
-                            modals: state.ui.modals
-                        };
-                        };
+                {this.onRenderLongTermGoalModal()}
 
-                            export default connect(mapStateToProps, {
-                            //actions here
-                            deleteGoal,
-                            loadGoals,
-                            toggleModal,
-                            deleteLongTermGoal
-                        })(LongTermGoal);
+            </React.Fragment>
+        );
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+
+    const {boardShowGoals, modals} = state.ui;
+
+    return {
+        myProps: ownProps,
+        modals: modals,
+        boardShowGoals: boardShowGoals
+    };
+};
+
+export default connect(mapStateToProps, {
+    //actions here
+    deleteGoal,
+    loadGoals,
+    toggleModal,
+    deleteLongTermGoal
+})(LongTermGoal);
 

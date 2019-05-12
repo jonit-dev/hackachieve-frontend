@@ -1,4 +1,4 @@
-import {OPEN_MODAL, CLOSE_MODAL, UPDATE_LOCATION, LOAD_CATEGORIES} from "../../actions/types";
+import {OPEN_MODAL, CLOSE_MODAL, UPDATE_LOCATION, LOAD_CATEGORIES, CHANGE_BOARD_SHOW_GOAL} from "../../actions/types";
 
 // This is a generic UI reducer to handle state related with location, etc...
 
@@ -19,6 +19,7 @@ const INITIAL_STATE = {
         }
     },
     boardCategories: [],
+    boardShowGoals: 'all'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -58,7 +59,11 @@ export default (state = INITIAL_STATE, action) => {
                 boardCategories: action.payload
             };
 
-
+        case CHANGE_BOARD_SHOW_GOAL:
+            return {
+                ...state,
+                boardShowGoals: action.payload
+            };
 
 
         default:

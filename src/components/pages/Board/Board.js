@@ -9,9 +9,7 @@ import {toggleModal} from "../../../actions/uiActions";
 class Board extends Component {
 
     componentDidMount() {
-
-        //load all short term and long term goals
-        this.props.loadGoals(0, 'all');
+        this.props.loadGoals(0, this.props.boardShowGoals);
     }
 
     onOpenLongTermModal() {
@@ -73,13 +71,12 @@ class Board extends Component {
 
                         {this.onRenderGoals()}
 
-                        <div className="board-column-add column-add-short-term-goal" onClick={() => this.onOpenLongTermModal()}>
+                        <div className="board-column-add column-add-short-term-goal"
+                             onClick={() => this.onOpenLongTermModal()}>
                             <div className="column-add-short-term-goal-btn"></div>
                             <div className="column-add-short-term-goal-text">Add Long Term Goal</div>
 
                         </div>
-
-
 
 
                     </div>
@@ -94,7 +91,10 @@ class Board extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {goals: state.goal.goals};
+    return {
+        goals: state.goal.goals,
+        boardShowGoals: state.ui.boardShowGoals
+    };
 };
 
 export default connect(mapStateToProps, {

@@ -5,6 +5,8 @@ import {Link, NavLink} from "react-router-dom";
 import {userLogout} from "../../../../actions/authActions";
 import history from './../../../../history';
 import {showAlert, updateLocation} from "../../../../actions/uiActions";
+import {changeBoardShowGoal} from "../../../../actions/boardActions";
+import {loadGoals} from "../../../../actions/goalsActions";
 
 
 class Header extends Component {
@@ -18,7 +20,7 @@ class Header extends Component {
 
             //check for messages to display
             if (location.state !== undefined) {
-                if(location.state.alert !== undefined) { //if there's an alert message coming from out history.push
+                if (location.state.alert !== undefined) { //if there's an alert message coming from out history.push
                     this.props.showAlert('negative', 'Error', location.state.alert);
                 }
             }
@@ -30,6 +32,27 @@ class Header extends Component {
 
     componentWillUnmount() {
         this.unlisten();
+    }
+
+
+    onHandleBoardSwitchItem(type) {
+
+        if (type === this.props.boardShowGoals) {
+            return 'board-switch-item switch-active';
+        } else {
+
+            return 'board-switch-item';
+        }
+
+
+    }
+
+    onBoardSwitch(type) {
+
+        this.props.changeBoardShowGoal(type).then(() => {
+            this.props.loadGoals(0, this.props.boardShowGoals)
+        });
+
     }
 
     render() {
@@ -59,7 +82,8 @@ class Header extends Component {
 
                             <div className="board-switch">
 
-                                <div className={`board-switch-item switch-active`}>
+                                <div className={this.onHandleBoardSwitchItem('all')}
+                                     onClick={() => this.onBoardSwitch('all')}>
                                     <div className="board-switch-icon">
                                         <i className="fas fa-check"></i>
 
@@ -71,7 +95,8 @@ class Header extends Component {
 
                                 </div>
 
-                                <div className={`board-switch-item`}>
+                                <div className={this.onHandleBoardSwitchItem('completed')}
+                                     onClick={() => this.onBoardSwitch('completed')}>
                                     <div className="board-switch-icon">
                                         <i className="fas fa-check"></i>
 
@@ -157,9 +182,13 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
+
+    const {boardShowGoals, location} = state.ui;
+
     return {
         isLoggedIn: state.auth.isLoggedIn,
-        location: state.ui.location
+        location: location,
+        boardShowGoals: boardShowGoals
     };
 };
 
@@ -167,6 +196,8 @@ export default connect(mapStateToProps, {
     //actions here
     userLogout,
     updateLocation,
-    showAlert
+    showAlert,
+    changeBoardShowGoal,
+    loadGoals
 })(Header);
 

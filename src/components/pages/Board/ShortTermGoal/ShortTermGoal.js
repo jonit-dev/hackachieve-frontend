@@ -13,7 +13,7 @@ class ShortTermGoal extends Component {
         console.log('setting new goal status');
 
         this.props.goalChangeStatus(this.props.myProps.id, statusId).then(() => {
-            this.props.loadGoals(0, 'all');
+            this.props.loadGoals(0, this.props.boardShowGoals);
         });
 
     }
@@ -24,7 +24,7 @@ class ShortTermGoal extends Component {
 
     onDeleteGoal(id) {
         this.props.deleteGoal(id).then(() => {
-            this.props.loadGoals(0, 'all');
+            this.props.loadGoals(0, this.props.boardShowGoals);
         })
     }
 

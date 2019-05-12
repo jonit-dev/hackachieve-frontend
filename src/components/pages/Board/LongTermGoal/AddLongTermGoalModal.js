@@ -13,7 +13,7 @@ class AddLongTermGoalModal extends Component {
 
         this.props.loadUserGoalsCategories().then(() => {
             //set first option as selected
-            this.props.change('board_id',this.props.boardCategories[0].id)
+            this.props.change('board_id', this.props.boardCategories[0].id)
         });
     }
 
@@ -65,7 +65,8 @@ class AddLongTermGoalModal extends Component {
     }
 
     onRenderBoardOptions() {
-        return this.props.boardCategories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>);
+        return this.props.boardCategories.map((category) => <option key={category.id}
+                                                                    value={category.id}>{category.name}</option>);
     }
 
     renderInputSelectBoards({input, meta, optional, label, children}) {
@@ -130,7 +131,7 @@ class AddLongTermGoalModal extends Component {
 
             if (status === 'success') {
 
-                this.props.loadGoals(0, 'all'); //refresh goals (to display new one)
+                this.props.loadGoals(0, this.props.boardShowGoals); //refresh goals (to display new one)
 
                 setTimeout(() => {
                     this.props.toggleModal('longTermGoal'); //close modal once goal is created
@@ -147,12 +148,13 @@ class AddLongTermGoalModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
 
-    const {modals, boardCategories} = state.ui;
+    const {modals, boardCategories, boardShowGoals} = state.ui;
 
     return {
         myProps: ownProps,
         modals: modals,
         boardCategories: boardCategories,
+        boardShowGoals: boardShowGoals,
         initialValues: {
             name: '',
             description: '',
