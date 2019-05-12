@@ -32,7 +32,7 @@ export const deleteLongTermGoal = (id) => async (dispatch) => {
     return API.request(`/columns/delete/${id}/`, 'DELETE', null, 'auth')
 };
 
-export const loadUserGoalsCategories = () => async (dispatch)=> {
+export const loadUserGoalsCategories = () => async (dispatch) => {
 
     return API.request(`/boards/`, 'GET', null, 'auth').then((response) => {
 
@@ -42,9 +42,7 @@ export const loadUserGoalsCategories = () => async (dispatch)=> {
 
 };
 
-export const goalChangeStatus = (goalId, status) => async (dispatch)=> {
-
-    console.log('action: goalChangeStatus');
+export const goalChangeStatus = (goalId, status) => async (dispatch) => {
 
     return API.request(`/goals/update-status/${goalId}/${status}`, 'PATCH', null, 'auth').then((response) => {
 
@@ -55,30 +53,41 @@ export const goalChangeStatus = (goalId, status) => async (dispatch)=> {
 
 };
 
+export const goalSetPriority = (goalId, newPriority) => async (dispatch) => {
 
+    console.log('action: goalSetPriority');
+
+    return API.request(`/goals/update-priority/${goalId}/${newPriority}`, 'PATCH', null, 'auth').then((response) => {
+
+        console.log(response);
+
+    });
+
+
+};
 
 
 export const createGoal = (data) => async (dispatch) => {
 
-        return API.request('/goals/create/', 'POST', data, 'auth').then((response) => {
+    return API.request('/goals/create/', 'POST', data, 'auth').then((response) => {
 
-            const {status, message} = response.data;
+        const {status, message} = response.data;
 
-            dispatch({
-                type: SHOW_ALERT, payload: {
-                    type: (status === 'success' ? 'positive' : 'negative'),
-                    title: (status === 'success' ? 'Your goal was created!' : 'Oops!'),
-                    content: message
-                }
-            });
-
-            return response;
+        dispatch({
+            type: SHOW_ALERT, payload: {
+                type: (status === 'success' ? 'positive' : 'negative'),
+                title: (status === 'success' ? 'Your goal was created!' : 'Oops!'),
+                content: message
+            }
         });
+
+        return response;
+    });
 
 };
 
 export const createLongTermGoal = (data) => async (dispatch) => {
-    
+
     console.log('Action: createLongTermGoal');
 
     return API.request('/columns/create/', 'POST', data, 'auth').then((response) => {

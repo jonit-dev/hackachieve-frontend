@@ -20,6 +20,11 @@
     margin-bottom: 1rem;
     border-radius: 3px;
 
+    &.column-card-priority {
+      background-color: lighten($hackachieve-dark-yellow, 35%);
+      border: 1px solid lighten($hackachieve-dark-yellow, 30%);
+    }
+
     border: 1px solid $hackachieve-medium-gray;
     box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.04);
     transition-property: box-shadow;
@@ -31,10 +36,6 @@
       box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.14);
 
     }
-
-
-
-
 
     &.column-card-completed {
       opacity: 0.5;

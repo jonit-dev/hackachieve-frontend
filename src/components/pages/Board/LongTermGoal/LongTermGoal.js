@@ -59,15 +59,11 @@ class LongTermGoal extends Component {
     onRenderShortTermGoals() {
 
         if (this.props.myProps.shortTermGoals !== undefined) {
-            return this.props.myProps.shortTermGoals.map((short_term_goal) => {
+            return this.props.myProps.shortTermGoals.map((shortTermGoal) => {
 
                 return <ShortTermGoal onOpenModal={() => this.onOpenShortTermGoalModal(this.props.myProps.id)}
-                                      key={short_term_goal.id}
-                                      id={short_term_goal.id}
-                                      title={short_term_goal.title}
-                                      description={short_term_goal.description}
-                                      deadline={short_term_goal.deadline}
-                                      status={short_term_goal.status}
+                                      key={shortTermGoal.id}
+                                      shortTermGoal={shortTermGoal}
                 />
 
             });

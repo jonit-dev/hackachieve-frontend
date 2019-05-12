@@ -36,7 +36,7 @@ class GoalContentModal extends Component {
 
 
         const actions = <React.Fragment>
-            <button className="ui button positive">ok</button>
+            {/*<button className="ui button positive">ok</button>*/}
             <button className="ui button negative" onClick={() => this.onClose()}>Cancel</button>
         </React.Fragment>;
 

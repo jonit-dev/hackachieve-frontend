@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import Moment from "react-moment";
 import Dropdown from "../../../UI/Dropdown/Dropdown";
-import {deleteGoal, goalChangeStatus, loadGoals} from "../../../../actions/goalsActions";
+import {deleteGoal, goalChangeStatus, goalSetPriority, loadGoals} from "../../../../actions/goalsActions";
 import {toggleModal} from "../../../../actions/uiActions";
 import GoalContentModal from "./GoalContentModal";
 
@@ -12,14 +12,28 @@ class ShortTermGoal extends Component {
 
         console.log('setting new goal status');
 
-        this.props.goalChangeStatus(this.props.myProps.id, statusId).then(() => {
+        this.props.goalChangeStatus(this.props.myProps.shortTermGoal.id, statusId).then(() => {
             this.props.loadGoals(0, this.props.boardShowGoals);
         });
 
     }
 
     onGoalSetPriority() {
-        return null;
+
+        console.log('setting goal priority');
+
+        const {id, priority} = this.props.myProps.shortTermGoal;
+
+        if (!priority) {
+            this.props.goalSetPriority(id, 1).then(() => {
+                this.props.loadGoals(0, this.props.boardShowGoals);
+            })
+        } else {
+            this.props.goalSetPriority(id, 0).then(() => {
+                this.props.loadGoals(0, this.props.boardShowGoals);
+            });
+        }
+
     }
 
     onDeleteGoal(id) {
@@ -30,7 +44,7 @@ class ShortTermGoal extends Component {
 
 
     onRenderActions() {
-        switch (this.props.myProps.status) {
+        switch (this.props.myProps.shortTermGoal.status) {
 
             case 1: //pending
 
@@ -76,15 +90,20 @@ class ShortTermGoal extends Component {
     onOpenGoalContentModal() {
 
         console.log('opening goal content modal');
-        this.props.toggleModal('goalContent', this.props.myProps.id);
+        this.props.toggleModal('goalContent', this.props.myProps.shortTermGoal.id);
+    }
+
+    onRenderPriority(priority) {
+
+        return (priority === false || priority === 0 ? 'priority-icon' : 'priority-icon priority-icon-active');
     }
 
     onRenderGoalContentModal() {
 
         if (this.props.modals.goalContent.status) {
 
-            if (this.props.modals.goalContent.id === this.props.myProps.id) {
-                return <GoalContentModal shortTermGoal={this.props.myProps}
+            if (this.props.modals.goalContent.id === this.props.myProps.shortTermGoal.id) {
+                return <GoalContentModal shortTermGoal={this.props.myProps.shortTermGoal}
                 />
             }
         } else {
@@ -96,10 +115,13 @@ class ShortTermGoal extends Component {
 
         let goalStyle, cardCategoryStyle;
 
+
+        const {id, description, deadline, title, priority, status} = this.props.myProps.shortTermGoal;
+
+
         cardCategoryStyle = 'card-active-blue';//todo: Set card style according to category.
 
-        switch (this.props.myProps.status) {
-
+        switch (status) {
 
             case 2: //on going
                 goalStyle = `column-card ${cardCategoryStyle}`;
@@ -114,30 +136,34 @@ class ShortTermGoal extends Component {
                 break;
         }
 
+        if(priority) {
+            goalStyle += ' column-card-priority';
+        }
+
 
         return (
             <div className={goalStyle} onClick={() => this.onOpenGoalContentModal()}>
 
 
                 <Dropdown
-                    triggerParentDelete={() => this.onDeleteGoal(this.props.myProps.id)}
+                    triggerParentDelete={() => this.onDeleteGoal(id)}
                     triggerParentOpenModal={this.props.myProps.onOpenModal}
                 />
 
                 <div className="column-card-body">
-                    <div className="column-card-title">{this.props.myProps.title}</div>
-                    <div className="column-card-description">{this.props.myProps.description}
+                    <div className="column-card-title">{title}</div>
+                    <div className="column-card-description">{description}
                     </div>
                     <div className="column-card-deadline">
                         <div className="column-card-deadline-icon"></div>
                         <div className="column-card-deadline-text">
-                            <Moment format="D MMMM, YY">{this.props.myProps.deadline}</Moment>
+                            <Moment format="D MMMM, YY">{deadline}</Moment>
                         </div>
                     </div>
                 </div>
 
                 <div className="column-card-footer">
-                    <div className="priority-icon" onClick={(e) => {
+                    <div className={this.onRenderPriority(priority)} onClick={(e) => {
                         e.stopPropagation();
                         this.onGoalSetPriority()
                     }}></div>
@@ -157,10 +183,15 @@ class ShortTermGoal extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
+
+    const {modals, boardShowGoals} = state.ui;
+
     return {
         myProps: ownProps,
-        modals: state.ui.modals,
-    };
+        modals: modals,
+        boardShowGoals: boardShowGoals
+    }
+        ;
 };
 
 export default connect(mapStateToProps, {
@@ -168,6 +199,7 @@ export default connect(mapStateToProps, {
     deleteGoal,
     loadGoals,
     toggleModal,
-    goalChangeStatus
+    goalChangeStatus,
+    goalSetPriority
 })(ShortTermGoal);
 
