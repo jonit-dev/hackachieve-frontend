@@ -104,7 +104,7 @@ class AddShortTermGoalModal extends Component {
 
                     setTimeout(() => {
                         this.props.toggleModal('shortTermGoal'); //close modal once goal is created
-                    }, 4000)
+                    }, 2000)
 
                 }
 

@@ -42,15 +42,19 @@ class Dropdown extends Component {
         return (
             <React.Fragment>
 
-                <div className={uiDropdownClass} tabIndex="0" onClick={() => {
-                    this.onToggleDropdown()
+                <div className={uiDropdownClass} tabIndex="0" onClick={(e) => {
+                    e.stopPropagation();
+                    this.onToggleDropdown();
                 }} style={{'opacity': '1 !important'}}>
 
                     {this.props.children}
 
                     <div className={uiDropdownMenuClass} tabIndex="-1" style={uiDropdownMenuStyle}>
                         <div className="item"
-                             onClick={this.props.triggerParentOpenModal}>New {this.state.type}</div>
+                             onClick={this.props.triggerParentOpenModal}>
+                                <i className="sticky note outline icon"></i>
+                                New {this.state.type}
+                            </div>
                         <div className="item" onClick={this.props.triggerParentDelete}>
                             <i className="trash icon"></i>
                             Delete {this.state.type}

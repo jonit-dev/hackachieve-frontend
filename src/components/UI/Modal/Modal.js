@@ -8,6 +8,7 @@ class Modal extends Component {
 
 
     onClose() {
+        console.log('closing modal');
         this.props.toggleModal(this.props.myProps.name); //close this modal
     }
 
@@ -18,7 +19,7 @@ class Modal extends Component {
 
     render() {
         return ReactDOM.createPortal(
-            <div className="ui dimmer modals visible active" onClick={() => this.onClose()}>
+            <div className="ui dimmer modals visible active" onClick={(e) => {e.stopPropagation(); this.onClose();}}>
                 <div className="ui standard modal visible active" onClick={(e) => e.stopPropagation()}>
                     <i className="close icon" onClick={(e) => this.onClose()}></i>
                     <div className="header">{this.props.myProps.title}</div>

@@ -42,6 +42,20 @@ export const loadUserGoalsCategories = () => async (dispatch)=> {
 
 };
 
+export const goalChangeStatus = (goalId, status) => async (dispatch)=> {
+
+    console.log('action: goalChangeStatus');
+
+    return API.request(`/goals/update-status/${goalId}/${status}`, 'PATCH', null, 'auth').then((response) => {
+
+        console.log(response);
+
+    });
+
+
+};
+
+
 
 
 export const createGoal = (data) => async (dispatch) => {

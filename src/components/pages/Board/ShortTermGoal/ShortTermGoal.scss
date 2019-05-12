@@ -19,8 +19,22 @@
     background-color: $hackachieve-white;
     margin-bottom: 1rem;
     border-radius: 3px;
-    @include shadow();
+
     border: 1px solid $hackachieve-medium-gray;
+    box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.04);
+    transition-property: box-shadow;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.14);
+
+    }
+
+
+
+
 
     &.column-card-completed {
       opacity: 0.5;

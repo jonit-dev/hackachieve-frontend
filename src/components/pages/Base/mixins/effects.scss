@@ -1,6 +1,10 @@
-@mixin shadow() {
+@mixin shadow($type: 'default') {
 
-
+  @if ($type: 'default') {
     box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.04);
+  } @else if($type: 'elevated') {
+    box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.14);
+  }
+
 
 }

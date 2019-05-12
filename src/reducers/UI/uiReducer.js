@@ -12,6 +12,10 @@ const INITIAL_STATE = {
         longTermGoal: {
             status: false,
             id: null
+        },
+        goalContent: {
+            status: false,
+            id: null
         }
     },
     boardCategories: [],
