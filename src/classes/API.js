@@ -1,11 +1,12 @@
 import axios from 'axios';
 import history from '../history';
+import apiUrl from './apiUrl';
 
 export default class API {
 
     static getConfig() {
         return {
-            url: 'https://hackachieve.com:8000/'
+            url: apiUrl.path
         }
     }
 
