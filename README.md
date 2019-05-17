@@ -11,6 +11,12 @@ Before proceeding, please check our short onboarding videos
 
 * [Hackachieve Project tour](https://rometools.github.io/rome/) - Explanation about our project structure
 
+## References
+
+Please check additional project references on the documents below
+
+* [Project Documentation Files](https://docs.google.com/spreadsheets/d/1XaLITuGNUd2Y8iBDdIui7wCFxUaCd165xmohOt0zjp4/edit#gid=0) - Everything you need is here
+
 
 ## Getting Started
 
@@ -36,10 +42,4 @@ static getConfig() {
 ```
 yarn start
 ```
-
-## References
-
-Please check additional project references on the documents below
-
-* [Project Documentation Files](https://docs.google.com/spreadsheets/d/1XaLITuGNUd2Y8iBDdIui7wCFxUaCd165xmohOt0zjp4/edit#gid=0) - Everything you need is here
 
