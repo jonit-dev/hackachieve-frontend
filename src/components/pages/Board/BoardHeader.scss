@@ -11,6 +11,12 @@ header.board-header {
   width: 100vw;
   z-index: 2;
 
+  .hackachieve-user-menu {
+    min-width: 100px;
+    left: -4rem;
+    text-align: center;
+  }
+
   .board-header-bar {
     background-color: $hackachieve-medium-gray;
     flex: 1 1 auto;
