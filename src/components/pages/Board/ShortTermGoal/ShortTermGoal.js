@@ -8,6 +8,8 @@ import GoalContentModal from "./GoalContentModal";
 
 class ShortTermGoal extends Component {
 
+    characterLimit = 50;
+
     onGoalSetStatus(statusId) {
 
         console.log('setting new goal status');
@@ -152,8 +154,10 @@ class ShortTermGoal extends Component {
 
                 <div className="column-card-body">
                     <div className="column-card-title">{title}</div>
-                    <div className="column-card-description">{description}
-                    </div>
+                    { description.length <= this.characterLimit
+                        ? <div className="column-card-description">{description}</div> 
+                        : <div className="column-card-description">{description.substring(0,this.characterLimit)+" ..."}</div>
+                    }
                     <div className="column-card-deadline">
                         <div className="column-card-deadline-icon"></div>
                         <div className="column-card-deadline-text">
