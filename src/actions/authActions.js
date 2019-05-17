@@ -84,6 +84,7 @@ export const userLogout = () => dispatch => {
     localStorage.clear();
 
     dispatch({type: LOGOUT_USER}) //then we'll also clear our state
+    history.push('/')
 };
 
 
