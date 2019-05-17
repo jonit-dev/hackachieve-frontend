@@ -5,7 +5,7 @@ export default class API {
 
     static getConfig() {
         return {
-            url: 'http://localhost:8000/'
+            url: 'https://hackachieve.com:8000'
         }
     }
 
