@@ -158,6 +158,17 @@
   display: none;
 }
 
+.board-profile {
+  cursor: pointer;
+}
+.ui.card {
+  min-width: 12em;
+  margin-left: -9em;
+  .content {
+      cursor: pointer;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .ui.fixed.menu {
     display: none !important;

@@ -8,9 +8,16 @@ import {showAlert, updateLocation} from "../../../../actions/uiActions";
 import {changeBoardShowGoal} from "../../../../actions/boardActions";
 import {loadGoals} from "../../../../actions/goalsActions";
 
+import UserMenu from "./UserMenu"
+
 
 class Header extends Component {
-
+    constructor(props){
+        super(props)
+        this.state = {
+            userMenuOpen: false
+        }
+    }
     componentWillMount() {
 
         this.props.updateLocation(history.location); //update for the first time on component mounting
@@ -53,6 +60,12 @@ class Header extends Component {
             this.props.loadGoals(0, this.props.boardShowGoals)
         });
 
+    }
+
+    onOpenMenuClick(){
+        this.setState({
+            userMenuOpen: !this.state.userMenuOpen
+        })
     }
 
     render() {
@@ -107,14 +120,15 @@ class Header extends Component {
                                 </div>
                             </div>
 
-                            <div className="board-profile">
+                            <div className="board-profile" onClick={() => this.onOpenMenuClick()}>
 
                                 <div className="board-profile-username">
                                     John Snow
                                 </div>
 
                                 <div className="board-profile-user-picture">
-                                    <img src="https://placehold.it/36/36" alt="user"/>
+                                    <img src="/images/icons/avatar-generic.svg" alt="user" />
+                                    { this.state.userMenuOpen && <UserMenu /> }
                                 </div>
                             </div>
                         </div>
