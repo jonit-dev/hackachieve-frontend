@@ -17,6 +17,13 @@ header.board-header {
     display: flex;
     flex-wrap: wrap;
 
+
+    /*MOBILE ONLY CODE*/
+    @media screen and (max-width: 850px) {
+      height: 12.6rem;
+    }
+
+
     .board-header-logo {
       background-size: 54%;
       width: 76px;
@@ -104,6 +111,14 @@ header.board-header {
         cursor: pointer;
         min-width: 131px;
         height: 76px;
+
+
+        /*MOBILE ONLY CODE*/
+        @media screen and (max-width: 850px) {
+          height: 50px;
+          top: .3rem;
+        }
+
 
         &.switch-active {
           background-color: $hackachieve-light-gray;;

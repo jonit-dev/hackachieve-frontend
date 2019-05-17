@@ -78,7 +78,7 @@
     height: auto;
     position: absolute;
     top: 0px;
-    margin-top: 55vh;
+    top: 55vh;
     img {
       max-width: 600px;
       width: 100%;
@@ -158,16 +158,6 @@
   display: none;
 }
 
-.board-profile {
-  cursor: pointer;
-}
-.ui.card {
-  min-width: 12em;
-  margin-left: -9em;
-  .content {
-      cursor: pointer;
-  }
-}
 
 @media only screen and (max-width: 700px) {
   .ui.fixed.menu {

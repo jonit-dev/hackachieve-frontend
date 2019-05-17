@@ -169,10 +169,11 @@ class Header extends Component {
                                             <Link className="item" to="/board">Board</Link> : null)}
                                         {(!this.props.isLoggedIn ?
                                             <React.Fragment>
-                                                <Link id="btnLogin" to="/login" className="ui grey login button">Log
-                                                    in</Link>
+                                                <Link id="btnLogin" to="/login" className="ui btn-light-purple login button ">
+                                                    Log in
+                                                </Link>
                                                 <Link id="btnRegister" to="/register"
-                                                      className="ui signup green button">Sign
+                                                      className="ui signup btn-light-green button">Sign
                                                     Up</Link>
                                             </React.Fragment> :
                                             <button id="btnLogout" onClick={() => this.props.userLogout()}
