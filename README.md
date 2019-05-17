@@ -26,15 +26,13 @@ Please check additional project references on the documents below
 npm install
 ```
 
-- Change /src/classes/API.js to point to our Backend production API
+- Create a file called apiUrl.json or modify it if its already created, at /src/classes
+ It will point to our Backend production API
 
 ```
-static getConfig() {
-        return {
-            url: 'https://hackachieve.com:8000/'
-        }
-    }
-
+{
+  "path":"http://localhost:8000/"
+}
 ```
 
 - Start the server
