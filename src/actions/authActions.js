@@ -5,6 +5,7 @@ import * as qs from "qs";
 import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, SHOW_ALERT} from "./types";
 import history from '../history';
 import API from '../classes/API';
+import {Mixpanel as mixpanel} from '../mixpanel';
 
 export const userLogin = (credentials) => async (dispatch) => {
 
@@ -32,7 +33,6 @@ export const userLogin = (credentials) => async (dispatch) => {
         });
 
 
-
         setTimeout(() => {
 
 
@@ -53,10 +53,7 @@ export const userLogin = (credentials) => async (dispatch) => {
             history.push('/board');
 
 
-
-
-        },3000);
-
+        }, 3000);
 
 
     }
@@ -130,6 +127,19 @@ export const userRegister = (userInfo) => async (dispatch) => {
                     content: 'Are you ready to hack your productivity?'
                 }
             });
+
+            //setup mixpanel user identify
+
+            mixpanel.identify(userInfo.email);
+
+            mixpanel.people.set({
+                "$email": mixpanel.email,    // only special properties need the $
+                "$created": new Date(),
+                "$last_login": new Date(),         // properties can be dates...
+                "firstName": userInfo.firstName,
+                "lastName": userInfo.lastName,
+            });
+
 
             localStorage.setItem('userInfo', JSON.stringify({
                 'firstName': userInfo.firstName,
