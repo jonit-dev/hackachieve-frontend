@@ -6,13 +6,13 @@ import Alert from "../../../UI/Alert/Alert";
 
 class Login extends Component {
 
-    renderInput({placeholder, input, label, meta}) {
+    renderInput({placeholder, input, label, meta, type}) {
 
 
         return (
             <div className="field">
                 <label>{label}</label>
-                <input {...input} placeholder={placeholder}/>
+                <input {...input} placeholder={placeholder} type={type}/>
             </div>
         )
     }
