@@ -3,8 +3,13 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {userLogin} from "../../../../actions/authActions";
 import Alert from "../../../UI/Alert/Alert";
+import {Mixpanel as mixpanel} from "../../../../mixpanel";
 
 class Login extends Component {
+
+    componentDidMount() {
+        mixpanel.track('login_visit')
+    }
 
     renderInput({placeholder, input, label, meta, type}) {
 

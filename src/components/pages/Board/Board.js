@@ -4,12 +4,16 @@ import {loadGoals} from "../../../actions/goalsActions";
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
 import {toggleModal} from "../../../actions/uiActions";
+import {Mixpanel as mixpanel} from "../../../mixpanel";
 
 
 class Board extends Component {
 
     componentDidMount() {
         this.props.loadGoals(0, this.props.boardShowGoals);
+
+        mixpanel.track('board_visit')
+
     }
 
     onOpenLongTermModal() {

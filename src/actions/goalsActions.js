@@ -1,5 +1,6 @@
 import API from "../classes/API";
 import {LOAD_CATEGORIES, LOAD_GOALS, SHOW_ALERT} from "./types";
+import {Mixpanel as mixpanel} from "../mixpanel";
 
 
 export const loadGoals = (id, status) => async (dispatch, getState) => {
@@ -22,11 +23,16 @@ export const loadGoals = (id, status) => async (dispatch, getState) => {
 
 export const deleteGoal = (id) => async (dispatch) => {
 
+    mixpanel.track('short_term_goal_delete');
+
     // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
     return API.request(`/goals/delete/${id}/`, 'DELETE', null, 'auth')
 };
 
 export const deleteLongTermGoal = (id) => async (dispatch) => {
+
+
+    mixpanel.track('long_term_goal_delete');
 
     // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
     return API.request(`/columns/delete/${id}/`, 'DELETE', null, 'auth')
@@ -44,6 +50,10 @@ export const loadUserGoalsCategories = () => async (dispatch) => {
 
 export const goalChangeStatus = (goalId, status) => async (dispatch) => {
 
+
+    mixpanel.track('goal_change_status');
+
+
     return API.request(`/goals/update-status/${goalId}/${status}`, 'PATCH', null, 'auth').then((response) => {
 
         console.log(response);
@@ -55,7 +65,8 @@ export const goalChangeStatus = (goalId, status) => async (dispatch) => {
 
 export const goalSetPriority = (goalId, newPriority) => async (dispatch) => {
 
-    console.log('action: goalSetPriority');
+
+    mixpanel.track('goal_set_priority');
 
     return API.request(`/goals/update-priority/${goalId}/${newPriority}`, 'PATCH', null, 'auth').then((response) => {
 
@@ -69,9 +80,16 @@ export const goalSetPriority = (goalId, newPriority) => async (dispatch) => {
 
 export const createGoal = (data) => async (dispatch) => {
 
+
     return API.request('/goals/create/', 'POST', data, 'auth').then((response) => {
 
         const {status, message} = response.data;
+
+        if (status === 'success') {
+            mixpanel.track('short_goal_create');
+        } else {
+            mixpanel.track('short_goal_create_error');
+        }
 
         dispatch({
             type: SHOW_ALERT, payload: {
@@ -93,6 +111,13 @@ export const createLongTermGoal = (data) => async (dispatch) => {
     return API.request('/columns/create/', 'POST', data, 'auth').then((response) => {
 
         const {status, message} = response.data;
+
+        if (status === 'success') {
+            mixpanel.track('long_goal_create');
+        } else {
+            mixpanel.track('long_goal_create_error');
+        }
+
 
         dispatch({
             type: SHOW_ALERT, payload: {
