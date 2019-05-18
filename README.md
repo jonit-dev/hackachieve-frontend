@@ -26,11 +26,12 @@ Please check additional project references on the documents below
 npm install
 ```
 
-- Create a file called apiUrl.json or modify it if its already created, at /src/classes
+- Create a file called env.json or modify it if its already created, at /src folder.
  It will point to our Backend production API
 
 ```
 {
+  "env":"dev",
   "path":"http://localhost:8000/"
 }
 ```

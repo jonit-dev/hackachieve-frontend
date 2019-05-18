@@ -13,14 +13,14 @@ import Login from "./pages/Landing/Login/Login";
 import Register from "./pages/Landing/Register/Register";
 import {checkLoggedIn} from "../actions/authActions";
 import Board from "./pages/Board/Board";
-
+import env from '../env';
 
 class App extends Component {
 
     componentDidMount() {
         this.props.checkLoggedIn(); //check logged in on app init
 
-
+        console.log(`Initializing app. Environment is ${env.env}`);
 
 
 
@@ -29,7 +29,7 @@ class App extends Component {
     render() {
         return (
             <Router history={history}>
-                <Header />
+                <Header/>
                 <Switch>
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>
