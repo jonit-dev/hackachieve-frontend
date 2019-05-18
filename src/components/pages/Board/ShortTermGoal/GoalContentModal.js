@@ -30,7 +30,7 @@ class GoalContentModal extends Component {
 
         const content = <React.Fragment>
             <p><strong>Deadline: </strong><Moment format="D MMMM, YYYY">{deadline}</Moment></p>
-            <p class="modal-description"><strong>Description: </strong>{description}</p>
+            <p className="modal-description"><strong>Description: </strong>{description}</p>
             <p><strong>Status: </strong>{this.onRenderStatus(status)}</p>
         </React.Fragment>;
 
