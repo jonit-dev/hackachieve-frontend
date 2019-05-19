@@ -8,7 +8,7 @@ import {userLogout} from "../../../../actions/authActions";
 class UserMenu extends Component{
     render(){
         return(
-                <div className="ui card">
+                <div className="ui card hackachieve-user-menu">
                     { this.props.isLoggedIn &&
                             <div className="content" onClick={()=> this.props.userLogout()}>
                                 <p>Logout</p>

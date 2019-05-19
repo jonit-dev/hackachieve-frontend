@@ -5,6 +5,7 @@ import * as qs from "qs";
 import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, SHOW_ALERT} from "./types";
 import history from '../history';
 import API from '../classes/API';
+import {Mixpanel as mixpanel} from '../mixpanel';
 
 export const userLogin = (credentials) => async (dispatch) => {
 
@@ -22,6 +23,8 @@ export const userLogin = (credentials) => async (dispatch) => {
         });
 
 
+        mixpanel.track('user_logged_in');
+
         //show success message
         dispatch({
             type: SHOW_ALERT, payload: {
@@ -30,7 +33,6 @@ export const userLogin = (credentials) => async (dispatch) => {
                 content: "You've logged in successfully!"
             }
         });
-
 
 
         setTimeout(() => {
@@ -53,14 +55,13 @@ export const userLogin = (credentials) => async (dispatch) => {
             history.push('/board');
 
 
-
-
-        },3000);
-
+        }, 3000);
 
 
     }
     catch (error) {
+
+        mixpanel.track('user_login_error');
 
         dispatch({
             type: SHOW_ALERT, payload: {
@@ -83,7 +84,9 @@ export const userLogout = () => dispatch => {
     //clear localstorage
     localStorage.clear();
 
-    dispatch({type: LOGOUT_USER}) //then we'll also clear our state
+    mixpanel.track('user_logout');
+
+    dispatch({type: LOGOUT_USER}); //then we'll also clear our state
     history.push('/')
 };
 
@@ -123,6 +126,9 @@ export const userRegister = (userInfo) => async (dispatch) => {
 
         if (response.data.status === 'success') {
 
+
+            mixpanel.track('user_registered'); //user successfully registered goal
+
             dispatch({
                 type: SHOW_ALERT, payload: {
                     type: 'positive',
@@ -130,6 +136,23 @@ export const userRegister = (userInfo) => async (dispatch) => {
                     content: 'Are you ready to hack your productivity?'
                 }
             });
+
+            //setup mixpanel user identify
+
+            console.log('registering user in mixpanel');
+
+            console.log(userInfo);
+
+            mixpanel.identify(userInfo.email);
+
+            mixpanel.people.set({
+                "$email": mixpanel.email,    // only special properties need the $
+                "$created": new Date(),
+                "$last_login": new Date(),         // properties can be dates...
+                "$first_name": userInfo.firstName,
+                "$last_name": userInfo.lastName,
+            });
+
 
             localStorage.setItem('userInfo', JSON.stringify({
                 'firstName': userInfo.firstName,

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import history from '../history';
-import apiUrl from './apiUrl';
+import env from '../env.json';
 
 export default class API {
 
     static getConfig() {
         return {
-            url: apiUrl.path
+            url: env.path
         }
     }
 

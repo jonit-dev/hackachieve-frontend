@@ -4,8 +4,13 @@ import {connect} from 'react-redux';
 import Alert from "../../../UI/Alert/Alert";
 import {userLogin, userRegister} from "../../../../actions/authActions";
 import ValidationMessage from '../../../UI/ValidationMessage/ValidationMessage';
+import {Mixpanel as mixpanel} from "../../../../mixpanel";
 
 class Register extends Component {
+
+    componentDidMount() {
+        mixpanel.track('register_visit')
+    }
 
 
     onSubmit = (formValues) => {

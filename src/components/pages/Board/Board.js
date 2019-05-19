@@ -4,12 +4,17 @@ import {loadGoals} from "../../../actions/goalsActions";
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
 import {toggleModal} from "../../../actions/uiActions";
+import {Mixpanel as mixpanel} from "../../../mixpanel";
+import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 
 
 class Board extends Component {
 
     componentDidMount() {
         this.props.loadGoals(0, this.props.boardShowGoals);
+
+        mixpanel.track('board_visit')
+
     }
 
     onOpenLongTermModal() {
@@ -17,7 +22,7 @@ class Board extends Component {
         console.log('opening long term modal');
 
 
-        this.props.toggleModal('longTermGoal')
+        this.props.toggleModal('longTermGoal',0)
 
     }
 
@@ -62,6 +67,18 @@ class Board extends Component {
 
     }
 
+    onRenderLongTermGoalModal() {
+        if (this.props.modals.longTermGoal.status === true && !this.props.modals.longTermGoal.id) {
+            //when there's not id, the board component is the one responsible for opening the modal.
+
+            return <AddLongTermGoalModal/>
+
+
+        } else {
+            return null
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -81,6 +98,8 @@ class Board extends Component {
 
                     </div>
 
+                    {this.onRenderLongTermGoalModal()}
+
 
                 </main>
 
@@ -91,9 +110,11 @@ class Board extends Component {
 }
 
 const mapStateToProps = (state) => {
+
     return {
         goals: state.goal.goals,
-        boardShowGoals: state.ui.boardShowGoals
+        boardShowGoals: state.ui.boardShowGoals,
+        modals: state.ui.modals
     };
 };
 
