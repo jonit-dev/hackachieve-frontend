@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {Link, NavLink} from "react-router-dom";
 import {userLogout} from "../../../../actions/authActions";
+import {loadUserGoalsCategories, filterGoals} from "../../../../actions/goalsActions";
 import history from './../../../../history';
 import {showAlert, updateLocation} from "../../../../actions/uiActions";
 import {changeBoardShowGoal} from "../../../../actions/boardActions";
@@ -19,7 +20,7 @@ class Header extends Component {
         }
     }
     componentWillMount() {
-
+        this.props.loadUserGoalsCategories();
         this.props.updateLocation(history.location); //update for the first time on component mounting
 
         //listen for history changes and then update our current state properly
@@ -29,7 +30,7 @@ class Header extends Component {
             if (location.state !== undefined) {
                 if (location.state.alert !== undefined) { //if there's an alert message coming from out history.push
                     this.props.showAlert('negative', 'Error', location.state.alert);
-                }
+                } 
             }
 
             //update current location (pathname) ==> useful for header dynamic change
@@ -68,7 +69,12 @@ class Header extends Component {
         })
     }
 
+    handleFilter = (e) => {
+        this.props.filterGoals(e.target.value);
+    }
+
     render() {
+       let {boardCategories} = this.props
 
         switch (this.props.location.pathname) {
 
@@ -86,8 +92,11 @@ class Header extends Component {
                             <div className="board-selector">
                                 <div className="board-selector-title">Main Goals</div>
                                 <div className="hackachieve-dropdown-wrapper">
-                                    <select name="board-dropdown" id="board-dropdown" className="hackachieve-dropdown">
-                                        <option value="all">All</option>
+                                    <select name="goalFilter" id="board-dropdown" className="hackachieve-dropdown" onChange={this.handleFilter}>
+                                        <option value="All">All</option>
+                                        {boardCategories && boardCategories.map((goalCategory,index) => {
+                                           return  <option value={goalCategory.name} key={index}>{goalCategory.name}</option>
+                                        })}
                                     </select>
                                     <i className="dropdown-arrow fas fa-angle-down"></i>
                                 </div>
@@ -198,12 +207,13 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 
-    const {boardShowGoals, location} = state.ui;
+    const {boardShowGoals, location,boardCategories} = state.ui;
 
     return {
         isLoggedIn: state.auth.isLoggedIn,
         location: location,
-        boardShowGoals: boardShowGoals
+        boardShowGoals: boardShowGoals,
+        boardCategories
     };
 };
 
@@ -213,6 +223,8 @@ export default connect(mapStateToProps, {
     updateLocation,
     showAlert,
     changeBoardShowGoal,
-    loadGoals
+    loadGoals,
+    loadUserGoalsCategories,
+    filterGoals
 })(Header);
 

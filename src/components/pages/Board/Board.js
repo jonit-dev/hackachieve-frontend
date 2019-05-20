@@ -109,10 +109,14 @@ class Board extends Component {
     }
 }
 
+const filteredGoals = (goals, filter) => {
+   return  filter === 'All' ? goals : goals.filter(goal => goal.name == filter);
+}
+
 const mapStateToProps = (state) => {
 
     return {
-        goals: state.goal.goals,
+        goals: filteredGoals(state.goal.goals, state.goal.filter),
         boardShowGoals: state.ui.boardShowGoals,
         modals: state.ui.modals
     };
