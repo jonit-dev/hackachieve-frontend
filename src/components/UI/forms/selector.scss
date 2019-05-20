@@ -1,29 +1,28 @@
-.hackachieve-dropdown-wrapper {
 
+.hackachieve-dropdown-wrapper {
   flex: 0 1 191px;
   width: 191px;
+  position: relative
+}
 
-  .hackachieve-dropdown {
-    border-color: transparent;
-    background-color: white;
-    border-radius: 4.8px;
-    height: 26px;
-    width: 100%;
-    font-family: $font-primary;
-    color: $hackachieve-dark-grey;
-    font-size: 16px;
-    padding-left: 0.2rem;
-    -webkit-appearance: none;
+.hackachieve-dropdown-wrapper .hackachieve-dropdown {
+  border-color: transparent;
+  background-color: #F4F4FC;
+  border-radius: 3px;
+  height: 35px;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  color: #54575D;
+  font-size: 16px;
+  padding: 0 10px;
+  -webkit-appearance: none
+}
 
-  }
-  position: relative;
-  .dropdown-arrow {
-    position: absolute;
-    right: 0.4rem;
-    font-size: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: $hackachieve-dark-grey
-  }
-
+.hackachieve-dropdown-wrapper .dropdown-arrow {
+  position: absolute;
+  right: 10px;
+  font-size: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #54575D
 }

@@ -80,36 +80,59 @@ class Header extends Component {
 
                 return (<React.Fragment>
                     <header className="board-header">
-                        <div className="board-header-bar"><NavLink to='/' aria-current="page"
-                                                                   className="board-header-logo active"><i
-                            className="fas fa-ellipsis-v mobile-menu"/></NavLink>
+                        <div className="board-header-bar">
+
+                            <NavLink className="board-header-logo" to="/">
+                                <i className="fas fa-ellipsis-v mobile-menu"></i>
+                            </NavLink>
+
+
                             <div className="board-selector">
                                 <div className="board-selector-title">Main Goals</div>
-                                <div className="hackachieve-dropdown-wrapper"><select name="board-dropdown"
-                                                                                      id="board-dropdown"
-                                                                                      className="hackachieve-dropdown">
-                                    <option value="all">All</option>
-                                </select><i className="dropdown-arrow fas fa-angle-down"></i></div>
-                            </div>
-                            <div className="board-switch">
-                                <div className={this.onHandleBoardSwitchItem('all')}
-                                     onClick={() => this.onBoardSwitch('all')}
-                                >
-                                    <div className="board-switch-icon"><i className="fas fa-check"></i></div>
-                                    <div className="board-switch-text">ALL GOALS</div>
+                                <div className="hackachieve-dropdown-wrapper">
+                                    <select name="board-dropdown" id="board-dropdown" className="hackachieve-dropdown">
+                                        <option value="all">All</option>
+                                    </select>
+                                    <i className="dropdown-arrow fas fa-angle-down"></i>
                                 </div>
+                            </div>
+
+                            <div className="board-switch">
+
+                                <div className={this.onHandleBoardSwitchItem('all')}
+                                     onClick={() => this.onBoardSwitch('all')}>
+                                    <div className="board-switch-icon">
+                                        <i className="fas fa-check"></i>
+
+                                    </div>
+                                    <div
+                                        className="board-switch-text">
+                                        ALL GOALS
+                                    </div>
+
+                                </div>
+
                                 <div className={this.onHandleBoardSwitchItem('completed')}
                                      onClick={() => this.onBoardSwitch('completed')}>
-                                    <div className="board-switch-icon"><i className="fas fa-check"></i></div>
-                                    <div className="board-switch-text">COMPLETED GOALS</div>
+                                    <div className="board-switch-icon">
+                                        <i className="fas fa-check"></i>
+
+                                    </div>
+                                    <div className="board-switch-text">
+                                        COMPLETED GOALS
+                                    </div>
                                 </div>
                             </div>
-                            <div className="board-profile" onClick={() => this.onOpenMenuClick()}>
-                                <div className="board-profile-username">John Snow</div>
-                                <div className="board-profile-user-picture"><img src="./images/icons/avatar-generic.svg"
-                                                                                 alt="user"/>
-                                    {this.state.userMenuOpen && <UserMenu/>}
 
+                            <div className="board-profile" onClick={() => this.onOpenMenuClick()}>
+
+                                <div className="board-profile-username">
+                                    John Snow
+                                </div>
+
+                                <div className="board-profile-user-picture">
+                                    <img src="/images/icons/avatar-generic.svg" alt="user"/>
+                                    {this.state.userMenuOpen && <UserMenu/>}
                                 </div>
                             </div>
                         </div>
