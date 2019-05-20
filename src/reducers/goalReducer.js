@@ -1,7 +1,8 @@
-import {LOAD_GOALS} from "../actions/types";
+import {LOAD_GOALS, FILTER_GOALS} from "../actions/types";
 
 const INITIAL_STATE = {
-    goals: null
+    goals: null,
+    filter: 'All'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,6 +15,11 @@ export default (state = INITIAL_STATE, action) => {
                 goals: action.payload,
 
             };
+        case FILTER_GOALS: 
+            return {
+                ...state,
+                filter: action.payload.category
+            }    
 
         default:
             return state;

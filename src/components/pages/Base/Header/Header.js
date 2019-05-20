@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {Link, NavLink} from "react-router-dom";
 import {userLogout} from "../../../../actions/authActions";
+import {loadUserGoalsCategories, filterGoals} from "../../../../actions/goalsActions";
 import history from './../../../../history';
 import {showAlert, updateLocation} from "../../../../actions/uiActions";
 import {changeBoardShowGoal} from "../../../../actions/boardActions";
@@ -12,14 +13,15 @@ import UserMenu from "./UserMenu"
 
 
 class Header extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             userMenuOpen: false
         }
     }
-    componentWillMount() {
 
+    componentWillMount() {
+        this.props.loadUserGoalsCategories();
         this.props.updateLocation(history.location); //update for the first time on component mounting
 
         //listen for history changes and then update our current state properly
@@ -50,8 +52,6 @@ class Header extends Component {
 
             return 'board-switch-item';
         }
-
-
     }
 
     onBoardSwitch(type) {
@@ -62,13 +62,21 @@ class Header extends Component {
 
     }
 
-    onOpenMenuClick(){
+    onOpenMenuClick() {
         this.setState({
             userMenuOpen: !this.state.userMenuOpen
         })
+
+        console.log(this.state.userMenuOpen);
+
+    }
+
+    handleFilter = (e) => {
+        this.props.filterGoals(e.target.value);
     }
 
     render() {
+       let {boardCategories} = this.props
 
         switch (this.props.location.pathname) {
 
@@ -76,59 +84,40 @@ class Header extends Component {
 
                 return (<React.Fragment>
                     <header className="board-header">
-                        <div className="board-header-bar">
-
-                            <NavLink className="board-header-logo" to="/">
-                                <i className="fas fa-ellipsis-v mobile-menu"></i>
-                            </NavLink>
-
-
+                        <div className="board-header-bar"><NavLink to='/' aria-current="page"
+                                                                   className="board-header-logo active"><i
+                            className="fas fa-ellipsis-v mobile-menu"/></NavLink>
                             <div className="board-selector">
                                 <div className="board-selector-title">Main Goals</div>
                                 <div className="hackachieve-dropdown-wrapper">
-                                    <select name="board-dropdown" id="board-dropdown" className="hackachieve-dropdown">
-                                        <option value="all">All</option>
+                                    <select name="goalFilter" id="board-dropdown" className="hackachieve-dropdown" onChange={this.handleFilter}>
+                                        <option value="All">All</option>
+                                        {boardCategories && boardCategories.map((goalCategory,index) => {
+                                           return  <option value={goalCategory.name} key={index}>{goalCategory.name}</option>
+                                        })}
                                     </select>
                                     <i className="dropdown-arrow fas fa-angle-down"></i>
                                 </div>
                             </div>
-
                             <div className="board-switch">
-
                                 <div className={this.onHandleBoardSwitchItem('all')}
-                                     onClick={() => this.onBoardSwitch('all')}>
-                                    <div className="board-switch-icon">
-                                        <i className="fas fa-check"></i>
-
-                                    </div>
-                                    <div
-                                        className="board-switch-text">
-                                        ALL GOALS
-                                    </div>
-
+                                     onClick={() => this.onBoardSwitch('all')}
+                                >
+                                    <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                                    <div className="board-switch-text">ALL GOALS</div>
                                 </div>
-
                                 <div className={this.onHandleBoardSwitchItem('completed')}
                                      onClick={() => this.onBoardSwitch('completed')}>
-                                    <div className="board-switch-icon">
-                                        <i className="fas fa-check"></i>
-
-                                    </div>
-                                    <div className="board-switch-text">
-                                        COMPLETED GOALS
-                                    </div>
+                                    <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                                    <div className="board-switch-text">COMPLETED GOALS</div>
                                 </div>
                             </div>
-
                             <div className="board-profile" onClick={() => this.onOpenMenuClick()}>
+                                <div className="board-profile-username">John Snow</div>
+                                <div className="board-profile-user-picture"><img src="./images/icons/avatar-generic.svg"
+                                                                                 alt="user"/>
+                                    {this.state.userMenuOpen && <UserMenu/>}
 
-                                <div className="board-profile-username">
-                                    John Snow
-                                </div>
-
-                                <div className="board-profile-user-picture">
-                                    <img src="/images/icons/avatar-generic.svg" alt="user" />
-                                    { this.state.userMenuOpen && <UserMenu /> }
                                 </div>
                             </div>
                         </div>
@@ -140,45 +129,48 @@ class Header extends Component {
                 return (
                     <React.Fragment>
 
-                        <div className="ui vertical inverted sidebar menu">
-
-                            {/*{(User.isLoggedIn() ? <a className="active item" href="# ">Board</a> : null)}*/}
-
-                            <a className="item" href="# ">Work</a>
-                            <a className="item" href="# ">Company</a>
-                            <a className="item" href="# ">Careers</a>
-                            <a className="item" href="# ">Login</a>
-                            <a className="item" href="# ">Signup</a>
-                        </div>
-
-
                         <div className="header_menu">
-
                             <div className="ui container">
                                 <div className="ui large secondary inverted pointing menu">
-                                    <a className="toc item" href="# ">
-                                        <i className="sidebar icon"></i>
+                                    <a href=" #" className="mobile-menu" onClick={() => this.onOpenMenuClick()}>
+                                        <i className="sidebar icon"/>
                                     </a>
-
                                     <Link to={`/`} className="logo-link">
                                         <img src="images/logo_dark.png" alt="Logo" className="app-logo"/>
                                     </Link>
-                                    <div className="right item">
-                                        <Link className="item" to="/">Home</Link>
-                                        {(this.props.isLoggedIn ?
-                                            <Link className="item" to="/board">Board</Link> : null)}
-                                        {(!this.props.isLoggedIn ?
-                                            <React.Fragment>
-                                                <Link id="btnLogin" to="/login" className="ui btn-light-purple login button ">
-                                                    Log in
-                                                </Link>
-                                                <Link id="btnRegister" to="/register"
-                                                      className="ui signup btn-light-green button">Sign
-                                                    Up</Link>
-                                            </React.Fragment> :
-                                            <button id="btnLogout" onClick={() => this.props.userLogout()}
-                                                    className="ui inverted button">Logout</button>)}
 
+                                    <div className="right-items">
+                                        <div className="button-main">
+
+                                            {(this.props.isLoggedIn ?
+                                                <Link className="ui inverted button" to="/board">Board</Link> : null)}
+
+                                            {(!this.props.isLoggedIn ?
+                                                <React.Fragment>
+                                                    <Link id="btnLogin" to="/login" className="ui inverted button">
+                                                        Log in
+                                                    </Link>
+                                                    <Link id="btnsignup" to="/register"
+                                                          className="ui inverted button">Sign
+                                                        Up</Link>
+                                                </React.Fragment> :
+                                                <button id="btnLogout" onClick={() => this.props.userLogout()}
+                                                        className="ui inverted button">Logout</button>)}
+
+                                        </div>
+
+
+                                        <div className="navigation" id="mySidenav"
+                                             style={(this.state.userMenuOpen ? {'width': '100%'} : null)}>
+                                            <a href="# " className="closebtn"
+                                               onClick={() => this.onOpenMenuClick()}>&times;</a>
+                                            <ul className="nav-sub-menu">
+                                                <li><a className="active" href="# ">Home</a></li>
+                                                <li><a href="# ">Work</a></li>
+                                                <li><a href="# ">Company</a></li>
+                                                <li><a href="# ">Careers</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -198,12 +190,13 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 
-    const {boardShowGoals, location} = state.ui;
+    const {boardShowGoals, location,boardCategories} = state.ui;
 
     return {
         isLoggedIn: state.auth.isLoggedIn,
         location: location,
-        boardShowGoals: boardShowGoals
+        boardShowGoals: boardShowGoals,
+        boardCategories
     };
 };
 
@@ -213,6 +206,8 @@ export default connect(mapStateToProps, {
     updateLocation,
     showAlert,
     changeBoardShowGoal,
-    loadGoals
+    loadGoals,
+    loadUserGoalsCategories,
+    filterGoals
 })(Header);
 

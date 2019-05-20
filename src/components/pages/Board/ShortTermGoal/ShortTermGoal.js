@@ -100,6 +100,7 @@ class ShortTermGoal extends Component {
         return (priority === false || priority === 0 ? 'priority-icon' : 'priority-icon priority-icon-active');
     }
 
+
     onRenderGoalContentModal() {
 
         if (this.props.modals.goalContent.status) {
@@ -121,7 +122,9 @@ class ShortTermGoal extends Component {
         const {id, description, deadline, title, priority, status} = this.props.myProps.shortTermGoal;
 
 
-        cardCategoryStyle = 'card-active-blue';//todo: Set card style according to category.
+        cardCategoryStyle = 'card-active-' + this.props.myProps.longTermBoardName;
+
+
 
         switch (status) {
 
@@ -138,7 +141,7 @@ class ShortTermGoal extends Component {
                 break;
         }
 
-        if(priority) {
+        if (priority) {
             goalStyle += ' column-card-priority';
         }
 
@@ -154,9 +157,10 @@ class ShortTermGoal extends Component {
 
                 <div className="column-card-body">
                     <div className="column-card-title">{title}</div>
-                    { description.length <= this.characterLimit
-                        ? <div className="column-card-description">{description}</div> 
-                        : <div className="column-card-description">{description.substring(0,this.characterLimit)+" ..."}</div>
+                    {description.length <= this.characterLimit
+                        ? <div className="column-card-description">{description}</div>
+                        : <div
+                            className="column-card-description">{description.substring(0, this.characterLimit) + " ..."}</div>
                     }
                     <div className="column-card-deadline">
                         <div className="column-card-deadline-icon"></div>

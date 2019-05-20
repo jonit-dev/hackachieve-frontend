@@ -6,6 +6,7 @@ import LongTermGoal from "./LongTermGoal/LongTermGoal";
 import {toggleModal} from "../../../actions/uiActions";
 import {Mixpanel as mixpanel} from "../../../mixpanel";
 import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
+import {changeBoardShowGoal} from "../../../actions/boardActions";
 
 
 class Board extends Component {
@@ -79,6 +80,24 @@ class Board extends Component {
         }
     }
 
+    onHandleBoardSwitchItem(type) {
+
+        if (type === this.props.boardShowGoals) {
+            return 'board-switch-item switch-active';
+        } else {
+
+            return 'board-switch-item';
+        }
+    }
+
+    onBoardSwitch(type) {
+
+        this.props.changeBoardShowGoal(type).then(() => {
+            this.props.loadGoals(0, this.props.boardShowGoals)
+        });
+
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -103,16 +122,72 @@ class Board extends Component {
 
                 </main>
 
+                <footer className="footer">
+                    <div className="ui container">
+                        <div className="ui stackable inverted divided equal height stackable grid">
+                            <div className="three wide column">
+                                <h4 className="ui inverted header">About</h4>
+                                <div className="ui inverted link list">
+                                    <a href=" #" className="item">Sitemap</a>
+                                    <a href=" #" className="item">Contact Us</a>
+                                    <a href=" #" className="item">Religious Ceremonies</a>
+                                    <a href=" #" className="item">Gazebo Plans</a>
+                                </div>
+                            </div>
+                            <div className="three wide column center">
+                                <h4 className="ui inverted header">Services</h4>
+                                <div className="ui inverted link list">
+                                    <a href=" #" className="item">Banana Pre-Order</a>
+                                    <a href=" #" className="item">DNA FAQ</a>
+                                    <a href=" #" className="item">How To Access</a>
+                                    <a href=" #" className="item">Favorite X-Men</a>
+                                </div>
+                            </div>
+                            <div className="seven wide column last">
+                                <h4 className="ui inverted header">Footer Header</h4>
+                                <p>Extra space for a call to action inside the footer that could help re-engage
+                                    users.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </footer>
+
+                <div className="i-phone">
+                    <div className="board-switch">
+                        <div className={this.onHandleBoardSwitchItem('all')}
+                             onClick={() => this.onBoardSwitch('all')}
+                        >
+                            <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                            <div className="board-switch-text">ALL GOALS</div>
+                        </div>
+
+                        <div className="add-main">
+                            <div className="plus"></div>
+                        </div>
+                        <div className={this.onHandleBoardSwitchItem('completed')}
+                             onClick={() => this.onBoardSwitch('completed')}>
+                            <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                            <div className="board-switch-text">COMPLETED GOALS</div>
+                        </div>
+                    </div>
+                </div>
+
 
             </React.Fragment>
         );
     }
 }
 
+const filteredGoals = (goals, filter) => {
+   return  filter === 'All' ? goals : goals.filter(goal => goal.name == filter);
+}
+
 const mapStateToProps = (state) => {
 
+
     return {
-        goals: state.goal.goals,
+        goals: filteredGoals(state.goal.goals, state.goal.filter),
         boardShowGoals: state.ui.boardShowGoals,
         modals: state.ui.modals
     };
@@ -121,6 +196,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     //actions here
     loadGoals,
-    toggleModal
+    toggleModal,
+    changeBoardShowGoal
 })(Board);
 

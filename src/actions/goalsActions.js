@@ -1,5 +1,5 @@
 import API from "../classes/API";
-import {LOAD_CATEGORIES, LOAD_GOALS, SHOW_ALERT} from "./types";
+import {LOAD_CATEGORIES, LOAD_GOALS, SHOW_ALERT, FILTER_GOALS} from "./types";
 import {Mixpanel as mixpanel} from "../mixpanel";
 
 
@@ -132,3 +132,12 @@ export const createLongTermGoal = (data) => async (dispatch) => {
 
 };
 
+export const filterGoals = (category) => (dispatch) => {
+
+        dispatch({
+            type: FILTER_GOALS, payload: { category }
+        });
+
+     
+
+};
