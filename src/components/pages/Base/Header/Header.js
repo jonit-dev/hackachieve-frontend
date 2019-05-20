@@ -12,12 +12,13 @@ import UserMenu from "./UserMenu"
 
 
 class Header extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             userMenuOpen: false
         }
     }
+
     componentWillMount() {
 
         this.props.updateLocation(history.location); //update for the first time on component mounting
@@ -62,10 +63,13 @@ class Header extends Component {
 
     }
 
-    onOpenMenuClick(){
+    onOpenMenuClick() {
         this.setState({
             userMenuOpen: !this.state.userMenuOpen
         })
+
+        console.log(this.state.userMenuOpen);
+
     }
 
     render() {
@@ -127,8 +131,8 @@ class Header extends Component {
                                 </div>
 
                                 <div className="board-profile-user-picture">
-                                    <img src="/images/icons/avatar-generic.svg" alt="user" />
-                                    { this.state.userMenuOpen && <UserMenu /> }
+                                    <img src="/images/icons/avatar-generic.svg" alt="user"/>
+                                    {this.state.userMenuOpen && <UserMenu/>}
                                 </div>
                             </div>
                         </div>
@@ -140,45 +144,48 @@ class Header extends Component {
                 return (
                     <React.Fragment>
 
-                        <div className="ui vertical inverted sidebar menu">
-
-                            {/*{(User.isLoggedIn() ? <a className="active item" href="# ">Board</a> : null)}*/}
-
-                            <a className="item" href="# ">Work</a>
-                            <a className="item" href="# ">Company</a>
-                            <a className="item" href="# ">Careers</a>
-                            <a className="item" href="# ">Login</a>
-                            <a className="item" href="# ">Signup</a>
-                        </div>
-
-
                         <div className="header_menu">
-
                             <div className="ui container">
                                 <div className="ui large secondary inverted pointing menu">
-                                    <a className="toc item" href="# ">
-                                        <i className="sidebar icon"></i>
+                                    <a href=" #" className="mobile-menu" onClick={() => this.onOpenMenuClick()}>
+                                        <i className="sidebar icon"/>
                                     </a>
-
                                     <Link to={`/`} className="logo-link">
                                         <img src="images/logo_dark.png" alt="Logo" className="app-logo"/>
                                     </Link>
-                                    <div className="right item">
-                                        <Link className="item" to="/">Home</Link>
-                                        {(this.props.isLoggedIn ?
-                                            <Link className="item" to="/board">Board</Link> : null)}
-                                        {(!this.props.isLoggedIn ?
-                                            <React.Fragment>
-                                                <Link id="btnLogin" to="/login" className="ui btn-light-purple login button ">
-                                                    Log in
-                                                </Link>
-                                                <Link id="btnRegister" to="/register"
-                                                      className="ui signup btn-light-green button">Sign
-                                                    Up</Link>
-                                            </React.Fragment> :
-                                            <button id="btnLogout" onClick={() => this.props.userLogout()}
-                                                    className="ui inverted button">Logout</button>)}
 
+                                    <div className="right-items">
+                                        <div className="button-main">
+
+                                            {(this.props.isLoggedIn ?
+                                                <Link className="ui inverted button" to="/board">Board</Link> : null)}
+
+                                            {(!this.props.isLoggedIn ?
+                                                <React.Fragment>
+                                                    <Link id="btnLogin" to="/login" className="ui inverted button">
+                                                        Log in
+                                                    </Link>
+                                                    <Link id="btnsignup" to="/register"
+                                                          className="ui inverted button">Sign
+                                                        Up</Link>
+                                                </React.Fragment> :
+                                                <button id="btnLogout" onClick={() => this.props.userLogout()}
+                                                        className="ui inverted button">Logout</button>)}
+
+                                        </div>
+
+
+                                        <div className="navigation" id="mySidenav"
+                                             style={(this.state.userMenuOpen ? {'width': '100%'} : null)}>
+                                            <a href="# " className="closebtn"
+                                               onClick={() => this.onOpenMenuClick()}>&times;</a>
+                                            <ul className="nav-sub-menu">
+                                                <li><a className="active" href="# ">Home</a></li>
+                                                <li><a href="# ">Work</a></li>
+                                                <li><a href="# ">Company</a></li>
+                                                <li><a href="# ">Careers</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

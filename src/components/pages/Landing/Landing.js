@@ -35,67 +35,46 @@ class Landing extends Component {
                         <div className="ui middle aligned stackable grid container">
                             <div className="row">
                                 <div className="sixteen wide column">
-                                    <h3 className="ui center aligned header text-hackachieve-dark-purple ">We Help
-                                        Companies and Companions</h3>
-                                    <p className="text-grey">We can give your company superpowers to do things that they
-                                        never thought possible.
-                                        Let us delight your customers and empower your needs...through pure data
-                                        analytics.</p>
-                                </div>
-                                <div className="eight wide column mar-top-60">
-                                    <h3 className="ui aligned header text-hackachieve-dark-purple ">We Make Bananas That
-                                        Can Dance</h3>
-                                    <p className="text-grey">Yes that's right, you thought it was the stuff of dreams,
-                                        but even bananas can be
-                                        bioengineered.</p>
+                                    <h3 className="ui center aligned header text-hackachieve-dark-purple ">
+                                        YOUR GOALS AT YOUR FEET, YOUR HAND ACTUALLY</h3>
+                                    <p className="text-grey">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                        sed diam nonumy
+                                        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                                        voluptua. At vero
+                                        eos et accusam et justo duo dolores et ea rebum.</p>
                                 </div>
                             </div>
+
                             <div className="row">
-                                <div className="center aligned column">
-                                    <a className="ui huge button" href="# ">Check Them Out</a>
+                                <div className="eight wide column mar-top-60 head-left">
+                                    <div className="b-img"><img src="images/banana.png" alt=""/></div>
+                                    <h3 className="ui aligned header text-hackachieve-dark-purple "> WE STILL MAKE
+                                        BANANAS THAT CAN
+                                        DANCE</h3>
+                                    <p className="text-grey">Banana ipsum dolor sit amet, consetetur sadipscing elitr,
+                                        sed diam
+                                        nonumy<br/> banana tempor invidunt ut labore et dolore magna banana erat, sed
+                                        diam<br/>
+                                        voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                        Banana.</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
+                            <div className="row row-reverse">
+                                <div className="eight wide column mar-top-60 head-right">
+                                    <div className="b-img"><img src="images/banana.png" alt=""/></div>
+                                    <h3 className="ui aligned header text-hackachieve-dark-purple "> MORE BANANAS CAME
+                                        TO THE PARTY</h3>
+                                    <p className="text-grey">Banana ipsum dolor sit amet, consetetur sadipscing elitr,
+                                        sed diam
+                                        nonumy<br/> banana tempor invidunt ut labore et dolore magna banana erat, sed
+                                        diam<br/>
+                                        voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                        Banana.</p>
+                                </div>
 
 
-                    <div className="ui vertical stripe quote segment">
-                        <div className="ui equal width stackable internally celled grid">
-                            <div className="center aligned row">
-                                <div className="column">
-                                    <h3 className="text-hackachieve-dark-purple">"What a Company"</h3>
-                                    <p className="text-grey">That is what they all say about us</p>
-                                </div>
-                                <div className="column">
-                                    <h3 className="text-hackachieve-dark-purple">"I shouldn't have gone with their
-                                        competitor."</h3>
-                                    <p className="text-grey">
-                                        <b>Nan</b> Chief Fun Officer Acme Toys
-                                    </p>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="ui vertical stripe segment">
-                        <div className="ui text container">
-                            <h3 className="ui header text-hackachieve-dark-purple">Breaking The Grid, Grabs Your
-                                Attention</h3>
-                            <p className="text-grey">Instead of focusing on content creation and hard work, we have
-                                learned how to master the art
-                                of doing nothing by providing massive amounts of whitespace and generic content that can
-                                seem massive, monolithic and worth your attention.</p>
-                            <a className="ui large button" href="# ">Read More</a>
-                            <h4 className="ui horizontal header divider">
-                                <a href="# ">Case Studies</a>
-                            </h4>
-                            <h3 className="ui header text-hackachieve-dark-purple">Did We Tell You About Our
-                                Bananas?</h3>
-                            <p className="text-grey">Yes I know you probably disregarded the earlier boasts as
-                                non-sequitur filler content, but
-                                its really true. It took years of gene splicing and combinatory DNA research, but our
-                                bananas can really dance.</p>
-                            <a className="ui large button" href="# ">I'm Still Quite Interested</a>
                         </div>
                     </div>
 

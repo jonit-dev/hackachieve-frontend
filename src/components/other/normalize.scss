@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0
+}
+
+html, body, address, blockquote, div, dl, form, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul, dd, dt, li, tbody, td, tfoot, th, thead, tr, button, del, ins, map, object, a, abbr, acronym, b, bdo, big, br, cite, code, dfn, em, i, img, kbd, q, samp, small, span, strong, sub, sup, tt, var, legend, fieldset, p {
+  border: medium none;
+  margin: 0;
+  padding: 0
+}
+
+a, input, select, textarea {
+  margin: 0;
+  outline: medium none;
+  padding: 0
+}
+
+img, fieldset {
+  border: 0 none
+}
+
+a {
+  border: medium none;
+  outline: medium none
+}
+
+a:hover {
+  border: medium none;
+  outline: medium none
+}
+
+a:focus {
+  border: medium none;
+  outline: medium none
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  margin: 0;
+  padding: 0
+}
+
+div, h1, h2, h3, h4, span, p, input, form, img, hr, img, a {
+  border: medium none;
+  margin: 0;
+  padding: 0
+}
+
+.clear {
+  clear: both
+}
+
+ul::after {
+  clear: both;
+  content: "";
+  display: block
+}
+
+ul {
+  list-style: none outside none
+}
+
+img {
+  border: medium none;
+  height: auto;
+  max-width: 100%;
+  outline: medium none;
+  vertical-align: middle
+}

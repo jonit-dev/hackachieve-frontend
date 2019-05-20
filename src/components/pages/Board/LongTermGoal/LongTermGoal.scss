@@ -318,3 +318,89 @@ main.board-main {
   }
 
 }
+
+
+.board-column.column-other.column-finances .column-card.column-card-priority {
+  background-color: #E69E56;
+  border: 1px solid #E69E56
+}
+
+.column-card.column-card-completed.column-card-priority .column-card-title {
+  color: #fff !important
+}
+
+.column-card.column-card-completed.column-card-priority .column-card-description {
+  color: #fff !important
+}
+
+.column-card.column-card-completed.column-card-priority .column-card-deadline-text {
+  color: #fff !important
+}
+
+.i-phone {
+  display: none
+}
+
+.column-body .column-card.white .column-card-deadline-icon {
+  background-image: url("/images/icons/calelndar-icon.svg") !important
+}
+
+.column-card.white .column-card-body {
+  border-bottom: 1px solid rgba(189, 189, 208, 0.50)
+}
+
+@media screen and (max-width: 850px) {
+  header.board-header .board-header-bar {
+    height: 12.6rem
+  }
+}
+
+@media screen and (min-width: 850px) {
+  header.board-header .board-header-bar .board-header-logo .mobile-menu {
+    display: none
+  }
+}
+
+@media screen and (max-width: 850px) {
+  header.board-header .board-header-bar .board-header-logo {
+    flex: 1 1 100%;
+    height: 4rem
+  }
+}
+
+@media screen and (max-width: 850px) {
+  header.board-header .board-header-bar .board-profile {
+    display: none
+  }
+}
+
+@media screen and (max-width: 850px) {
+  header.board-header .board-header-bar .board-switch {
+    flex: 1 1 100%
+  }
+}
+
+@media screen and (max-width: 850px) {
+  header.board-header .board-header-bar .board-switch .board-switch-item {
+    height: 50px;
+    top: .3rem
+  }
+}
+
+header.board-header .board-header-bar .board-switch .board-switch-item.switch-active .board-switch-icon {
+  color: #F05765
+}
+
+header.board-header .board-header-bar .board-switch .board-switch-item.switch-active .board-switch-text {
+  color: #F05765
+}
+
+@media screen and (max-width: 850px) {
+  header.board-header .board-header-bar .board-selector {
+    flex: 1 1 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem
+  }
+}
