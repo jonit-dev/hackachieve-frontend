@@ -51,8 +51,6 @@ class Header extends Component {
 
             return 'board-switch-item';
         }
-
-
     }
 
     onBoardSwitch(type) {

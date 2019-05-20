@@ -63,6 +63,7 @@ class LongTermGoal extends Component {
 
                 return <ShortTermGoal onOpenModal={() => this.onOpenShortTermGoalModal(this.props.myProps.id)}
                                       key={shortTermGoal.id}
+                                      longTermBoardName={this.onConvertBoardNameClass(this.props.myProps.boardName)}
                                       shortTermGoal={shortTermGoal}
                 />
 

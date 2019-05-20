@@ -2,7 +2,7 @@ main.board-main {
 
   background-color: $hackachieve-light-gray;
   min-height: 90vh;
-  padding: 6rem 1rem;
+  padding: 2rem 1rem;
 
   /*MOBILE ONLY CODE*/
   @media screen and (max-width: 850px) {
@@ -264,7 +264,7 @@ main.board-main {
         border-top: 0.5rem solid $hackachieve-orange;
       }
       &.column-finances {
-        border-top: 0.5rem solid $hackachieve-green;
+        border-top: 0.5rem solid $hackachieve-orange;
       }
 
       &.column-spiritual {
@@ -325,17 +325,7 @@ main.board-main {
   border: 1px solid #E69E56
 }
 
-.column-card.column-card-completed.column-card-priority .column-card-title {
-  color: #fff !important
-}
 
-.column-card.column-card-completed.column-card-priority .column-card-description {
-  color: #fff !important
-}
-
-.column-card.column-card-completed.column-card-priority .column-card-deadline-text {
-  color: #fff !important
-}
 
 .i-phone {
   display: none

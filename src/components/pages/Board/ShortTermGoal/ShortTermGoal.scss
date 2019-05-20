@@ -205,8 +205,56 @@
 
     /* CARD ACTIVE COLORS =========================================== */
 
-    &.card-active-blue {
+    &.card-active-health {
       background-color: $hackachieve-blue;
+      .column-card-title, .column-card-description, .column-card-deadline-text {
+        color: $hackachieve-white !important;
+      }
+    }
+
+    &.card-active-career {
+      background-color: $hackachieve-light-purple;
+      border: 1px solid $hackachieve-light-purple;
+      .column-card-title, .column-card-description, .column-card-deadline-text {
+        color: $hackachieve-white !important;
+      }
+    }
+
+    &.card-active-leisure-and-fun {
+      background-color: $hackachieve-light-green;
+      border: 1px solid $hackachieve-light-green;
+      .column-card-title, .column-card-description, .column-card-deadline-text {
+        color: $hackachieve-white !important;
+      }
+    }
+
+    &.card-active-family {
+      background-color: $hackachieve-orange;
+      border: 1px solid $hackachieve-orange;
+      .column-card-title, .column-card-description, .column-card-deadline-text {
+        color: $hackachieve-white !important;
+      }
+    }
+
+    &.card-active-finances {
+      background-color: $hackachieve-orange;
+      border: 1px solid $hackachieve-orange;
+      .column-card-title, .column-card-description, .column-card-deadline-text {
+        color: $hackachieve-white !important;
+      }
+    }
+
+    &.card-active-spiritual {
+      background-color: $hackachieve-light-purple;
+      border: 1px solid $hackachieve-light-purple;
+      .column-card-title, .column-card-description, .column-card-deadline-text {
+        color: $hackachieve-white !important;
+      }
+    }
+
+    &.card-active-personal-development {
+      background-color: $hackachieve-dark-yellow;
+      border: 1px solid $hackachieve-dark-yellow;
       .column-card-title, .column-card-description, .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
