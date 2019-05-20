@@ -56,6 +56,10 @@ class LongTermGoal extends Component {
         this.props.toggleModal('longTermGoal', this.props.myProps.id);
     }
 
+    onEditLongTermGoalModal() {
+        this.props.toggleModal('editLongTermGoal', this.props.myProps.id);
+    }
+
     onRenderShortTermGoals() {
 
         if (this.props.myProps.shortTermGoals !== undefined) {
@@ -95,7 +99,8 @@ class LongTermGoal extends Component {
                         </div>
                         <Dropdown
                             triggerParentDelete={() => this.onDeleteLongTermGoal()}
-                            triggerParentOpenModal={() => this.onOpenLongTermGoalModal(this.props.myProps.id)}/>
+                            triggerParentOpenModal={() => this.onOpenLongTermGoalModal(this.props.myProps.id)}
+                            triggerParentEditModal={() => this.onEditLongTermGoalModal(this.props.myProps.id)}/>
                     </div>
 
                     <div className="column-status">

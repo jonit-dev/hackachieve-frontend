@@ -5,6 +5,7 @@ import Dropdown from "../../../UI/Dropdown/Dropdown";
 import {deleteGoal, goalChangeStatus, goalSetPriority, loadGoals} from "../../../../actions/goalsActions";
 import {toggleModal} from "../../../../actions/uiActions";
 import GoalContentModal from "./GoalContentModal";
+import EditShortTermGoalModal from "./EditShortTermGoalModal"
 
 class ShortTermGoal extends Component {
 
@@ -113,6 +114,14 @@ class ShortTermGoal extends Component {
         }
     }
 
+    renderEditShortTermModal() {
+        if(this.props.modals.editShortTermGoal.status) {
+            return <EditShortTermGoalModal shortTermGoal={this.props.myProps.shortTermGoal} />
+        } else {
+            return null;
+        }
+    }
+
     render() {
 
         let goalStyle, cardCategoryStyle;
@@ -177,6 +186,7 @@ class ShortTermGoal extends Component {
                 </div>
 
                 {this.onRenderGoalContentModal()}
+                {this.renderEditShortTermModal()}
 
             </div>
 

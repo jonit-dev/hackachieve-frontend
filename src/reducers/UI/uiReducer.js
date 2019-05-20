@@ -20,6 +20,10 @@ const INITIAL_STATE = {
         editShortTermGoal: {
             status: false,
             id: null
+        },
+        editLongTermGoal: {
+            status: false,
+            id: null
         }
     },
     boardCategories: [],

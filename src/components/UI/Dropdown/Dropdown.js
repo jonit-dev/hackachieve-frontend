@@ -51,6 +51,11 @@ class Dropdown extends Component {
 
                     <div className={uiDropdownMenuClass} tabIndex="-1" style={uiDropdownMenuStyle}>
                         <div className="item"
+                            onClick={this.props.triggerParentEditModal}>
+                            <i className="edit outline icon"></i>
+                            Edit {this.state.type}
+                        </div>
+                        <div className="item"
                              onClick={this.props.triggerParentOpenModal}>
                                 <i className="sticky note outline icon"></i>
                                 New {this.state.type}

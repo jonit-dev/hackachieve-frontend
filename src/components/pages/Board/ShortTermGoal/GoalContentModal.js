@@ -12,6 +12,7 @@ class GoalContentModal extends Component {
     }
 
     onEdit() {
+        this.props.toggleModal('goalContent', this.props.myProps.shortTermGoal.id);
         this.props.toggleModal('editShortTermGoal', this.props.myProps.shortTermGoal.id);
     }
 

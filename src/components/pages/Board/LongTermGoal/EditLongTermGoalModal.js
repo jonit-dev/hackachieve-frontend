@@ -3,12 +3,23 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
-import {createGoal, loadGoals} from "../../../../actions/goalsActions";
+import {createLongTermGoal, loadGoals, loadUserGoalsCategories} from "../../../../actions/goalsActions";
+import Loading from "../../../UI/Loading/Loading";
 
-class EditShortTermGoalModal extends Component {
+class EditLongTermGoalModal extends Component {
+
+
+    componentDidMount() {
+
+        this.props.loadUserGoalsCategories().then(() => {
+            //set first option as selected
+            this.props.change('board_id', this.props.boardCategories[0].id)
+        });
+    }
+
 
     onClose() {
-        this.props.toggleModal('editShortTermGoal');
+        this.props.toggleModal('editLongTermGoal');
     }
 
     renderInput({input, label, meta, optional, type, textarea, placeholder}) {
@@ -28,7 +39,7 @@ class EditShortTermGoalModal extends Component {
         )
     }
 
-    renderInputTextArea({input, label, meta, optional, placeholder, value}) {
+    renderInputTextArea({input, label, meta, optional, placeholder}) {
         return (
             <div className="field">
                 <label>{label}</label>
@@ -42,7 +53,7 @@ class EditShortTermGoalModal extends Component {
         )
     }
 
-    renderInputCheckbox({input, meta, optional, label, value}) {
+    renderInputCheckbox({input, meta, optional, label}) {
         return (
             <div className="field">
                 <div className="ui toggle checkbox">
@@ -53,23 +64,45 @@ class EditShortTermGoalModal extends Component {
         )
     }
 
+    onRenderBoardOptions() {
+        return this.props.boardCategories.map((category) => <option key={category.id}
+                                                                    value={category.id}>{category.name}</option>);
+    }
+
+    renderInputSelectBoards({input, meta, optional, label, children}) {
+
+        return (
+            <div className="field">
+                <label>{label}</label>
+                <select {...input}>
+                    {children}
+                </select>
+            </div>
+        )
+    }
+
     render() {
-        console.log(this.props.myProps.shortTermGoal.title)
-        const title = 'Edit your short-term goal!';
+        const title = 'Add your Long Term goal!';
 
         const content = <React.Fragment>
 
+
+            <p>A long-term goal is something you want to do in the future, for example, in the next 3 months.</p>
+
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-                <Field name="title" component={this.renderInput} label="Enter title"
-                       placeholder="A summary about what's your goal about" value={this.props.myProps.shortTermGoal.title}/>
-                <Field name="description" textarea={true} component={this.renderInputTextArea} label="Enter description"
+                <Field name="name" component={this.renderInput} label="Enter a long term goal title"
+                       placeholder="A summary about what's your goal about"/>
+                <Field name="description" textarea={true} component={this.renderInputTextArea}
+                       label="Enter your long term goal description"
                        placeholder="Describe what you have to do in details, to accomplish it"/>
-                <Field name="duration_hrs" type="number" optional={true} component={this.renderInput}
-                       label="Estimated duration (hrs)"/>
+
+                <Field name="board_id" component={this.renderInputSelectBoards}
+                       label="Category">
+                    {this.props.boardCategories ? this.onRenderBoardOptions() : <Loading/>}
+                </Field>
+
                 <Field name="deadline" type="date" component={this.renderInput}
                        label="Deadline"/>
-                <Field name="priority" component={this.renderInputCheckbox}
-                       label="Is this a priority goal?"/>
             </form>
         </React.Fragment>;
 
@@ -80,19 +113,19 @@ class EditShortTermGoalModal extends Component {
         </React.Fragment>;
 
         return (
-            <Modal name='editShortTermGoal' title={title} content={content} actions={actions}/>
+            <Modal name='editLongTermGoal' title={title} content={content} actions={actions}/>
         );
     }
 
 
     onSubmit = (formValues) => {
 
-        let formOutput = {...formValues, column_id: this.props.myProps.longTermGoalId};
+        let formOutput = {...formValues};
 
         // console.log('creating new goal ==> ');
-        // console.log(formOutput);
+        console.log(formOutput);
 
-        this.props.createGoal(formOutput).then((response) => {
+        this.props.createLongTermGoal(formOutput).then((response) => {
 
             const {status} = response.data;
 
@@ -101,8 +134,8 @@ class EditShortTermGoalModal extends Component {
                 this.props.loadGoals(0, this.props.boardShowGoals); //refresh goals (to display new one)
 
                 setTimeout(() => {
-                    this.props.toggleModal('editShortTermGoal'); //close modal once goal is created
-                }, 2000)
+                    this.props.toggleModal('editLongTermGoal'); //close modal once goal is created
+                }, 4000)
 
             }
 
@@ -115,30 +148,31 @@ class EditShortTermGoalModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
 
-    const {boardShowGoals, modals} = state.ui;
-    console.log("ownProps", ownProps)
+    const {modals, boardCategories, boardShowGoals} = state.ui;
+
     return {
         myProps: ownProps,
         modals: modals,
+        boardCategories: boardCategories,
         boardShowGoals: boardShowGoals,
         initialValues: {
-            title: ownProps.shortTermGoal.title,
-            description: ownProps.shortTermGoal.description,
-            duration_hrs: ownProps.shortTermGoal.duration_hrs,
-            deadline: ownProps.shortTermGoal.deadline,
-            priority: ownProps.shortTermGoal.priority
+            name: '',
+            description: '',
+            deadline: '',
+            board_id: null
         }
     };
 };
 
 const formWrapped = reduxForm({
-    form: 'EditShortTermGoalModal',
+    form: 'EditLongTermGoalModal',
     enableReinitialize: true
-})(EditShortTermGoalModal);
+})(EditLongTermGoalModal);
 
 export default connect(mapStateToProps, {
     //some actions here
     toggleModal,
-    createGoal,
-    loadGoals
+    createLongTermGoal,
+    loadGoals,
+    loadUserGoalsCategories
 })(formWrapped)
