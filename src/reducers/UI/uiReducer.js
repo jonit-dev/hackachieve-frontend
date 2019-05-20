@@ -16,6 +16,10 @@ const INITIAL_STATE = {
         goalContent: {
             status: false,
             id: null
+        },
+        editShortTermGoal: {
+            status: false,
+            id: null
         }
     },
     boardCategories: [],
