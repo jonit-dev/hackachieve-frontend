@@ -82,7 +82,7 @@ class EditLongTermGoalModal extends Component {
     }
 
     render() {
-        const title = 'Add your Long Term goal!';
+        const title = 'Edit your Long Term goal!';
 
         const content = <React.Fragment>
 
@@ -149,17 +149,17 @@ class EditLongTermGoalModal extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const {modals, boardCategories, boardShowGoals} = state.ui;
-
+    console.log("ownProps", ownProps)
     return {
         myProps: ownProps,
         modals: modals,
         boardCategories: boardCategories,
         boardShowGoals: boardShowGoals,
         initialValues: {
-            name: '',
+            name: ownProps.longTermGoal.title,
             description: '',
-            deadline: '',
-            board_id: null
+            deadline: ownProps.longTermGoal.deadline.split('T')[0],
+            board_id: ownProps.longTermGoal.boardName
         }
     };
 };

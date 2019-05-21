@@ -8,6 +8,7 @@ import {toggleModal} from "../../../../actions/uiActions";
 import Dropdown from "../../../UI/Dropdown/Dropdown";
 import AddShortTermGoalModal from "../ShortTermGoal/AddShortTermGoalModal";
 import AddLongTermGoalModal from "./AddLongTermGoalModal";
+import EditLongTermGoalModal from "./EditLongTermGoalModal";
 
 class LongTermGoal extends Component {
 
@@ -57,7 +58,7 @@ class LongTermGoal extends Component {
     }
 
     onEditLongTermGoalModal() {
-        this.props.toggleModal('editLongTermGoal', this.props.myProps.id);
+        this.props.toggleModal('editLongTermGoal', this.props.myProps.id)
     }
 
     onRenderShortTermGoals() {
@@ -76,6 +77,15 @@ class LongTermGoal extends Component {
         }
 
 
+    }
+
+    onRenderEditLongTermGoals() {
+        if(this.props.modals.editLongTermGoal.status) {
+            console.log(this.props)
+            return <EditLongTermGoalModal longTermGoal={this.props}/>
+        } else {
+            return null;
+        }
     }
 
     render() {
@@ -154,6 +164,8 @@ class LongTermGoal extends Component {
 
                 {this.onRenderLongTermGoalModal()}
 
+                {this.onRenderEditLongTermGoals()}
+
             </React.Fragment>
         );
     }
@@ -162,7 +174,6 @@ class LongTermGoal extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const {boardShowGoals, modals} = state.ui;
-
     return {
         myProps: ownProps,
         modals: modals,

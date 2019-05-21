@@ -54,7 +54,6 @@ class EditShortTermGoalModal extends Component {
     }
 
     render() {
-        console.log(this.props.myProps.shortTermGoal.title)
         const title = 'Edit your short-term goal!';
 
         const content = <React.Fragment>
@@ -116,7 +115,6 @@ class EditShortTermGoalModal extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const {boardShowGoals, modals} = state.ui;
-    console.log("ownProps", ownProps)
     return {
         myProps: ownProps,
         modals: modals,
@@ -125,7 +123,7 @@ const mapStateToProps = (state, ownProps) => {
             title: ownProps.shortTermGoal.title,
             description: ownProps.shortTermGoal.description,
             duration_hrs: ownProps.shortTermGoal.duration_hrs,
-            deadline: ownProps.shortTermGoal.deadline,
+            deadline: ownProps.shortTermGoal.deadline.split('T')[0],
             priority: ownProps.shortTermGoal.priority
         }
     };
