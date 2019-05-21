@@ -45,6 +45,13 @@ class ShortTermGoal extends Component {
         })
     }
 
+    onEditGoal() {
+
+        this.props.toggleModal('editShortTermGoal', this.props.myProps.shortTermGoal.id);
+
+
+    }
+
 
     onRenderActions() {
         switch (this.props.myProps.shortTermGoal.status) {
@@ -167,6 +174,7 @@ class ShortTermGoal extends Component {
                 <Dropdown
                     triggerParentDelete={() => this.onDeleteGoal(id)}
                     triggerParentOpenModal={this.props.myProps.onOpenModal}
+                    triggerParentEditModal={() => this.onEditGoal()}
                 />
 
                 <div className="column-card-body">
