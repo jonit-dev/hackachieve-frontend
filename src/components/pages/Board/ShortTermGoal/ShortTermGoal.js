@@ -5,6 +5,7 @@ import Dropdown from "../../../UI/Dropdown/Dropdown";
 import {deleteGoal, goalChangeStatus, goalSetPriority, loadGoals} from "../../../../actions/goalsActions";
 import {toggleModal} from "../../../../actions/uiActions";
 import GoalContentModal from "./GoalContentModal";
+import EditShortTermGoalModal from "./EditShortTermGoalModal"
 
 class ShortTermGoal extends Component {
 
@@ -114,6 +115,17 @@ class ShortTermGoal extends Component {
         }
     }
 
+    renderEditShortTermModal() {
+
+
+        if (this.props.modals.editShortTermGoal.status && this.props.modals.editShortTermGoal.id === this.props.myProps.shortTermGoal.id) {
+
+            return <EditShortTermGoalModal shortTermGoal={this.props.myProps.shortTermGoal}/>
+        } else {
+            return null;
+        }
+    }
+
     render() {
 
         let goalStyle, cardCategoryStyle;
@@ -123,7 +135,6 @@ class ShortTermGoal extends Component {
 
 
         cardCategoryStyle = 'card-active-' + this.props.myProps.longTermBoardName;
-
 
 
         switch (status) {
@@ -147,7 +158,10 @@ class ShortTermGoal extends Component {
 
 
         return (
-            <div className={goalStyle} onClick={() => this.onOpenGoalContentModal()}>
+            <div className={goalStyle} onClick={(e) => {
+                e.stopPropagation();
+                this.onOpenGoalContentModal()
+            }}>
 
 
                 <Dropdown
@@ -181,6 +195,7 @@ class ShortTermGoal extends Component {
                 </div>
 
                 {this.onRenderGoalContentModal()}
+                {this.renderEditShortTermModal()}
 
             </div>
 

@@ -11,6 +11,11 @@ class GoalContentModal extends Component {
         this.props.toggleModal('goalContent', this.props.myProps.shortTermGoal.id);
     }
 
+    onEdit() {
+        this.props.toggleModal('goalContent', this.props.myProps.shortTermGoal.id);
+        this.props.toggleModal('editShortTermGoal', this.props.myProps.shortTermGoal.id);
+    }
+
     onRenderStatus(status) {
         switch (status) {
             case 1:
@@ -36,7 +41,7 @@ class GoalContentModal extends Component {
 
 
         const actions = <React.Fragment>
-            {/*<button className="ui button positive">ok</button>*/}
+            <button className="ui button positive" onClick={() => this.onEdit()}>Edit</button>
             <button className="ui button negative" onClick={() => this.onClose()}>Cancel</button>
         </React.Fragment>;
 

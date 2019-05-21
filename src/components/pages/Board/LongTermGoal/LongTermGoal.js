@@ -8,6 +8,7 @@ import {toggleModal} from "../../../../actions/uiActions";
 import Dropdown from "../../../UI/Dropdown/Dropdown";
 import AddShortTermGoalModal from "../ShortTermGoal/AddShortTermGoalModal";
 import AddLongTermGoalModal from "./AddLongTermGoalModal";
+import EditLongTermGoalModal from "./EditLongTermGoalModal";
 
 class LongTermGoal extends Component {
 
@@ -56,6 +57,10 @@ class LongTermGoal extends Component {
         this.props.toggleModal('longTermGoal', this.props.myProps.id);
     }
 
+    onEditLongTermGoalModal() {
+        this.props.toggleModal('editLongTermGoal', this.props.myProps.id)
+    }
+
     onRenderShortTermGoals() {
 
         if (this.props.myProps.shortTermGoals !== undefined) {
@@ -73,6 +78,15 @@ class LongTermGoal extends Component {
         }
 
 
+    }
+
+    onRenderEditLongTermGoals() {
+        if(this.props.modals.editLongTermGoal.status) {
+            console.log(this.props)
+            return <EditLongTermGoalModal longTermGoal={this.props}/>
+        } else {
+            return null;
+        }
     }
 
     render() {
@@ -96,7 +110,8 @@ class LongTermGoal extends Component {
                         </div>
                         <Dropdown
                             triggerParentDelete={() => this.onDeleteLongTermGoal()}
-                            triggerParentOpenModal={() => this.onOpenLongTermGoalModal(this.props.myProps.id)}/>
+                            triggerParentOpenModal={() => this.onOpenLongTermGoalModal(this.props.myProps.id)}
+                            triggerParentEditModal={() => this.onEditLongTermGoalModal(this.props.myProps.id)}/>
                     </div>
 
                     <div className="column-status">
@@ -150,6 +165,8 @@ class LongTermGoal extends Component {
 
                 {this.onRenderLongTermGoalModal()}
 
+                {this.onRenderEditLongTermGoals()}
+
             </React.Fragment>
         );
     }
@@ -158,7 +175,6 @@ class LongTermGoal extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const {boardShowGoals, modals} = state.ui;
-
     return {
         myProps: ownProps,
         modals: modals,
