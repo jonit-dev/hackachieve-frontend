@@ -180,8 +180,8 @@ class Board extends Component {
 }
 
 const filteredGoals = (goals, filter) => {
-   return  filter === 'All' ? goals : goals.filter(goal => goal.name == filter);
-}
+   return  filter === 'All' ? goals : goals.filter(goal => goal.name === filter);
+};
 
 const mapStateToProps = (state) => {
 
