@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import * as qs from "qs";
-import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, SHOW_ALERT} from "./types";
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, SHOW_ALERT, USER_INFO_REFRESH} from "./types";
 import history from '../history';
 import API from '../classes/API';
 import {Mixpanel as mixpanel} from '../mixpanel';
@@ -175,6 +175,18 @@ export const userRegister = (userInfo) => async (dispatch) => {
         }
 
     })
+
+};
+
+
+export const userInfoRefresh = () => async (dispatch) => {
+
+
+    return API.request('/user/info/', 'GET', null, 'auth').then((response) => {
+
+        dispatch({type: USER_INFO_REFRESH, payload: response.data})
+
+    });
 
 };
 

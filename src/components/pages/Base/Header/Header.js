@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 
 import {Link, NavLink} from "react-router-dom";
-import {userLogout} from "../../../../actions/authActions";
+import {userInfoRefresh, userLogout} from "../../../../actions/authActions";
 import {loadUserGoalsCategories, filterGoals} from "../../../../actions/goalsActions";
 import history from './../../../../history';
 import {showAlert, updateLocation} from "../../../../actions/uiActions";
@@ -14,10 +14,15 @@ import UserMenu from "./UserMenu"
 
 class Header extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             userMenuOpen: false
         }
+    }
+    
+    componentDidMount() {
+        console.log('refreshing user info');
+        this.props.userInfoRefresh();
     }
 
     componentWillMount() {
@@ -115,7 +120,7 @@ class Header extends Component {
                                 </div>
                             </div>
                             <div className="board-profile" onClick={() => this.onOpenMenuClick()}>
-                                <div className="board-profile-username">John Snow</div>
+                                <div className="board-profile-username">{this.props.userInfo.firstName}</div>
                                 <div className="board-profile-user-picture"><img src="./images/icons/avatar-generic.svg"
                                                                                  alt="user"/>
                                     {this.state.userMenuOpen && <UserMenu/>}
@@ -195,6 +200,7 @@ const mapStateToProps = (state) => {
     const {boardShowGoals, location, boardCategories} = state.ui;
 
     return {
+        userInfo: state.auth.user,
         isLoggedIn: state.auth.isLoggedIn,
         location: location,
         boardShowGoals: boardShowGoals,
@@ -210,6 +216,7 @@ export default connect(mapStateToProps, {
     changeBoardShowGoal,
     loadGoals,
     loadUserGoalsCategories,
-    filterGoals
+    filterGoals,
+    userInfoRefresh
 })(Header);
 

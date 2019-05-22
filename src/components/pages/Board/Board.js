@@ -9,10 +9,15 @@ import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
 
 
+
 class Board extends Component {
 
     componentDidMount() {
         this.props.loadGoals(0, this.props.boardShowGoals);
+
+
+
+
 
         mixpanel.track('board_visit')
 
@@ -169,6 +174,7 @@ export default connect(mapStateToProps, {
     //actions here
     loadGoals,
     toggleModal,
-    changeBoardShowGoal
+    changeBoardShowGoal,
+
 })(Board);
 

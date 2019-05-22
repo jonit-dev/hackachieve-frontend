@@ -1,4 +1,4 @@
-import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "../actions/types";
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, USER_INFO_REFRESH} from "../actions/types";
 
 const INITIAL_STATE = {
     isLoggedIn: null,
@@ -46,6 +46,21 @@ export default (state = INITIAL_STATE, action) => {
                     email
                 },
                 canRedirectLogin: true //allow user auto login after register
+            };
+
+        case USER_INFO_REFRESH:
+
+            console.log('reducer');
+            console.log(action.payload);
+
+            return {
+                ...state, user: {
+
+                    firstName: action.payload.first_name,
+                    lastName: action.payload.last_name,
+                    email: action.payload.email
+
+                }
             };
 
 
