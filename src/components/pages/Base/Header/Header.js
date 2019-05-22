@@ -76,7 +76,7 @@ class Header extends Component {
     }
 
     render() {
-       let {boardCategories} = this.props
+        let {boardCategories} = this.props
 
         switch (this.props.location.pathname) {
 
@@ -90,10 +90,12 @@ class Header extends Component {
                             <div className="board-selector">
                                 <div className="board-selector-title">Main Goals</div>
                                 <div className="hackachieve-dropdown-wrapper">
-                                    <select name="goalFilter" id="board-dropdown" className="hackachieve-dropdown" onChange={this.handleFilter}>
+                                    <select name="goalFilter" id="board-dropdown" className="hackachieve-dropdown"
+                                            onChange={this.handleFilter}>
                                         <option value="All">All</option>
-                                        {boardCategories && boardCategories.map((goalCategory,index) => {
-                                           return  <option value={goalCategory.name} key={index}>{goalCategory.name}</option>
+                                        {boardCategories && boardCategories.map((goalCategory, index) => {
+                                            return <option value={goalCategory.name}
+                                                           key={index}>{goalCategory.name}</option>
                                         })}
                                     </select>
                                     <i className="dropdown-arrow fas fa-angle-down"></i>
@@ -165,10 +167,10 @@ class Header extends Component {
                                             <a href="# " className="closebtn"
                                                onClick={() => this.onOpenMenuClick()}>&times;</a>
                                             <ul className="nav-sub-menu">
-                                                <li><a className="active" href="# ">Home</a></li>
-                                                <li><a href="# ">Work</a></li>
-                                                <li><a href="# ">Company</a></li>
-                                                <li><a href="# ">Careers</a></li>
+                                                <li><Link className="active" to='/'>Home</Link></li>
+                                                <li><Link to='/terms'>Terms</Link></li>
+                                                <li><Link to="/privacy">Privacy</Link></li>
+
                                             </ul>
                                         </div>
                                     </div>
@@ -190,7 +192,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 
-    const {boardShowGoals, location,boardCategories} = state.ui;
+    const {boardShowGoals, location, boardCategories} = state.ui;
 
     return {
         isLoggedIn: state.auth.isLoggedIn,

@@ -5,7 +5,7 @@ const TermsOfUse = (props) => {
     return (
         <main>
 
-            <div className="ui text container">
+            <div className="ui text container terms">
 
                 <h1>Terms of Use</h1>
 
