@@ -186,6 +186,10 @@ main.board-main {
             background-image: url('/images/icons/health-icon-color.svg');
           }
 
+          &.family-icon {
+            background-image: url('/images/icons/family-icon-color.svg');
+          }
+
           &.career-icon {
             background-image: url('/images/icons/career-icon-color.svg');
           }
@@ -272,7 +276,7 @@ main.board-main {
       }
 
       &.column-personal-development {
-        border-top: 0.5rem solid $hackachieve-dark-yellow;
+        border-top: 0.5rem solid $hackachieve-pink;
       }
 
     }
