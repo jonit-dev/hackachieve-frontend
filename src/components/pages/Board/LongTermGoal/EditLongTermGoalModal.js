@@ -13,7 +13,14 @@ class EditLongTermGoalModal extends Component {
 
         this.props.loadUserGoalsCategories().then(() => {
             //set first option as selected
-            this.props.change('board_id', this.props.boardCategories[0].id)
+
+
+            const boardName = this.props.myProps.longTermGoal.boardName;
+            const board_id = this.props.boardCategories.find((category) => category.name === boardName).id;
+
+            console.log('setting board id to...' + board_id);
+
+            this.props.change('board_id', board_id)
         });
     }
 
@@ -92,6 +99,7 @@ class EditLongTermGoalModal extends Component {
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field name="name" component={this.renderInput} label="Enter a long term goal title"
                        placeholder="A summary about what's your goal about"/>
+
                 <Field name="description" textarea={true} component={this.renderInputTextArea}
                        label="Enter your long term goal description"
                        placeholder="Describe what you have to do in details, to accomplish it"/>
@@ -119,7 +127,7 @@ class EditLongTermGoalModal extends Component {
 
 
     onSubmit = (formValues) => {
-        console.log(this.props)
+        console.log(this.props);
         let formOutput = {
             column_data: {
                 ...formValues
@@ -150,17 +158,17 @@ class EditLongTermGoalModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
 
-    const {modals, boardCategories, boardShowGoals} = state.ui;
+    const {modals, boardCategories} = state.ui;
+
     return {
         myProps: ownProps,
         modals: modals,
         boardCategories: boardCategories,
-        boardShowGoals: boardShowGoals,
         initialValues: {
             name: ownProps.longTermGoal.title,
-            description: '',
+            description: ownProps.longTermGoal.description,
             deadline: ownProps.longTermGoal.deadline.split('T')[0],
-            board_id: ownProps.longTermGoal.boardName
+            //board id is set on componentDidMount
         }
     };
 };

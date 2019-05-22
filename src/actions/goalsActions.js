@@ -134,16 +134,15 @@ export const createLongTermGoal = (data) => async (dispatch) => {
 
 export const filterGoals = (category) => (dispatch) => {
 
-        dispatch({
-            type: FILTER_GOALS, payload: { category }
-        });
+    dispatch({
+        type: FILTER_GOALS, payload: {category}
+    });
 
-     
 
 };
 
 export const editGoals = (goal) => (dispatch) => {
-    return API.request('/goals/update/'+goal.goal_id, 'PUT', goal.goal_data, 'auth').then((response) => {
+    return API.request(`/goals/update/${goal.goal_id}/`, 'PUT', goal.goal_data, 'auth').then((response) => {
 
         const {status, message} = response.data;
 
@@ -164,43 +163,30 @@ export const editGoals = (goal) => (dispatch) => {
 
         return response;
     });
-}
+};
 
 export const editColumns = (column) => (dispatch) => {
-    // return API.request('/column/update/'+column.column_id, 'PUT', column.column_data, 'auth').then((response) => {
+    return API.request(`/columns/update/${column.column_id}/`, 'PUT', column.column_data, 'auth').then((response) => {
 
-        // const {status, message} = response.data;
+        const {status, message} = response.data;
 
-        // if (status === 'success') {
-        //     mixpanel.track('long_goal_edit');
-        // } else {
-        //     mixpanel.track('long_goal_edit_error');
-        // }
 
-        
-        // dispatch({
-        //     type: SHOW_ALERT, payload: {
-        //         type: (status === 'success' ? 'positive' : 'negative'),
-        //         title: (status === 'success' ? 'Your long term goal was modified!' : 'Oops!'),
-        //         content: message
-        //     }
-        // });
+        if (status === 'success') {
+            mixpanel.track('long_goal_edit');
+        } else {
+            mixpanel.track('long_goal_edit_error');
+        }
 
-        //Remove this block after API
+
         dispatch({
-            type: SHOW_ALERT,
-            payload: {
-                type: 'negative',
-                title: 'No know API for updation of Short Term Goal',
-                content: 'Nothing here'
+            type: SHOW_ALERT, payload: {
+                type: (status === 'success' ? 'positive' : 'negative'),
+                title: (status === 'success' ? 'Your long term goal was modified!' : 'Oops!'),
+                content: message
             }
-        })
-        return ({
-            data: {
-                status: 'success'
-            }
-        })
+        });
 
-        // return true;
-    // });
-}
+
+        return response;
+    });
+};
