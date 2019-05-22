@@ -41,6 +41,8 @@ class Login extends Component {
 
                     <h1>Login</h1>
 
+                    <div className="ui divider"></div>
+
                     {this.onRenderAlert()}
 
                     <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">

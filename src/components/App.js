@@ -14,6 +14,7 @@ import Register from "./pages/Landing/Register/Register";
 import {checkLoggedIn} from "../actions/authActions";
 import Board from "./pages/Board/Board";
 import env from '../env';
+import TermsOfUse from "./pages/Landing/Legal/TermsOfUse";
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/terms" component={TermsOfUse}/>
                     <Route path="/board" component={Board}/>
                 </Switch>
             </Router>
