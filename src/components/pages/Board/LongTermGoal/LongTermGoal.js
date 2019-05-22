@@ -81,8 +81,7 @@ class LongTermGoal extends Component {
     }
 
     onRenderEditLongTermGoals() {
-        if(this.props.modals.editLongTermGoal.status) {
-            console.log(this.props)
+        if(this.props.modals.editLongTermGoal.status && this.props.modals.editLongTermGoal.id === this.props.myProps.id){
             return <EditLongTermGoalModal longTermGoal={this.props}/>
         } else {
             return null;

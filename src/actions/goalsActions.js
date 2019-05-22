@@ -141,3 +141,66 @@ export const filterGoals = (category) => (dispatch) => {
      
 
 };
+
+export const editGoals = (goal) => (dispatch) => {
+    return API.request('/goals/update/'+goal.goal_id, 'PUT', goal.goal_data, 'auth').then((response) => {
+
+        const {status, message} = response.data;
+
+        if (status === 'success') {
+            mixpanel.track('short_goal_edit');
+        } else {
+            mixpanel.track('short_goal_edit_error');
+        }
+
+
+        dispatch({
+            type: SHOW_ALERT, payload: {
+                type: (status === 'success' ? 'positive' : 'negative'),
+                title: (status === 'success' ? 'Your short term goal was modified!' : 'Oops!'),
+                content: message
+            }
+        });
+
+        return response;
+    });
+}
+
+export const editColumns = (column) => (dispatch) => {
+    // return API.request('/column/update/'+column.column_id, 'PUT', column.column_data, 'auth').then((response) => {
+
+        // const {status, message} = response.data;
+
+        // if (status === 'success') {
+        //     mixpanel.track('long_goal_edit');
+        // } else {
+        //     mixpanel.track('long_goal_edit_error');
+        // }
+
+        
+        // dispatch({
+        //     type: SHOW_ALERT, payload: {
+        //         type: (status === 'success' ? 'positive' : 'negative'),
+        //         title: (status === 'success' ? 'Your long term goal was modified!' : 'Oops!'),
+        //         content: message
+        //     }
+        // });
+
+        //Remove this block after API
+        dispatch({
+            type: SHOW_ALERT,
+            payload: {
+                type: 'negative',
+                title: 'No know API for updation of Short Term Goal',
+                content: 'Nothing here'
+            }
+        })
+        return ({
+            data: {
+                status: 'success'
+            }
+        })
+
+        // return true;
+    // });
+}

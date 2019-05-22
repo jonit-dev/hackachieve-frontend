@@ -3,7 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
-import {createLongTermGoal, loadGoals, loadUserGoalsCategories} from "../../../../actions/goalsActions";
+import {createLongTermGoal, loadGoals, loadUserGoalsCategories, editColumns} from "../../../../actions/goalsActions";
 import Loading from "../../../UI/Loading/Loading";
 
 class EditLongTermGoalModal extends Component {
@@ -119,13 +119,15 @@ class EditLongTermGoalModal extends Component {
 
 
     onSubmit = (formValues) => {
+        console.log(this.props)
+        let formOutput = {
+            column_data: {
+                ...formValues
+            },
+            column_id: this.props.myProps.longTermGoal.id
+        };
 
-        let formOutput = {...formValues};
-
-        // console.log('creating new goal ==> ');
-        console.log(formOutput);
-
-        this.props.createLongTermGoal(formOutput).then((response) => {
+        this.props.editColumns(formOutput).then((response) => {
 
             const {status} = response.data;
 
@@ -149,7 +151,6 @@ class EditLongTermGoalModal extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const {modals, boardCategories, boardShowGoals} = state.ui;
-    console.log("ownProps", ownProps)
     return {
         myProps: ownProps,
         modals: modals,
@@ -174,5 +175,6 @@ export default connect(mapStateToProps, {
     toggleModal,
     createLongTermGoal,
     loadGoals,
-    loadUserGoalsCategories
+    loadUserGoalsCategories,
+    editColumns
 })(formWrapped)

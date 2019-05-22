@@ -3,7 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
-import {createGoal, loadGoals} from "../../../../actions/goalsActions";
+import {createGoal, loadGoals, editGoals} from "../../../../actions/goalsActions";
 
 class EditShortTermGoalModal extends Component {
 
@@ -85,13 +85,16 @@ class EditShortTermGoalModal extends Component {
 
 
     onSubmit = (formValues) => {
+        console.log(this.props.myProps)
+        let formOutput = {
+            goal_id: this.props.myProps.shortTermGoal.id,
+            goal_data: {
+                ...formValues, 
+                column_id: this.props.myProps.shortTermGoal.column_id,
+            }
+        };
 
-        let formOutput = {...formValues, column_id: this.props.myProps.longTermGoalId};
-
-        // console.log('creating new goal ==> ');
-        // console.log(formOutput);
-
-        this.props.createGoal(formOutput).then((response) => {
+        this.props.editGoals(formOutput).then((response) => {
 
             const {status} = response.data;
 
@@ -138,5 +141,6 @@ export default connect(mapStateToProps, {
     //some actions here
     toggleModal,
     createGoal,
-    loadGoals
+    loadGoals,
+    editGoals
 })(formWrapped)
