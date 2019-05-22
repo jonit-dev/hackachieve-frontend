@@ -16,6 +16,7 @@ import Board from "./pages/Board/Board";
 import env from '../env';
 import TermsOfUse from "./pages/Landing/Legal/TermsOfUse";
 import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
+import Footer from "./pages/Base/Footer/Footer";
 
 class App extends Component {
 
@@ -39,6 +40,7 @@ class App extends Component {
                     <Route path="/privacy" component={PrivacyPolicy}/>
                     <Route path="/board" component={Board}/>
                 </Switch>
+                <Footer/>
             </Router>
         );
     }
