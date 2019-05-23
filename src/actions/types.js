@@ -13,6 +13,7 @@ export const CHANGE_BOARD_SHOW_GOAL = 'CHANGE_BOARD_SHOW_GOAL';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const REGISTER_USER = 'REGISTER_USER';
+export const USER_INFO_REFRESH = 'USER_INFO_REFRESH';
 
 
 /* Goals =========================================== */

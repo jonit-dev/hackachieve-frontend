@@ -14,6 +14,9 @@ import Register from "./pages/Landing/Register/Register";
 import {checkLoggedIn} from "../actions/authActions";
 import Board from "./pages/Board/Board";
 import env from '../env';
+import TermsOfUse from "./pages/Landing/Legal/TermsOfUse";
+import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
+import Footer from "./pages/Base/Footer/Footer";
 
 class App extends Component {
 
@@ -21,7 +24,6 @@ class App extends Component {
         this.props.checkLoggedIn(); //check logged in on app init
 
         console.log(`Initializing app. Environment is ${env.env}`);
-
 
 
     }
@@ -34,8 +36,11 @@ class App extends Component {
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/terms" component={TermsOfUse}/>
+                    <Route path="/privacy" component={PrivacyPolicy}/>
                     <Route path="/board" component={Board}/>
                 </Switch>
+                <Footer/>
             </Router>
         );
     }

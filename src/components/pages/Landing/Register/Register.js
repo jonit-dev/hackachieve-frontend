@@ -5,6 +5,7 @@ import Alert from "../../../UI/Alert/Alert";
 import {userLogin, userRegister} from "../../../../actions/authActions";
 import ValidationMessage from '../../../UI/ValidationMessage/ValidationMessage';
 import {Mixpanel as mixpanel} from "../../../../mixpanel";
+import {Link} from "react-router-dom";
 
 class Register extends Component {
 
@@ -14,6 +15,15 @@ class Register extends Component {
 
 
     onSubmit = (formValues) => {
+
+        // check if user agreed with terms of use
+
+
+        if (!formValues.agreeTermsOfUse) {
+            alert('Sorry, you must agree with our terms of use to create an account');
+            return false;
+        }
+
 
         console.log(formValues);
 
@@ -51,6 +61,21 @@ class Register extends Component {
         )
     }
 
+    renderCheckbox({type, placeholder, input, label, meta, children}) {
+        return (
+            <div className="field">
+                <label>{label}</label>
+                <div className="ui checkbox">
+                    <input {...input} type={type}/>
+                    <label>{children}</label>
+                </div>
+
+                {(meta.touched && meta.error ? <ValidationMessage message={meta.error}/> : null)}
+            </div>
+        )
+    }
+
+
     render() {
 
         return (
@@ -61,6 +86,8 @@ class Register extends Component {
                 <div className="ui text container">
 
                     <h1>Create your Account</h1>
+
+                    <div className="ui divider"></div>
 
                     {this.onRenderAlert()}
 
@@ -77,6 +104,14 @@ class Register extends Component {
 
                         <Field type="password" name="password" component={this.renderInput} label="Password"
                                placeholder="Password" validate={required}/>
+
+                        <Field type="checkbox" name="agreeTermsOfUse" component={this.renderCheckbox}
+                               label="Terms of Use"
+                               validate={required}>
+                            <Link to='/terms'>
+                                I agree with Hackachieve terms of use
+                            </Link>
+                        </Field>
 
                         {/*<div className="field">*/}
                         {/*<div className="ui checkbox">*/}
@@ -115,6 +150,7 @@ const mapStateToProps = (state) => {
             lastName: '',
             email: '',
             password: '',
+            agreeTermsOfUse: true
         }
     };
 };

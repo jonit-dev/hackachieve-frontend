@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {loadGoals} from "../../../actions/goalsActions";
+import {loadGoals, loadUserGoalsCategories} from "../../../actions/goalsActions";
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
 import {toggleModal} from "../../../actions/uiActions";
@@ -9,10 +9,14 @@ import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
 
 
+
 class Board extends Component {
 
     componentDidMount() {
         this.props.loadGoals(0, this.props.boardShowGoals);
+
+        this.props.loadUserGoalsCategories();
+
 
         mixpanel.track('board_visit')
 
@@ -123,36 +127,7 @@ class Board extends Component {
 
                 </main>
 
-                <footer className="footer">
-                    <div className="ui container">
-                        <div className="ui stackable inverted divided equal height stackable grid">
-                            <div className="three wide column">
-                                <h4 className="ui inverted header">About</h4>
-                                <div className="ui inverted link list">
-                                    <a href=" #" className="item">Sitemap</a>
-                                    <a href=" #" className="item">Contact Us</a>
-                                    <a href=" #" className="item">Religious Ceremonies</a>
-                                    <a href=" #" className="item">Gazebo Plans</a>
-                                </div>
-                            </div>
-                            <div className="three wide column center">
-                                <h4 className="ui inverted header">Services</h4>
-                                <div className="ui inverted link list">
-                                    <a href=" #" className="item">Banana Pre-Order</a>
-                                    <a href=" #" className="item">DNA FAQ</a>
-                                    <a href=" #" className="item">How To Access</a>
-                                    <a href=" #" className="item">Favorite X-Men</a>
-                                </div>
-                            </div>
-                            <div className="seven wide column last">
-                                <h4 className="ui inverted header">Footer Header</h4>
-                                <p>Extra space for a call to action inside the footer that could help re-engage
-                                    users.</p>
-                            </div>
-                        </div>
-                    </div>
 
-                </footer>
 
                 <div className="i-phone">
                     <div className="board-switch">
@@ -198,6 +173,8 @@ export default connect(mapStateToProps, {
     //actions here
     loadGoals,
     toggleModal,
-    changeBoardShowGoal
+    changeBoardShowGoal,
+    loadUserGoalsCategories
+
 })(Board);
 
