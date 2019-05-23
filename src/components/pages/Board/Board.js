@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {loadGoals} from "../../../actions/goalsActions";
+import {loadGoals, loadUserGoalsCategories} from "../../../actions/goalsActions";
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
 import {toggleModal} from "../../../actions/uiActions";
@@ -15,8 +15,7 @@ class Board extends Component {
     componentDidMount() {
         this.props.loadGoals(0, this.props.boardShowGoals);
 
-
-
+        this.props.loadUserGoalsCategories();
 
 
         mixpanel.track('board_visit')
@@ -175,6 +174,7 @@ export default connect(mapStateToProps, {
     loadGoals,
     toggleModal,
     changeBoardShowGoal,
+    loadUserGoalsCategories
 
 })(Board);
 

@@ -11,10 +11,19 @@ header.board-header {
   width: 100vw;
   z-index: 2;
 
+  .board-profile-user-picture {
+    cursor: pointer;
+  }
+
   .hackachieve-user-menu {
     min-width: 100px;
     left: -4rem;
     text-align: center;
+
+    .content {
+      cursor: pointer;
+    }
+
   }
 
   .board-header-bar {

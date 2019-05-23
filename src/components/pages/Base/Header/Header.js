@@ -19,10 +19,11 @@ class Header extends Component {
             userMenuOpen: false
         }
     }
-    
+
     componentDidMount() {
         console.log('refreshing user info');
         this.props.userInfoRefresh();
+
     }
 
     componentWillMount() {
