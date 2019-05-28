@@ -1,7 +1,114 @@
 #btnLogin {
-  margin-right: 1rem;
+  margin-right: 0;
 }
-
 #btnRegister {
 
 }
+.home_header.login_header{
+  height:auto;
+  .login-sec{
+    padding:120px 0 100px;
+  }
+  .mobile-logo{
+    display:none;
+  }
+  .login-sec h3{
+    text-align:center;
+    text-transform:uppercase;
+    color:#fff;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing: 2px;
+    padding:0 0 30px 0;
+  }
+  .login-inner{
+    background:#F4F4FC;
+    width:600px;
+    margin:0 auto;
+    display:table;
+    padding:30px 0;
+    border-radius: 5px;
+  }
+  .login-form{
+    width:250px;
+    margin:0 auto;
+  }
+  .form-group{
+    margin:0 0 20px 0;
+  }
+  .form-group label{
+    display:block;
+    color:#54575D;
+    font-size:16px;
+    padding:0 0 10px 0;
+  }
+  h5{
+    color:#BDBDD0;
+    font-size:16px;
+    padding:30px 0 20px 0;
+    text-align:center;
+  }
+  hr{
+    border-bottom:solid 1px #E1E1ED;
+    margin:35px 0 15px;
+    display:block;
+  }
+  h5.padding{
+    color:#BDBDD0;
+    font-size:16px;
+    padding:0px 0 20px 0;
+    text-align:center;
+  }
+  .login-bottom{
+    width:250px;
+    margin:0 auto;
+  }
+  .f-img{
+    display:block;
+    margin:20px 0;
+    text-align:center;
+  }
+}
+@media screen and (max-width: 767px){
+  .login-sec {
+    padding: 30px 0 50px !important;
+  }
+  .login-menu{
+    display:none !important;
+  }
+  .mobile-logo {
+    display: block !important;
+    text-align: center;
+    padding: 50px 0 0 0;
+  }
+  .home_header.login_header {
+    height: auto;
+    padding: 0 15px 50px;
+  }
+  .login-inner {
+    background: transparent !important;
+    padding:0 !important;
+  }
+  .login-form {
+    width: 90% !important;
+    margin: 0 auto;
+    background: #f4f4f4;
+    padding: 25px;
+    border-radius: 5px;
+  }
+  hr {
+    border-bottom: solid 1px transparent !important;
+    margin: 35px 0 15px;
+    display: none;
+  }
+}
+@media screen and (max-width: 599px){
+  .login-inner{
+    width:100% !important;
+  }
+  .home_header.login_header h5.padding {
+    padding: 0px 15px 20px 15px !important;
+  }
+}
+
+
