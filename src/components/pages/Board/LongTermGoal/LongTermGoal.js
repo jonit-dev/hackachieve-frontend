@@ -24,7 +24,7 @@ class LongTermGoal extends Component {
     onRenderShortTermGoalModal() {
 
         if (this.props.modals.shortTermGoal.status === true && this.props.modals.shortTermGoal.id === this.props.myProps.id) {
-            return <AddShortTermGoalModal longTermGoalId={this.props.myProps.id}/>
+            return <AddShortTermGoalModal longTermGoalId={this.props.myProps.id} deadline={this.props.myProps.deadline}/>
         } else {
             return null
         }

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import moment from 'moment';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
+import DatePicker from '../../../UI/Datepicker';
 import {toggleModal} from "../../../../actions/uiActions";
 import {createGoal, loadGoals} from "../../../../actions/goalsActions";
 
@@ -68,8 +70,23 @@ class AddShortTermGoalModal extends Component {
                        placeholder="Describe what you have to do in details, to accomplish it"/>
                 <Field name="duration_hrs" type="number" optional={true} component={this.renderInput}
                        label="Estimated duration (hrs)"/>
-                <Field name="deadline" type="date" component={this.renderInput}
-                       label="Deadline"/>
+                       <Field
+                        name="deadline"
+                        label="Deadline" 
+                        inputValueFormat="YYYY-MM-DD"
+                       // dateFormat="L"
+                        dateFormatCalendar="dddd"
+                        placeholderText="Select deadline"
+                        fixedHeight
+                        showMonthDropdown
+                        showYearDropdown
+                        minDate={new Date()}
+                        maxDate={new Date(this.props.deadline)}
+                        dropdownMode="select"
+                        normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
+                        component={DatePicker}
+                        />
+              
                 <Field name="priority" component={this.renderInputCheckbox}
                        label="Is this a priority goal?"/>
             </form>
