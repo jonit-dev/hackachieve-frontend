@@ -10,6 +10,9 @@
   }
 
   @media screen and (max-width: 991px) {
+  .character_parent .character {
+	top: 68vh;
+}
     .navigation {
       height: 100%;
       width: 0;
@@ -62,12 +65,14 @@
     }
 
     .navigation ul li {
-      margin: 0px 15px;
+      margin: 0px 5px;
       padding: 5px 0;
       display: block;
       text-align: center
     }
-
+    #btnLogin {
+	margin-right: 0rem;
+}
     .navigation ul li a {
       padding: 10px 0
     }
@@ -157,6 +162,11 @@
       top: 0;
       top: 67vh
     }
+     .ui.vertical.stripe h3 {
+	font-size: 29px;
+	font-weight: 900;
+	color: #344DA1 !important;
+}
   }
 
   @media screen and (max-width: 767px) {
@@ -179,11 +189,11 @@
 
     .header_menu {
       height: auto;
-      background: #1F2350;
       display: block;
       align-items: center;
       width: 100%;
-      color: #fff
+      color: #fff;
+      background-color: $hackachieve-darker-purple;
     }
 
     .ui.menu {
@@ -196,8 +206,7 @@
 
     .home_header {
       height: 75vh;
-      background: #1F2350;
-      padding: 0 15px;
+      padding: 130px 15px 0;
       height: inherit
     }
 
@@ -371,13 +380,21 @@
       background-image: linear-gradient(-90deg, #fff, #e7e7f5)
     }
 
-    .board-switch-item.switch-active .board-switch-icon {
-      color: #F05765
-    }
+  .board-switch-item.switch-active .board-switch-icon {
+		background: url("/images/icons/completed-goal-active-icon.svg") center no-repeat;
+		height: 26px;
+}
 
     .board-switch-item.switch-active .board-switch-text {
       color: #F05765
     }
+
+	  .board-switch-item .board-switch-icon {
+		background: url("/images/icons/completed-goal-icon.svg") center no-repeat;
+		height: 26px;
+}
+
+
 
     .board-header-logo.active {
       display: none

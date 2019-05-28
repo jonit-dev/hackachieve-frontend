@@ -111,12 +111,12 @@ class Header extends Component {
                                 <div className={this.onHandleBoardSwitchItem('all')}
                                      onClick={() => this.onBoardSwitch('all')}
                                 >
-                                    <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                                    <div className="board-switch-icon"></div>
                                     <div className="board-switch-text">ALL GOALS</div>
                                 </div>
                                 <div className={this.onHandleBoardSwitchItem('completed')}
                                      onClick={() => this.onBoardSwitch('completed')}>
-                                    <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                                    <div className="board-switch-icon"></div>
                                     <div className="board-switch-text">COMPLETED GOALS</div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@ class Header extends Component {
                                         <i className="sidebar icon"/>
                                     </a>
                                     <Link to={`/`} className="logo-link">
-                                        <img src="images/logo_dark.png" alt="Logo" className="app-logo"/>
+                                        <img src="/images/logo_dark.png" alt="Logo" className="app-logo"/>
                                     </Link>
 
                                     <div className="right-items">

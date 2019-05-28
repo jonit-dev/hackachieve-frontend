@@ -44,12 +44,12 @@ class Preferences extends Component {
 
                         {/*<div className="login-bottom">*/}
 
-                        {/*<div className="f-img"><a href="#"><img src="images/login-facebook.svg" alt="Logo"*/}
+                        {/*<div className="f-img"><a href="#"><img src="/images/login-facebook.svg" alt="Logo"*/}
                         {/*className="f-logo">*/}
                         {/*</a>*/}
                         {/*</div>*/}
                         {/*<div className="g-img">*/}
-                        {/*<a href="#"><img src="images/login-google.svg" alt="Logo" className="g-logo"></a>*/}
+                        {/*<a href="#"><img src="/images/login-google.svg" alt="Logo" className="g-logo"></a>*/}
                         {/*</div>*/}
                         {/*</div>*/}
 

@@ -9,7 +9,7 @@ const BoardFooter = (props) => {
                     <div className={this.onHandleBoardSwitchItem('all')}
                          onClick={() => this.onBoardSwitch('all')}
                     >
-                        <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                        <div className="board-switch-icon"></div>
                         <div className="board-switch-text">ALL GOALS</div>
                     </div>
 
@@ -18,7 +18,7 @@ const BoardFooter = (props) => {
                     </div>
                     <div className={this.onHandleBoardSwitchItem('completed')}
                          onClick={() => this.onBoardSwitch('completed')}>
-                        <div className="board-switch-icon"><i className="fas fa-check"></i></div>
+                        <div className="board-switch-icon"></div>
                         <div className="board-switch-text">COMPLETED GOALS</div>
                     </div>
                 </div>

@@ -1,6 +1,14 @@
+
 main {
-  margin-top: 4rem;
+  margin-top: 6rem;
   min-height: 84vh;
+  padding-top: 2rem;
+
+  /*MOBILE ONLY CODE*/
+  @media screen and (max-width: 770px) {
+    margin-top: 3rem;
+  }
+
 }
 
 .landing-icon {
@@ -192,6 +200,10 @@ a.mobile-menu {
   margin-top: 3em
 }
 
+.main-bg {
+
+}
+
 @media only screen and (max-width: 700px) {
   .ui.fixed.menu {
     display: none !important
@@ -223,6 +235,9 @@ a.mobile-menu {
 @media screen and (max-width: 850px) {
   header.board-header .board-header-bar {
     height: 12.6rem
+  }
+  .navigation ul li {
+    margin: 0 5px;
   }
 }
 
@@ -303,7 +318,14 @@ a.mobile-menu {
 
 .home_header {
   height: 105vh;
-  background: #1F2350;
+  //background: url("/images/pattern-background.svg") repeat;
+  background-color: $hackachieve-darker-purple;
+}
+
+.home_header:after {
+  clear: both;
+  display: block;
+  content: "";
 }
 
 .home_header .heading {
@@ -316,7 +338,7 @@ a.mobile-menu {
   font-weight: 900;
   font-size: 75px;
   color: #FFFFFF;
-  margin-top: 90px
+  margin-top: 150px
 }
 
 .home_header .heading h2 {
@@ -383,7 +405,7 @@ a.mobile-menu {
 }
 
 .ui.vertical.stripe {
-  padding: 12em 0em
+  padding: 15em 0em
 }
 
 .ui.vertical.stripe h3 {
@@ -427,6 +449,16 @@ a.mobile-menu {
 
 .secondary.pointing.menu .toc.item {
   display: none
+}
+
+@media only screen and (max-width: 768px) {
+  .ui.vertical.stripe p br {
+    display: none !important;
+  }
+  .ui.vertical.stripe h3 {
+    font-size: 28px !important;
+  }
+
 }
 
 @media only screen and (max-width: 700px) {
