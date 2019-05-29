@@ -19,3 +19,7 @@ export const USER_INFO_REFRESH = 'USER_INFO_REFRESH';
 /* Goals =========================================== */
 export const LOAD_GOALS = 'LOAD_GOALS';
 export const FILTER_GOALS = 'FILTER_GOALS';
+
+/* Checklist =========================================== */
+export const SET_CHECKLIST_ITEM = 'SET_CHECKLIST_ITEM';
+
