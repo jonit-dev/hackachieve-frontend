@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -28,7 +27,7 @@ export default class renderDatePicker extends React.Component {
   componentWillMount() {
     if (this.props.input.value) {
       this.setState({
-        selectedDate: moment(this.props.input.value, this.props.inputValueFormat),
+        selectedDate: new Date(this.props.input.value),
       });
     }
   }
@@ -47,7 +46,6 @@ export default class renderDatePicker extends React.Component {
       label,
       ...rest
     } = this.props;
-
     return (
       <div className="field">
          <label>{label}</label>

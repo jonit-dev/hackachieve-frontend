@@ -70,6 +70,7 @@ class LongTermGoal extends Component {
                                       key={shortTermGoal.id}
                                       longTermBoardName={this.onConvertBoardNameClass(this.props.myProps.boardName)}
                                       shortTermGoal={shortTermGoal}
+                                      deadline={this.props.myProps.deadline}
                 />
 
             });
