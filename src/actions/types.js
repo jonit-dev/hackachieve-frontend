@@ -22,4 +22,7 @@ export const FILTER_GOALS = 'FILTER_GOALS';
 
 /* Checklist =========================================== */
 export const SET_CHECKLIST_ITEM = 'SET_CHECKLIST_ITEM';
-
+export const FETCH_ITEMS = 'FETCH_ITEMS';
+export const UPDATE_CHECKLIST_ITEM = 'UPDATE_CHECKLIST_ITEM';
+export const CHANGE_ITEM_STATUS = 'CHANGE_ITEM_STATUS'
+export const DELETE_CHECKLIST_ITEM = 'DELETE_CHECKLIST_ITEM';

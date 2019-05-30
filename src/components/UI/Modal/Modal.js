@@ -4,11 +4,13 @@ import {connect} from 'react-redux'
 import {toggleModal} from "../../../actions/uiActions";
 import Alert from "../Alert/Alert";
 import CheckList from "../../UI/forms/CheckList";
-
+import {fetchItem,changeStatus,deleteItem} from "../../../actions/checkListAction";
 
 class Modal extends Component {
     state = {
-        showChecklistForm: false
+        showChecklistForm: false,
+        //status: true,
+        editChecklist: ''
     }
 
     onClose() {
@@ -22,7 +24,29 @@ class Modal extends Component {
     }
     handleClick = () => {
         this.setState({
-            showChecklistForm: !this.state.showChecklistForm 
+            showChecklistForm: !this.state.showChecklistForm,
+            editChecklist: ''
+        })
+    }
+    editChecklist(id = ""){
+        this.setState({
+            editChecklist: id ? id : "",
+            showChecklistForm: false 
+        })
+    }
+    componentDidMount() {
+        this.props.fetchItem()
+    }
+    changeStatus = (item) => {
+        this.props.changeStatus(item)
+    };
+    deleteItem = (item) => {
+        this.props.deleteItem(item)
+    };  
+
+    hideForm = () => {
+        this.setState({
+            editChecklist: ""
         })
     }
 
@@ -38,8 +62,25 @@ class Modal extends Component {
                         {this.onRenderAlert()}
 
                         {this.props.myProps.content}
+                        {this.props.name === "goalContent" && 
                         <div className="checklist">
                             <h4>Checklist</h4>
+                            <div className="ui list">
+                                {this.props.items && this.props.items.map((item) => 
+                                    <div className="item" key={item.id}>
+                                        <div className="ui checkbox">  
+                                            <input type="checkbox" name="example" onClick={() => this.changeStatus(item)} defaultChecked={!item.status}/>
+                                            {this.state.editChecklist === item.id ? <>
+                                            <CheckList goal_id={this.props.modals.goalContent.id} item={item} hideForm={this.hideForm}/>
+                                            <button className="ui button" onClick={() => this.editChecklist()}>X</button> </> : <>
+                                            <label style={!item.status ? {textDecoration: "line-through"} : {}} onClick={() => this.editChecklist(item.id)}>{item.description}</label>
+                                            <button className="ui button" onClick={() => this.deleteItem(item)}>X</button> </>
+                                            }
+                                        </div> 
+                                    </div>
+                                )
+                                }
+                            </div>
                             {!this.state.showChecklistForm &&
                             <button className="ui button" onClick={this.handleClick}>Add an item</button>
                             }
@@ -48,6 +89,7 @@ class Modal extends Component {
                                 <button className="ui button" onClick={this.handleClick}>X</button>
                             </div> }
                         </div> 
+                        }
                     </div>
                     <div className="actions">
                         {this.props.myProps.actions}
@@ -61,12 +103,16 @@ const mapStateToProps = (state, ownProps) => {
     return {
         myProps: ownProps,
         alert: state.alert.message,
-        modals: state.ui.modals
+        modals: state.ui.modals,
+        items: state.checklist.items
     };
 };
 
 export default connect(mapStateToProps, {
     //actions here
-    toggleModal
+    toggleModal,
+    fetchItem,
+    changeStatus,
+    deleteItem
 })(Modal);
 
