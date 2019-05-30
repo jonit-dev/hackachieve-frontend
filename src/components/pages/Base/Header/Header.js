@@ -83,7 +83,6 @@ class Header extends Component {
 
     render() {
         let {boardCategories} = this.props
-
         switch (this.props.location.pathname) {
 
             case '/board':
@@ -112,12 +111,22 @@ class Header extends Component {
                                      onClick={() => this.onBoardSwitch('all')}
                                 >
                                     <div className="board-switch-icon"></div>
-                                    <div className="board-switch-text">ALL GOALS</div>
+                                    <div className="board-switch-text">ALL</div>
+                                </div>
+                                <div className={this.onHandleBoardSwitchItem('standby')}
+                                     onClick={() => this.onBoardSwitch('standby')}>
+                                    <div className="board-switch-icon"></div>
+                                    <div className="board-switch-text">PENDING</div>
+                                </div>
+                                <div className={this.onHandleBoardSwitchItem('ongoing')}
+                                     onClick={() => this.onBoardSwitch('ongoing')}>
+                                    <div className="board-switch-icon"></div>
+                                    <div className="board-switch-text">ON GOING</div>
                                 </div>
                                 <div className={this.onHandleBoardSwitchItem('completed')}
                                      onClick={() => this.onBoardSwitch('completed')}>
                                     <div className="board-switch-icon"></div>
-                                    <div className="board-switch-text">COMPLETED GOALS</div>
+                                    <div className="board-switch-text">COMPLETED</div>
                                 </div>
                             </div>
                             <div className="board-profile" onClick={() => this.onOpenMenuClick()}>
