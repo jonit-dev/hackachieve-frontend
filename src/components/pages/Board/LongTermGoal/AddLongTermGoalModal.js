@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import moment from 'moment';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
+import DatePicker from '../../../UI/Datepicker';
 import {toggleModal} from "../../../../actions/uiActions";
 import {createLongTermGoal, loadGoals, loadUserGoalsCategories} from "../../../../actions/goalsActions";
 import Loading from "../../../UI/Loading/Loading";
@@ -101,8 +103,22 @@ class AddLongTermGoalModal extends Component {
                     {this.props.boardCategories ? this.onRenderBoardOptions() : <Loading/>}
                 </Field>
 
-                <Field name="deadline" type="date" component={this.renderInput}
-                       label="Deadline"/>
+                <Field
+                    name="deadline"
+                    label="Deadline" 
+                    inputValueFormat="YYYY-MM-DD"
+                    // dateFormat="L"
+                    dateFormatCalendar="dddd"
+                    placeholderText="Select deadline"
+                    fixedHeight
+                    showMonthDropdown
+                    showYearDropdown
+                    minDate={new Date()}
+                    maxDate={new Date(this.props.deadline)}
+                    dropdownMode="select"
+                    normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
+                    component={DatePicker}
+                />
             </form>
         </React.Fragment>;
 
