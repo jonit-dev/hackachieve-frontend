@@ -116,14 +116,18 @@ class EditLongTermGoalModal extends Component {
                     label="Deadline" 
                     inputValueFormat="YYYY-MM-DD"
                     // dateFormat="L"
-                    dateFormatCalendar="dddd"
+                    currentDeadline={this.props.myProps.longTermGoal.deadline}
+                    dateFormatCalendar="MMMM"
                     placeholderText="Select deadline"
                     fixedHeight
+
                     showMonthDropdown
                     showYearDropdown
+                    scrollableYearDropdown
+
                     minDate={new Date()}
-                    maxDate={new Date(this.props.deadline)}
-                    dropdownMode="select"
+                    // maxDate={new Date(this.props.deadline)}
+                    // dropdownMode="select"
                     normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
                     component={DatePicker}
                 />

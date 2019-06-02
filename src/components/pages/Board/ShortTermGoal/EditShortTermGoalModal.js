@@ -77,6 +77,7 @@ class EditShortTermGoalModal extends Component {
                         fixedHeight
                         showMonthDropdown
                         showYearDropdown
+                        currentDeadline={this.props.myProps.shortTermGoal.deadline}
                         minDate={new Date()}
                         maxDate={new Date(this.props.deadline)}
                         dropdownMode="select"
@@ -133,6 +134,10 @@ class EditShortTermGoalModal extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const {boardShowGoals, modals} = state.ui;
+
+    const deadline = ownProps.shortTermGoal.deadline.split('T')[0];
+
+
     return {
         myProps: ownProps,
         modals: modals,
@@ -141,7 +146,7 @@ const mapStateToProps = (state, ownProps) => {
             title: ownProps.shortTermGoal.title,
             description: ownProps.shortTermGoal.description,
             duration_hrs: ownProps.shortTermGoal.duration_hrs,
-            deadline: ownProps.shortTermGoal.deadline.split('T')[0],
+            deadline: deadline,
             priority: ownProps.shortTermGoal.priority
         }
     };
