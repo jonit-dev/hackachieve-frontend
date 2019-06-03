@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import moment from 'moment';
 import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
 import {createGoal, loadGoals, editGoals} from "../../../../actions/goalsActions";
+import DatePicker from '../../../UI/Datepicker';
 
 class EditShortTermGoalModal extends Component {
 
@@ -65,8 +67,23 @@ class EditShortTermGoalModal extends Component {
                        placeholder="Describe what you have to do in details, to accomplish it"/>
                 <Field name="duration_hrs" type="number" optional={true} component={this.renderInput}
                        label="Estimated duration (hrs)"/>
-                <Field name="deadline" type="date" component={this.renderInput}
-                       label="Deadline"/>
+                <Field
+                        name="deadline"
+                        label="Deadline" 
+                        inputValueFormat="YYYY-MM-DD"
+                       // dateFormat="L"
+                        dateFormatCalendar="dddd"
+                        placeholderText="Select deadline"
+                        fixedHeight
+                        showMonthDropdown
+                        showYearDropdown
+                        currentDeadline={this.props.myProps.shortTermGoal.deadline}
+                        minDate={new Date()}
+                        maxDate={new Date(this.props.deadline)}
+                        dropdownMode="select"
+                        normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
+                        component={DatePicker}
+                        />
                 <Field name="priority" component={this.renderInputCheckbox}
                        label="Is this a priority goal?"/>
             </form>
@@ -85,7 +102,6 @@ class EditShortTermGoalModal extends Component {
 
 
     onSubmit = (formValues) => {
-        console.log(this.props.myProps)
         let formOutput = {
             goal_id: this.props.myProps.shortTermGoal.id,
             goal_data: {
@@ -118,6 +134,10 @@ class EditShortTermGoalModal extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const {boardShowGoals, modals} = state.ui;
+
+    const deadline = ownProps.shortTermGoal.deadline.split('T')[0];
+
+
     return {
         myProps: ownProps,
         modals: modals,
@@ -126,7 +146,7 @@ const mapStateToProps = (state, ownProps) => {
             title: ownProps.shortTermGoal.title,
             description: ownProps.shortTermGoal.description,
             duration_hrs: ownProps.shortTermGoal.duration_hrs,
-            deadline: ownProps.shortTermGoal.deadline.split('T')[0],
+            deadline: deadline,
             priority: ownProps.shortTermGoal.priority
         }
     };

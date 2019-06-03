@@ -5,3 +5,30 @@
 .btn-light-green {
     background-color: $hackachieve-light-green !important;
 }
+#btnLoginForm{
+    display: block;
+    color: #fff;
+    font-size: 15px;
+    background:#F05765; 
+    border:none;
+    height: 40px;
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px 15px;
+	cursor: pointer;
+	text-transform:uppercase;
+}
+#btnSignupForm{
+    display: block;
+    color: #fff;
+    font-size: 15px;
+    background:#18B47E;
+    border:none;
+    height: 40px;
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px 15px;
+	cursor: pointer;
+	text-transform:uppercase;
+	
+}

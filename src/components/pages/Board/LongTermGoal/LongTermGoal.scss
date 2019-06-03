@@ -2,7 +2,7 @@ main.board-main {
 
   background-color: $hackachieve-light-gray;
   min-height: 94vh;
-  padding: 2rem 1rem;
+  padding: 0 1rem;
 
   /*MOBILE ONLY CODE*/
   @media screen and (max-width: 850px) {
@@ -215,7 +215,8 @@ main.board-main {
         .column-board {
           flex: 1 1 auto;
           font-family: $font-primary;
-          font-size: 13.4px;
+          font-size: 14px;
+		  text-transform:uppercase;
           margin-top: 0.2rem;
           font-weight: bold;
           align-self: center;
@@ -225,7 +226,7 @@ main.board-main {
 
       .column-title {
         position: absolute;
-        top: 2.3rem;
+        top: 3rem;
         left: 1.2rem;
         font-family: "Lato", sans-serif;
         font-weight: bold;
@@ -257,7 +258,7 @@ main.board-main {
       }
 
       &.column-leisure-and-fun {
-        border-top: 0.5rem solid $hackachieve-light-green;
+        border-top: 0.5rem solid $hackachieve-green;
       }
 
       &.column-career {
@@ -382,7 +383,7 @@ main.board-main {
 }
 
 header.board-header .board-header-bar .board-switch .board-switch-item.switch-active .board-switch-icon {
-  color: #F05765
+		background: url("/images/icons/completed-goal-active-icon.svg") center no-repeat;
 }
 
 header.board-header .board-header-bar .board-switch .board-switch-item.switch-active .board-switch-text {

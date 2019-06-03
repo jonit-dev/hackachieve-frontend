@@ -1,10 +1,14 @@
 .header_menu {
   height: 10vh;
-  background: #1F2350;
   display: flex;
   align-items: center;
   width: 100%;
   color: white;
+  position:absolute;
+  left:0;
+  top:0;
+  padding:0;
+  background-color: $hackachieve-darker-purple !important;
 
   .logo-link {
     width: 200px;
@@ -34,13 +38,19 @@
   }
 }
 
+.ui.secondary.inverted.pointing.menu {
+  border:none !important;
+}
+
 .ui.secondary.inverted.pointing.menu .active.item {
   border-color: transparent;
 }
 
 .home_header {
   height: 90vh;
-  background: #1F2350;
+  //background: url("/images/pattern-background.svg") repeat;
+  background-color: $hackachieve-darker-purple;
+  padding:0;
   .heading {
     display: flex;
     flex-direction: column;

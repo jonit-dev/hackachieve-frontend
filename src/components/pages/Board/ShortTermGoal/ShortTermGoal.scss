@@ -21,8 +21,8 @@
     border-radius: 3px;
 
     &.column-card-priority {
-      background-color: lighten($hackachieve-dark-yellow, 35%);
-      border: 1px solid lighten($hackachieve-dark-yellow, 30%);
+      background-color: lighten($hackachieve-green, 0%);
+      border: 1px solid lighten($hackachieve-green, 0%);
     }
 
     border: 1px solid $hackachieve-medium-gray;
@@ -44,7 +44,7 @@
 
     .column-card-body {
       padding: 0 1.2rem;
-      height: 120px;
+      height: 140px;
       padding-bottom: 0.8rem;
       border-bottom: 1px solid lighten($hackachieve-medium-gray, 5%);
 
@@ -54,6 +54,8 @@
         color: $hackachieve-dark-grey;
         font-weight: bold;
       }
+
+
 
       .column-card-description {
         font-family: $font-primary;
@@ -70,7 +72,7 @@
         display: flex;
         align-items: center;
         position: absolute;
-        top: 7.7rem;
+        top: 8.7rem;
 
         .column-card-deadline-icon {
           background-image: url('/images/icons/calelndar-icon.svg');
@@ -98,6 +100,9 @@
       }
 
     }
+	.column-card.card-active-blue.column-card-priority .column-card-title{
+          color: $hackachieve-white;
+	  }
     .column-card-footer {
       display: flex;
       flex-wrap: wrap;

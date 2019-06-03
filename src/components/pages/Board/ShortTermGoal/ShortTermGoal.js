@@ -127,14 +127,13 @@ class ShortTermGoal extends Component {
 
         if (this.props.modals.editShortTermGoal.status && this.props.modals.editShortTermGoal.id === this.props.myProps.shortTermGoal.id) {
 
-            return <EditShortTermGoalModal shortTermGoal={this.props.myProps.shortTermGoal}/>
+            return <EditShortTermGoalModal shortTermGoal={this.props.myProps.shortTermGoal} deadline={this.props.deadline}/>
         } else {
             return null;
         }
     }
 
     render() {
-
         let goalStyle, cardCategoryStyle;
 
 

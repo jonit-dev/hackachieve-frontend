@@ -141,7 +141,7 @@ header.board-header {
 
         //Positioning
         position: relative;
-        top: 0.4rem;
+        top: 0rem;
 
         display: flex;
         flex-wrap: wrap;
@@ -155,10 +155,15 @@ header.board-header {
           text-align: center;
           font-size: 1.3rem;
           flex: 1 1 100%;
+		  background: url("/images/icons/completed-goal-icon.svg") center no-repeat;
+		  padding: 16px 0;
+        }
+		.board-switch-item switch-active .board-switch-icon {
+		  background: url("/images/icons/completed-goal-active-icon.svg") center no-repeat;
         }
 
         .board-switch-text {
-          color: $hackachieve-pink;
+          color: $hackachieve-text-grey;
           text-align: center;
           font-size: 12px;
           flex: 1 1 100%;

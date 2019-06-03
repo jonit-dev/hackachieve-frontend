@@ -26,7 +26,7 @@ class Landing extends Component {
                 </div>
                 <div className="character_parent">
                     <div className="character">
-                        <img src="images/character.png" alt=""/>
+                        <img src="/images/character.png" alt=""/>
                     </div>
                 </div>
 
