@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {connect} from 'react-redux'
 import Moment from 'react-moment';
+import moment from 'moment';
 import ShortTermGoal from "../ShortTermGoal/ShortTermGoal";
 import {deleteGoal, deleteLongTermGoal, loadGoals} from "../../../../actions/goalsActions";
 import {toggleModal} from "../../../../actions/uiActions";
@@ -63,9 +64,8 @@ class LongTermGoal extends Component {
 
     onRenderShortTermGoals() {
 
-        if (this.props.myProps.shortTermGoals !== undefined) {
-            return this.props.myProps.shortTermGoals.map((shortTermGoal) => {
-
+        if (this.props.shortTermGoals !== undefined) {
+            return this.props.shortTermGoals.map((shortTermGoal) => {
                 return <ShortTermGoal onOpenModal={() => this.onOpenShortTermGoalModal(this.props.myProps.id)}
                                       key={shortTermGoal.id}
                                       longTermBoardName={this.onConvertBoardNameClass(this.props.myProps.boardName)}
@@ -177,11 +177,16 @@ class LongTermGoal extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const filteredGoals = (goals, filter) => {
+    console.log(moment('2019-06-06T07:00:00Z', "YYYYMMDD").isSame(new Date(),"week"))
+    return  filter === 'week' ? goals.filter(goal => {if(goal && moment(goal.deadline, "YYYYMMDD").isSame(new Date(),"week")) return goal }) : goals;
+ };
 
+const mapStateToProps = (state, ownProps) => {
     const {boardShowGoals, modals} = state.ui;
     return {
         myProps: ownProps,
+        shortTermGoals: filteredGoals(ownProps.shortTermGoals, ownProps.filter),
         modals: modals,
         boardShowGoals: boardShowGoals
     };

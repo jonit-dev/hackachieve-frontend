@@ -102,6 +102,7 @@ class Header extends Component {
                                             return <option value={goalCategory.name}
                                                            key={index}>{goalCategory.name}</option>
                                         })}
+                                        <option value="week" key="week">Week</option>
                                     </select>
                                     <i className="dropdown-arrow fas fa-angle-down"></i>
                                 </div>

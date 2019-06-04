@@ -42,7 +42,6 @@ class Board extends Component {
                     //lets render only long term goals that have nested short term goals (to save space on user board!)
                     if (goal.long_term_goals.length > 0) { // if there's goals to load...
 
-
                         return goal.long_term_goals.map((long_term_goal) => {
 
 
@@ -60,6 +59,7 @@ class Board extends Component {
                                 deadline={long_term_goal.deadline}
                                 shortTermGoals={long_term_goal.short_term_goals}
                                 percentageComplete={percentageCompleteString}
+                                filter={this.props.filter}
                             />
                         });
                     }
@@ -166,16 +166,16 @@ class Board extends Component {
 }
 
 const filteredGoals = (goals, filter) => {
-   return  filter === 'All' ? goals : goals.filter(goal => goal.name === filter);
+   return  (filter === 'All' || filter === 'week') ? goals : goals.filter(goal => goal.name === filter);
 };
 
 const mapStateToProps = (state) => {
 
-
     return {
         goals: filteredGoals(state.goal.goals, state.goal.filter),
         boardShowGoals: state.ui.boardShowGoals,
-        modals: state.ui.modals
+        modals: state.ui.modals,
+        filter: state.goal.filter
     };
 };
 
