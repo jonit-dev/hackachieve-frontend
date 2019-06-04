@@ -69,11 +69,11 @@ class Modal extends Component {
                                 {this.props.items && this.props.items.map((item) => 
                                     <div className="item" key={item.id}>
                                         <div className="ui checkbox">  
-                                            <input type="checkbox" name="example" onClick={() => this.changeStatus(item)} defaultChecked={!item.status}/>
+                                            <input type="checkbox" name="example" onClick={() => this.changeStatus(item)} defaultChecked={item.status}/>
                                             {this.state.editChecklist === item.id ? <>
                                             <CheckList goal_id={this.props.modals.goalContent.id} item={item} hideForm={this.hideForm}/>
                                             <button className="ui button" onClick={() => this.editChecklist()}>X</button> </> : <>
-                                            <label style={!item.status ? {textDecoration: "line-through"} : {}} onClick={() => this.editChecklist(item.id)}>{item.description}</label>
+                                            <label style={item.status ? {textDecoration: "line-through"} : {}} onClick={() => this.editChecklist(item.id)}>{item.description}</label>
                                             <button className="ui button" onClick={() => this.deleteItem(item)}>X</button> </>
                                             }
                                         </div> 
