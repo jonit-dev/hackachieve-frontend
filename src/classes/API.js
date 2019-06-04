@@ -43,8 +43,7 @@ export default class API {
                     resolve(response);
                 })();
             }
-            catch (error) {
-                console.error(error);
+            catch (error) {                
                 reject(error)
             }
         });

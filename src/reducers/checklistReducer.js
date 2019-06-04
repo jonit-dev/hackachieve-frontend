@@ -47,7 +47,7 @@ export default (state = INITIAL_STATE, action) => {
                 items: newItem
             }
         case DELETE_CHECKLIST_ITEM:
-            const newItemDel =  state.items.filter(item => item.id != action.payload.id);
+            const newItemDel =  state.items.filter(item => item.id !== action.payload.id);
             return {
                 ...state,
                 items: newItemDel

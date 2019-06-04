@@ -8,7 +8,7 @@ class CheckList extends Component {
     componentWillMount () { 
         if(this.props.item) this.props.initialize({ item: this.props.item.description }) 
     }
-    renderInputTextArea({input, label, meta, optional, placeholder}) {
+    renderInputTextArea({input, label, meta, optional, placeholder, meta: { touched, error, warning }}) {
         return (
             <div className="field">
                 <textarea {...input} rows="3" placeholder={placeholder}/>
@@ -17,6 +17,9 @@ class CheckList extends Component {
                         Optional Field
                     </div>
                 </> : null)}
+                {touched &&
+            ((error && <span>{error}</span>) ||
+          (warning && <span>{warning}</span>))}
             </div>
         )
     }
@@ -25,7 +28,13 @@ class CheckList extends Component {
         const {id,description} = this.props.item || {}
         const form = <React.Fragment>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-            <Field name="item" textarea={true}  component={this.renderInputTextArea} placeholder="Add an item"/>
+            <Field 
+                name="item" 
+                textarea={true}  
+                component={this.renderInputTextArea} 
+                placeholder="Add an item"
+                validate={[required]}
+                />
             <button className="ui button positive" type="submit"> {id ? "save" : "Add"}</button>
         </form>
         </React.Fragment>;
@@ -57,7 +66,9 @@ class CheckList extends Component {
                 user_id: 2,
                 goal_id:this.props.goal_id
             };
-            this.props.addItem(checklist)
+            this.props.addItem(checklist).then(resp => {
+                console.log('fff')
+            })
         }
     };
 }
@@ -67,6 +78,7 @@ const formWrapped = reduxForm({
     form: 'CheckList',
     
 })(CheckList);
+const required = value => (value  ? undefined : 'Item Description required')
 
 export default connect(null, {
     //some actions here

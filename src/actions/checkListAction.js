@@ -11,7 +11,7 @@ export const addItem = (item) => (dispatch) => {
             }
         });
         return response;
-    });
+    })
 };
 
 export const fetchItem = () => (dispatch) => {
