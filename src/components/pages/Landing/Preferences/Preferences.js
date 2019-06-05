@@ -37,23 +37,12 @@ class Preferences extends Component {
                 <a className="mobile-logo" href=" #"><img src="/images/board/hackachieve-symbol.svg" alt="Logo"/></a>
                 <div className="login-sec">
 
-
                     <div className="form-wrapper">
 
                         <h3>Preferences</h3>
 
                         <div className="login-inner">
-
-
-                <button onClick={ e=>
-                    this.props.createTag('testing 5')
-                }>Add Tags</button>
-
-                    <TagSelector tags={this.props.tags} handleChange={this.onTagChange}/>
-
-
-
-
+                            <TagSelector tags={this.props.tags} handleChange={this.onTagChange}/>
                         </div>
                     </div>
 

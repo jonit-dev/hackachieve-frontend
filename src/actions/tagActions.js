@@ -18,16 +18,3 @@ export const createTag = (tagName)=> async (dispatch, getState)=>{
         dispatch({type:CREATE_TAGS, payload:tagName})
     })
 };
-
-export const createTags = (name) => async (dispatch, getState) => {
-    return API.request(`/areas-of-knowledge`, 'POST', {
-        "areas_of_knowledge": [
-        
-        {
-            name
-        },
-            ]
-    }, 'auth').then((response) => {
-        dispatch({type: LOAD_TAGS, payload: response.data})
-    });
-};
