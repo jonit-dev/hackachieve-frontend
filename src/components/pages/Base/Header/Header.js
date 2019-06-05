@@ -98,11 +98,12 @@ class Header extends Component {
                                     <select name="goalFilter" id="board-dropdown" className="hackachieve-dropdown"
                                             onChange={this.handleFilter}>
                                         <option value="All">All</option>
+                                        <option value="week" key="week">Week</option>
                                         {boardCategories && boardCategories.map((goalCategory, index) => {
                                             return <option value={goalCategory.name}
                                                            key={index}>{goalCategory.name}</option>
                                         })}
-                                        <option value="week" key="week">Week</option>
+
                                     </select>
                                     <i className="dropdown-arrow fas fa-angle-down"></i>
                                 </div>

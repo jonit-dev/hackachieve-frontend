@@ -25,7 +25,8 @@ class LongTermGoal extends Component {
     onRenderShortTermGoalModal() {
 
         if (this.props.modals.shortTermGoal.status === true && this.props.modals.shortTermGoal.id === this.props.myProps.id) {
-            return <AddShortTermGoalModal longTermGoalId={this.props.myProps.id} deadline={this.props.myProps.deadline}/>
+            return <AddShortTermGoalModal longTermGoalId={this.props.myProps.id}
+                                          deadline={this.props.myProps.deadline}/>
         } else {
             return null
         }
@@ -82,7 +83,7 @@ class LongTermGoal extends Component {
     }
 
     onRenderEditLongTermGoals() {
-        if(this.props.modals.editLongTermGoal.status && this.props.modals.editLongTermGoal.id === this.props.myProps.id){
+        if (this.props.modals.editLongTermGoal.status && this.props.modals.editLongTermGoal.id === this.props.myProps.id) {
 
 
             console.log(`longtermgoal passing props=`);
@@ -178,9 +179,12 @@ class LongTermGoal extends Component {
 }
 
 const filteredGoals = (goals, filter) => {
-    console.log(moment('2019-06-06T07:00:00Z', "YYYYMMDD").isSame(new Date(),"week"))
-    return  filter === 'week' ? goals.filter(goal => {if(goal && moment(goal.deadline, "YYYYMMDD").isSame(new Date(),"week")) return goal }) : goals;
- };
+    // console.log(moment('2019-06-06T07:00:00Z', "YYYYMMDD").isSame(new Date(),"week"))
+    // eslint-disable-next-line
+    return filter === 'week' ? goals.filter((goal) => {
+        if (goal && moment(goal.deadline, "YYYYMMDD").isSame(new Date(), "week")) return goal
+    }) : goals;
+};
 
 const mapStateToProps = (state, ownProps) => {
     const {boardShowGoals, modals} = state.ui;
