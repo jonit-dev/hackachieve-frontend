@@ -19,3 +19,7 @@ export const USER_INFO_REFRESH = 'USER_INFO_REFRESH';
 /* Goals =========================================== */
 export const LOAD_GOALS = 'LOAD_GOALS';
 export const FILTER_GOALS = 'FILTER_GOALS';
+
+/* Preferences ================================== */
+export const LOAD_TAGS = 'LOAD_TAGS';
+export const CREATE_TAGS= 'CREATE_TAGS';

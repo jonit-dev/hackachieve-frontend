@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-
+import TagSelector from './TagSelector'
+import {loadTags, createTag} from "../../../../actions/tagActions";
 class Preferences extends Component {
 
+    componentDidMount(){
+        this.props.loadTags();
+    }
     renderInput({input, label, meta}) {
         return (
             <div className="form-group">
@@ -17,7 +21,15 @@ class Preferences extends Component {
         console.log(formValues);
     };
 
+    onTagChange = (value, actions)=>{
+        console.log(value,actions)
+        if(actions.actions == 'create-option'){
+            this.props.createTag(value.value)
+        }
+    }
+
     render() {
+        
 
         return (
 
@@ -33,32 +45,13 @@ class Preferences extends Component {
                         <div className="login-inner">
 
 
+                <button onClick={ e=>
+                    this.props.createTag('testing 5')
+                }>Add Tags</button>
+
+                    <TagSelector tags={this.props.tags} handleChange={this.onTagChange}/>
 
 
-                            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="login-form">
-                                <Field name="title" component={this.renderInput} label="Enter title"/>
-                                <Field name="description" component={this.renderInput} label="Enter description"/>
-
-                                <button id="btnSignupForm" className="button">Submit</button>
-
-
-                            </form>
-
-
-                            {/*<hr></hr>*/}
-
-                            {/*<h5 className="padding">You don’t need to decorate new passwords if you don’t want to,</h5>*/}
-
-                            {/*<div className="login-bottom">*/}
-
-                            {/*<div className="f-img"><a href="#"><img src="/images/login-facebook.svg" alt="Logo"*/}
-                            {/*className="f-logo">*/}
-                            {/*</a>*/}
-                            {/*</div>*/}
-                            {/*<div className="g-img">*/}
-                            {/*<a href="#"><img src="/images/login-google.svg" alt="Logo" className="g-logo"></a>*/}
-                            {/*</div>*/}
-                            {/*</div>*/}
 
 
                         </div>
@@ -92,6 +85,14 @@ const formWrapped = reduxForm({
     validate: validate
 })(Preferences);
 
-export default connect(null, {
-    //some actions here
+const mapStateToProps = (state) =>{
+    
+    return {
+        tags: state.tags.tags,
+        msg: state.msg
+    }
+}
+
+export default connect(mapStateToProps, {
+    loadTags,createTag
 })(formWrapped)

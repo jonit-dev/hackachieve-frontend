@@ -35,7 +35,8 @@ class Register extends Component {
                 setTimeout(() => {
                     this.props.userLogin({ //login user with same information!
                         email: formValues.email,
-                        password: formValues.password
+                        password: formValues.password,
+                        register: true
                     });
 
                 }, 3000);
