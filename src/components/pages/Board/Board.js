@@ -7,7 +7,7 @@ import {toggleModal} from "../../../actions/uiActions";
 import {Mixpanel as mixpanel} from "../../../mixpanel";
 import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
-
+import Joy from '../../UI/gilbarbara';
 
 
 class Board extends Component {
@@ -111,7 +111,7 @@ class Board extends Component {
                     <div className="board-columns">
 
                         {this.onRenderGoals()}
-
+                        {this.props.goals &&  <Joy/>}
                         <div className="board-column-add column-add-short-term-goal"
                              onClick={() => this.onOpenLongTermModal()}>
                             <div className="column-add-short-term-goal-btn"></div>
