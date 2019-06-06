@@ -11,7 +11,7 @@ class Modal extends Component {
         showChecklistForm: false,
         //status: true,
         editChecklist: ''
-    }
+    };
 
     onClose() {
         console.log('closing modal');
@@ -27,7 +27,7 @@ class Modal extends Component {
             showChecklistForm: !this.state.showChecklistForm,
             editChecklist: ''
         })
-    }
+    };
     editChecklist(id = ""){
         this.setState({
             editChecklist: id ? id : "",
@@ -35,7 +35,7 @@ class Modal extends Component {
         })
     }
     componentDidMount() {
-        this.props.fetchItem()
+        this.props.fetchItem(this.props.modals.goalContent.id) //fetch checklist from specific goal ID
     }
     changeStatus = (item) => {
         this.props.changeStatus(item)
@@ -48,7 +48,7 @@ class Modal extends Component {
         this.setState({
             editChecklist: ""
         })
-    }
+    };
 
     render() {
         console.log(this.props)
@@ -100,6 +100,9 @@ class Modal extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+
+
+
     return {
         myProps: ownProps,
         alert: state.alert.message,

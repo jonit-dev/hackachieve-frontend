@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {addItem,updateItem} from "../../../actions/checkListAction";
+import {addItem, fetchItem, updateItem} from "../../../actions/checkListAction";
 
 class CheckList extends Component {
 
-    componentWillMount () { 
-        if(this.props.item) this.props.initialize({ item: this.props.item.description }) 
+    componentWillMount() {
+        if (this.props.item) this.props.initialize({item: this.props.item.description})
     }
-    renderInputTextArea({input, label, meta, optional, placeholder, meta: { touched, error, warning }}) {
+
+    renderInputTextArea({input, label, meta, optional, placeholder, meta: {touched, error, warning}}) {
         return (
             <div className="field">
                 <textarea {...input} rows="3" placeholder={placeholder}/>
@@ -18,56 +19,58 @@ class CheckList extends Component {
                     </div>
                 </> : null)}
                 {touched &&
-            ((error && <span>{error}</span>) ||
-          (warning && <span>{warning}</span>))}
+                ((error && <span>{error}</span>) ||
+                    (warning && <span>{warning}</span>))}
             </div>
         )
     }
 
     render() {
-        const {id,description} = this.props.item || {}
+        const {id, description} = this.props.item || {}
         const form = <React.Fragment>
-        <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-            <Field 
-                name="item" 
-                textarea={true}  
-                component={this.renderInputTextArea} 
-                placeholder="Add an item"
-                validate={[required]}
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
+                <Field
+                    name="item"
+                    textarea={true}
+                    component={this.renderInputTextArea}
+                    placeholder="Add an item"
+                    validate={[required]}
                 />
-            <button className="ui button positive" type="submit"> {id ? "save" : "Add"}</button>
-        </form>
+                <button className="ui button positive" type="submit"> {id ? "save" : "Add"}</button>
+            </form>
         </React.Fragment>;
-        const button = <React.Fragment>            
+        const button = <React.Fragment>
         </React.Fragment>;
         return (
             <div>
                 {form}
                 {button}
-             </div>   
+            </div>
         );
     }
+
     onSubmit = (formValues) => {
         var {id, description} = this.props.item || {}
-        if(id){
+        if (id) {
             let checklist = {
                 description: formValues.item,
-                status: false, 
-                goal_id:this.props.goal_id
+                status: false,
+                goal_id: this.props.goal_id
             };
-            this.props.updateItem(id,checklist).then(resp =>{
+            this.props.updateItem(id, checklist).then(resp => {
                 this.props.hideForm();
             })
-        }
-        else{
+        } else {
             let checklist = {
-                description:formValues.item,
+                description: formValues.item,
                 status: false,
                 user_id: 2,
-                goal_id:this.props.goal_id
+                goal_id: this.props.goal_id
             };
             this.props.addItem(checklist).then(resp => {
-                console.log('fff')
+
+                this.props.fetchItem(this.props.modals.goalContent.id); //trigger a checklist refresh
+
             })
         }
     };
@@ -76,12 +79,20 @@ class CheckList extends Component {
 
 const formWrapped = reduxForm({
     form: 'CheckList',
-    
-})(CheckList);
-const required = value => (value  ? undefined : 'Item Description required')
 
-export default connect(null, {
+})(CheckList);
+const required = value => (value ? undefined : 'Item Description required');
+
+const mapStateToProps = (state) => {
+    return {
+        modals: state.ui.modals
+    };
+};
+
+export default connect(mapStateToProps, {
     //some actions here
-    addItem, 
+    addItem,
+    fetchItem,
     updateItem
 })(formWrapped)
+
