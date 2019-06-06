@@ -43,11 +43,11 @@ class Modal extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
-        // if (prevProps.items.length !== this.props.items.length) {
-        //
-        //     console.log('closing textarea');
-        //     this.hideForm();
-        // }
+
+        //this checks if new items were added. If so, close the textarea
+        if (prevProps.items.length !== this.props.items.length) {
+            this.editChecklist();
+        }
 
 
     }
@@ -92,33 +92,33 @@ class Modal extends Component {
 
                             {this.props.items && this.props.items.map((item) => {
 
-                                if (item.id) {
-                                    return (<div className="checklist-item" key={item.id}>
-                                        <div className="ui checkbox">
-                                            <input type="checkbox" name="example"
-                                                   onClick={() => this.changeStatus(item)}
-                                                   defaultChecked={item.status}/>
-                                            {this.state.editChecklist === item.id ? <>
-                                                <CheckList
-                                                    goal_id={this.props.modals.goalContent.id}
-                                                    item={item}
-                                                    hideForm={this.hideForm}/>
+                                    if (item.id) {
+                                        return (<div className="checklist-item" key={item.id}>
+                                            <div className="ui checkbox">
+                                                <input type="checkbox" name="example"
+                                                       onClick={() => this.changeStatus(item)}
+                                                       defaultChecked={item.status}/>
+                                                {this.state.editChecklist === item.id ? <>
+                                                    <CheckList
+                                                        goal_id={this.props.modals.goalContent.id}
+                                                        item={item}
+                                                        hideForm={this.hideForm}/>
 
 
-                                                <i className="edit icon"
-                                                   onClick={() => this.editChecklist()}> </i> </> : <>
-                                                <label style={item.status ? {textDecoration: "line-through"} : {}}
-                                                       onClick={() => this.editChecklist(item.id)}>{item.description}</label>
+                                                    <i className="edit icon"
+                                                       onClick={() => this.editChecklist()}> </i> </> : <>
+                                                    <label style={item.status ? {textDecoration: "line-through"} : {}}
+                                                           onClick={() => this.editChecklist(item.id)}>{item.description}</label>
 
-                                                <i className="close icon"
-                                                   onClick={() => this.deleteItem(item)}> </i> </>
-                                            }
-                                        </div>
-                                    </div>)
+                                                    <i className="close icon"
+                                                       onClick={() => this.deleteItem(item)}> </i> </>
+                                                }
+                                            </div>
+                                        </div>)
+                                    }
+
+
                                 }
-
-
-                            }
                             )
                             }
 
