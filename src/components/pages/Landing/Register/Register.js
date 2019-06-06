@@ -6,11 +6,20 @@ import {userLogin, userRegister} from "../../../../actions/authActions";
 import ValidationMessage from '../../../UI/ValidationMessage/ValidationMessage';
 import {Mixpanel as mixpanel} from "../../../../mixpanel";
 import {Link} from "react-router-dom";
+import cogoToast from 'cogo-toast';
+import {clearAlert} from '../../../../actions/uiActions';
 
 class Register extends Component {
 
     componentDidMount() {
         mixpanel.track('register_visit')
+    }
+
+    componentWillReceiveProps(newProps){
+        if(newProps.alert.type=='positive'){
+            cogoToast.success(newProps.alert.content)
+            this.props.clearAlert()
+        }
     }
 
 
@@ -46,7 +55,7 @@ class Register extends Component {
 
 
     onRenderAlert() {
-        return (this.props.alert.type ? <Alert type={this.props.alert.type} title={this.props.alert.title}
+        return (this.props.alert.type && this.props.alert.type=='negative'? <Alert type={this.props.alert.type} title={this.props.alert.title}
                                                content={this.props.alert.content}/> : null)
     }
 
@@ -160,5 +169,6 @@ export default connect(
     mapStateToProps, {
         //some actions here
         userRegister,
-        userLogin
+        userLogin,
+        clearAlert
     })(formWrapped)

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import * as ReactDOM from "react-dom";
 import {connect} from 'react-redux'
-import {toggleModal} from "../../../actions/uiActions";
+import {toggleModal,clearAlert} from "../../../actions/uiActions";
 import Alert from "../Alert/Alert";
 import CheckList from "../../UI/forms/CheckList";
 import {fetchItem, changeStatus, deleteItem} from "../../../actions/checkListAction";
+import cogoToast from 'cogo-toast';
 
 class Modal extends Component {
     state = {
@@ -18,8 +19,15 @@ class Modal extends Component {
         this.props.toggleModal(this.props.myProps.name); //close this modal
     }
 
+    componentWillReceiveProps(newProps) {
+        if(newProps.alert.type && newProps.alert.type=="positive"){ 
+            cogoToast.success(newProps.alert.content)
+            this.props.clearAlert()
+         }
+     }
+ 
     onRenderAlert() {
-        return (this.props.alert.type ? <Alert type={this.props.alert.type} title={this.props.alert.title}
+        return (this.props.alert.type && this.props.alert.type=='negative'? <Alert type={this.props.alert.type} title={this.props.alert.title}
                                                content={this.props.alert.content}/> : null)
     }
 
@@ -186,6 +194,7 @@ export default connect(mapStateToProps, {
     toggleModal,
     fetchItem,
     changeStatus,
-    deleteItem
+    deleteItem,
+    clearAlert
 })(Modal);
 
