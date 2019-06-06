@@ -8,6 +8,8 @@ import {
 } from "./types";
 import {Mixpanel as mixpanel} from "../mixpanel";
 
+
+
 export const addItem = (item) => (dispatch) => {
 
     mixpanel.track('checklist_add_item');

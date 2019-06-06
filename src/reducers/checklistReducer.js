@@ -8,6 +8,7 @@ import {
 
 const INITIAL_STATE = {
     items: [],
+    isTextAreaOpen: false,
 };
 
 export default (state = INITIAL_STATE, action) => {

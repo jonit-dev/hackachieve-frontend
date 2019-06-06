@@ -14,6 +14,9 @@
   .checklist-action-area {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
+
+
+
   }
 
   h4 {
@@ -31,10 +34,17 @@
 
     label {
       font-size: 1rem;
+      cursor: pointer;
     }
 
     .checkbox {
       flex: 100%;
+    }
+
+    .edit.icon {
+      font-size: 1rem;
+      top: 0.5rem;
+      right: 0.3rem;
     }
 
     .icon {
@@ -49,12 +59,27 @@
 
     }
 
+    .checklist-info-small {
+      display: none;
+      color: darken($hackachieve-light-gray,10%);
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 1.8rem;
+
+    }
+
     &:hover {
+
+      .checklist-info-small {
+        display: block;
+      }
+
 
       background-color: darken($hackachieve-light-gray, 1%);
 
       .icon {
         display: block;
+        cursor: pointer;
       }
     }
 

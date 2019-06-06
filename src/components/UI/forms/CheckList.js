@@ -10,7 +10,8 @@ class CheckList extends Component {
     }
 
     renderInputTextArea({input, label, meta, optional, placeholder, meta: {touched, error, warning}}) {
-         return (
+
+        return (
             <div className="field">
                 <textarea {...input} rows="3" placeholder={placeholder}/>
                 {(optional ? <>
@@ -38,7 +39,7 @@ class CheckList extends Component {
                     placeholder="Add an item"
                     validate={[required]}
                 />
-                <button className="ui button positive" type="submit"> {id ? "save" : "Add"}</button>
+                <button className="ui button positive" type="submit"> {id ? "Save" : "Add"}</button>
             </form>
         </React.Fragment>;
         const button = <React.Fragment>
@@ -52,6 +53,7 @@ class CheckList extends Component {
     }
 
     onSubmit = (formValues) => {
+
         // var {id, description} = this.props.item || {}
         var {id} = this.props.item || {};
         if (id) {
@@ -68,16 +70,17 @@ class CheckList extends Component {
             let checklist = {
                 description: formValues.item,
                 status: false,
-                user_id: 2,
                 goal_id: this.props.goal_id
             };
+
+
             this.props.addItem(checklist).then(resp => {
 
-                this.props.hideForm();
 
                 this.props.fetchItem(this.props.modals.goalContent.id); //trigger a checklist refresh
-
             })
+
+
         }
     };
 }
@@ -93,8 +96,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         myProps: ownProps,
-        modals: state.ui.modals,
-        checklist: state.checklist
+        modals: state.ui.modals
     };
 };
 
