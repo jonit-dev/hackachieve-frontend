@@ -10,7 +10,7 @@ class CheckList extends Component {
     }
 
     renderInputTextArea({input, label, meta, optional, placeholder, meta: {touched, error, warning}}) {
-        return (
+         return (
             <div className="field">
                 <textarea {...input} rows="3" placeholder={placeholder}/>
                 {(optional ? <>
@@ -25,8 +25,10 @@ class CheckList extends Component {
         )
     }
 
+
     render() {
-        const {id, description} = this.props.item || {}
+        // const {id, description} = this.props.item || {};
+        const {id} = this.props.item || {};
         const form = <React.Fragment>
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field
@@ -50,7 +52,8 @@ class CheckList extends Component {
     }
 
     onSubmit = (formValues) => {
-        var {id, description} = this.props.item || {}
+        // var {id, description} = this.props.item || {}
+        var {id} = this.props.item || {};
         if (id) {
             let checklist = {
                 description: formValues.item,
@@ -58,6 +61,7 @@ class CheckList extends Component {
                 goal_id: this.props.goal_id
             };
             this.props.updateItem(id, checklist).then(resp => {
+
                 this.props.hideForm();
             })
         } else {
@@ -68,6 +72,8 @@ class CheckList extends Component {
                 goal_id: this.props.goal_id
             };
             this.props.addItem(checklist).then(resp => {
+
+                this.props.hideForm();
 
                 this.props.fetchItem(this.props.modals.goalContent.id); //trigger a checklist refresh
 
@@ -83,9 +89,12 @@ const formWrapped = reduxForm({
 })(CheckList);
 const required = value => (value ? undefined : 'Item Description required');
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+
     return {
-        modals: state.ui.modals
+        myProps: ownProps,
+        modals: state.ui.modals,
+        checklist: state.checklist
     };
 };
 
