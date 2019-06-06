@@ -49,10 +49,6 @@ export default (state = INITIAL_STATE, action) => {
             };
 
         case USER_INFO_REFRESH:
-
-            console.log('reducer');
-            console.log(action.payload);
-
             return {
                 ...state, user: {
 

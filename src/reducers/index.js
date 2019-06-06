@@ -8,13 +8,15 @@ import {reducer as formReducer} from 'redux-form';
 import alertReducer from "./UI/alertReducer";
 import goalReducer from './goalReducer';
 import uiReducer from './UI/uiReducer';
+import checklistReducer from './checklistReducer';
 
 export default combineReducers({
     auth: authReducer,
     form: formReducer,
     alert: alertReducer,
     goal: goalReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    checklist: checklistReducer,
 });
 
 

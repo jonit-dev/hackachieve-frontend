@@ -1,0 +1,91 @@
+.checklist {
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  max-width: 500px;
+
+  .checklist-warning {
+    padding-left: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: darken($hackachieve-grey, 30%);
+  }
+
+  .checklist-action-area {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+
+
+
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    padding-bottom: 2rem;
+  }
+
+  .checklist-item {
+
+    padding-left: 1rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+    label {
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .checkbox {
+      flex: 100%;
+    }
+
+    .edit.icon {
+      font-size: 1rem;
+      top: 0.5rem;
+      right: 0.3rem;
+    }
+
+    .icon {
+      flex: auto;
+      display: block;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 0;
+      right: 1rem;
+
+      color: $hackachieve-dark-purple;
+
+    }
+
+    .checklist-info-small {
+      display: none;
+      color: darken($hackachieve-light-gray,10%);
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 1.8rem;
+
+    }
+
+    &:hover {
+
+      .checklist-info-small {
+        display: block;
+      }
+
+
+      background-color: darken($hackachieve-light-gray, 1%);
+
+      .icon {
+        display: block;
+        cursor: pointer;
+      }
+    }
+
+
+  }
+
+
+}
+
