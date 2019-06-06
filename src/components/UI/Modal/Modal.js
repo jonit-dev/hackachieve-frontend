@@ -88,9 +88,12 @@ class Modal extends Component {
 
 
                             {(this.props.items.length === 0 ?
+
                                 <p className="checklist-warning">Click on "Add" to create your checklist</p> : null)}
 
-                            {this.props.items && this.props.items.map((item) => {
+                            {
+                                // eslint-disable-next-line
+                                this.props.items && this.props.items.map((item) => {
 
                                     if (item.id) {
                                         return (<div className="checklist-item" key={item.id}>
