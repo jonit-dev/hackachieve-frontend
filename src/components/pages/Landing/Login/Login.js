@@ -14,8 +14,8 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-       if(newProps.alert.type && newProps.alert.type=="positive"){ 
-           cogoToast.success(newProps.alert.content)
+       if(newProps.alert.type && newProps.alert.type==="positive"){
+           cogoToast.success(newProps.alert.content);
            this.props.clearAlert()
         }
     }
@@ -36,7 +36,7 @@ class Login extends Component {
     };
 
     onRenderAlert() {
-        return (this.props.alert.type && this.props.alert.type=='negative' ? <Alert type={this.props.alert.type} title={this.props.alert.title}
+        return (this.props.alert.type && this.props.alert.type==='negative' ? <Alert type={this.props.alert.type} title={this.props.alert.title}
                                                content={this.props.alert.content}/> : null)
     }
 

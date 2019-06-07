@@ -15,8 +15,8 @@ class Register extends Component {
         mixpanel.track('register_visit')
     }
 
-    componentWillReceiveProps(newProps){
-        if(newProps.alert.type=='positive'){
+    componentWillReceiveProps(newProps) {
+        if (newProps.alert.type === 'positive') {
             cogoToast.success(newProps.alert.content)
             this.props.clearAlert()
         }
@@ -47,7 +47,7 @@ class Register extends Component {
                         password: formValues.password
                     });
 
-                }, 3000);
+                }, 1500);
             }
         });
 
@@ -55,8 +55,9 @@ class Register extends Component {
 
 
     onRenderAlert() {
-        return (this.props.alert.type && this.props.alert.type=='negative'? <Alert type={this.props.alert.type} title={this.props.alert.title}
-                                               content={this.props.alert.content}/> : null)
+        return (this.props.alert.type && this.props.alert.type === 'negative' ?
+            <Alert type={this.props.alert.type} title={this.props.alert.title}
+                   content={this.props.alert.content}/> : null)
     }
 
 

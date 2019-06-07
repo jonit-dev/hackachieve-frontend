@@ -20,14 +20,14 @@ class Modal extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if(newProps.alert.type && newProps.alert.type=="positive"){ 
+        if(newProps.alert.type && newProps.alert.type==="positive"){
             cogoToast.success(newProps.alert.content)
             this.props.clearAlert()
          }
      }
  
     onRenderAlert() {
-        return (this.props.alert.type && this.props.alert.type=='negative'? <Alert type={this.props.alert.type} title={this.props.alert.title}
+        return (this.props.alert.type && this.props.alert.type==='negative'? <Alert type={this.props.alert.type} title={this.props.alert.title}
                                                content={this.props.alert.content}/> : null)
     }
 
