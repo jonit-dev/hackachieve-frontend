@@ -165,7 +165,7 @@ class EditLongTermGoalModal extends Component {
 
                 setTimeout(() => {
                     this.props.toggleModal('editLongTermGoal'); //close modal once goal is created
-                }, 4000)
+                }, 500)
 
             }
 

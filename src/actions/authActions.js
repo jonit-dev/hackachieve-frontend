@@ -55,7 +55,7 @@ export const userLogin = (credentials) => async (dispatch) => {
             history.push('/board');
 
 
-        }, 3000);
+        }, 1000);
 
 
     }
