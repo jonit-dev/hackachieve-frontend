@@ -19,7 +19,7 @@ class Landing extends Component {
                         <h1>
                             Hack Yourself
                         </h1>
-                        <h2>Double your productivity using half of your time</h2>
+                        <h2>Double your productivity using half of your time!</h2>
                         {(User.isLoggedIn() ? <NavLink to="/board">Check my Goals</NavLink> :
                             <NavLink to="/register">Get Started</NavLink>)}
                     </div>
