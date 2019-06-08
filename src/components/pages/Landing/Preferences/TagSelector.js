@@ -1,16 +1,17 @@
 import React from 'react';
-import CreatableSelect from 'react-select/creatable';
+import CreatableSelect from "react-select/creatable/dist/react-select.esm";
 
-class TagSelector extends React.Component {
-    render() {
-        return (
-            <div>
-                 <CreatableSelect options={this.props.tags}
-                  onChange={this.props.handleChange}
-                  isMulti/> 
-            </div>
-        )
-    }
-}
+export const TagSelector = props => {
+    const { input, tags } = props;
 
-export default TagSelector
+    return (
+        <CreatableSelect
+            options={tags}
+            // onBlur={() => input.onBlur(input.value)}
+            // onChange={this.props.handleChange}
+            onChange={value => input.onChange(value)}
+            onBlur={() => input.onBlur(input.value)}
+            isMulti/>
+    )
+};
+
