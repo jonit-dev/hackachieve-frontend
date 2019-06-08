@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import App from './components/App';
 
-//Redux specific
+//Redux specifi
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import reducers from './reducers';
