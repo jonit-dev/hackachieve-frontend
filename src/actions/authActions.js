@@ -52,8 +52,12 @@ export const userLogin = (credentials) => async (dispatch) => {
 
             //then move the user to the board
 
-            history.push('/board');
+            if(credentials.register){
+                history.push('/preferences');
 
+            }else{
+                history.push('/board');
+            }
 
         }, 1000);
 

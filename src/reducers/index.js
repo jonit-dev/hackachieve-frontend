@@ -10,6 +10,7 @@ import goalReducer from './goalReducer';
 import uiReducer from './UI/uiReducer';
 import checklistReducer from './checklistReducer';
 
+import tagReducer from './tagReducer';
 export default combineReducers({
     auth: authReducer,
     form: formReducer,
@@ -17,6 +18,7 @@ export default combineReducers({
     goal: goalReducer,
     ui: uiReducer,
     checklist: checklistReducer,
+    tags: tagReducer
 });
 
 

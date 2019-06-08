@@ -2,68 +2,77 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 
+import {loadTags, createTags} from "../../../../actions/tagActions";
+import {TagSelector} from "./TagSelector";
+import history from '../../../../history';
+
 class Preferences extends Component {
 
-    renderInput({input, label, meta}) {
-        return (
-            <div className="form-group">
-                <label>{label}</label>
-                <input {...input} className="form-control"/>
-            </div>
-        )
+    componentDidMount() {
+        this.props.loadTags();
     }
 
     onSubmit = (formValues) => {
         console.log(formValues);
+
+        this.props.createTags(formValues).then((response) => {
+            if (response.data.success !== undefined) {
+                history.push('/board');
+            }
+        });
+
     };
+
+    // onTagChange = (value, actions) => {
+    //
+    //     console.log('VALUES');
+    //     console.log(value);
+    //     console.log('ACTIONS');
+    //     console.log(actions);
+    //
+    //     if (actions.actions === 'create-option') {
+    //         this.props.createTag(value.value)
+    //     }
+    // };
 
     render() {
 
+
         return (
 
-            <div className="home_header login_header">
-                <a className="mobile-logo" href=" #"><img src="/images/board/hackachieve-symbol.svg" alt="Logo"/></a>
-                <div className="login-sec">
+            <div className="home_header internal_header">
+                <a className="mobile-logo" href="# "><img src="images/board/hackachieve-symbol.svg" alt="Logo"/></a>
+                <div className="internal-sec">
+                    <h3>Your Skills</h3>
+                    <div className="internal-inner">
+
+                        <div className="internal-inner">
+
+                            <p>
+                                Please, select your personal skills here, before proceeding
+                            </p>
+
+                            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
 
 
-                    <div className="form-wrapper">
+                                <Field name="knowledgeSelector"
+                                       component={TagSelector}
+                                       tags={this.props.tags}
+                                />
 
-                        <h3>Preferences</h3>
-
-                        <div className="login-inner">
-
-
-
-
-                            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="login-form">
-                                <Field name="title" component={this.renderInput} label="Enter title"/>
-                                <Field name="description" component={this.renderInput} label="Enter description"/>
-
-                                <button id="btnSignupForm" className="button">Submit</button>
-
+                                <button type="submit" className="ui button positive">Save</button>
 
                             </form>
 
 
-                            {/*<hr></hr>*/}
-
-                            {/*<h5 className="padding">You don’t need to decorate new passwords if you don’t want to,</h5>*/}
-
-                            {/*<div className="login-bottom">*/}
-
-                            {/*<div className="f-img"><a href="#"><img src="/images/login-facebook.svg" alt="Logo"*/}
-                            {/*className="f-logo">*/}
-                            {/*</a>*/}
-                            {/*</div>*/}
-                            {/*<div className="g-img">*/}
-                            {/*<a href="#"><img src="/images/login-google.svg" alt="Logo" className="g-logo"></a>*/}
-                            {/*</div>*/}
-                            {/*</div>*/}
-
-
+                            <div className="clear"></div>
                         </div>
-                    </div>
 
+                        <hr/>
+
+                        {/*<h5 className="padding">You don’t need to decorate new passwords if you don’t want to,</h5>*/}
+
+                    </div>
                 </div>
                 <div className="clear"></div>
             </div>
@@ -92,6 +101,16 @@ const formWrapped = reduxForm({
     validate: validate
 })(Preferences);
 
-export default connect(null, {
-    //some actions here
+const mapStateToProps = (state) => {
+
+    return {
+        tags: state.tags.tags,
+        msg: state.msg
+    }
+};
+
+export default connect(mapStateToProps, {
+    loadTags,
+    createTags
 })(formWrapped)
+

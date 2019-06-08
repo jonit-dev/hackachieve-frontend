@@ -25,3 +25,7 @@ export const FETCH_ITEMS = 'FETCH_ITEMS';
 export const UPDATE_CHECKLIST_ITEM = 'UPDATE_CHECKLIST_ITEM';
 export const CHANGE_ITEM_STATUS = 'CHANGE_ITEM_STATUS';
 export const DELETE_CHECKLIST_ITEM = 'DELETE_CHECKLIST_ITEM';
+
+/* Preferences ================================== */
+export const LOAD_TAGS = 'LOAD_TAGS';
+export const CREATE_TAGS= 'CREATE_TAGS';
