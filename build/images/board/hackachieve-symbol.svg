@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29.915" height="33.549"
+     viewBox="0 0 29.915 33.549">
+    <defs>
+        <style>.a{fill:url(#a);}.b{fill:url(#b);}.c{fill:url(#c);}.d{fill:url(#d);}</style>
+        <linearGradient id="a" x1="0.483" y1="0.117" x2="0.504" y2="0.598" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#344da1"/>
+            <stop offset="1" stop-color="#786fb3"/>
+        </linearGradient>
+        <linearGradient id="b" x1="0.249" y1="0.837" x2="0.689" y2="0.284" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ec2b3d"/>
+            <stop offset="1" stop-color="#f05765"/>
+        </linearGradient>
+        <linearGradient id="c" x1="0.705" y1="0.225" x2="0.228" y2="0.489" xlink:href="#a"/>
+        <linearGradient id="d" x1="0.441" y1="1.098" x2="0.527" y2="0.151" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#28dfa0"/>
+            <stop offset="1" stop-color="#5fc9e0"/>
+        </linearGradient>
+    </defs>
+    <g transform="translate(-886.274 -516.746)">
+        <path class="a"
+              d="M951.974,519.81l12.774,22.125a3.064,3.064,0,0,0,4.185,1.121h0a3.063,3.063,0,0,0,1.121-4.185l-11.889-20.593a3.063,3.063,0,0,0-4.185-1.121A5.824,5.824,0,0,0,951.974,519.81Z"
+              transform="translate(-54.276)"/>
+        <path class="b"
+              d="M903.888,518.342l0,.022a3.048,3.048,0,0,0-1.126-1.13h0a3.063,3.063,0,0,0-4.185,1.121l-11.889,20.593a3.064,3.064,0,0,0,1.121,4.185h0a3.063,3.063,0,0,0,4.185-1.121l11.175-19.356h0s1.584-2.27,3.168-.076Z"
+              transform="translate(0 -0.064)"/>
+        <path class="c"
+              d="M904.15,618.963h0a3.064,3.064,0,0,0-3.756-2.159l-9.262,2.5.02-.01s-3.38.3-1.654-2.7l-2.866,4.982.045-.023a3.052,3.052,0,0,0-.229,2.191h0A3.064,3.064,0,0,0,890.2,625.9l11.787-3.182,2.346-.67A19.406,19.406,0,0,0,904.15,618.963Z"
+              transform="translate(-0.055 -82.484)"/>
+        <path class="d"
+              d="M946.771,617.073h0a3.084,3.084,0,0,0-.55.05h0a3.05,3.05,0,0,0-.49.131l-4.315,1.156c2-.33,2.265,1.457,2.292,2.153v9.551a3.064,3.064,0,0,0,3.063,3.064h0a3.064,3.064,0,0,0,3.064-3.064v-9.978A3.064,3.064,0,0,0,946.771,617.073Z"
+              transform="translate(-45.553 -82.882)"/>
+    </g>
+</svg>
