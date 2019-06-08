@@ -26,7 +26,7 @@ class AddShortTermGoalModal extends Component {
                 this.props.loadGoals(0, this.props.boardShowGoals); //refresh goals (to display new one)
                 setTimeout(() => {
                     this.props.toggleModal('shortTermGoal'); //close modal once goal is created
-                }, 2000)
+                }, 500)
             }
         });
 

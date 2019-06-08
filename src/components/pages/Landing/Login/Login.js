@@ -4,11 +4,20 @@ import {connect} from 'react-redux';
 import {userLogin} from "../../../../actions/authActions";
 import Alert from "../../../UI/Alert/Alert";
 import {Mixpanel as mixpanel} from "../../../../mixpanel";
+import cogoToast from 'cogo-toast';
+import {clearAlert} from '../../../../actions/uiActions'
 
 class Login extends Component {
 
     componentDidMount() {
         mixpanel.track('login_visit')
+    }
+
+    componentWillReceiveProps(newProps) {
+       if(newProps.alert.type && newProps.alert.type==="positive"){
+           cogoToast.success(newProps.alert.content);
+           this.props.clearAlert()
+        }
     }
 
     renderInput({placeholder, input, label, meta, type}) {
@@ -27,7 +36,7 @@ class Login extends Component {
     };
 
     onRenderAlert() {
-        return (this.props.alert.type ? <Alert type={this.props.alert.type} title={this.props.alert.title}
+        return (this.props.alert.type && this.props.alert.type==='negative' ? <Alert type={this.props.alert.type} title={this.props.alert.title}
                                                content={this.props.alert.content}/> : null)
     }
 
@@ -77,5 +86,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    userLogin
+    userLogin,
+    clearAlert
 })(formWrapped)
