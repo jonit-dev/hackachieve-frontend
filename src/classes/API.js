@@ -23,7 +23,7 @@ export default class API {
             }
             catch (error) { //if something wrong happens, lets just redirect the user to login and show an error message
                 // history.push({pathname: '/login', state: {alert: 'Please, login before accessing this page'}})
-
+//
                 history.push({pathname: '/'})
             }
         }
