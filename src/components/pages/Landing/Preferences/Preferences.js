@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {loadTags, createTags} from "../../../../actions/tagActions";
 import {TagSelector} from "./TagSelector";
 import history from '../../../../history';
+import cogoToast from "cogo-toast";
 
 class Preferences extends Component {
 
@@ -13,11 +14,19 @@ class Preferences extends Component {
     }
 
     onSubmit = (formValues) => {
+
+        if(!formValues.knowledgeSelector) {
+            cogoToast.error("Please, select some skills first!");
+            return false;
+        }
+
         console.log(formValues);
 
         this.props.createTags(formValues).then((response) => {
             if (response.data.success !== undefined) {
                 history.push('/board');
+            } else {
+                cogoToast.error("Oops! Try again!");
             }
         });
 

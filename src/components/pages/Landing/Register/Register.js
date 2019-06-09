@@ -17,7 +17,7 @@ class Register extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.alert.type === 'positive') {
-            cogoToast.success(newProps.alert.content)
+            cogoToast.success(newProps.alert.content);
             this.props.clearAlert()
         }
     }
