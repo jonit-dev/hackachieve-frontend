@@ -34,3 +34,5 @@ export const CREATE_TAGS= 'CREATE_TAGS';
 /* Labels =========================================*/
 export const CREATE_LABELS='CREATE_LABELS';
 export const LOAD_LABELS="LOAD_LABELS";
+export const DELETE_LABELS="DELETE_LABELS";
+export const UPDATE_LABEL="UPDATE_LABEL";

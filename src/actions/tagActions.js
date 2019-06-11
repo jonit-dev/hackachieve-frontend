@@ -16,8 +16,6 @@ export const createTags = (tags) => async (dispatch, getState) => {
     return API.request(`/areas-of-knowledge/`, 'POST', {
         "areas_of_knowledge": data
     }, 'auth').then((response) => {
-        console.log('posted');
-        console.log(response.data);
         return response;
     });
 };

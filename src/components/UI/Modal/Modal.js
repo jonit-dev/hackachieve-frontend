@@ -2,20 +2,25 @@ import React, {Component} from 'react';
 import * as ReactDOM from "react-dom";
 import {connect} from 'react-redux'
 import {toggleModal,clearAlert} from "../../../actions/uiActions";
-import {createLabels,loadLabels} from '../../../actions/goalLabelsAction'
+import {createLabels,loadLabels,deleteLabels, updateLabel} from '../../../actions/goalLabelsAction'
 import Alert from "../Alert/Alert";
 import CheckList from "../../UI/forms/CheckList";
 import {fetchItem, changeStatus, deleteItem} from "../../../actions/checkListAction";
 import cogoToast from 'cogo-toast';
 import {Field, reduxForm} from 'redux-form';
 import { h } from 'react-select/dist/chunk-e8ae4b0f.esm';
+import LabelList from  '../../UI/forms/LabelList';
 
 class Modal extends Component {
     state = {
         showChecklistForm: false,
         showTagsInput:false,
         //status: true,
-        editChecklist: ''
+        editChecklist: '',
+        editableTag: {
+            id: "",
+            name: ""
+        }
     };
 
     onClose() {
@@ -56,9 +61,21 @@ class Modal extends Component {
         })
     }
 
+    editLabellist(id,name){
+        console.log("Value===",id);
+        this.setState({
+            editableTag: {
+                id,
+                name
+            }
+        })
+        this.props.updateLabel(id,name)
+    }
+
     componentDidMount() {
         this.props.fetchItem(this.props.modals.goalContent.id) //fetch checklist from specific goal ID
         this.props.loadLabels();
+        console.log("props",this.props)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -79,35 +96,35 @@ class Modal extends Component {
         this.props.deleteItem(item)
     };
 
+    deleteLabels =(label) =>{
+        console.log("item",label)
+        this.props.deleteLabels(label)
+    }
+
     hideForm = () => {
         this.setState({
             editChecklist: ""
         })
     };
     onSubmit=(formValue)=>{
-        this.props.createLabels(formValue).then((response)=>{
-            console.log("response===",response)
-            // if(response.data.status=='success'){
-            //     cogoToast.success(response.data.message);
-            // }else{
-            //     cogoToast.error(response.data.message)
-            // }
+        this.props.createLabels(formValue).then(resp => {
+            this.props.loadLabels(); 
         })
-
     }
 
-    renderInput({input, label, meta, optional, type, textarea, placeholder}) {
+    renderInput({input, type,placeholder}) {
         return (
 
             <div class="ui left icon right labeled input">
-                         <input {...input} type={type} placeholder={placeholder}/>
-                         <i aria-hidden="true" class="tags icon"></i>
-                    </div>
+                <input {...input} type={type} placeholder={placeholder}/>
+                <i aria-hidden="true" class="tags icon"></i>
+            </div>
           
         )
     }
 
     render() {
+        console.log(this.state)
         return ReactDOM.createPortal(
             <div className="ui dimmer modals visible active" onClick={(e) => {
                 e.stopPropagation();
@@ -124,9 +141,9 @@ class Modal extends Component {
                     <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
 
 
-                    <Field name="name" component={this.renderInput} 
+                    <Field name="tag" component={this.renderInput} 
                        placeholder="Enter Tags"
-                       tags={this.props.labels}/>
+                    />
                     </form>}
                     
                      <div>
@@ -134,16 +151,23 @@ class Modal extends Component {
 
                     </div>
 
-
-                        {console.log('labels====',this.props.labels.value)}
-
+                    <div>
+                    </div>
+                    <ul style={{display:'inline'}}>
                         {
-                            this.props.labels.value && this.props.labels.value.map((label)=>{
+                            this.props.labels && this.props.labels.map((label)=>{
+                                return   <li style= {{  float: "left" , margin:'5px', border:"5px solid #D3D3D3	", background:'#D3D3D3	'}}>
 
-                                return <label>{label.name}</label>
-                          
+                                   <label onClick={()=>this.editLabellist(label.id)}>{label.name} </label>
+                                        <i class="close icon" onClick={() => this.deleteLabels(label)}> </i>
+                                        {/* {this.state.editableTag.id === label.id ?<LabelList></LabelList> : <>
+                                        <label onClick={()=>this.editLabellist(label.id)}>{label.name} </label>
+                                        <i class="close icon" onClick={() => this.deleteLabels(label)}> </i>
+                                        </>}    */}
+                                    </li>
                             })
                         }
+                        </ul>
 
                     {/* {
                       this.props.labels && this.props.labels.map((label)=>{
@@ -248,8 +272,7 @@ class Modal extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
-
+    console.log(state.labels.labels)
     return {
         myProps: ownProps,
         alert: state.alert.message,
@@ -274,6 +297,8 @@ export default connect(mapStateToProps, {
     deleteItem,
     clearAlert,
     createLabels,
-    loadLabels
+    loadLabels,
+    deleteLabels,
+    updateLabel,
 })(formWrapped);
 
