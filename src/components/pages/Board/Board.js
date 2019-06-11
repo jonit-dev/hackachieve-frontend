@@ -8,7 +8,7 @@ import {Mixpanel as mixpanel} from "../../../mixpanel";
 import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
 
-
+//board
 
 class Board extends Component {
 
