@@ -27,7 +27,7 @@ class Board extends Component {
         console.log('opening long term modal');
 
 
-        this.props.toggleModal('longTermGoal',0)
+        this.props.toggleModal('longTermGoal', 0)
 
     }
 
@@ -103,6 +103,15 @@ class Board extends Component {
 
     }
 
+    onRenderOnboardingTutorial() {
+
+        let onboarding = JSON.parse(localStorage.getItem('onboarding'));
+
+        return (!onboarding ? <Joy/> : null);
+
+
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -111,7 +120,7 @@ class Board extends Component {
                     <div className="board-columns">
 
                         {this.onRenderGoals()}
-                        {this.props.goals &&  <Joy/>}
+                        {this.props.goals && this.onRenderOnboardingTutorial()}
                         <div className="board-column-add column-add-short-term-goal"
                              onClick={() => this.onOpenLongTermModal()}>
                             <div className="column-add-short-term-goal-btn"></div>
@@ -128,7 +137,6 @@ class Board extends Component {
                 </main>
 
 
-
                 <div className="i-phone">
                     <div className="board-switch">
                         <div className={this.onHandleBoardSwitchItem('all')}
@@ -138,7 +146,7 @@ class Board extends Component {
                             <div className="board-switch-text">ALL</div>
                         </div>
                         <div className={this.onHandleBoardSwitchItem('standby')}
-                         onClick={() => this.onBoardSwitch('standby')}>
+                             onClick={() => this.onBoardSwitch('standby')}>
                             <div className="board-switch-icon"></div>
                             <div className="board-switch-text">PENDING</div>
                         </div>
@@ -147,10 +155,10 @@ class Board extends Component {
                             <div className="plus"></div>
                         </div>
                         <div className={this.onHandleBoardSwitchItem('ongoing')}
-                         onClick={() => this.onBoardSwitch('ongoing')}>
-                        <div className="board-switch-icon"></div>
-                        <div className="board-switch-text">ON GOING</div>
-                    </div>
+                             onClick={() => this.onBoardSwitch('ongoing')}>
+                            <div className="board-switch-icon"></div>
+                            <div className="board-switch-text">ON GOING</div>
+                        </div>
                         <div className={this.onHandleBoardSwitchItem('completed')}
                              onClick={() => this.onBoardSwitch('completed')}>
                             <div className="board-switch-icon"></div>
@@ -166,7 +174,7 @@ class Board extends Component {
 }
 
 const filteredGoals = (goals, filter) => {
-   return  (filter === 'All' || filter === 'week') ? goals : goals.filter(goal => goal.name === filter);
+    return (filter === 'All' || filter === 'week') ? goals : goals.filter(goal => goal.name === filter);
 };
 
 const mapStateToProps = (state) => {

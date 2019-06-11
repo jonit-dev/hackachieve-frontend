@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactJoyride,  { STATUS }  from 'react-joyride';
+import ReactJoyride, {STATUS} from 'react-joyride';
 
 export default class Joy extends React.Component {
     state = {
@@ -9,7 +9,7 @@ export default class Joy extends React.Component {
             {
                 content: <h2>Let's begin our journey!</h2>,
                 placement: 'center',
-                locale: { skip: <strong aria-label="skip">S-K-I-P</strong> },
+                locale: {skip: <strong aria-label="skip">S-K-I-P</strong>},
                 target: 'body',
             },
             {
@@ -83,9 +83,18 @@ export default class Joy extends React.Component {
     };
 
     handleJoyrideCallback = data => {
-        const { status, type } = data;
+
+        console.log(data);
+
+        //if user clicks on skip or pass the third step, prevents him for reaching onboarding again
+        if (data.action === 'skip' || data.index >= 3) {
+            localStorage.setItem('onboarding', true);
+        }
+
+
+        const {status, type} = data;
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-            this.setState({ run: false });
+            this.setState({run: false});
         }
         console.groupCollapsed(type);
         console.log(data); //eslint-disable-line no-console
@@ -93,8 +102,10 @@ export default class Joy extends React.Component {
     };
 
 
-    render () {
-        const { run, steps } = this.state;
+    render() {
+        // const { run, steps } = this.state;
+        const {steps} = this.state;
+
 
         return (
             <div className="app">
