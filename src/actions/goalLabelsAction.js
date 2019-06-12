@@ -6,7 +6,7 @@ import { async } from 'q';
 
 export const createLabels=(label)=> async (dispatch, getState)=>{
     return API.request('/labels/', 'POST', {
-        "name": label.name
+        "name": label.tag
     },'auth').then((response)=>{
         
         dispatch({
@@ -41,13 +41,9 @@ export const deleteLabels=(label)=> async(dispatch, getState)=>{
 }    
 
 export const updateLabel = (itemId, name) => (dispatch) => {
-    
     return API.request(`/labels/${itemId}/`, 'PUT', {
-        "name": "64 name change"
+        "name":name
     }, 'auth').then((response) => {
-
-        console.log("value", response.data)
-
         dispatch({
             type: UPDATE_LABEL, payload: {
                 // ...item,

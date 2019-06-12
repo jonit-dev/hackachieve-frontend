@@ -3,13 +3,13 @@ import { stat } from 'fs';
 
 const  INITIAL_STATE = {
     labels: [],
-    msg:""
+    msg:"",
+    data: []
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type){
         case CREATE_LABELS:
-        console.log(action.payload)
             return {
                 ...state,
                 labels: [
@@ -30,6 +30,7 @@ export default (state = INITIAL_STATE, action) => {
             };
 
         case UPDATE_LABEL:
+            
             let items = state.labels
             let newItems = items.map(item => {
                 if (action.payload.id === item.id) {

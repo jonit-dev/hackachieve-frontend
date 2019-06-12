@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm } from 'redux-form';
 import {connect} from 'react-redux';
 import { loadLabels, updateLabel} from "../../../actions/goalLabelsAction";
 
 class LabelList extends Component {
 
     componentWillMount() {
-        if (this.props.item) this.props.initialize({item: this.props.item.description})
+        if (this.props.label) this.props.initialize({label: this.props.label.name})
     }   
 
-    renderInputTextArea({input, optional, placeholder, meta: {touched, error, warning}}) {
+    renderInput({input, optional, type, placeholder, meta: {touched, error, warning}}) {
 
         return (
             <div className="field">
-                <textarea {...input} rows="3" placeholder={placeholder}/>
+               <input {...input} type={type} placeholder={placeholder}/>
                 {(optional ? <>
                     <div className="ui pointing label">
                         Optional Field
@@ -26,6 +26,12 @@ class LabelList extends Component {
         )
     }
 
+    handleCancelClick = () => {
+        this.setState({
+            showChecklistForm: !this.state.showChecklistForm,
+            editChecklist: ''
+        })
+    };
 
     render() {
         // const {id, description} = this.props.item || {};
@@ -33,61 +39,45 @@ class LabelList extends Component {
         const form = <React.Fragment>
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field
-                    name="item"
+                    name="label"
                     textarea={true}
-                    component={this.renderInputTextArea}
+                    component={this.renderInput}
                     placeholder="Add an item"
                     validate={[required]}
                 />
-                <button className="ui button positive" type="submit"> {id ? "Save" : "Add"}</button>
+                
+              
+
             </form>
         </React.Fragment>;
-        const button = <React.Fragment>
-        </React.Fragment>;
+       
         return (
             <div>
                 {form}
-                {button}
+                <div class="btn-group">
+              
+              
+</div>
+<button className="ui button positive" type="cancel" onClick ={()=> this.props.hideLabelUpdateForm(false)}> Cancel</button>
+
             </div>
         );
     }
 
     onSubmit = (formValues) => {
 
-        // var {id, description} = this.props.item || {}
-        var {id} = this.props.item || {};
-        if (id) {
-            let checklist = {
-                description: formValues.item,
-                status: false,
-                goal_id: this.props.goal_id
-            };
-            this.props.updateLabel(id, checklist).then(resp => {
-
-                this.props.hideForm();
+            this.props.updateLabel(this.props.label.id, formValues.label).then(resp => {
+                this.props.hideLabelUpdateForm(true);
             })
-        } else {
-            let checklist = {
-                description: formValues.item,
-                status: false,
-                goal_id: this.props.goal_id
-            };
-
-
-            this.props.addItem(checklist).then(resp => {
-
-
-                this.props.loadLabels(this.props.modals.goalContent.id); //trigger a checklist refresh
-            })
-
-
-        }
+        
     };
 }
 
 
 const formWrapped = reduxForm({
-    form: 'CheckList',
+    form: 'LabelForm',
+    enableReinitialize: true,
+    destroyOnUnmount: false 
 
 })(LabelList);
 const required = value => (value ? undefined : 'Please enter your tag name');

@@ -7,7 +7,7 @@ import Alert from "../Alert/Alert";
 import CheckList from "../../UI/forms/CheckList";
 import {fetchItem, changeStatus, deleteItem} from "../../../actions/checkListAction";
 import cogoToast from 'cogo-toast';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, reset,change,untouch} from 'redux-form';
 import { h } from 'react-select/dist/chunk-e8ae4b0f.esm';
 import LabelList from  '../../UI/forms/LabelList';
 
@@ -19,12 +19,11 @@ class Modal extends Component {
         editChecklist: '',
         editableTag: {
             id: "",
-            name: ""
+            name: "", 
         }
     };
 
     onClose() {
-        console.log('closing modal');
         this.props.toggleModal(this.props.myProps.name); //close this modal
     }
 
@@ -62,20 +61,19 @@ class Modal extends Component {
     }
 
     editLabellist(id,name){
-        console.log("Value===",id);
-        this.setState({
-            editableTag: {
-                id,
-                name
-            }
-        })
-        this.props.updateLabel(id,name)
+            this.setState({
+                editableTag: {
+                    id,
+                    name,
+                }
+            })
+        
+      
     }
 
     componentDidMount() {
         this.props.fetchItem(this.props.modals.goalContent.id) //fetch checklist from specific goal ID
         this.props.loadLabels();
-        console.log("props",this.props)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -97,7 +95,6 @@ class Modal extends Component {
     };
 
     deleteLabels =(label) =>{
-        console.log("item",label)
         this.props.deleteLabels(label)
     }
 
@@ -106,8 +103,28 @@ class Modal extends Component {
             editChecklist: ""
         })
     };
+
+
+    hideLabelUpdateForm = (add)=>{
+        this.setState({
+            editableTag: {
+                id: "",
+                name:'',
+            }
+        })
+
+        if(add){
+            this.props.loadLabels()
+
+        }
+    }
+
     onSubmit=(formValue)=>{
         this.props.createLabels(formValue).then(resp => {
+            this.resetFields('AddLabels', {
+                tag: '',
+             
+            });
             this.props.loadLabels(); 
         })
     }
@@ -123,8 +140,19 @@ class Modal extends Component {
         )
     }
 
+    resetFields = (formName, fieldsObj) => {
+        Object.keys(fieldsObj).forEach(fieldKey => {
+  
+            //reset the field's value
+            this.props.dispatch(change(formName, fieldKey, fieldsObj[fieldKey]));
+  
+            //reset the field's error
+            this.props.dispatch(untouch(formName, fieldKey));
+  
+        });
+  }
+
     render() {
-        console.log(this.state)
         return ReactDOM.createPortal(
             <div className="ui dimmer modals visible active" onClick={(e) => {
                 e.stopPropagation();
@@ -158,12 +186,12 @@ class Modal extends Component {
                             this.props.labels && this.props.labels.map((label)=>{
                                 return   <li style= {{  float: "left" , margin:'5px', border:"5px solid #D3D3D3	", background:'#D3D3D3	'}}>
 
-                                   <label onClick={()=>this.editLabellist(label.id)}>{label.name} </label>
-                                        <i class="close icon" onClick={() => this.deleteLabels(label)}> </i>
-                                        {/* {this.state.editableTag.id === label.id ?<LabelList></LabelList> : <>
+                                         {this.state.editableTag.id === label.id ?<LabelList label={label} hideLabelUpdateForm={this.hideLabelUpdateForm} initialValues={{
+                                          label: label.name,
+                                          }}></LabelList> : <>
                                         <label onClick={()=>this.editLabellist(label.id)}>{label.name} </label>
                                         <i class="close icon" onClick={() => this.deleteLabels(label)}> </i>
-                                        </>}    */}
+                                        </>}    
                                     </li>
                             })
                         }
@@ -171,7 +199,6 @@ class Modal extends Component {
 
                     {/* {
                       this.props.labels && this.props.labels.map((label)=>{
-                          console("value====",label);
                       })
                     } */}
 
@@ -272,7 +299,6 @@ class Modal extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state.labels.labels)
     return {
         myProps: ownProps,
         alert: state.alert.message,
