@@ -35,7 +35,7 @@ class LabelList extends Component {
 
     render() {
         // const {id, description} = this.props.item || {};
-        const {id} = this.props.item || {};
+       
         const form = <React.Fragment>
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field
@@ -54,11 +54,13 @@ class LabelList extends Component {
         return (
             <div>
                 {form}
-                <div class="btn-group">
-              
-              
-</div>
-<button className="ui button positive" type="cancel" onClick ={()=> this.props.hideLabelUpdateForm(false)}> Cancel</button>
+               
+                <button 
+                    className="ui button positive" 
+                    type="cancel" 
+                    onClick ={()=> this.props.hideLabelUpdateForm(false)}> 
+                    Cancel
+                </button>
 
             </div>
         );
@@ -82,15 +84,9 @@ const formWrapped = reduxForm({
 })(LabelList);
 const required = value => (value ? undefined : 'Please enter your tag name');
 
-const mapStateToProps = (state, ownProps) => {
 
-    return {
-        myProps: ownProps,
-        modals: state.ui.modals
-    };
-};
 
-export default connect(mapStateToProps, {
+export default connect(null, {
     //some actions here
     loadLabels,
     updateLabel

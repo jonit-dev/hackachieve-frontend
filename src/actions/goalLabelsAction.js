@@ -1,7 +1,6 @@
 import API from '../classes/API';
-import {CREATE_LABELS,LOAD_LABELS,DELETE_LABELS, UPDATE_LABEL} from './types'
-import {Mixpanel as mixpanel} from "../mixpanel";
-import { async } from 'q';
+import {CREATE_LABELS,LOAD_LABELS,DELETE_LABELS} from './types'
+
 
 
 export const createLabels=(label)=> async (dispatch, getState)=>{
@@ -44,12 +43,7 @@ export const updateLabel = (itemId, name) => (dispatch) => {
     return API.request(`/labels/${itemId}/`, 'PUT', {
         "name":name
     }, 'auth').then((response) => {
-        dispatch({
-            type: UPDATE_LABEL, payload: {
-                // ...item,
-                // id: itemId
-            }
-        });
+      
         return response;
     });
 }
