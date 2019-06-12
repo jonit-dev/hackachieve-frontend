@@ -190,3 +190,31 @@ export const editColumns = (column) => (dispatch) => {
         return response;
     });
 };
+
+// The following API will create the new category, 'category' is 'boards' in backend
+export const createNewCategory = (value) => async (dispatch) => {
+
+    // const response = await guest_axios.post('/user/register', userInfo);
+    return API.request('/boards/create/', 'POST', {name: value, description: "1"}).then((response) => {
+        // Need to figure out the response as the server is giving 500 error,
+        // https://hackachieve.slack.com/messages/DK2GCP79R/
+        // data is being returned when the name parameter is sent with an empty string
+        console.log("Create board response", response);
+        return response;
+
+    })
+
+};
+
+
+// The following API will delete the new category
+export const deleteNewCategory = (value) => async (dispatch) => {
+
+    // const response = await guest_axios.post('/user/register', userInfo);
+    return API.request('boards/delete/' + value, 'DELETE', {}).then((response) => {
+        console.log("Delete board response", response);
+        return response;
+
+    })
+
+};

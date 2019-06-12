@@ -32,7 +32,7 @@ npm install
 ```
 {
   "env":"dev",
-  "path":"https://hackachieve.com:8000/",
+  "path":"http://localhost:8000/",
   "adminEmail": "joaopaulofurtado@live.com",
   "productionUrl": "https://hackachieve.com"
 }

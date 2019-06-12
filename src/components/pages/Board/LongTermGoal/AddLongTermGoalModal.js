@@ -5,10 +5,21 @@ import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
 import DatePicker from '../../../UI/Datepicker';
 import {toggleModal} from "../../../../actions/uiActions";
-import {createLongTermGoal, loadGoals, loadUserGoalsCategories} from "../../../../actions/goalsActions";
+import {createLongTermGoal, loadGoals, loadUserGoalsCategories, createNewCategory, deleteNewCategory} from "../../../../actions/goalsActions";
 import Loading from "../../../UI/Loading/Loading";
+import {TagSelector} from './TagSelector';
 
 class AddLongTermGoalModal extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentSelectableValue: {
+                id: 0,
+                value: ""
+            },
+        }
+    }
 
 
     componentDidMount() {
@@ -67,8 +78,9 @@ class AddLongTermGoalModal extends Component {
     }
 
     onRenderBoardOptions() {
-        return this.props.boardCategories.map((category) => <option key={category.id}
-                                                                    value={category.id}>{category.name}</option>);
+        // return this.props.boardCategories.map((category) => <option key={category.id}
+        //                                                             value={category.id}>{category.name}</option>);
+        return this.props.boardCategories.map((category) => ({value: "" + category.id, label: "" + category.name}));
     }
 
     renderInputSelectBoards({input, meta, optional, label, children}) {
@@ -81,6 +93,35 @@ class AddLongTermGoalModal extends Component {
                 </select>
             </div>
         )
+    }
+
+    deleteCategory() {
+        let { currentSelectableValue } = this.state;
+        this.props.deleteNewCategory(currentSelectableValue.id).then(response => {
+            console.log(response);
+            if(response.data.type == "success") {
+                // delete the state
+                currentSelectableValue.id = 0;
+                currentSelectableValue.value = "";
+                this.setState({currentSelectableValue});
+            }
+        });
+    }
+
+    createCategory(value) {
+        // this will handle the api call and registers the id of the 
+        // new category and replace the value field of the category object 
+        // in the creatable select component
+        if(value) {
+            this.props.createNewCategory(value.value).then(response => {
+                let { currentSelectableValue } = this.state;
+                console.log(response);
+                // TODO: To set the current value with the id to the state
+            });
+        }
+        else {
+            this.deleteCategory();
+        }
     }
 
     render() {
@@ -98,10 +139,18 @@ class AddLongTermGoalModal extends Component {
                        label="Enter your long term goal description"
                        placeholder="Describe what you have to do in details, to accomplish it"/>
 
-                <Field name="board_id" component={this.renderInputSelectBoards}
-                       label="Category">
-                    {this.props.boardCategories ? this.onRenderBoardOptions() : <Loading/>}
-                </Field>
+                <strong><label>Category</label></strong>
+                {
+                    (this.props.boardCategories) ? 
+                    <Field name="board_id"
+                        label="Category"
+                        component={TagSelector}
+                        tags={this.onRenderBoardOptions()}
+                        onChange={value => {this.createCategory(value)}}
+                    /> 
+                    : 
+                    <Loading />
+                }
 
                 <Field
                     name="deadline"
@@ -139,7 +188,7 @@ class AddLongTermGoalModal extends Component {
         let formOutput = {...formValues};
 
         // console.log('creating new goal ==> ');
-        console.log(formOutput);
+        // console.log(formOutput);
 
         this.props.createLongTermGoal(formOutput).then((response) => {
 
@@ -190,5 +239,7 @@ export default connect(mapStateToProps, {
     toggleModal,
     createLongTermGoal,
     loadGoals,
-    loadUserGoalsCategories
+    loadUserGoalsCategories,
+    createNewCategory, // This is for creating new category
+    deleteNewCategory
 })(formWrapped)

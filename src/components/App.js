@@ -18,6 +18,7 @@ import TermsOfUse from "./pages/Landing/Legal/TermsOfUse";
 import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
 import Footer from "./pages/Base/Footer/Footer";
 import Preferences from "./pages/Landing/Preferences/Preferences";
+
 class App extends Component {
 
     componentDidMount() {
@@ -32,8 +33,6 @@ class App extends Component {
         return (
             <Router history={history}>
                 <Header/>
-               
-               
                 <Switch>
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>

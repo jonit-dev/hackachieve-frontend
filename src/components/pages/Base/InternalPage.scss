@@ -22,18 +22,11 @@
 
   .internal-inner {
     background: #F4F4FC;
-
+    width: 600px;
     margin: 0 auto;
     display: table;
     padding: 1.5rem 2rem 2rem 1.5rem;
     border-radius: 5px;
-
-    /*DESKTOP ONLY CODE*/
-
-    @media screen and (min-width: 767px) {
-      width: 600px;
-    }
-
 
     p {
       margin-top: 1rem;
@@ -96,7 +89,9 @@
 }
 
 @media screen and (max-width: 767px) {
-
+  .internal-sec {
+    padding: 30px 0 50px !important;
+  }
   .internal-menu {
     display: none !important;
   }
@@ -110,8 +105,8 @@
     padding: 0 15px 50px;
   }
   .internal-inner {
-    padding: 0.8rem;
-
+    background: transparent !important;
+    padding: 0 !important;
   }
   .internal-form {
     width: 90% !important;
@@ -131,7 +126,7 @@
   .internal-inner {
     width: 100% !important;
   }
-  .internal_header h5.padding {
+  .home_header.internal_header h5.padding {
     padding: 0px 15px 20px 15px !important;
   }
 }

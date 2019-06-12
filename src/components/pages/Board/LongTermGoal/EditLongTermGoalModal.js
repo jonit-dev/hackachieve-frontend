@@ -5,10 +5,22 @@ import moment from 'moment';
 import DatePicker from '../../../UI/Datepicker';
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
-import {createLongTermGoal, loadGoals, loadUserGoalsCategories, editColumns} from "../../../../actions/goalsActions";
+import {createLongTermGoal, loadGoals, loadUserGoalsCategories, editColumns, createNewCategory, deleteNewCategory} from "../../../../actions/goalsActions";
 import Loading from "../../../UI/Loading/Loading";
+import {TagSelector} from './TagSelector';
+
 
 class EditLongTermGoalModal extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentSelectableValue: {
+                id: 0,
+                value: ""
+            },
+        }
+    }
 
 
     componentDidMount() {
@@ -74,8 +86,9 @@ class EditLongTermGoalModal extends Component {
     }
 
     onRenderBoardOptions() {
-        return this.props.boardCategories.map((category) => <option key={category.id}
-                                                                    value={category.id}>{category.name}</option>);
+        //return this.props.boardCategories.map((category) => <option key={category.id}
+        //                                                            value={category.id}>{category.name}</option>);
+        return this.props.boardCategories.map((category) => ({value: "" + category.id, label: "" + category.name}));
     }
 
     renderInputSelectBoards({input, meta, optional, label, children}) {
@@ -88,6 +101,35 @@ class EditLongTermGoalModal extends Component {
                 </select>
             </div>
         )
+    }
+
+    deleteCategory() {
+        let { currentSelectableValue } = this.state;
+        this.props.deleteNewCategory(currentSelectableValue.id).then(response => {
+            console.log(response);
+            if(response.data.type == "success") {
+                // delete the state
+                currentSelectableValue.id = 0;
+                currentSelectableValue.value = "";
+                this.setState({currentSelectableValue});
+            }
+        });
+    }
+
+    createCategory(value) {
+        // this will handle the api call and registers the id of the 
+        // new category and replace the value field of the category object 
+        // in the creatable select component
+        if(value) {
+            this.props.createNewCategory(value.value).then(response => {
+                let { currentSelectableValue } = this.state;
+                console.log(response);
+                // TODO: To set the current value with the id to the state
+            });
+        }
+        else {
+            this.deleteCategory();
+        }
     }
 
     render() {
@@ -106,10 +148,22 @@ class EditLongTermGoalModal extends Component {
                        label="Enter your long term goal description"
                        placeholder="Describe what you have to do in details, to accomplish it"/>
 
-                <Field name="board_id" component={this.renderInputSelectBoards}
+                {/* <Field name="board_id" component={this.renderInputSelectBoards}
                        label="Category">
                     {this.props.boardCategories ? this.onRenderBoardOptions() : <Loading/>}
-                </Field>
+                </Field> */}
+                <strong><label>Category</label></strong>
+                {
+                    (this.props.boardCategories) ? 
+                    <Field name="board_id"
+                        label="Category"
+                        component={TagSelector}
+                        tags={this.onRenderBoardOptions()}
+                        onChange={value => {this.createCategory(value)}}
+                    /> 
+                    : 
+                    <Loading />
+                }
 
                 <Field
                     name="deadline"
@@ -204,5 +258,7 @@ export default connect(mapStateToProps, {
     createLongTermGoal,
     loadGoals,
     loadUserGoalsCategories,
-    editColumns
+    editColumns,
+    createNewCategory, // This is for creating new category
+    deleteNewCategory
 })(formWrapped)
