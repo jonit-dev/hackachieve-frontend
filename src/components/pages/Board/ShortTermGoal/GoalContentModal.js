@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
-import Moment from "react-moment";
+// import Moment from "react-moment";
 
 
 class GoalContentModal extends Component {
@@ -31,22 +31,38 @@ class GoalContentModal extends Component {
 
     render() {
 
-        const {title, description, deadline, status} = this.props.myProps.shortTermGoal;
+        const {title} = this.props.myProps.shortTermGoal;
 
-        const content = <React.Fragment>
-            <p><strong>Deadline: </strong><Moment format="D MMMM, YYYY">{deadline}</Moment></p>
-            <p className="modal-description"><strong>Description: </strong>{description}</p>
-            <p><strong>Status: </strong>{this.onRenderStatus(status)}</p>
+        const content = <React.Fragment >
+            <div className="pop-inner">
+			   <h2>Eat less carbs</h2>
+               </div>
+               <div className="top-bar-popup">
+			   <a href="# "><img src="/images/icons/alert-circle.svg" alt=""/> Set priority</a>
+			   <a href="# "><img src="images/icons/alert-circle.svg" alt=""/> Set due-date</a>
+			   <a className="public" href="# "><img src="images/icons/eye.svg" alt=""/> Public</a>
+			   </div>
+               <div className="tags">
+			    <label>Tags</label>
+			    <a className="fitness" href="# "> Fitness</a>
+				<a className="goal" href="# "> Personal goals</a>
+				<a className="add-tag" href="# " > <img src="images/icons/plus.svg" alt=""/> Add</a>
+			   </div>
+               <div className="detail">
+			     <h3>Description</h3>
+			     <p>Cras eu elit congue, placerat dui ut, tincidunt nisl. Nulla leo elit, pharetra bibendum justo quis, cursus consectetur erat. Sed nec posuere turpis. Maecenas nec bibendum purus. Nulla fringilla, lorem iaculis iaculis fermentum, ligula nibh mollis ipsum, et scelerisque risus ante eu sem. Phasellus ac sagittis nisi. Suspendisse potenti. Nunc volutpat dui ipsum. Suspendisse potenti. In feugiat malesuada nisi quis laoreet. Pellentesque interdum sapien eget sapien facilisis porta. Nulla porta libero ut euismod dignissim.</p>
+			   </div>
+               
         </React.Fragment>;
 
 
         const actions = <React.Fragment>
-            <button className="ui button positive" onClick={() => this.onEdit()}>Edit</button>
-            <button className="ui button negative" onClick={() => this.onClose()}>Cancel</button>
+            <button className="add-task" onClick={() => this.onEdit()}>Edit</button>
+            <button className="cancel" onClick={() => this.onClose()}>Cancel</button>
         </React.Fragment>;
 
         return (
-            <Modal
+            <Modal 
                 name="goalContent"
                 title={title}
                 content={content}

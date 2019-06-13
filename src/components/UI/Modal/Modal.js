@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import * as ReactDOM from "react-dom";
-import {connect} from 'react-redux'
-import {toggleModal,clearAlert} from "../../../actions/uiActions";
+import { connect } from 'react-redux'
+import { toggleModal, clearAlert } from "../../../actions/uiActions";
 import Alert from "../Alert/Alert";
 import CheckList from "../../UI/forms/CheckList";
-import {fetchItem, changeStatus, deleteItem} from "../../../actions/checkListAction";
+import { fetchItem, changeStatus, deleteItem } from "../../../actions/checkListAction";
 import cogoToast from 'cogo-toast';
 
 class Modal extends Component {
@@ -15,20 +15,19 @@ class Modal extends Component {
     };
 
     onClose() {
-        console.log('closing modal');
         this.props.toggleModal(this.props.myProps.name); //close this modal
     }
 
     componentWillReceiveProps(newProps) {
-        if(newProps.alert.type && newProps.alert.type==="positive"){
+        if (newProps.alert.type && newProps.alert.type === "positive") {
             cogoToast.success(newProps.alert.content)
             this.props.clearAlert()
-         }
-     }
- 
+        }
+    }
+
     onRenderAlert() {
-        return (this.props.alert.type && this.props.alert.type==='negative'? <Alert type={this.props.alert.type} title={this.props.alert.title}
-                                               content={this.props.alert.content}/> : null)
+        return (this.props.alert.type && this.props.alert.type === 'negative' ? <Alert type={this.props.alert.type} title={this.props.alert.title}
+            content={this.props.alert.content} /> : null)
     }
 
     handleClick = () => {
@@ -37,6 +36,13 @@ class Modal extends Component {
             editChecklist: ''
         })
     };
+
+    closeForm=(closeForm)=>{
+        this.setState({
+            showChecklistForm: closeForm,
+            editChecklist: ''
+        })
+    }
 
     editChecklist(id = "") {
         this.setState({
@@ -78,10 +84,10 @@ class Modal extends Component {
             <div className="ui dimmer modals visible active" onClick={(e) => {
                 e.stopPropagation();
                 this.onClose();
+                
             }}>
-                <div className="ui standard modal visible active" onClick={(e) => e.stopPropagation()}>
-                    <i className="close icon" onClick={(e) => this.onClose()}></i>
-                    <div className="header">{this.props.myProps.title}</div>
+                <div className="ui  modal  active main-div" onClick={(e) => e.stopPropagation()} >
+                   
 
                     <div className="content">
                         {this.onRenderAlert()}
@@ -90,90 +96,109 @@ class Modal extends Component {
                         {this.props.name === "goalContent" &&
 
 
-                        <div className="checklist">
+                            <div className="checklist">
 
-                            <h4>Checklist</h4>
-
-
-                            {(this.props.items.length === 0 ?
-
-                                <p className="checklist-warning">Click on "Add" to create your checklist</p> : null)}
-
-                            {
-                                // eslint-disable-next-line
-                                this.props.items && this.props.items.map((item) => {
-
-                                    if (item.id) {
-                                        return (<div className="checklist-item" key={item.id}>
-                                            <div className="ui checkbox">
-                                                <input type="checkbox" name="example"
-                                                       onClick={() => this.changeStatus(item)}
-                                                       defaultChecked={item.status}/>
-                                                {this.state.editChecklist === item.id ? <>
-                                                    <CheckList
-                                                        goal_id={this.props.modals.goalContent.id}
-                                                        item={item}
-                                                        hideForm={this.hideForm}/>
+                                <h3>Checklist</h3>
 
 
-                                                    <i className="edit icon"
-                                                       onClick={() => this.editChecklist()}> </i> </> : <>
-                                                    <label style={item.status ? {textDecoration: "line-through"} : {}}
-                                                           onClick={() => this.editChecklist(item.id)}>{item.description}</label>
+                                {(this.props.items.length === 0 ?
 
-                                                    <i className="close icon"
-                                                       onClick={() => this.deleteItem(item)}> </i> </>
-                                                }
-                                            </div>
-                                        </div>)
+                                    <p className="checklist-warning">Click on "Add" to create your checklist</p> : null)}
+
+                                {
+                                    // eslint-disable-next-line
+                                    this.props.items && this.props.items.map((item) => {
+
+                                        if (item.id) {
+                                            return (
+                                                <div className="checklist-item" key={item.id}>
+                                                    <div className="ui checkbox">
+                                                        {this.state.editChecklist === item.id ? <>
+                                                            <CheckList
+                                                                goal_id={this.props.modals.goalContent.id}
+                                                                item={item}
+                                                                hideForm={this.hideForm} />
+
+
+                                                            <i className="edit icon"
+                                                                onClick={() => this.editChecklist()}> </i> </> : <>
+                                                                <label className="check-main" style={item.status ? { textDecoration: "line-through" } : {}}
+                                                                ><span onClick={() => this.editChecklist(item.id)}>{item.description}</span>
+                                                                    <input type="checkbox" name="example" 
+                                                                        onClick={() => this.changeStatus(item)}
+                                                                        defaultChecked={item.status} />
+                                                                    <span className="checkmark"></span>
+                                                                </label>
+                                                                <i className="close icon"
+                                                                    onClick={() => this.deleteItem(item)}> </i> </>
+                                                        }
+                                                    </div>
+                                                </div>)
+                                        }
+
+
                                     }
-
-
+                                    )
                                 }
-                            )
-                            }
 
+                                <div className="checklist-action-area">
 
-                            {/*<div className="ui list">*/}
-                            {/*    {this.props.items && this.props.items.map((item) => */}
-                            {/*        <div className="item" key={item.id}>*/}
-                            {/*            <div className="ui checkbox">  */}
-                            {/*                <input type="checkbox" name="example" onClick={() => this.changeStatus(item)} defaultChecked={item.status}/>*/}
-                            {/*                {this.state.editChecklist === item.id ? <>*/}
-                            {/*                <CheckList goal_id={this.props.modals.goalContent.id} item={item} hideForm={this.hideForm}/>*/}
-                            {/*                <button className="ui button" onClick={() => this.editChecklist()}>X</button> </> : <>*/}
-                            {/*                <label style={item.status ? {textDecoration: "line-through"} : {}} onClick={() => this.editChecklist(item.id)}>{item.description}</label>*/}
-                            {/*                <button className="ui button" onClick={() => this.deleteItem(item)}>X</button> </>*/}
-                            {/*                }*/}
-                            {/*            </div> */}
-                            {/*        </div>*/}
-                            {/*    )*/}
-                            {/*    }*/}
-                            {/*</div>*/}
+                                    {!this.state.showChecklistForm &&
+                                        <a className="add-task" href="# " onClick={this.handleClick} ><img src="images/icons/plus-white.svg" alt="" /> Add New Work</a>
+                                    }
+                                    {this.state.showChecklistForm && <div style={{ display: "inline-block" }}>
+                                        <CheckList goal_id={this.props.modals.goalContent.id} showChecklistForm={this.state.showChecklistForm} closeForm={this.closeForm} />
+                                    </div>}
 
-                            <div className="checklist-action-area">
-
-
-                                {!this.state.showChecklistForm &&
-                                <button className="ui button positive add" onClick={this.handleClick}>Add an
-                                    item</button>
-                                }
-                                {this.state.showChecklistForm && <div>
-                                    <CheckList goal_id={this.props.modals.goalContent.id}/>
-                                    <button className="ui button negative cancel" onClick={this.handleClick}>Cancel
-                                    </button>
-                                </div>}
+                                </div>
 
                             </div>
+                        }
+                        <div className="comment-sec">
+                            <h3>Comments (1) <img src="images/icons/chevron-up.svg" alt="" /></h3>
+                            <div className="cooment-left">
+                                <a href="# " className="up-arrow"><img src="images/icons/chevron-up.svg" alt="" /></a>
+                                <span className="count">2</span>
+                                <a href="# " className="down-arrow"><img src="images/icons/chevron-up.svg" alt="" /></a>
+                            </div>
+                            <div className="cooment-right">
+                                <div className="comment-client">
+                                    <img src="images/img.png" alt="" />
+                                    <h4>Danielle Powell</h4>
+                                    <span className="time">13:00 PM</span>
+                                </div>
+                                <div className="client-text">
+                                    <p>Vivamus eget aliquam dui. Integer eu arcu vel arcu suscipit ultrices quis non mauris. Aenean scelerisque, sem eu dictum commodo, velit nisi blandit magna, quis scelerisque ipsum lectus ut libero. Sed elit diam, dignissim ac congue quis, aliquam in purus.</p></div>
+                            </div>
+                        </div>
+
+                        <div className="leave-comment">
+                            <div className="send-user"><img src="images/img2.png" alt="" /></div>
+                            <div className="comment-box">
+                                <textarea className="textarea" placeholder="Leave a comment..."></textarea>
+                                <a className="send-mesage" href="# " ><img src="images/icons/send.svg" alt="" /></a>
+                            </div>
+
 
                         </div>
-                        }
                     </div>
                     <div className="actions">
                         {this.props.myProps.actions}
                     </div>
+
                 </div>
-            </div>, document.querySelector('#modal'))
+                <div className="popup-btns">
+                    <a href="# " className="close" onClick={(e) => {
+                        e.stopPropagation();
+                        this.onClose();
+                    }}><img className="popup_img" src="images/icons/x.svg" alt="" /></a>
+                    <br></br>
+                    <a href="# " className="upload"><img className="popup_img" src="images/icons/upload.svg" alt="" /></a>
+                    <br></br>
+                    <a href="# " className="more"><img className="popup_img" src="images/icons/more-vertical.svg" alt="" /></a>
+                </div>
+            </div>
+            , document.querySelector('#modal'))
     }
 }
 

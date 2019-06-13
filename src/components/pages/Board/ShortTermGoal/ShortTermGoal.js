@@ -13,7 +13,7 @@ class ShortTermGoal extends Component {
 
     onGoalSetStatus(statusId) {
 
-        console.log('setting new goal status');
+        // console.log('setting new goal status');
 
         this.props.goalChangeStatus(this.props.myProps.shortTermGoal.id, statusId).then(() => {
             this.props.loadGoals(0, this.props.boardShowGoals);
