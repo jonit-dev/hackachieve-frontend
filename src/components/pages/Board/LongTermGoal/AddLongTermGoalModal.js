@@ -5,9 +5,15 @@ import {connect} from 'react-redux';
 import Modal from "../../../UI/Modal/Modal";
 import DatePicker from '../../../UI/Datepicker';
 import {toggleModal} from "../../../../actions/uiActions";
-import {createLongTermGoal, loadGoals, loadUserGoalsCategories, createNewCategory, deleteNewCategory} from "../../../../actions/goalsActions";
+import {
+    createLongTermGoal,
+    loadGoals,
+    loadUserGoalsCategories,
+    createNewCategory,
+    deleteNewCategory
+} from "../../../../actions/goalsActions";
 import Loading from "../../../UI/Loading/Loading";
-import {TagSelector} from './TagSelector';
+import {CategorySelector} from "./CategorySelector";
 
 class AddLongTermGoalModal extends Component {
 
@@ -16,7 +22,7 @@ class AddLongTermGoalModal extends Component {
         this.state = {
             currentSelectableValue: {
                 id: 0,
-                value: ""
+                label: ""
             },
         }
     }
@@ -24,8 +30,13 @@ class AddLongTermGoalModal extends Component {
 
     componentDidMount() {
 
-        this.props.loadUserGoalsCategories().then(() => {
-            //set first option as selected
+        this.onLoadBoardCategories();
+    }
+
+    onLoadBoardCategories() {
+        //load user categories from db
+        return this.props.loadUserGoalsCategories().then(() => {
+            //set first category option as selected
             this.props.change('board_id', this.props.boardCategories[0].id)
         });
     }
@@ -95,32 +106,65 @@ class AddLongTermGoalModal extends Component {
         )
     }
 
-    deleteCategory() {
-        let { currentSelectableValue } = this.state;
-        this.props.deleteNewCategory(currentSelectableValue.id).then(response => {
-            console.log(response);
-            if(response.data.type == "success") {
-                // delete the state
-                currentSelectableValue.id = 0;
-                currentSelectableValue.value = "";
-                this.setState({currentSelectableValue});
-            }
-        });
-    }
+    createCategory(data) {
 
-    createCategory(value) {
-        // this will handle the api call and registers the id of the 
-        // new category and replace the value field of the category object 
-        // in the creatable select component
-        if(value) {
-            this.props.createNewCategory(value.value).then(response => {
-                let { currentSelectableValue } = this.state;
-                console.log(response);
-                // TODO: To set the current value with the id to the state
-            });
-        }
-        else {
-            this.deleteCategory();
+        const {value, label} = data;
+
+        let board_id = parseInt(value);
+
+        console.log('createCategory()');
+        console.log(data);
+
+        switch (data.action) {
+            case 'clear':
+
+                //delete category
+                const delete_board_id = this.state.currentSelectableValue.id;
+
+                this.props.deleteNewCategory(delete_board_id).then((response) => {
+                    this.onLoadBoardCategories(); //refresh board categories
+                });
+
+
+                break;
+
+            case 'select-option':
+
+                //set current selected option on state
+                this.setState({
+                    currentSelectableValue: {
+                        id: board_id,
+                        label: label
+                    }
+                }, () => {
+                    console.log(this.state);
+                });
+
+                break;
+
+            case 'create-option':
+
+                this.props.createNewCategory(value).then(response => {
+                    // let {currentSelectableValue} = this.state;
+                    console.log(response);
+
+                    this.onLoadBoardCategories().then(() => { //refresh board categories, with new one
+
+                        //find the recently added category
+                        let newCategory = this.props.boardCategories.find(category => category.name === label);
+
+                        //set category on component level state (it will be used on submit - formValues)
+                        this.setState({
+                            currentSelectableValue: {
+                                id: newCategory.id,
+                                label: newCategory.name
+                            }
+                        });
+                    });
+                });
+                break;
+
+
         }
     }
 
@@ -133,28 +177,39 @@ class AddLongTermGoalModal extends Component {
             <p>A long-term goal is something you want to do in the future, for example, in the next 3 months.</p>
 
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
+
                 <Field name="name" component={this.renderInput} label="Enter a long term goal title"
                        placeholder="A summary about what's your goal about"/>
+
                 <Field name="description" textarea={true} component={this.renderInputTextArea}
                        label="Enter your long term goal description"
                        placeholder="Describe what you have to do in details, to accomplish it"/>
 
                 <strong><label>Category</label></strong>
                 {
-                    (this.props.boardCategories) ? 
-                    <Field name="board_id"
-                        label="Category"
-                        component={TagSelector}
-                        tags={this.onRenderBoardOptions()}
-                        onChange={value => {this.createCategory(value)}}
-                    /> 
-                    : 
-                    <Loading />
+                    (this.props.boardCategories) ?
+                        <Field name="board_id"
+                               label="Category"
+                               component={CategorySelector}
+                               options={this.onRenderBoardOptions()}
+                               onChange={(data, actions) => {
+
+                                   console.log('CategorySelector:');
+                                   console.log(data);
+                                   if (data) { //make sure its not null
+                                       this.createCategory(data, actions);
+                                   }
+                                   // this.onLoadBoardCategories(); //refresh board categories
+                               }}
+                        />
+                        :
+                        <Loading/>
                 }
+
 
                 <Field
                     name="deadline"
-                    label="Deadline" 
+                    label="Deadline"
                     inputValueFormat="YYYY-MM-DD"
                     // dateFormat="L"
                     dateFormatCalendar="dddd"
@@ -187,24 +242,20 @@ class AddLongTermGoalModal extends Component {
 
         let formOutput = {...formValues};
 
-        // console.log('creating new goal ==> ');
-        // console.log(formOutput);
+        const board_id = this.state.currentSelectableValue.id;
+
+        formOutput.board_id = this.state.currentSelectableValue.id; //get category id
 
         this.props.createLongTermGoal(formOutput).then((response) => {
 
             const {status} = response.data;
 
             if (status === 'success') {
-
                 this.props.loadGoals(0, this.props.boardShowGoals); //refresh goals (to display new one)
-
                 setTimeout(() => {
                     this.props.toggleModal('longTermGoal'); //close modal once goal is created
                 }, 500)
-
             }
-
-
         });
 
     };

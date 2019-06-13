@@ -194,6 +194,10 @@ export const editColumns = (column) => (dispatch) => {
 // The following API will create the new category, 'category' is 'boards' in backend
 export const createNewCategory = (value) => async (dispatch) => {
 
+    console.log('CREATING NEW CATEGORY');
+    console.log(value);
+    
+    
     // const response = await guest_axios.post('/user/register', userInfo);
     return API.request('/boards/create/', 'POST', {name: value, description: "1"}).then((response) => {
         // Need to figure out the response as the server is giving 500 error,
@@ -211,7 +215,7 @@ export const createNewCategory = (value) => async (dispatch) => {
 export const deleteNewCategory = (value) => async (dispatch) => {
 
     // const response = await guest_axios.post('/user/register', userInfo);
-    return API.request('boards/delete/' + value, 'DELETE', {}).then((response) => {
+    return API.request('boards/delete/' + value, 'DELETE', null,'auth').then((response) => {
         console.log("Delete board response", response);
         return response;
 
