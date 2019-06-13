@@ -242,8 +242,6 @@ class AddLongTermGoalModal extends Component {
 
         let formOutput = {...formValues};
 
-        const board_id = this.state.currentSelectableValue.id;
-
         formOutput.board_id = this.state.currentSelectableValue.id; //get category id
 
         this.props.createLongTermGoal(formOutput).then((response) => {

@@ -5,9 +5,16 @@ import moment from 'moment';
 import DatePicker from '../../../UI/Datepicker';
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
-import {createLongTermGoal, loadGoals, loadUserGoalsCategories, editColumns, createNewCategory, deleteNewCategory} from "../../../../actions/goalsActions";
+import {
+    createLongTermGoal,
+    loadGoals,
+    loadUserGoalsCategories,
+    editColumns,
+    createNewCategory,
+    deleteNewCategory
+} from "../../../../actions/goalsActions";
 import Loading from "../../../UI/Loading/Loading";
-import {TagSelector} from './TagSelector';
+import {CategorySelector} from "./CategorySelector";
 
 
 class EditLongTermGoalModal extends Component {
@@ -25,9 +32,13 @@ class EditLongTermGoalModal extends Component {
 
     componentDidMount() {
 
-        this.props.loadUserGoalsCategories().then(() => {
-            //set first option as selected
+        this.onLoadBoardCategories();
+    }
 
+    onLoadBoardCategories() {
+
+        return this.props.loadUserGoalsCategories().then(() => {
+            //set first option as selected
 
             const boardName = this.props.myProps.longTermGoal.boardName;
             const board_id = this.props.boardCategories.find((category) => category.name === boardName).id;
@@ -36,6 +47,7 @@ class EditLongTermGoalModal extends Component {
 
             this.props.change('board_id', board_id)
         });
+
     }
 
 
@@ -103,34 +115,69 @@ class EditLongTermGoalModal extends Component {
         )
     }
 
-    deleteCategory() {
-        let { currentSelectableValue } = this.state;
-        this.props.deleteNewCategory(currentSelectableValue.id).then(response => {
-            console.log(response);
-            if(response.data.type == "success") {
-                // delete the state
-                currentSelectableValue.id = 0;
-                currentSelectableValue.value = "";
-                this.setState({currentSelectableValue});
-            }
-        });
+
+    createCategory(data) {
+
+        const {value, label} = data;
+
+        let board_id = parseInt(value);
+
+        console.log('createCategory()');
+        console.log(data);
+
+        switch (data.action) {
+            case 'clear':
+
+                //delete category
+                const delete_board_id = this.state.currentSelectableValue.id;
+
+                this.props.deleteNewCategory(delete_board_id).then((response) => {
+                    this.onLoadBoardCategories(); //refresh board categories
+                });
+
+
+                break;
+
+            case 'select-option':
+
+                //set current selected option on state
+                this.setState({
+                    currentSelectableValue: {
+                        id: board_id,
+                        label: label
+                    }
+                }, () => {
+                    console.log(this.state);
+                });
+
+                break;
+
+            case 'create-option':
+
+                this.props.createNewCategory(value).then(response => {
+                    // let {currentSelectableValue} = this.state;
+                    console.log(response);
+
+                    this.onLoadBoardCategories().then(() => { //refresh board categories, with new one
+
+                        //find the recently added category
+                        let newCategory = this.props.boardCategories.find(category => category.name === label);
+
+                        //set category on component level state (it will be used on submit - formValues)
+                        this.setState({
+                            currentSelectableValue: {
+                                id: newCategory.id,
+                                label: newCategory.name
+                            }
+                        });
+                    });
+                });
+                break;
+
+
+        }
     }
 
-    createCategory(value) {
-        // this will handle the api call and registers the id of the 
-        // new category and replace the value field of the category object 
-        // in the creatable select component
-        if(value) {
-            this.props.createNewCategory(value.value).then(response => {
-                let { currentSelectableValue } = this.state;
-                console.log(response);
-                // TODO: To set the current value with the id to the state
-            });
-        }
-        else {
-            this.deleteCategory();
-        }
-    }
 
     render() {
         const title = 'Edit your Long Term goal!';
@@ -154,20 +201,28 @@ class EditLongTermGoalModal extends Component {
                 </Field> */}
                 <strong><label>Category</label></strong>
                 {
-                    (this.props.boardCategories) ? 
-                    <Field name="board_id"
-                        label="Category"
-                        component={TagSelector}
-                        tags={this.onRenderBoardOptions()}
-                        onChange={value => {this.createCategory(value)}}
-                    /> 
-                    : 
-                    <Loading />
+                    (this.props.boardCategories) ?
+                        <Field name="board_id"
+                               label="Category"
+                               component={CategorySelector}
+                               options={this.onRenderBoardOptions()}
+                               onChange={(data, actions) => {
+
+                                   console.log('CategorySelector:');
+                                   console.log(data);
+                                   if (data) { //make sure its not null
+                                       this.createCategory(data, actions);
+                                   }
+                                   // this.onLoadBoardCategories(); //refresh board categories
+                               }}
+                        />
+                        :
+                        <Loading/>
                 }
 
                 <Field
                     name="deadline"
-                    label="Deadline" 
+                    label="Deadline"
                     inputValueFormat="YYYY-MM-DD"
                     // dateFormat="L"
                     currentDeadline={this.props.myProps.longTermGoal.deadline}
@@ -208,6 +263,8 @@ class EditLongTermGoalModal extends Component {
             },
             column_id: this.props.myProps.longTermGoal.id
         };
+
+        formOutput.column_data.board_id = this.state.currentSelectableValue.id; //get category id
 
         this.props.editColumns(formOutput).then((response) => {
 
