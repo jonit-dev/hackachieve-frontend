@@ -103,6 +103,18 @@ class Board extends Component {
 
     }
 
+    onStartOnboardingTutorial() {
+
+        let onboarding = JSON.parse(localStorage.getItem('onboarding')); //check if onboarding tutorial was made
+
+        if (!onboarding) {
+            return <Joy/>; //start onboarding tutorial
+        } else { // if user already did the onboarding tutorial, start over
+            return null;
+        }
+    }
+
+
     render() {
         return (
             <React.Fragment>
@@ -111,6 +123,7 @@ class Board extends Component {
                     <div className="board-columns">
 
                         {this.onRenderGoals()}
+                        {this.props.goals && this.onStartOnboardingTutorial()}
 
                         <div className="board-column-add column-add-short-term-goal"
                              onClick={() => this.onOpenLongTermModal()}>
