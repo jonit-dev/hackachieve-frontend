@@ -1,8 +1,14 @@
 @import "selector";
 @import './Checklist';
 
+.ui.form {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
 .field {
   .ui {
     z-index: 0 !important;
   }
+  margin-bottom: 1rem !important;
 }

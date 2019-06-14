@@ -185,7 +185,7 @@ class EditLongTermGoalModal extends Component {
         const content = <React.Fragment>
 
 
-            <p>A long-term goal is something you want to do in the future, for example, in the next 3 months.</p>
+            <p className="modal-subtitle">A long-term goal is something you want to do in the future, for example, in the next 3 months.</p>
 
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field name="name" component={this.renderInput} label="Enter a long term goal title"

@@ -37,7 +37,7 @@ class AddShortTermGoalModal extends Component {
 
         const content = <React.Fragment>
 
-            <p>Short-term goals are defined in <strong>days or weeks</strong> and relate with your long term goal
+            <p className="modal-subtitle">Short-term goals are defined in <strong>days or weeks</strong> and relate with your long term goal
                 purpose.</p>
 
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
