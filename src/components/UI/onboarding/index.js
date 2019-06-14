@@ -21,7 +21,7 @@ export default class Joy extends React.Component {
                     }
                 },
                 target: '.board-column-add.column-add-short-term-goal',
-                title: 'Our projects'
+                title: 'Long Term Goal'
             },
             {
                 content: 'Now, let\'s try to add a short term goal',
@@ -32,7 +32,7 @@ export default class Joy extends React.Component {
                     }
                 },
                 target: '.column-add-short-term-goal',
-                title: 'Our projects'
+                title: 'Short Term Goal'
             },
             {
                 content: 'You can click on the dropdowns, to create, edit or delete your goals',
@@ -43,7 +43,7 @@ export default class Joy extends React.Component {
                     }
                 },
                 target: '.ui.dropdown.column-dropdown',
-                title: 'Our projects'
+                title: 'Change your Goals'
             },
             {
                 content: 'Here you can filter your goals by status',
@@ -54,7 +54,7 @@ export default class Joy extends React.Component {
                     }
                 },
                 target: '.board-switch',
-                title: 'Our projects'
+                title: 'Status filter'
             },
             {
                 content: 'And here, you can filter by goal category',
@@ -65,7 +65,7 @@ export default class Joy extends React.Component {
                     }
                 },
                 target: '#board-dropdown',
-                title: 'Our projects'
+                title: 'Category filter'
             },
             {
                 content: 'Ah! And don\'t forget to use these buttons to start, complete and prioritize your goals',
@@ -76,7 +76,7 @@ export default class Joy extends React.Component {
                     }
                 },
                 target: '.column-card-button',
-                title: 'Our projects'
+                title: 'Actions'
             }
 
         ]
@@ -89,8 +89,10 @@ export default class Joy extends React.Component {
 
         if (status === 'skipped') {
             //if user skips onboarding tutorial, setup a token to avoid the user starting the onboarding again
-            localStorage.setItem('onboarding', JSON.stringify(true));
-        } else if (index >= 2) { //if user goes after step two (set short term goal), also avoid starting again
+            // localStorage.setItem('onboarding', JSON.stringify(true));
+
+
+        } else if (index >= 3) { //if user goes after step two (set short term goal), also avoid starting again
             localStorage.setItem('onboarding', JSON.stringify(true));
         }
 
