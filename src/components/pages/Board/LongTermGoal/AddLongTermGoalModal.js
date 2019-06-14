@@ -164,6 +164,9 @@ class AddLongTermGoalModal extends Component {
                 });
                 break;
 
+            default:
+                break;
+
 
         }
     }

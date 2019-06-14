@@ -105,7 +105,8 @@ export default class Joy extends React.Component {
 
 
     render() {
-        const {run, steps} = this.state;
+        // const {run, steps} = this.state;
+        const {steps} = this.state;
 
         return (
             <div className="app">
