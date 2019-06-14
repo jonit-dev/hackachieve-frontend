@@ -7,7 +7,7 @@ import {toggleModal} from "../../../actions/uiActions";
 import {Mixpanel as mixpanel} from "../../../mixpanel";
 import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
-
+import Joy from "../../UI/onboarding";
 
 
 class Board extends Component {
@@ -27,7 +27,7 @@ class Board extends Component {
         console.log('opening long term modal');
 
 
-        this.props.toggleModal('longTermGoal',0)
+        this.props.toggleModal('longTermGoal', 0)
 
     }
 
@@ -141,7 +141,6 @@ class Board extends Component {
                 </main>
 
 
-
                 <div className="i-phone">
                     <div className="board-switch">
                         <div className={this.onHandleBoardSwitchItem('all')}
@@ -151,7 +150,7 @@ class Board extends Component {
                             <div className="board-switch-text">ALL</div>
                         </div>
                         <div className={this.onHandleBoardSwitchItem('standby')}
-                         onClick={() => this.onBoardSwitch('standby')}>
+                             onClick={() => this.onBoardSwitch('standby')}>
                             <div className="board-switch-icon"></div>
                             <div className="board-switch-text">PENDING</div>
                         </div>
@@ -160,10 +159,10 @@ class Board extends Component {
                             <div className="plus"></div>
                         </div>
                         <div className={this.onHandleBoardSwitchItem('ongoing')}
-                         onClick={() => this.onBoardSwitch('ongoing')}>
-                        <div className="board-switch-icon"></div>
-                        <div className="board-switch-text">ON GOING</div>
-                    </div>
+                             onClick={() => this.onBoardSwitch('ongoing')}>
+                            <div className="board-switch-icon"></div>
+                            <div className="board-switch-text">ON GOING</div>
+                        </div>
                         <div className={this.onHandleBoardSwitchItem('completed')}
                              onClick={() => this.onBoardSwitch('completed')}>
                             <div className="board-switch-icon"></div>
@@ -179,7 +178,7 @@ class Board extends Component {
 }
 
 const filteredGoals = (goals, filter) => {
-   return  (filter === 'All' || filter === 'week') ? goals : goals.filter(goal => goal.name === filter);
+    return (filter === 'All' || filter === 'week') ? goals : goals.filter(goal => goal.name === filter);
 };
 
 const mapStateToProps = (state) => {
