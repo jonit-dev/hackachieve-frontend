@@ -12,8 +12,8 @@ import thunk from 'redux-thunk';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducers,
-    composeEnhancers(applyMiddleware(thunk, logger))
-    // composeEnhancers(applyMiddleware(thunk))
+    // composeEnhancers(applyMiddleware(thunk, logger))
+    composeEnhancers(applyMiddleware(thunk))
 );
 
 ReactDOM.render(

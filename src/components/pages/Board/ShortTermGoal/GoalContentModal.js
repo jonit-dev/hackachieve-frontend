@@ -3,11 +3,13 @@ import {connect} from 'react-redux'
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
 import Moment from "react-moment";
+import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
 
 // import Moment from "react-moment";
 
 
 class GoalContentModal extends Component {
+
 
     onClose() {
         this.props.toggleModal('goalContent', this.props.myProps.shortTermGoal.id);
@@ -58,6 +60,11 @@ class GoalContentModal extends Component {
                 <p>
                     {description}
                 </p>
+
+
+                <ChecklistHandler/>
+
+
             </div>
 
         </React.Fragment>;
@@ -80,11 +87,17 @@ class GoalContentModal extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {myProps: ownProps};
+    return {
+        myProps: ownProps,
+        modals: state.ui.modals,
+
+
+    };
 };
 
 export default connect(mapStateToProps, {
     //actions here
-    toggleModal
+    toggleModal,
+
 })(GoalContentModal);
 

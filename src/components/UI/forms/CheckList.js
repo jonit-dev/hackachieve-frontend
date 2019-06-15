@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { addItem, fetchItem, updateItem } from "../../../actions/checkListAction";
+import { checklistAddItem, checklistFetchItem, checklistUpdateItem } from "../../../actions/checkListAction";
 
 class CheckList extends Component {
 	state = {
@@ -80,7 +80,7 @@ class CheckList extends Component {
 				status: false,
 				goal_id: this.props.goal_id
 			};
-			this.props.updateItem(id, checklist).then(resp => {
+			this.props.checklistUpdateItem(id, checklist).then(resp => {
 
 				this.props.hideForm();
 			})
@@ -92,10 +92,10 @@ class CheckList extends Component {
 			};
 
 
-			this.props.addItem(checklist).then(resp => {
+			this.props.checklistAddItem(checklist).then(resp => {
 
 
-				this.props.fetchItem(this.props.modals.goalContent.id); //trigger a checklist refresh
+				this.props.checklistFetchItem(this.props.modals.goalContent.id); //trigger a checklist refresh
 			})
 
 
@@ -120,8 +120,8 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
 	//some actions here
-	addItem,
-	fetchItem,
-	updateItem
+	checklistAddItem,
+	checklistFetchItem,
+	checklistUpdateItem
 })(formWrapped)
 
