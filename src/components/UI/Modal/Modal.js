@@ -9,6 +9,21 @@ import cogoToast from 'cogo-toast';
 class Modal extends Component {
 
 
+    /*#############################################################|
+
+                            >>>>  WARNING <<<<<
+
+    YOU CAN ONLY ADD TO THIS COMPONENT FUNCIONALITIES THAT ARE >> SHARED <<
+    AMONG ALL OTHER MODALS (like the close button, etc).
+    IF THE FUNCTIONALITY THAT YOU WANT TO CREATE IS NOT SUPPOSED
+    TO APPEAR IN EVERY MODAL, DO NOT ADD IT HERE.
+
+    THANK YOU
+
+    *##############################################################*/
+
+
+
     onClose() {
         this.props.toggleModal(this.props.myProps.name); //close this modal
     }

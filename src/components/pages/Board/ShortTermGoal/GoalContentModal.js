@@ -59,7 +59,7 @@ class GoalContentModal extends Component {
             {/*<a className="add-tag" href="# " > <img src="images/icons/plus.svg" alt=""/> Add</a>*/}
             {/*</div>*/}
 
-            <LabelHandler/>
+            <LabelHandler goalId={this.props.myProps.shortTermGoal.id}/>
 
 
             <div className="detail">

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import {connect} from 'react-redux'
-import {Field, reduxForm, change, untouch} from "redux-form";
+import {Field, reduxForm, change, untouch, formValueSelector} from "redux-form";
 import LabelList from "./LabelList";
 import {createLabels, deleteLabels, loadLabels, updateLabel} from "../../../actions/goalLabelsAction";
 
@@ -21,10 +21,40 @@ class LabelHandler extends Component {
     };
 
     componentDidMount() {
-        this.props.loadLabels();
+
+        const goalId = this.props.myProps.goalId;
+
+        console.log(`fetching labels from goal ${goalId}`);
+        this.props.loadLabels(goalId);
     }
 
     addTagsClick = () => {
+
+        //check if there's some content on add tags input
+
+        const goalId = this.props.myProps.goalId;
+
+        if(this.props.tag) {
+
+
+            const newTag = {
+                tag: this.props.tag
+            };
+
+            console.log('Creating new tag...');
+            console.log(newTag);
+
+            this.props.createLabels(newTag, goalId).then(resp => {
+                this.resetFields('AddLabels', {
+                    tag: '',
+                });
+                this.props.loadLabels(goalId); //refresh afte radding
+            })
+        }
+
+
+        //close tag add
+
         this.setState({
             showTagsInput: !this.state.showTagsInput
         })
@@ -46,28 +76,36 @@ class LabelHandler extends Component {
 
 
     hideLabelUpdateForm = (add) => {
+
+        const goalId = this.props.myProps.goalId;
+
+
         this.setState({
             editableTag: {
                 id: "",
                 name: '',
             }
-        })
+        });
 
         if (add) {
-            this.props.loadLabels()
+            this.props.loadLabels(goalId)
 
         }
     };
 
     onSubmit = (formValue) => {
-        this.props.createLabels(formValue).then(resp => {
+
+
+        const goalId = this.props.myProps.goalId;
+
+        this.props.createLabels(formValue, goalId).then(resp => {
             this.resetFields('AddLabels', {
                 tag: '',
 
             });
-            this.props.loadLabels();
+            this.props.loadLabels(goalId);
         })
-    }
+    };
 
     renderInput({input, type, placeholder}) {
         return (
@@ -97,10 +135,14 @@ class LabelHandler extends Component {
 
 
     render() {
+
+ 
+        
         return (
 
             <div className="ui segment">
                 {this.state.showTagsInput &&
+
 
                 <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
 
@@ -132,8 +174,8 @@ class LabelHandler extends Component {
                                                initialValues={{
                                                    label: label.name,
                                                }}/> : <>
-                                        <label    onClick={() => this.editLabellist(label.id)}>{label.name} </label>
-                                        <i  className="close icon" onClick={() => this.deleteLabels(label)}> </i>
+                                        <label onClick={() => this.editLabellist(label.id)}>{label.name} </label>
+                                        <i className="close icon" onClick={() => this.deleteLabels(label)}> </i>
                                     </>}
                             </li>
                         })
@@ -151,8 +193,13 @@ class LabelHandler extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+
+    const selector = formValueSelector('AddLabels');
+
     return {
+        tag: selector(state, 'tag'), //we use this selector here to pass our input field (tag) to our props
+        myProps: ownProps,
         labels: state.labels.labels
     };
 };

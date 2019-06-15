@@ -2,8 +2,8 @@ import API from '../classes/API';
 import {CREATE_LABELS, LOAD_LABELS, DELETE_LABELS} from './types'
 
 
-export const createLabels = (label) => async (dispatch, getState) => {
-    return API.request('/labels/', 'POST', {
+export const createLabels = (label, goalId) => async (dispatch, getState) => {
+    return API.request(`/labels/goal/${goalId}/`, 'POST', {
         "name": label.tag
     }, 'auth').then((response) => {
 
@@ -18,16 +18,18 @@ export const createLabels = (label) => async (dispatch, getState) => {
 };
 
 
-export const loadLabels = () => async (dispatch, getState) => {
-    return API.request('/labels/', 'GET', 'auth').then((response) => {
-        dispatch({type: LOAD_LABELS, payload: response.data})
+export const loadLabels = (goalId) => async (dispatch, getState) => {
+    return API.request(`/labels/goal/${goalId}/`, 'GET', 'auth').then((response) => {
+        dispatch({type: LOAD_LABELS, payload: response.data});
+
+        console.log(response.data);
         return response
     })
 };
 
 
 export const deleteLabels = (label) => async (dispatch, getState) => {
-    return API.request('/labels/' + label.id + "/", "DELETE", 'auth').then((response) => {
+    return API.request(`/labels/${label.id}/`, "DELETE", 'auth').then((response) => {
         dispatch({
             type: DELETE_LABELS, payload: {
                 ...label
