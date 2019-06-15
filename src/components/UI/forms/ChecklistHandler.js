@@ -6,8 +6,6 @@ import {checklistChangeStatus, checklistDeleteItem, checklistFetchItem} from "..
 
 class ChecklistHandler extends Component {
 
-    /* CHECKLIST =========================================== */
-
     state = {
         showChecklistForm: false,
         //status: true,
@@ -59,12 +57,6 @@ class ChecklistHandler extends Component {
             editChecklist: ""
         })
     };
-
-
-
-    /*  =========================================== */
-
-
 
     render() {
         return (
