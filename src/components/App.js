@@ -19,9 +19,19 @@ import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
 import Footer from "./pages/Base/Footer/Footer";
 import Preferences from "./pages/Landing/Preferences/Preferences";
 
+
+
 class App extends Component {
 
     componentDidMount() {
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'test_gtm_event',
+            'working': 'fine'
+        });
+
+
         this.props.checkLoggedIn(); //check logged in on app init
 
         console.log(`Initializing app. Environment is ${env.env}`);

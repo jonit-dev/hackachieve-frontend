@@ -27,7 +27,6 @@
           rel="stylesheet">
 
 
-
     <!-- USER REPORT -->
     <script type="text/javascript">
         window._urq = window._urq || [];
@@ -59,21 +58,23 @@
         smartlook('init', '4ec16660e7fa11e904e7456a702551cf22176d82');
     </script>
 
-    <!--ANALYTICS-->
+    <!--GOOGLE TAG MANAGER -->
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140413155-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-140413155-1');
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WHL5QKB');</script>
+    <!-- End Google Tag Manager -->
 
 
     <!--
@@ -88,6 +89,14 @@
     <title>Hackachieve - Double your productivity!</title>
 </head>
 <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHL5QKB"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 <div id="modal"></div>
