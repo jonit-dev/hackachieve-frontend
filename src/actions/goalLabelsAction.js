@@ -7,11 +7,11 @@ export const createLabels = (label, goalId) => async (dispatch, getState) => {
         "name": label.tag
     }, 'auth').then((response) => {
 
-        dispatch({
-            type: CREATE_LABELS, payload: {
-                ...label
-            }
-        });
+        // dispatch({
+        //     type: CREATE_LABELS, payload: {
+        //         ...label
+        //     }
+        // });
         return response
 
     })

@@ -43,10 +43,11 @@
   height: 46px;
   line-height: 46px;
   display: inline-block;
-  font-size: 15px;
+  font-size: 0.85rem !important;
   color: #54575D;
   text-align: center;
-  padding: 0 7px;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .top-bar-popup a img {
@@ -493,7 +494,7 @@ span.time {
     font-size: 16px;
   }
   .top-bar-popup a {
-    width: 136px;
+    min-width: 136px;
     font-size: 15px;
   }
   .top-bar-popup a img {
@@ -528,7 +529,7 @@ span.time {
     font-size: 12px;
   }
   .top-bar-popup a {
-    width: 92px;
+    min-width: 92px;
     font-size: 9px;
   }
   .top-bar-popup a img {

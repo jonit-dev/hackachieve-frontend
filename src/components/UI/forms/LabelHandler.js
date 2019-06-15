@@ -34,7 +34,7 @@ class LabelHandler extends Component {
 
         const goalId = this.props.myProps.goalId;
 
-        if(this.props.tag) {
+        if (this.props.tag) {
 
 
             const newTag = {
@@ -54,24 +54,17 @@ class LabelHandler extends Component {
 
 
         //close tag add
+        this.onCloseTagAdd();
+    };
 
+    onCloseTagAdd() {
         this.setState({
             showTagsInput: !this.state.showTagsInput
         })
-    };
+    }
 
     deleteLabels = (label) => {
         this.props.deleteLabels(label)
-    };
-
-
-    editLabellist(id, name) {
-        this.setState({
-            editableTag: {
-                id,
-                name,
-            }
-        })
     };
 
 
@@ -101,9 +94,9 @@ class LabelHandler extends Component {
         this.props.createLabels(formValue, goalId).then(resp => {
             this.resetFields('AddLabels', {
                 tag: '',
-
             });
             this.props.loadLabels(goalId);
+            this.onCloseTagAdd();
         })
     };
 
@@ -131,56 +124,117 @@ class LabelHandler extends Component {
     };
 
 
+    editLabellist(id, name) {
+
+        console.log('editing label list');
+
+        return false;
+
+        this.setState({
+            editableTag: {
+                id,
+                name,
+            }
+        })
+    };
+
+
+    onRenderLabels() {
+
+
+        return this.props.labels && this.props.labels.map((label) => {
+            return this.state.editableTag.id === label.id ?
+                <LabelList key={label.id} label={label} hideLabelUpdateForm={this.hideLabelUpdateForm}
+                           initialValues={{
+                               label: label.name,
+                           }}/> :
+                <a key={label.id} className="goal" href=" #"
+                   onClick={() => this.editLabellist(label.id, label.name)}>
+                    {label.name}
+
+                    <i key={label.id} className="close icon" onClick={(e) => {
+                        e.stopPropagation();
+                        this.deleteLabels(label);
+                    }
+                    }> </i>
+                </a>
+
+
+        })
+
+
+        // return this.props.labels.map((label) => {
+        //
+        //
+        //     return this.state.editableTag.id === label.id ?
+        //         <LabelList label={label} hideLabelUpdateForm={this.hideLabelUpdateForm}
+        //                    initialValues={{
+        //                        label: label.name,
+        //                    }}/> :
+        //
+        //         <a
+        //             key={label.id}
+        //             className="goal"
+        //             href="# "
+        //             onClick={() => this.editLabellist(label.id)}>
+        //             {label.name}
+        //             <i className="close icon" onClick={() => this.deleteLabels(label)}> </i>
+        //         </a>
+        //
+        //
+        // });
+
+
+    }
+
     /*  =========================================== */
 
 
     render() {
 
- 
-        
+
         return (
 
-            <div className="ui segment">
+
+            <div className="tags">
+
+                <label>Tags</label>
+
                 {this.state.showTagsInput &&
-
-
                 <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-
-
                     <Field name="tag" component={this.renderInput}
                            placeholder="Type and press 'Enter'"
                     />
                 </form>}
 
-                <div>
-                    <button className="ui primary button" onClick={this.addTagsClick}>Add Tags</button>
 
-                </div>
+                {this.onRenderLabels()}
 
-                <div>
-                </div>
-                <ul style={{display: 'inline'}}>
-                    {
-                        this.props.labels && this.props.labels.map((label) => {
-                            return <li key={label.id} style={{
-                                float: "left",
-                                margin: '5px',
-                                border: "5px solid #D3D3D3	",
-                                background: '#D3D3D3	'
-                            }}>
 
-                                {this.state.editableTag.id === label.id ?
-                                    <LabelList label={label} hideLabelUpdateForm={this.hideLabelUpdateForm}
-                                               initialValues={{
-                                                   label: label.name,
-                                               }}/> : <>
-                                        <label onClick={() => this.editLabellist(label.id)}>{label.name} </label>
-                                        <i className="close icon" onClick={() => this.deleteLabels(label)}> </i>
-                                    </>}
-                            </li>
-                        })
-                    }
-                </ul>
+                <>
+                    <a className="add-tag" href="# " onClick={this.addTagsClick}> <img src="images/icons/plus.svg"
+                                                                                       alt=""
+                    /> Add</a>
+                </>
+
+
+                {/*<ul style={{display: 'inline'}}>*/}
+                {/*    {*/}
+                {/*        this.props.labels && this.props.labels.map((label) => {*/}
+                {/*            return <li>*/}
+
+                {/*                {this.state.editableTag.id === label.id ?*/}
+                {/*                    <LabelList label={label} hideLabelUpdateForm={this.hideLabelUpdateForm}*/}
+                {/*                               initialValues={{*/}
+                {/*                                   label: label.name,*/}
+                {/*                               }}/> : <>*/}
+                {/*                        <label onClick={() => this.editLabellist(label.id)}>{label.name} </label>*/}
+                {/*                        <i className="close icon" onClick={() => this.deleteLabels(label)}> </i>*/}
+                {/*                    </>}*/}
+                {/*            </li>*/}
+                {/*        })*/}
+                {/*    }*/}
+                {/*</ul>*/}
 
                 {/* {
                       this.props.labels && this.props.labels.map((label)=>{
