@@ -8,6 +8,23 @@ class Landing extends Component {
 
     componentDidMount() {
         Mixpanel.track('landing_visit');
+
+        setTimeout(() => {
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event' : 'GAEvent',
+                'eventCategory' : 'test',
+                'eventAction' : 'test',
+                'eventLabel' : 'label',
+                'eventValue' : '1'
+            });
+
+
+            console.log('fired test event');
+
+        },2000)
+
     }
 
     render() {
