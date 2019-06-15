@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import * as ReactDOM from "react-dom";
-import { connect } from 'react-redux'
-import { toggleModal, clearAlert } from "../../../actions/uiActions";
+import {connect} from 'react-redux'
+import {toggleModal, clearAlert} from "../../../actions/uiActions";
 import Alert from "../Alert/Alert";
-import CheckList from "../../UI/forms/CheckList";
-import { fetchItem, changeStatus, deleteItem } from "../../../actions/checkListAction";
 import cogoToast from 'cogo-toast';
 
+
 class Modal extends Component {
-
-
 
 
     onClose() {
@@ -24,12 +21,10 @@ class Modal extends Component {
     }
 
     onRenderAlert() {
-        return (this.props.alert.type && this.props.alert.type === 'negative' ? <Alert type={this.props.alert.type} title={this.props.alert.title}
-            content={this.props.alert.content} /> : null)
+        return (this.props.alert.type && this.props.alert.type === 'negative' ?
+            <Alert type={this.props.alert.type} title={this.props.alert.title}
+                   content={this.props.alert.content}/> : null)
     }
-
-
-
 
 
     render() {
@@ -37,12 +32,12 @@ class Modal extends Component {
             <div className="ui dimmer modals visible active" onClick={(e) => {
                 e.stopPropagation();
                 this.onClose();
-                
+
             }}>
 
 
-                <div className="ui  modal  active main-div" onClick={(e) => e.stopPropagation()} >
-                   
+                <div className="ui  modal  active main-div" onClick={(e) => e.stopPropagation()}>
+
 
                     <div className="content">
 
@@ -54,7 +49,6 @@ class Modal extends Component {
                         {this.onRenderAlert()}
 
                         {this.props.myProps.content}
-
 
 
                         { /*
@@ -90,7 +84,7 @@ class Modal extends Component {
 
                             </div>
 
-                       */ }
+                       */}
                     </div>
                     <div className="actions">
                         {this.props.myProps.actions}
@@ -101,7 +95,7 @@ class Modal extends Component {
                     <a href="# " className="close" onClick={(e) => {
                         e.stopPropagation();
                         this.onClose();
-                    }}><img className="popup_img" src="images/icons/x.svg" alt="" /></a>
+                    }}><img className="popup_img" src="images/icons/x.svg" alt=""/></a>
                     <br></br>
                     {/*<a href="# " className="upload"><img className="popup_img" src="images/icons/upload.svg" alt="" /></a>*/}
                     {/*<br></br>*/}
@@ -119,17 +113,12 @@ const mapStateToProps = (state, ownProps) => {
         myProps: ownProps,
         alert: state.alert.message,
         modals: state.ui.modals,
-        // items: state.checklist.items,
-        // checklist: state.checklist
     };
 };
 
+
 export default connect(mapStateToProps, {
-    //actions here
     toggleModal,
-    // fetchItem,
-    // changeStatus,
-    // deleteItem,
     clearAlert
 })(Modal);
 

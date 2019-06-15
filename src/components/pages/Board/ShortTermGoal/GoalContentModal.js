@@ -4,6 +4,7 @@ import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
 import Moment from "react-moment";
 import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
+import LabelHandler from "../../../UI/forms/LabelHandler";
 
 // import Moment from "react-moment";
 
@@ -49,12 +50,18 @@ class GoalContentModal extends Component {
                 {/*<a className="public" href="# "><img src="images/icons/eye.svg" alt=""/> Public</a>*/}
             </div>
 
+
+
             {/*<div className="tags">*/}
             {/* <label>Tags</label>*/}
             {/* <a className="fitness" href="# "> Fitness</a>*/}
             {/*<a className="goal" href="# "> Personal goals</a>*/}
             {/*<a className="add-tag" href="# " > <img src="images/icons/plus.svg" alt=""/> Add</a>*/}
             {/*</div>*/}
+
+            <LabelHandler/>
+
+
             <div className="detail">
                 <h3>Description</h3>
                 <p>

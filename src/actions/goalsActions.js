@@ -56,8 +56,6 @@ export const goalChangeStatus = (goalId, status) => async (dispatch) => {
 
     return API.request(`/goals/update-status/${goalId}/${status}`, 'PATCH', null, 'auth').then((response) => {
 
-        console.log(response);
-
     });
 
 
@@ -69,8 +67,6 @@ export const goalSetPriority = (goalId, newPriority) => async (dispatch) => {
     mixpanel.track('goal_set_priority');
 
     return API.request(`/goals/update-priority/${goalId}/${newPriority}`, 'PATCH', null, 'auth').then((response) => {
-
-        console.log(response);
 
     });
 
@@ -105,8 +101,6 @@ export const createGoal = (data) => async (dispatch) => {
 };
 
 export const createLongTermGoal = (data) => async (dispatch) => {
-
-    console.log('Action: createLongTermGoal');
 
     return API.request('/columns/create/', 'POST', data, 'auth').then((response) => {
 

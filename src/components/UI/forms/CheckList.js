@@ -105,7 +105,7 @@ class CheckList extends Component {
 
 
 const formWrapped = reduxForm({
-	form: 'CheckList',
+    form: 'CheckList',
 
 })(CheckList);
 const required = value => (value ? undefined : 'Item Description required');
