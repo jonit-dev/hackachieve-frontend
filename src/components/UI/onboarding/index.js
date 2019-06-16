@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactJoyride, {STATUS} from 'react-joyride';
+import Analytics from "../../../analytics/Analytics";
 
 export default class Joy extends React.Component {
     state = {
@@ -92,12 +93,26 @@ export default class Joy extends React.Component {
             // localStorage.setItem('onboarding', JSON.stringify(true));
 
 
+            Analytics.track('skipped_onboarding', {
+                'eventCategory': 'onboarding',
+                'eventAction': 'skipped_onboarding',
+            });
+
+
         } else if (index >= 3) { //if user goes after step two (set short term goal), also avoid starting again
+
+
             localStorage.setItem('onboarding', JSON.stringify(true));
         }
 
 
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+
+            Analytics.track('completed_onboarding', {
+                'eventCategory': 'onboarding',
+                'eventAction': 'completed_onboarding',
+            });
+
             this.setState({run: false});
         }
         console.groupCollapsed(type);

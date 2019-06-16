@@ -1,6 +1,6 @@
 import API from "../classes/API";
 import {LOAD_CATEGORIES, LOAD_GOALS, SHOW_ALERT, FILTER_GOALS} from "./types";
-import {Mixpanel as mixpanel} from "../mixpanel";
+import Analytics from "../analytics/Analytics";
 
 
 export const loadGoals = (id, status) => async (dispatch, getState) => {
@@ -23,7 +23,12 @@ export const loadGoals = (id, status) => async (dispatch, getState) => {
 
 export const deleteGoal = (id) => async (dispatch) => {
 
-    mixpanel.track('short_term_goal_delete');
+    Analytics.track('short_term_goal_delete', {
+        'eventCategory': 'goals',
+        'eventAction': 'short_term_goal_delete',
+        'eventLabel': `deleted shortermgoal id ${id}`,
+        'eventValue': 1
+    });
 
     // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
     return API.request(`/goals/delete/${id}/`, 'DELETE', null, 'auth')
@@ -32,7 +37,12 @@ export const deleteGoal = (id) => async (dispatch) => {
 export const deleteLongTermGoal = (id) => async (dispatch) => {
 
 
-    mixpanel.track('long_term_goal_delete');
+    Analytics.track('long_term_goal_delete', {
+        'eventCategory': 'goals',
+        'eventAction': 'long_term_goal_delete',
+        'eventLabel': `deleted longTermGoal id ${id}`,
+        'eventValue': 1
+    });
 
     // await auth_axios.delete(`/goals/delete/${id}`); //send request to server
     return API.request(`/columns/delete/${id}/`, 'DELETE', null, 'auth')
@@ -50,8 +60,12 @@ export const loadUserGoalsCategories = () => async (dispatch) => {
 
 export const goalChangeStatus = (goalId, status) => async (dispatch) => {
 
-
-    mixpanel.track('goal_change_status');
+    Analytics.track('goal_change_status', {
+        'eventCategory': 'goals',
+        'eventAction': 'goal_change_status',
+        'eventLabel': `goalId: ${goalId} - status: ${status}`,
+        'eventValue': status
+    });
 
 
     return API.request(`/goals/update-status/${goalId}/${status}`, 'PATCH', null, 'auth').then((response) => {
@@ -64,7 +78,12 @@ export const goalChangeStatus = (goalId, status) => async (dispatch) => {
 export const goalSetPriority = (goalId, newPriority) => async (dispatch) => {
 
 
-    mixpanel.track('goal_set_priority');
+    Analytics.track('goal_set_priority', {
+        'eventCategory': 'goals',
+        'eventAction': 'goal_set_priority',
+        'eventLabel': `goalId: ${goalId} - newPriority: ${newPriority}`,
+        'eventValue': newPriority
+    });
 
     return API.request(`/goals/update-priority/${goalId}/${newPriority}`, 'PATCH', null, 'auth').then((response) => {
 
@@ -82,9 +101,19 @@ export const createGoal = (data) => async (dispatch) => {
         const {status, message} = response.data;
 
         if (status === 'success') {
-            mixpanel.track('short_goal_create');
+
+            Analytics.track('short_goal_create', {
+                'eventCategory': 'goals',
+                'eventAction': 'short_goal_create',
+            });
+
+
         } else {
-            mixpanel.track('short_goal_create_error');
+
+            Analytics.track('short_goal_create_error', {
+                'eventCategory': 'goals',
+                'eventAction': 'short_goal_create_error',
+            });
         }
 
         dispatch({
@@ -107,9 +136,17 @@ export const createLongTermGoal = (data) => async (dispatch) => {
         const {status, message} = response.data;
 
         if (status === 'success') {
-            mixpanel.track('long_goal_create');
+
+            Analytics.track('long_goal_create', {
+                'eventCategory': 'goals',
+                'eventAction': 'long_goal_create',
+            });
         } else {
-            mixpanel.track('long_goal_create_error');
+
+            Analytics.track('long_goal_create_error', {
+                'eventCategory': 'goals',
+                'eventAction': 'long_goal_create_error',
+            });
         }
 
 
@@ -128,6 +165,12 @@ export const createLongTermGoal = (data) => async (dispatch) => {
 
 export const filterGoals = (category) => (dispatch) => {
 
+
+    Analytics.track('filter_goals', {
+        'eventCategory': 'goals',
+        'eventAction': 'filter_goals',
+    });
+
     dispatch({
         type: FILTER_GOALS, payload: {category}
     });
@@ -141,9 +184,18 @@ export const editGoals = (goal) => (dispatch) => {
         const {status, message} = response.data;
 
         if (status === 'success') {
-            mixpanel.track('short_goal_edit');
+
+            Analytics.track('short_goal_edit', {
+                'eventCategory': 'goals',
+                'eventAction': 'short_goal_edit',
+            });
         } else {
-            mixpanel.track('short_goal_edit_error');
+
+            Analytics.track('short_goal_edit_error', {
+                'eventCategory': 'goals',
+                'eventAction': 'short_goal_edit_error',
+            });
+
         }
 
 
@@ -166,9 +218,19 @@ export const editColumns = (column) => (dispatch) => {
 
 
         if (status === 'success') {
-            mixpanel.track('long_goal_edit');
+
+
+            Analytics.track('long_goal_edit', {
+                'eventCategory': 'goals',
+                'eventAction': 'long_goal_edit',
+            });
+
         } else {
-            mixpanel.track('long_goal_edit_error');
+
+            Analytics.track('long_goal_edit_error', {
+                'eventCategory': 'goals',
+                'eventAction': 'long_goal_edit_error',
+            });
         }
 
 
@@ -188,6 +250,9 @@ export const editColumns = (column) => (dispatch) => {
 // The following API will create the new category, 'category' is 'boards' in backend
 export const createNewCategory = (value) => async (dispatch) => {
 
+
+
+
     console.log('CREATING NEW CATEGORY');
     console.log(value);
     
@@ -197,6 +262,13 @@ export const createNewCategory = (value) => async (dispatch) => {
         // Need to figure out the response as the server is giving 500 error,
         // https://hackachieve.slack.com/messages/DK2GCP79R/
         // data is being returned when the name parameter is sent with an empty string
+
+
+        Analytics.track('goal_category_create', {
+            'eventCategory': 'goals',
+            'eventAction': 'goal_category_create',
+        });
+
         console.log("Create board response", response);
         return response;
 
@@ -210,6 +282,13 @@ export const deleteNewCategory = (value) => async (dispatch) => {
 
     // const response = await guest_axios.post('/user/register', userInfo);
     return API.request('boards/delete/' + value, 'DELETE', null,'auth').then((response) => {
+
+
+        Analytics.track('goal_category_delete', {
+            'eventCategory': 'goals',
+            'eventAction': 'goal_category_delete',
+        });
+
         console.log("Delete board response", response);
         return response;
 

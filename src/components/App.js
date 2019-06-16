@@ -19,6 +19,9 @@ import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
 import Footer from "./pages/Base/Footer/Footer";
 import Preferences from "./pages/Landing/Preferences/Preferences";
 
+import GoogleTagManager from "../analytics/GoogleTagManager";
+
+
 class App extends Component {
 
     componentDidMount() {
@@ -27,13 +30,19 @@ class App extends Component {
         console.log(`Initializing app. Environment is ${env.env}`);
 
 
+        //Necessary for GTM
+        window.dataLayer = window.dataLayer || [];
+
     }
 
     render() {
         return (
             <Router history={history}>
+                <GoogleTagManager gtmId="GTM-WHL5QKB"/>
                 <Header/>
+
                 <Switch>
+
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>

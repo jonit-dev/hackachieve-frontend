@@ -2,12 +2,18 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from "react-router-dom";
 import User from '../../../classes/User';
-import {Mixpanel} from '../../../mixpanel';
+import Analytics from "../../../analytics/Analytics";
 
 class Landing extends Component {
 
     componentDidMount() {
-        Mixpanel.track('landing_visit');
+
+
+        Analytics.track('landing_visit', {
+            'eventCategory': 'pages',
+            'eventAction': 'landing_visit',
+        })
+
     }
 
     render() {

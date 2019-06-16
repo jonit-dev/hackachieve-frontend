@@ -1,5 +1,6 @@
 import API from "../classes/API";
 import {LOAD_TAGS} from "./types";
+import Analytics from "../analytics/Analytics";
 
 export const loadTags = () => async (dispatch, getState) => {
     return API.request(`/areas-of-knowledge`, 'GET', null, 'auth').then((response) => {
@@ -8,6 +9,14 @@ export const loadTags = () => async (dispatch, getState) => {
 };
 
 export const createTags = (tags) => async (dispatch, getState) => {
+
+
+
+    Analytics.track('user_add_knowledge_area', {
+        'eventCategory': 'account',
+        'eventAction': 'user_add_knowledge_area',
+    });
+
 
     let data = tags.knowledgeSelector.map(({value, label}) => {
         return {name: label}

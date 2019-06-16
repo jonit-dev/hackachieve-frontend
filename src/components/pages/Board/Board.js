@@ -4,10 +4,10 @@ import {loadGoals, loadUserGoalsCategories} from "../../../actions/goalsActions"
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
 import {toggleModal} from "../../../actions/uiActions";
-import {Mixpanel as mixpanel} from "../../../mixpanel";
 import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
 import Joy from "../../UI/onboarding";
+import Analytics from "../../../analytics/Analytics";
 
 
 class Board extends Component {
@@ -18,7 +18,10 @@ class Board extends Component {
         this.props.loadUserGoalsCategories();
 
 
-        mixpanel.track('board_visit')
+        Analytics.track('board_visit', {
+            'eventCategory': 'pages',
+            'eventAction': 'board_visit',
+        });
 
     }
 
