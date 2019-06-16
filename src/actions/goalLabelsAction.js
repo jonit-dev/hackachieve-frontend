@@ -1,5 +1,5 @@
 import API from '../classes/API';
-import {CREATE_LABELS, LOAD_LABELS, DELETE_LABELS} from './types'
+import {LOAD_LABELS, DELETE_LABELS} from './types'
 
 
 export const createLabels = (label, goalId) => async (dispatch, getState) => {
@@ -7,11 +7,6 @@ export const createLabels = (label, goalId) => async (dispatch, getState) => {
         "name": label.tag
     }, 'auth').then((response) => {
 
-        // dispatch({
-        //     type: CREATE_LABELS, payload: {
-        //         ...label
-        //     }
-        // });
         return response
 
     })
@@ -21,8 +16,6 @@ export const createLabels = (label, goalId) => async (dispatch, getState) => {
 export const loadLabels = (goalId) => async (dispatch, getState) => {
     return API.request(`/labels/goal/${goalId}/`, 'GET', 'auth').then((response) => {
         dispatch({type: LOAD_LABELS, payload: response.data});
-
-        console.log(response.data);
         return response
     })
 };

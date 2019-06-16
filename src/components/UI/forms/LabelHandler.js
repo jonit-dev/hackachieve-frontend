@@ -8,15 +8,12 @@ import {createLabels, deleteLabels, loadLabels, updateLabel} from "../../../acti
 
 class LabelHandler extends Component {
 
-
-    /* Label =========================================== */
-
     state = {
         showTagsInput: false,
         //status: true,
         editableTag: {
-            id: "",
-            name: "",
+            id: null,
+            name: null,
         }
     };
 
@@ -26,6 +23,8 @@ class LabelHandler extends Component {
 
         console.log(`fetching labels from goal ${goalId}`);
         this.props.loadLabels(goalId);
+
+
     }
 
     addTagsClick = () => {
@@ -34,15 +33,13 @@ class LabelHandler extends Component {
 
         const goalId = this.props.myProps.goalId;
 
-        if (this.props.tag) {
 
+        //if there's, create a new tag
+        if (this.props.tag) {
 
             const newTag = {
                 tag: this.props.tag
             };
-
-            console.log('Creating new tag...');
-            console.log(newTag);
 
             this.props.createLabels(newTag, goalId).then(resp => {
                 this.resetFields('AddLabels', {
@@ -72,17 +69,15 @@ class LabelHandler extends Component {
 
         const goalId = this.props.myProps.goalId;
 
-
         this.setState({
             editableTag: {
-                id: "",
-                name: '',
+                id: null,
+                name: null,
             }
         });
 
         if (add) {
             this.props.loadLabels(goalId)
-
         }
     };
 
@@ -92,10 +87,14 @@ class LabelHandler extends Component {
         const goalId = this.props.myProps.goalId;
 
         this.props.createLabels(formValue, goalId).then(resp => {
+
+            //clear reduxform fields
             this.resetFields('AddLabels', {
                 tag: '',
             });
             this.props.loadLabels(goalId);
+
+            //close tag
             this.onCloseTagAdd();
         })
     };
@@ -124,17 +123,16 @@ class LabelHandler extends Component {
     };
 
 
-    editLabellist(id, name) {
-
-        console.log('editing label list');
-
-        return false;
+    editLabelList(id, name) {
 
         this.setState({
             editableTag: {
-                id,
-                name,
+                id: id,
+                name: name
             }
+        }, () => {
+            console.log('editable tag state');
+            console.log(this.state.editableTag);
         })
     };
 
@@ -143,59 +141,41 @@ class LabelHandler extends Component {
 
 
         return this.props.labels && this.props.labels.map((label) => {
-            return this.state.editableTag.id === label.id ?
-                <LabelList key={label.id} label={label} hideLabelUpdateForm={this.hideLabelUpdateForm}
-                           initialValues={{
-                               label: label.name,
-                           }}/> :
-                <a key={label.id} className="goal" href=" #"
-                   onClick={() => this.editLabellist(label.id, label.name)}>
-                    {label.name}
 
+
+            if (this.state.editableTag.id === label.id) {
+                console.log('showing editable tag');
+                console.log(this.state.editableTag);
+                console.log(label);
+
+
+                return <LabelList key={label.id} label={label}
+                                  hideLabelUpdateForm={this.hideLabelUpdateForm}
+                                  initialValues={{
+                                      label: label.name,
+                                  }}/>;
+
+            } else {
+                return <a key={label.id} className="goal" href=" #"
+                          onClick={(e) => {
+                              e.preventDefault();
+                              this.editLabelList(label.id, label.name)
+                          }
+                          }>
+                    {label.name}
                     <i key={label.id} className="close icon" onClick={(e) => {
                         e.stopPropagation();
                         this.deleteLabels(label);
-                    }
-                    }> </i>
-                </a>
-
-
+                    }}>
+                    </i>
+                </a>;
+            }
         })
-
-
-        // return this.props.labels.map((label) => {
-        //
-        //
-        //     return this.state.editableTag.id === label.id ?
-        //         <LabelList label={label} hideLabelUpdateForm={this.hideLabelUpdateForm}
-        //                    initialValues={{
-        //                        label: label.name,
-        //                    }}/> :
-        //
-        //         <a
-        //             key={label.id}
-        //             className="goal"
-        //             href="# "
-        //             onClick={() => this.editLabellist(label.id)}>
-        //             {label.name}
-        //             <i className="close icon" onClick={() => this.deleteLabels(label)}> </i>
-        //         </a>
-        //
-        //
-        // });
-
-
     }
-
-    /*  =========================================== */
-
 
     render() {
 
-
         return (
-
-
             <div className="tags">
 
                 <label>Tags</label>
@@ -207,39 +187,13 @@ class LabelHandler extends Component {
                     />
                 </form>}
 
-
                 {this.onRenderLabels()}
-
-
                 <>
-                    <a className="add-tag" href="# " onClick={this.addTagsClick}> <img src="images/icons/plus.svg"
-                                                                                       alt=""
-                    /> Add</a>
+                    <a className="add-tag" href="# " onClick={this.addTagsClick}>
+                        <img src="images/icons/plus.svg"
+                             alt="add new tag button"
+                        /> Add</a>
                 </>
-
-
-                {/*<ul style={{display: 'inline'}}>*/}
-                {/*    {*/}
-                {/*        this.props.labels && this.props.labels.map((label) => {*/}
-                {/*            return <li>*/}
-
-                {/*                {this.state.editableTag.id === label.id ?*/}
-                {/*                    <LabelList label={label} hideLabelUpdateForm={this.hideLabelUpdateForm}*/}
-                {/*                               initialValues={{*/}
-                {/*                                   label: label.name,*/}
-                {/*                               }}/> : <>*/}
-                {/*                        <label onClick={() => this.editLabellist(label.id)}>{label.name} </label>*/}
-                {/*                        <i className="close icon" onClick={() => this.deleteLabels(label)}> </i>*/}
-                {/*                    </>}*/}
-                {/*            </li>*/}
-                {/*        })*/}
-                {/*    }*/}
-                {/*</ul>*/}
-
-                {/* {
-                      this.props.labels && this.props.labels.map((label)=>{
-                      })
-                    } */}
 
             </div>
 
@@ -271,4 +225,5 @@ export default connect(mapStateToProps, {
     deleteLabels,
     updateLabel,
 })(formWrapped);
+
 

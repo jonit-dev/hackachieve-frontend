@@ -26,16 +26,16 @@ class LabelList extends Component {
         )
     }
 
-    handleCancelClick = () => {
-        this.setState({
-            showChecklistForm: !this.state.showChecklistForm,
-            editChecklist: ''
+    onSubmit = (formValues) => {
+
+        this.props.updateLabel(this.props.label.id, formValues.label).then(resp => {
+            this.props.hideLabelUpdateForm(true);
         })
+
     };
 
     render() {
-        // const {id, description} = this.props.item || {};
-       
+
         const form = <React.Fragment>
             <form
                 onSubmit={this.props.handleSubmit(this.onSubmit)}
@@ -47,9 +47,6 @@ class LabelList extends Component {
                     placeholder="Add an item"
                     validate={[required]}
                 />
-                
-              
-
             </form>
         </React.Fragment>;
        
@@ -68,13 +65,7 @@ class LabelList extends Component {
         );
     }
 
-    onSubmit = (formValues) => {
 
-            this.props.updateLabel(this.props.label.id, formValues.label).then(resp => {
-                this.props.hideLabelUpdateForm(true);
-            })
-        
-    };
 }
 
 
@@ -89,12 +80,10 @@ const required = value => (value ? undefined : 'Please enter your tag name');
 const mapStateToProps = (state, ownProps) => {
     return {
         myProps: ownProps,
-
-
     };
 };
 
-export default connect(mapStateToProps(), {
+export default connect(mapStateToProps, {
     //some actions here
     loadLabels,
     updateLabel
