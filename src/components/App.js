@@ -19,7 +19,6 @@ import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
 import Footer from "./pages/Base/Footer/Footer";
 import Preferences from "./pages/Landing/Preferences/Preferences";
 
-import GoogleTagManager from "../analytics/GoogleTagManager";
 
 
 class App extends Component {
@@ -38,7 +37,6 @@ class App extends Component {
     render() {
         return (
             <Router history={history}>
-                <GoogleTagManager gtmId="GTM-WHL5QKB"/>
                 <Header/>
 
                 <Switch>

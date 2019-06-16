@@ -8691,11 +8691,6 @@ react-floater@^0.6.4:
     react-proptype-conditional-require "^1.0.4"
     tree-changes "^0.4.0"
 
-react-google-tag-manager@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/react-google-tag-manager/-/react-google-tag-manager-2.2.1.tgz#b0659c7b19d9263c7cb45d3c019f506529af9077"
-  integrity sha512-8yPbEE3r2z0OWRvJYg1HegKQktH2fIJ2hHCFzAk7+GeOHIK7Vcq+dA0wo2Wf81oHSPMHiOY7nhXIviSVJFV64w==
-
 react-input-autosize@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"

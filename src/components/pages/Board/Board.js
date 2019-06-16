@@ -6,7 +6,7 @@ import LongTermGoal from "./LongTermGoal/LongTermGoal";
 import {toggleModal} from "../../../actions/uiActions";
 import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
-import Joy from "../../UI/onboarding";
+import Joy from "../../onboarding";
 import Analytics from "../../../analytics/Analytics";
 
 

@@ -1,8 +1,8 @@
 import env from "../env";
 import {Mixpanel} from './mixpanel';
 
-// let isProd = env.env === 'prod';
-let isProd = true; //dev testing
+let isProd = env.env === 'prod';
+// let isProd = true; //dev testing
 
 export default class Analytics {
 
@@ -24,7 +24,7 @@ export default class Analytics {
                 gtmEvent = {...gtmEvent, ...additionalData}
             }
             
-            console.log(gtmEvent);
+            // console.log(gtmEvent);
             
             window.dataLayer.push(gtmEvent);
 
