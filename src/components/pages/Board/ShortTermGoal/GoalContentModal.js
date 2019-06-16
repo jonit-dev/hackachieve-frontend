@@ -3,11 +3,14 @@ import {connect} from 'react-redux'
 import Modal from "../../../UI/Modal/Modal";
 import {toggleModal} from "../../../../actions/uiActions";
 import Moment from "react-moment";
+import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
+import LabelHandler from "../../../UI/forms/LabelHandler";
 
 // import Moment from "react-moment";
 
 
 class GoalContentModal extends Component {
+
 
     onClose() {
         this.props.toggleModal('goalContent', this.props.myProps.shortTermGoal.id);
@@ -47,17 +50,28 @@ class GoalContentModal extends Component {
                 {/*<a className="public" href="# "><img src="images/icons/eye.svg" alt=""/> Public</a>*/}
             </div>
 
+
+
             {/*<div className="tags">*/}
             {/* <label>Tags</label>*/}
             {/* <a className="fitness" href="# "> Fitness</a>*/}
             {/*<a className="goal" href="# "> Personal goals</a>*/}
             {/*<a className="add-tag" href="# " > <img src="images/icons/plus.svg" alt=""/> Add</a>*/}
             {/*</div>*/}
+
+            <LabelHandler goalId={this.props.myProps.shortTermGoal.id}/>
+
+
             <div className="detail">
                 <h3>Description</h3>
                 <p>
                     {description}
                 </p>
+
+
+                <ChecklistHandler/>
+
+
             </div>
 
         </React.Fragment>;
@@ -80,11 +94,17 @@ class GoalContentModal extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {myProps: ownProps};
+    return {
+        myProps: ownProps,
+        modals: state.ui.modals,
+
+
+    };
 };
 
 export default connect(mapStateToProps, {
     //actions here
-    toggleModal
+    toggleModal,
+
 })(GoalContentModal);
 

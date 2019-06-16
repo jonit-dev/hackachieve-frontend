@@ -1,18 +1,28 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import * as ReactDOM from "react-dom";
-import { connect } from 'react-redux'
-import { toggleModal, clearAlert } from "../../../actions/uiActions";
+import {connect} from 'react-redux'
+import {toggleModal, clearAlert} from "../../../actions/uiActions";
 import Alert from "../Alert/Alert";
-import CheckList from "../../UI/forms/CheckList";
-import { fetchItem, changeStatus, deleteItem } from "../../../actions/checkListAction";
 import cogoToast from 'cogo-toast';
 
+
 class Modal extends Component {
-    state = {
-        showChecklistForm: false,
-        //status: true,
-        editChecklist: ''
-    };
+
+
+    /*#############################################################|
+
+                            >>>>  WARNING <<<<<
+
+    YOU CAN ONLY ADD TO THIS COMPONENT FUNCIONALITIES THAT ARE >> SHARED <<
+    AMONG ALL OTHER MODALS (like the close button, etc).
+    IF THE FUNCTIONALITY THAT YOU WANT TO CREATE IS NOT SUPPOSED
+    TO APPEAR IN EVERY MODAL, DO NOT ADD IT HERE.
+
+    THANK YOU
+
+    *##############################################################*/
+
+
 
     onClose() {
         this.props.toggleModal(this.props.myProps.name); //close this modal
@@ -20,76 +30,29 @@ class Modal extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.alert.type && newProps.alert.type === "positive") {
-            cogoToast.success(newProps.alert.content)
+            cogoToast.success(newProps.alert.content);
             this.props.clearAlert()
         }
     }
 
     onRenderAlert() {
-        return (this.props.alert.type && this.props.alert.type === 'negative' ? <Alert type={this.props.alert.type} title={this.props.alert.title}
-            content={this.props.alert.content} /> : null)
+        return (this.props.alert.type && this.props.alert.type === 'negative' ?
+            <Alert type={this.props.alert.type} title={this.props.alert.title}
+                   content={this.props.alert.content}/> : null)
     }
 
-    handleClick = () => {
-        this.setState({
-            showChecklistForm: !this.state.showChecklistForm,
-            editChecklist: ''
-        })
-    };
-
-    closeForm=(closeForm)=>{
-        this.setState({
-            showChecklistForm: closeForm,
-            editChecklist: ''
-        })
-    }
-
-    editChecklist(id = "") {
-        this.setState({
-            editChecklist: id ? id : "",
-            showChecklistForm: false
-        })
-    }
-
-    componentDidMount() {
-        this.props.fetchItem(this.props.modals.goalContent.id) //fetch checklist from specific goal ID
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-
-        //this checks if new items were added. If so, close the textarea
-        if (prevProps.items.length !== this.props.items.length) {
-            this.editChecklist();
-        }
-
-
-    }
-
-    changeStatus = (item) => {
-        this.props.changeStatus(item)
-    };
-    deleteItem = (item) => {
-        this.props.deleteItem(item)
-    };
-
-    hideForm = () => {
-        this.setState({
-            editChecklist: ""
-        })
-    };
 
     render() {
         return ReactDOM.createPortal(
             <div className="ui dimmer modals visible active" onClick={(e) => {
                 e.stopPropagation();
                 this.onClose();
-                
+
             }}>
 
 
-                <div className="ui  modal  active main-div" onClick={(e) => e.stopPropagation()} >
-                   
+                <div className="ui  modal  active main-div" onClick={(e) => e.stopPropagation()}>
+
 
                     <div className="content">
 
@@ -101,67 +64,6 @@ class Modal extends Component {
                         {this.onRenderAlert()}
 
                         {this.props.myProps.content}
-                        {this.props.name === "goalContent" &&
-
-
-                            <div className="checklist">
-
-                                <h3>Checklist</h3>
-
-
-                                {(this.props.items.length === 0 ?
-
-                                    <p className="checklist-warning">Click on "Add" to create your checklist</p> : null)}
-
-                                {
-                                    // eslint-disable-next-line
-                                    this.props.items && this.props.items.map((item) => {
-
-                                        if (item.id) {
-                                            return (
-                                                <div className="checklist-item" key={item.id}>
-                                                    <div className="ui checkbox">
-                                                        {this.state.editChecklist === item.id ? <>
-                                                            <CheckList
-                                                                goal_id={this.props.modals.goalContent.id}
-                                                                item={item}
-                                                                hideForm={this.hideForm} />
-
-
-                                                            <i className="edit icon"
-                                                                onClick={() => this.editChecklist()}> </i> </> : <>
-                                                                <label className="check-main" style={item.status ? { textDecoration: "line-through" } : {}}
-                                                                ><span onClick={() => this.editChecklist(item.id)}>{item.description}</span>
-                                                                    <input type="checkbox" name="example" 
-                                                                        onClick={() => this.changeStatus(item)}
-                                                                        defaultChecked={item.status} />
-                                                                    <span className="checkmark"></span>
-                                                                </label>
-                                                                <i className="close icon"
-                                                                    onClick={() => this.deleteItem(item)}> </i> </>
-                                                        }
-                                                    </div>
-                                                </div>)
-                                        }
-
-
-                                    }
-                                    )
-                                }
-
-                                <div className="checklist-action-area">
-
-                                    {!this.state.showChecklistForm &&
-                                        <a className="add-task" href="# " onClick={this.handleClick} ><img src="images/icons/plus-white.svg" alt="" /> New Task</a>
-                                    }
-                                    {this.state.showChecklistForm && <div style={{ display: "inline-block" }}>
-                                        <CheckList goal_id={this.props.modals.goalContent.id} showChecklistForm={this.state.showChecklistForm} closeForm={this.closeForm} />
-                                    </div>}
-
-                                </div>
-
-                            </div>
-                        }
 
 
                         { /*
@@ -197,7 +99,7 @@ class Modal extends Component {
 
                             </div>
 
-                       */ }
+                       */}
                     </div>
                     <div className="actions">
                         {this.props.myProps.actions}
@@ -208,7 +110,7 @@ class Modal extends Component {
                     <a href="# " className="close" onClick={(e) => {
                         e.stopPropagation();
                         this.onClose();
-                    }}><img className="popup_img" src="images/icons/x.svg" alt="" /></a>
+                    }}><img className="popup_img" src="images/icons/x.svg" alt=""/></a>
                     <br></br>
                     {/*<a href="# " className="upload"><img className="popup_img" src="images/icons/upload.svg" alt="" /></a>*/}
                     {/*<br></br>*/}
@@ -226,17 +128,12 @@ const mapStateToProps = (state, ownProps) => {
         myProps: ownProps,
         alert: state.alert.message,
         modals: state.ui.modals,
-        items: state.checklist.items,
-        checklist: state.checklist
     };
 };
 
+
 export default connect(mapStateToProps, {
-    //actions here
     toggleModal,
-    fetchItem,
-    changeStatus,
-    deleteItem,
     clearAlert
 })(Modal);
 

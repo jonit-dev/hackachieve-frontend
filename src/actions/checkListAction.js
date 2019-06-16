@@ -10,7 +10,7 @@ import {Mixpanel as mixpanel} from "../mixpanel";
 
 
 
-export const addItem = (item) => (dispatch) => {
+export const checklistAddItem = (item) => (dispatch) => {
 
     mixpanel.track('checklist_add_item');
 
@@ -25,7 +25,7 @@ export const addItem = (item) => (dispatch) => {
     })
 };
 
-export const fetchItem = (goalId) => (dispatch) => {
+export const checklistFetchItem = (goalId) => (dispatch) => {
     return API.request(`/checklists/${goalId}/`, 'GET', 'auth').then((response) => {
         dispatch({
             type: FETCH_ITEMS, payload: response.data
@@ -34,7 +34,7 @@ export const fetchItem = (goalId) => (dispatch) => {
     });
 };
 
-export const updateItem = (itemId, item) => (dispatch) => {
+export const checklistUpdateItem = (itemId, item) => (dispatch) => {
 
 
     mixpanel.track('checklist_update_item');
@@ -50,7 +50,7 @@ export const updateItem = (itemId, item) => (dispatch) => {
         return response;
     });
 };
-export const changeStatus = (item) => (dispatch) => {
+export const checklistChangeStatus = (item) => (dispatch) => {
 
 
     mixpanel.track('checklist_change_status_item');
@@ -71,7 +71,7 @@ export const changeStatus = (item) => (dispatch) => {
         return response;
     });
 }
-export const deleteItem = (item) => (dispatch) => {
+export const checklistDeleteItem = (item) => (dispatch) => {
 
 
     mixpanel.track('checklist_delete_item');

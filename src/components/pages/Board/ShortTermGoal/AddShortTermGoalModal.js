@@ -12,10 +12,6 @@ import renderInput from '../../../UI/Input';
 
 class AddShortTermGoalModal extends Component {
 
-    onClose() {
-        this.props.toggleModal('shortTermGoal');
-    }
-
     onSubmit = (formValues) => {
         let formOutput = {...formValues, column_id: this.props.myProps.longTermGoalId};
         // console.log('creating new goal ==> ');
