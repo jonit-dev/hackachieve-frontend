@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
-import {Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import { loadLabels, updateLabel} from "../../../actions/goalLabelsAction";
+import {loadLabels, updateLabel} from "../../../actions/goalLabelsAction";
 
 class LabelList extends Component {
 
     componentWillMount() {
         if (this.props.label) this.props.initialize({label: this.props.label.name})
-    }   
+    }
 
     renderInput({input, optional, type, placeholder, meta: {touched, error, warning}}) {
 
         return (
             <div className="field">
-               <input {...input} type={type} placeholder={placeholder}/>
+                <input {...input} type={type} placeholder={placeholder}/>
                 {(optional ? <>
                     <div className="ui pointing label">
                         Optional Field
@@ -36,32 +36,40 @@ class LabelList extends Component {
 
     render() {
 
-        const form = <React.Fragment>
-            <form
-                onSubmit={this.props.handleSubmit(this.onSubmit)}
-                className="ui form">
-                <Field
-                    name="label"
-                    textarea={true}
-                    component={this.renderInput}
-                    placeholder="Add an item"
-                    validate={[required]}
-                />
-            </form>
-        </React.Fragment>;
-       
-        return (
-            <div>
-                {form}
-               
-                <button 
-                    className="ui button positive" 
-                    type="cancel" 
-                    onClick ={()=> this.props.hideLabelUpdateForm(false)}> 
-                    Cancel
-                </button>
 
-            </div>
+        return (
+            <React.Fragment>
+                <form
+                    onSubmit={this.props.handleSubmit(this.onSubmit)}
+                    className="ui form">
+                    <Field
+                        name="label"
+                        textarea={true}
+                        component={this.renderInput}
+                        placeholder="Add an item"
+                        validate={[required]}
+                    />
+
+
+                    <button
+                        className="add-task"
+                        type="submit"
+                        onClick={() => {
+                            this.props.handleSubmit(this.onSubmit);
+                        }
+                        }>
+                        Update
+                    </button>
+
+                    <button
+                        className="cancel"
+                        type="cancel"
+                        onClick={() => this.props.hideLabelUpdateForm(false)}>
+                        Cancel
+                    </button>
+                </form>
+
+            </React.Fragment>
         );
     }
 
@@ -72,7 +80,7 @@ class LabelList extends Component {
 const formWrapped = reduxForm({
     form: 'LabelForm',
     enableReinitialize: true,
-    destroyOnUnmount: false 
+    destroyOnUnmount: false
 
 })(LabelList);
 const required = value => (value ? undefined : 'Please enter your tag name');
