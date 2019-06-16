@@ -1,5 +1,5 @@
 import mixpanel from 'mixpanel-browser';
-import env from './env.json';
+import env from '../env.json';
 
 mixpanel.init('733676f34daec2cfda7cd776112e88f5');
 

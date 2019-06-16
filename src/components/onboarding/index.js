@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactJoyride, {STATUS} from 'react-joyride';
+import Analytics from "../../analytics/Analytics";
 
 export default class Joy extends React.Component {
     state = {
@@ -83,22 +84,85 @@ export default class Joy extends React.Component {
     };
 
     handleJoyrideCallback = data => {
-        const {status, type, index} = data;
+        const {status, type, index, action} = data;
 
         console.log(data);
 
-        if (status === 'skipped') {
-            //if user skips onboarding tutorial, setup a token to avoid the user starting the onboarding again
-            // localStorage.setItem('onboarding', JSON.stringify(true));
+
+        switch(action) {
+
+            case 'start':
+                Analytics.track('onboarding_start', {
+                    'eventCategory': 'onboarding',
+                    'eventAction': 'onboarding_start',
+                });
+                break;
+
+            case 'close':
+                Analytics.track('onboarding_close', {
+                    'eventCategory': 'onboarding',
+                    'eventAction': 'onboarding_close',
+                });
+                break;
+
+            default:
+                break;
+        }
 
 
-        } else if (index >= 3) { //if user goes after step two (set short term goal), also avoid starting again
-            localStorage.setItem('onboarding', JSON.stringify(true));
+        switch(status) {
+
+            case 'skipped':
+                //if user skips onboarding tutorial, setup a token to avoid the user starting the onboarding again
+                // localStorage.setItem('onboarding', JSON.stringify(true));
+
+
+                Analytics.track('onboarding_skipped', {
+                    'eventCategory': 'onboarding',
+                    'eventAction': 'onboarding_skipped',
+                });
+                break;
+
+            case 'running':
+
+                Analytics.track('onboarding_step', {
+                    'eventCategory': 'onboarding',
+                    'eventLabel': `onboarding_step - Step: ${index}`,
+                    'eventAction': 'onboarding_step',
+                    'eventValue': index
+                });
+
+
+                if (index >= 3) { //if user goes after step two (set short term goal), also avoid starting again
+
+                    Analytics.track('onboarding_completed_basic', {
+                        'eventCategory': 'onboarding',
+                        'eventLabel': 'onboarding - first 3 steps',
+                        'eventAction': 'onboarding_completed_basic',
+                    });
+
+
+                    //setup a cookie to avoid starting onboarding over again
+                    localStorage.setItem('onboarding', JSON.stringify(true));
+                }
+
+                break;
+
+            case 'finished':
+                Analytics.track('onboarding_completed_full', {
+                    'eventCategory': 'onboarding',
+                    'eventAction': 'onboarding_completed_full',
+                });
+                break;
+
+            default:
+                break;
+
         }
 
 
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-            this.setState({run: false});
+            this.setState({run: false}); // if user finishes or skips, stop it from running
         }
         console.groupCollapsed(type);
         console.log(data); //eslint-disable-line no-console

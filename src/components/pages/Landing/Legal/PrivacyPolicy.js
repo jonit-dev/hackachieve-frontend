@@ -1,16 +1,31 @@
-import React from 'react';
 import env from "../../../../env";
+import React, {Component} from 'react';
+import Analytics from "../../../../analytics/Analytics";
+
+class PrivacyPolicy extends Component {
+
+    state = {
+        env: env
+    };
+
+    componentDidMount() {
+        Analytics.track('privacy_visit', {
+            'eventCategory': 'pages',
+            'eventAction': 'privacy_visit'
+        });
+    }
 
 
-const PrivacyPolicy = (props) => {
-    return (
-        <main>
 
-            <div className="ui text container privacy">
+    render() {
+        return (
+            <main>
 
-                <h1>Privacy Policy</h1>
+                <div className="ui text container privacy">
 
-                <div className="ui divider"></div>
+                    <h1>Privacy Policy</h1>
+
+                    <div className="ui divider"></div>
 
 
 
@@ -18,8 +33,7 @@ const PrivacyPolicy = (props) => {
                     <p>Effective date: May 22, 2019</p>
 
 
-                    <p>Hackachieve ("us", "we", or "our") operates the
-                        {env.productionUrl} website (the "Service").</p>
+                    <p>Hackachieve ("us", "we", or "our") operates the {this.state.env.productionUrl} website (the "Service").</p>
 
                     <p>This page informs you of our policies regarding the collection, use, and disclosure of personal
                         data when you use our Service and the choices you have associated with that data.</p>
@@ -27,7 +41,7 @@ const PrivacyPolicy = (props) => {
                     <p>We use your data to provide and improve the Service. By using the Service,
                         you agree to the collection and use of information in accordance with this policy. Unless
                         otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same
-                        meanings as in our Terms and Conditions, accessible from {env.productionUrl}</p>
+                        meanings as in our Terms and Conditions, accessible from {this.state.env.productionUrl}</p>
 
 
                     <h2>Information Collection And Use</h2>
@@ -191,7 +205,7 @@ const PrivacyPolicy = (props) => {
                     <h2>Contact Us</h2>
                     <p>If you have any questions about this Privacy Policy, please contact us:</p>
                     <ul>
-                        <li>By email: {env.adminEmail}</li>
+                        <li>By email: {this.state.env.adminEmail}</li>
 
                     </ul>
 
@@ -201,13 +215,12 @@ const PrivacyPolicy = (props) => {
 
 
 
-            </div>
+                </div>
 
 
-        </main>
-
-    )
-};
+            </main>
+        );
+    }
+}
 
 export default PrivacyPolicy;
-

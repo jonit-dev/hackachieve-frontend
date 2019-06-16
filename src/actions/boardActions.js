@@ -1,10 +1,13 @@
 import {CHANGE_BOARD_SHOW_GOAL} from "./types";
-import {Mixpanel as mixpanel} from '../mixpanel';
+import Analytics from "../analytics/Analytics";
 
 
 export const changeBoardShowGoal = (type) => dispatch => {
 
-    mixpanel.track('board_switch_show_goal');
+    Analytics.track('board_switch_show_goal', {
+        'eventCategory': 'goals',
+        'eventAction': 'board_switch_show_goal',
+    });
 
     return new Promise((resolve) => {
 

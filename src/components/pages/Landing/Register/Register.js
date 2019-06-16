@@ -4,20 +4,23 @@ import {connect} from 'react-redux';
 import Alert from "../../../UI/Alert/Alert";
 import {userLogin, userRegister} from "../../../../actions/authActions";
 import ValidationMessage from '../../../UI/ValidationMessage/ValidationMessage';
-import {Mixpanel as mixpanel} from "../../../../mixpanel";
 import {Link} from "react-router-dom";
 import cogoToast from 'cogo-toast';
 import {clearAlert} from '../../../../actions/uiActions';
+import Analytics from "../../../../analytics/Analytics";
 
 class Register extends Component {
 
     componentDidMount() {
-        mixpanel.track('register_visit')
+        Analytics.track('register_visit', {
+            'eventCategory': 'pages',
+            'eventAction': 'register_visit'
+        })
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.alert.type === 'positive') {
-            cogoToast.success(newProps.alert.content)
+            cogoToast.success(newProps.alert.content);
             this.props.clearAlert()
         }
     }

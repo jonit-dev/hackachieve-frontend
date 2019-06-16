@@ -3,14 +3,20 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {userLogin} from "../../../../actions/authActions";
 import Alert from "../../../UI/Alert/Alert";
-import {Mixpanel as mixpanel} from "../../../../mixpanel";
 import cogoToast from 'cogo-toast';
 import {clearAlert} from '../../../../actions/uiActions'
+import Analytics from "../../../../analytics/Analytics";
 
 class Login extends Component {
 
     componentDidMount() {
-        mixpanel.track('login_visit')
+        Analytics.track('login_visit', {
+            'eventCategory': 'pages',
+            'eventAction': 'login_visit'
+        });
+
+
+
     }
 
     componentWillReceiveProps(newProps) {

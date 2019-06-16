@@ -30,13 +30,18 @@ class App extends Component {
         console.log(`Initializing app. Environment is ${env.env}`);
 
 
+        //Necessary for GTM
+        window.dataLayer = window.dataLayer || [];
+
     }
 
     render() {
         return (
             <Router history={history}>
                 <Header/>
+
                 <Switch>
+
                     <Route path="/" exact component={Landing}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>

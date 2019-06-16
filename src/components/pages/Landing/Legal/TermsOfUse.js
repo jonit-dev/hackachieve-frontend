@@ -1,15 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import env from '../../../../env';
+import Analytics from "../../../../analytics/Analytics";
 
-const TermsOfUse = (props) => {
-    return (
-        <main>
+class TermsOfUse extends Component {
 
-            <div className="ui text container terms">
+   state = {env:env};
 
-                <h1>Terms of Use</h1>
+   componentDidMount() {
+       Analytics.track('terms_of_use_visit', {
+           'eventCategory': 'pages',
+           'eventAction': 'terms_of_use_visit'
+       });
+   }
 
-                <div className="ui divider"></div>
+    render() {
+        return (
+            <main>
+
+                <div className="ui text container terms">
+
+                    <h1>Terms of Use</h1>
+
+                    <div className="ui divider"></div>
 
 
 
@@ -388,10 +400,10 @@ const TermsOfUse = (props) => {
                     <ol>
                         <li>Republish material from {env.productionUrl}</li>
                         <li>Sell, rent or sub-license material from
-                            {env.productionUrl}
+                            {this.state.env.productionUrl}
                         </li>
                         <li>Reproduce, duplicate or copy material from
-                            {env.productionUrl}
+                            {this.state.env.productionUrl}
                         </li>
                         <li>Redistribute content from Hackachieve (unless content is specifically made for
                             redistribution).
@@ -524,8 +536,8 @@ const TermsOfUse = (props) => {
 
                     <p>If you are among the organizations listed in paragraph 2 above and are interested in linking to
                         our platform,
-                        you must notify us by sending an e-mail to <a href={`mailto:${env.adminEmail}`}
-                        >{env.adminEmail}</a>.
+                        you must notify us by sending an e-mail to <a href={`mailto:${this.state.env.adminEmail}`}
+                        >{this.state.env.adminEmail}</a>.
                         Please include your name, your organization name, contact information (such as a phone number
                         and/or e-mail
                         address) as well as the URL of your site, a list of any URLs from which you intend to link to
@@ -588,10 +600,9 @@ const TermsOfUse = (props) => {
 
 
 
-        </main>
-
-
-    )
-};
+            </main>
+        );
+    }
+}
 
 export default TermsOfUse;

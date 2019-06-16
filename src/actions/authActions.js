@@ -5,7 +5,8 @@ import * as qs from "qs";
 import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, SHOW_ALERT, USER_INFO_REFRESH} from "./types";
 import history from '../history';
 import API from '../classes/API';
-import {Mixpanel as mixpanel} from '../mixpanel';
+import {Mixpanel as mixpanel} from '../analytics/mixpanel';
+import Analytics from "../analytics/Analytics";
 
 export const userLogin = (credentials) => async (dispatch) => {
 
@@ -23,7 +24,11 @@ export const userLogin = (credentials) => async (dispatch) => {
         });
 
 
-        mixpanel.track('user_logged_in');
+        Analytics.track('user_logged_in', {
+            'eventCategory': 'account',
+            'eventAction': 'user_logged_in',
+        });
+        
 
         //show success message
         dispatch({
@@ -68,7 +73,11 @@ export const userLogin = (credentials) => async (dispatch) => {
     }
     catch (error) {
 
-        mixpanel.track('user_login_error');
+        Analytics.track('user_login_error', {
+            'eventCategory': 'account',
+            'eventAction': 'user_login_error',
+        });
+        
 
         dispatch({
             type: SHOW_ALERT, payload: {
@@ -90,8 +99,13 @@ export const userLogout = () => dispatch => {
 
     //clear localstorage
     localStorage.clear();
-
-    mixpanel.track('user_logout');
+    
+    Analytics.track('user_logout', {
+        'eventCategory': 'account',
+        'eventAction': 'user_logout',
+    });
+    
+    
 
     dispatch({type: LOGOUT_USER}); //then we'll also clear our state
     history.push('/')
@@ -134,8 +148,11 @@ export const userRegister = (userInfo) => async (dispatch) => {
         if (response.data.status === 'success') {
 
 
-            mixpanel.track('user_registered'); //user successfully registered goal
-
+            Analytics.track('user_registered', {
+                'eventCategory': 'account',
+                'eventAction': 'user_registered',
+            });
+            
             dispatch({
                 type: SHOW_ALERT, payload: {
                     type: 'positive',
@@ -144,16 +161,12 @@ export const userRegister = (userInfo) => async (dispatch) => {
                 }
             });
 
-            //setup mixpanel user identify
-
-            console.log('registering user in mixpanel');
-
-            console.log(userInfo);
+            /* Mixpanel: Identify =========================================== */
 
             mixpanel.identify(userInfo.email);
 
             mixpanel.people.set({
-                "$email": mixpanel.email,    // only special properties need the $
+                "$email": userInfo.email,    // only special properties need the $
                 "$created": new Date(),
                 "$last_login": new Date(),         // properties can be dates...
                 "$first_name": userInfo.firstName,

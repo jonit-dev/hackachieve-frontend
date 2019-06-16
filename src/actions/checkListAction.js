@@ -6,13 +6,17 @@ import {
     CHANGE_ITEM_STATUS,
     DELETE_CHECKLIST_ITEM
 } from "./types";
-import {Mixpanel as mixpanel} from "../mixpanel";
+import Analytics from "../analytics/Analytics";
 
 
 
 export const checklistAddItem = (item) => (dispatch) => {
 
-    mixpanel.track('checklist_add_item');
+    Analytics.track('checklist_add_item', {
+        'eventCategory': 'checklists',
+        'eventAction': 'checklist_add_item',
+    });
+
 
     return API.request(`/checklists/`, 'POST', {checklist: {...item}}, 'auth').then((response) => {
 
@@ -37,7 +41,11 @@ export const checklistFetchItem = (goalId) => (dispatch) => {
 export const checklistUpdateItem = (itemId, item) => (dispatch) => {
 
 
-    mixpanel.track('checklist_update_item');
+    Analytics.track('checklist_update_item', {
+        'eventCategory': 'checklists',
+        'eventAction': 'checklist_update_item',
+    });
+
 
     return API.request(`/checklists/${itemId}/`, 'PUT', {checklist: {...item}}, 'auth').then((response) => {
 
@@ -52,8 +60,10 @@ export const checklistUpdateItem = (itemId, item) => (dispatch) => {
 };
 export const checklistChangeStatus = (item) => (dispatch) => {
 
-
-    mixpanel.track('checklist_change_status_item');
+    Analytics.track('checklist_change_status_item', {
+        'eventCategory': 'checklists',
+        'eventAction': 'checklist_change_status_item',
+    });
 
 
     return API.request(`/checklists/${item.id}/`, 'PUT', {
@@ -73,8 +83,10 @@ export const checklistChangeStatus = (item) => (dispatch) => {
 }
 export const checklistDeleteItem = (item) => (dispatch) => {
 
-
-    mixpanel.track('checklist_delete_item');
+    Analytics.track('checklist_delete_item', {
+        'eventCategory': 'checklists',
+        'eventAction': 'checklist_delete_item',
+    });
 
     return API.request(`/checklists/${item.id}/`, 'DELETE', 'auth').then((response) => {
 
@@ -85,5 +97,5 @@ export const checklistDeleteItem = (item) => (dispatch) => {
         });
         return response;
     });
-}
+};
 
