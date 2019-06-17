@@ -186,7 +186,7 @@ class Header extends Component {
                                             <a href="# " className="closebtn"
                                                onClick={() => this.onOpenMenuClick()}>&times;</a>
                                             <ul className="nav-sub-menu">
-                                                {/*<li><Link className="active" to='/'>Home</Link></li>*/}
+                                                <li><Link className="active" to='/'>Home</Link></li>
                                                 {/*<li><Link to='/terms'>Terms</Link></li>*/}
                                                 {/*<li><Link to="/privacy">Privacy</Link></li>*/}
 
