@@ -161,6 +161,18 @@ export const userRegister = (userInfo) => async (dispatch) => {
                 }
             });
 
+            /* Userstory: identify =========================================== */
+
+            // This is an example script - don't forget to change it!
+            window.FS.identify(userInfo.email, {
+                displayName: `${userInfo.firstName} ${userInfo.lastName}`,
+                email: `${userInfo.email}`,
+                // TODO: Add your own custom user variables here, details at
+                // http://help.fullstory.com/develop-js/setuservars
+                reviewsWritten_int: 14
+            });
+
+
             /* Mixpanel: Identify =========================================== */
 
             mixpanel.identify(userInfo.email);
