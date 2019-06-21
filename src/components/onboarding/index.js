@@ -86,7 +86,7 @@ export default class Joy extends React.Component {
     handleJoyrideCallback = data => {
         const {status, type, index, action} = data;
 
-        console.log(data);
+        console.log(status,'left');
 
 
         switch(action) {

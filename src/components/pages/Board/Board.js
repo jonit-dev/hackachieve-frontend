@@ -8,7 +8,9 @@ import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import {changeBoardShowGoal} from "../../../actions/boardActions";
 import Joy from "../../onboarding";
 import Analytics from "../../../analytics/Analytics";
-
+import {
+    isMobile
+  } from "react-device-detect";
 
 class Board extends Component {
 
@@ -119,21 +121,40 @@ class Board extends Component {
 
 
     render() {
+      
         return (
             <React.Fragment>
                 <main className="board-main">
 
                     <div className="board-columns">
+                    {isMobile ? (
+       <div className="board-column-add column-add-short-term-goal" 
+       onClick={() => this.onOpenLongTermModal()}>
+      <div className="column-add-short-term-goal-btn"></div>
+      <div className="column-add-short-term-goal-text">Add Long Term Goal</div>
 
+  </div>
+      ) : (
+       <p></p>
+      )}
+
+
+
+                 
                         {this.onRenderGoals()}
                         {this.props.goals && this.onStartOnboardingTutorial()}
 
-                        <div className="board-column-add column-add-short-term-goal"
-                             onClick={() => this.onOpenLongTermModal()}>
-                            <div className="column-add-short-term-goal-btn"></div>
-                            <div className="column-add-short-term-goal-text">Add Long Term Goal</div>
+                      
+                        {!isMobile ? (
+       <div className="board-column-add column-add-short-term-goal" 
+       onClick={() => this.onOpenLongTermModal()}>
+      <div className="column-add-short-term-goal-btn"></div>
+      <div className="column-add-short-term-goal-text">Add Long Term Goal</div>
 
-                        </div>
+  </div>
+      ) : (
+       <p></p>
+      )}
 
 
                     </div>
