@@ -17,7 +17,7 @@ class Landing extends Component {
     }
 
     render() {
-        console.log(User.isLoggedIn(),'User.isLoggedIn()')
+        console.log(User.isLoggedIn(),'User.isLoggedIn()');
         return (
             <React.Fragment>
 

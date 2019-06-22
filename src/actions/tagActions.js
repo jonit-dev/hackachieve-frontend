@@ -3,7 +3,12 @@ import {LOAD_TAGS} from "./types";
 import Analytics from "../analytics/Analytics";
 
 export const loadTags = () => async (dispatch, getState) => {
-    return API.request(`/areas-of-knowledge`, 'GET', null, 'auth').then((response) => {
+    return API.request(`/areas-of-knowledge`, 'GET', null, 'guest').then((response) => {
+
+      console.log('loading tags');
+
+      console.log(response.data);
+
         dispatch({type: LOAD_TAGS, payload: response.data})
     });
 };
