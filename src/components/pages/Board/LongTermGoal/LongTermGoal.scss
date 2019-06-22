@@ -304,6 +304,27 @@ main.board-main {
         border-top: 0.5rem solid $hackachieve-pink;
       }
 
+      &.column-recruitment {
+        border-top: 0.5rem solid $hackachieve-dark-blue;
+      }
+
+      &.column-operations {
+        border-top: 0.5rem solid #EED69E;
+      }
+
+      &.column-marketing {
+        border-top: 0.5rem solid #8E436B;
+      }
+
+      &.column-learning {
+        border-top: 0.5rem solid #F175AA;
+      }
+
+      &.column-sales {
+        border-top: 0.5rem solid #45725C;
+      }
+
+
     }
 
   }
@@ -341,10 +362,9 @@ opacity:1
       font-family: $font-primary;
       font-size: 16px;
       font-weight: bold;
-      color: $hackachieve-dark-grey;
       margin-left: .5rem;
       opacity: 1 !important;
-      color: black;
+      color: darken($hackachieve-dark-grey, 5%);
     }
 
   }
