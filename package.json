@@ -16,6 +16,7 @@
     "react-datepicker": "^2.5.0",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
+    "react-fullstory": "^1.1.0",
     "react-joyride": "^2.0.5",
     "react-moment": "^0.9.2",
     "react-redux": "^7.0.2",

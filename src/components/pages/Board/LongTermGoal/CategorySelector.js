@@ -3,15 +3,17 @@ import CreatableSelect from "react-select/creatable/dist/react-select.esm";
 
 
 export const CategorySelector = props => {
-    console.log('props', props);
-    const {input, options, label} = props;
-    console.log(input, options, 'find')
+    // console.log('props', props);
+    const {input, options, label, selectedOption} = props;
+    // console.log(input, options, 'find')
+
     return (
         <>
             <div className="field">
 
                 <label>{label}</label>
                 <CreatableSelect
+                    value={selectedOption}
                     isClearable
                     options={options}
                     // onBlur={() => input.onBlur(input.value)}

@@ -8696,6 +8696,11 @@ react-floater@^0.6.4:
     react-proptype-conditional-require "^1.0.4"
     tree-changes "^0.4.0"
 
+react-fullstory@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-fullstory/-/react-fullstory-1.1.0.tgz#ea117c63a08896ebc0856798e87dee290271f492"
+  integrity sha512-2WSlOTHBPAwfqNjyYlULvWrlWrz+8QxJ+5z8RIZP2oWQ+4TaoJLJF1MSeAL4LI2Rs2/E24vnkEmYUjoUDL6bGw==
+
 react-input-autosize@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"

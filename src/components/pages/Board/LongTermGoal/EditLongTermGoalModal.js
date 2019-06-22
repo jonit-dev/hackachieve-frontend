@@ -40,12 +40,22 @@ class EditLongTermGoalModal extends Component {
         return this.props.loadUserGoalsCategories().then(() => {
             //set first option as selected
 
+            console.log('loading board categories');
+
             const boardName = this.props.myProps.longTermGoal.boardName;
-            const board_id = this.props.boardCategories.find((category) => category.name === boardName).id;
+            const boardCategory = this.props.boardCategories.find((category) => category.name === boardName);
 
-            console.log('setting board id to...' + board_id);
+            //set current selected option on state, after loading current categories
+            this.setState({
+                currentSelectableValue: {
+                    id: boardCategory.id,
+                    label: boardCategory.name
+                }
+            }, () => {
+                console.log(this.state);
+            });
 
-            this.props.change('board_id', board_id)
+
         });
 
     }
@@ -116,13 +126,13 @@ class EditLongTermGoalModal extends Component {
     }
 
 
-    createCategory(data) {
+    handleCategorySelection(data) {
 
         const {value, label} = data;
 
         let board_id = parseInt(value);
 
-        console.log('createCategory()');
+        console.log('handleCategorySelection()');
         console.log(data);
 
         switch (data.action) {
@@ -203,19 +213,22 @@ class EditLongTermGoalModal extends Component {
                        label="Category">
                     {this.props.boardCategories ? this.onRenderBoardOptions() : <Loading/>}
                 </Field> */}
-            
+
                 {
                     (this.props.boardCategories) ?
                         <Field name="board_id"
                                label="Category"
+                               selectedOption={(this.state.currentSelectableValue ? this.state.currentSelectableValue : null)}
                                component={CategorySelector}
                                options={this.onRenderBoardOptions()}
                                onChange={(data, actions) => {
 
                                    console.log('CategorySelector:');
+                                   console.log(actions);
                                    console.log(data);
+
                                    if (data) { //make sure its not null
-                                       this.createCategory(data, actions);
+                                       this.handleCategorySelection(data, actions);
                                    }
                                    // this.onLoadBoardCategories(); //refresh board categories
                                }}
@@ -276,11 +289,13 @@ class EditLongTermGoalModal extends Component {
 
             if (status === 'success') {
 
-                this.props.loadGoals(0, this.props.boardShowGoals); //refresh goals (to display new one)
+                this.props.loadGoals(0, this.props.boardShowGoals).then(() => {
 
-                setTimeout(() => {
-                    this.props.toggleModal('editLongTermGoal'); //close modal once goal is created
-                }, 500)
+                    window.setTimeout(() => { //this timeout is to avoid triggering a togglemodal before updating the state on load the selected category
+                        this.props.toggleModal('editLongTermGoal'); //close modal once goal is created
+                    },500);
+
+                }); //refresh goals (to display new one)
 
             }
 

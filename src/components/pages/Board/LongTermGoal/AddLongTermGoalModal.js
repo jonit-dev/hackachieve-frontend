@@ -31,6 +31,9 @@ class AddLongTermGoalModal extends Component {
     componentDidMount() {
 
         this.onLoadBoardCategories();
+        
+        console.log('loaded categories');
+        
     }
 
     onLoadBoardCategories() {

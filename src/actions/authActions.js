@@ -7,6 +7,12 @@ import history from '../history';
 import API from '../classes/API';
 import {Mixpanel as mixpanel} from '../analytics/mixpanel';
 import Analytics from "../analytics/Analytics";
+import env from "../env";
+import {FullStoryAPI} from "react-fullstory";
+
+
+let isProd = env.env === 'prod';
+
 
 export const userLogin = (credentials) => async (dispatch) => {
 
@@ -160,6 +166,20 @@ export const userRegister = (userInfo) => async (dispatch) => {
                     content: 'Are you ready to hack your productivity?'
                 }
             });
+
+
+
+            if(isProd) {
+
+                // Identify method
+                FullStoryAPI('identify', userInfo.email, {
+                    created: new Date(),
+                    first_name: userInfo.firstName,
+                    last_name: userInfo.lastName
+                });
+
+            }
+
 
             /* Mixpanel: Identify =========================================== */
 
