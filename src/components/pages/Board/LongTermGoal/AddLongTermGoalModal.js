@@ -91,6 +91,7 @@ class AddLongTermGoalModal extends Component {
     onRenderBoardOptions() {
         // return this.props.boardCategories.map((category) => <option key={category.id}
         //                                                             value={category.id}>{category.name}</option>);
+       
         return this.props.boardCategories.map((category) => ({value: "" + category.id, label: "" + category.name}));
     }
 
@@ -173,7 +174,7 @@ class AddLongTermGoalModal extends Component {
 
     render() {
         const title = 'Add your Long Term goal!';
-
+        
         const content = <React.Fragment>
 
 
@@ -187,13 +188,11 @@ class AddLongTermGoalModal extends Component {
                 <Field name="description" textarea={true} component={this.renderInputTextArea}
                        label="Enter your long term goal description"
                        placeholder="Describe what you have to do in details, to accomplish it"/>
-
-                <strong><label>Category</label></strong>
                 {
                     (this.props.boardCategories) ?
-                        <Field name="board_id"
-                               label="Category"
+                        <Field name="board_id"                               
                                component={CategorySelector}
+                               label="Category"
                                options={this.onRenderBoardOptions()}
                                onChange={(data, actions) => {
 

@@ -203,7 +203,7 @@ class EditLongTermGoalModal extends Component {
                        label="Category">
                     {this.props.boardCategories ? this.onRenderBoardOptions() : <Loading/>}
                 </Field> */}
-                <strong><label>Category</label></strong>
+            
                 {
                     (this.props.boardCategories) ?
                         <Field name="board_id"

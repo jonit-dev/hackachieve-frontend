@@ -96,6 +96,7 @@ class LongTermGoal extends Component {
     }
 
     render() {
+        
         return (
             <React.Fragment>
                 <div
@@ -111,7 +112,7 @@ class LongTermGoal extends Component {
                             </div>
                         </div>
 
-                        <div className="column-title">
+                        <div className="column-title" onClick={()=>this.onEditLongTermGoalModal(this.props.myProps.id)}>
                             {this.props.myProps.title}
                         </div>
                         <Dropdown

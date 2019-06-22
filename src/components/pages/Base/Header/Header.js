@@ -97,7 +97,7 @@ class Header extends Component {
                                 <div className="hackachieve-dropdown-wrapper">
                                     <select name="goalFilter" id="board-dropdown" className="hackachieve-dropdown"
                                             onChange={this.handleFilter}>
-                                        <option value="All">All</option>
+                                        <option value="All">All Goals</option>
                                         <option value="week" key="week">Week</option>
                                         {boardCategories && boardCategories.map((goalCategory, index) => {
                                             return <option value={goalCategory.name}

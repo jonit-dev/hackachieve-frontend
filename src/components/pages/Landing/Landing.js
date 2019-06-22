@@ -17,6 +17,7 @@ class Landing extends Component {
     }
 
     render() {
+        console.log(User.isLoggedIn(),'User.isLoggedIn()')
         return (
             <React.Fragment>
 
@@ -26,7 +27,7 @@ class Landing extends Component {
                             Hack Yourself
                         </h1>
                         <h2>Double your productivity using half of your time!</h2>
-                        {(User.isLoggedIn() ? <NavLink to="/board">Check my Goals</NavLink> :
+                        {(User.isLoggedIn() ? <NavLink to="/board">Access Your Goals</NavLink> :
                             <NavLink to="/register">Get Started</NavLink>)}
                     </div>
                 </div>
