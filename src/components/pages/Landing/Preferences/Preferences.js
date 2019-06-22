@@ -13,30 +13,34 @@ class Preferences extends Component {
     }
 
     onSubmit = (formValues) => {
-        console.log(formValues);
+        
+        if(validate(formValues)){
+            console.log(validate(formValues));
+        }
+        else{
+            this.props.createTags(formValues).then((response) => {
 
-        this.props.createTags(formValues).then((response) => {
-            if (response.data.success !== undefined) {
-                history.push('/board');
-            }
-        });
+                if (response.data.success !== undefined) {
+                    history.push('/board');
+                }
+            });
+        }
 
     };
 
     // onTagChange = (value, actions) => {
-    //
+
     //     console.log('VALUES');
     //     console.log(value);
     //     console.log('ACTIONS');
     //     console.log(actions);
-    //
+    
     //     if (actions.actions === 'create-option') {
     //         this.props.createTag(value.value)
     //     }
     // };
 
     render() {
-
 
         return (
 
@@ -47,17 +51,15 @@ class Preferences extends Component {
                     <div className="internal-inner">
 
                         <div className="internal-inner">
-
                             <p>
                                 Please, select your personal skills here, before proceeding
                             </p>
-
                             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-
 
                                 <Field name="knowledgeSelector"
                                        component={TagSelector}
                                        tags={this.props.tags}
+                                    //    validate={required}
                                 />
 
                                 <button type="submit" className="ui button positive">Save</button>
@@ -69,40 +71,46 @@ class Preferences extends Component {
                         </div>
 
                         <hr/>
-
-                        {/*<h5 className="padding">You don’t need to decorate new passwords if you don’t want to,</h5>*/}
+                        
+                        {/* <h5 className="padding">You don’t need to decorate new passwords if you don’t want to,</h5> */}
 
                     </div>
                 </div>
                 <div className="clear"></div>
             </div>
 
-
         );
     }
 }
 
+// const required = v => {
+//     if (!v || v === '') {
+//         return "This field is required"
+//     }
+//     return undefined;
+// };
 
 const validate = (formValues) => {
-
     const errors = {};
+    if (!formValues.knowledgeSelector) {
+        errors.title = 'You must enter a One Skill You Have.'
+    }
 
-    if (!formValues.title) {
-        errors.title = 'You must enter a title'
-    }
-    if (!formValues.description) {
-        errors.description = 'You must enter a description';
-    }
-    return errors;
+    // if (!formValues.title) {
+    //     errors.title = 'You must enter a title'
+    //     console.log(errors.title);
+    // }
+    // if (!formValues.description) {
+    //     errors.description = 'You must enter a description';
+    // }
+    return errors.title;
 };
 
 const formWrapped = reduxForm({
-    form: 'Preferences',
-    validate: validate
+    form: 'Preferences'
 })(Preferences);
 
 const mapStateToProps = (state) => {
-
     return {
         tags: state.tags.tags,
         msg: state.msg

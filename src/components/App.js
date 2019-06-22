@@ -29,7 +29,6 @@ class App extends Component {
 
         console.log(`Initializing app. Environment is ${env.env}`);
 
-
         //Necessary for GTM
         window.dataLayer = window.dataLayer || [];
 

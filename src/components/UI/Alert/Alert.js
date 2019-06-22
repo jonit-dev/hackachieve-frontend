@@ -11,7 +11,6 @@ class Alert extends Component {
             this.props.clearAlert();
         }, 6000);
 
-
     }
 
     render() {

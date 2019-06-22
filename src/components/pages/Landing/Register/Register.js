@@ -9,6 +9,12 @@ import cogoToast from 'cogo-toast';
 import {clearAlert} from '../../../../actions/uiActions';
 import Analytics from "../../../../analytics/Analytics";
 
+import {TagSelector} from "../Preferences/TagSelector";
+import {loadTags} from "../../../../actions/tagActions";
+// import history from '../../../../history';
+
+
+
 class Register extends Component {
 
     componentDidMount() {
@@ -16,6 +22,8 @@ class Register extends Component {
             'eventCategory': 'pages',
             'eventAction': 'register_visit'
         })
+        this.props.loadTags();
+
     }
 
     componentWillReceiveProps(newProps) {
@@ -30,17 +38,12 @@ class Register extends Component {
 
         // check if user agreed with terms of use
 
-
         if (!formValues.agreeTermsOfUse) {
             alert('Sorry, you must agree with our terms of use to create an account');
             return false;
         }
 
-
-        console.log(formValues);
-
         this.props.userRegister(formValues).then(() => { //first register it
-
 
             if (this.props.canRedirectLogin) { //if everything is ok, this variable will be changed to true
 
@@ -90,6 +93,7 @@ class Register extends Component {
     }
 
 
+
     render() {
 
         return (
@@ -113,13 +117,19 @@ class Register extends Component {
                         <Field name="lastName" component={this.renderInput} label="Last name"
                                placeholder="Last name" type="text" validate={required}/>
 
+                        <Field name="knowledgeSelector" component={TagSelector} 
+                                       label="Skills"
+                                       tags={this.props.tags} 
+                                       validate={required}
+                                       /> 
+
                         <Field type="email" name="email" component={this.renderInput} label="Email"
                                placeholder="Email" validate={required}/>
 
                         <Field type="password" name="password" component={this.renderInput} label="Password"
-                               placeholder="Password" validate={required}/>
+                               placeholder="Password" validate={required}/>      
 
-                        <Field type="checkbox" name="agreeTermsOfUse" component={this.renderCheckbox}
+                        <Field type="checkbox" name="agreeTermsOfUse" component={this.renderCheckbox} 
                                label="Terms of Use"
                                validate={required}>
                             <Link to='/terms'>
@@ -157,6 +167,7 @@ const formWrapped = reduxForm({
 
 const mapStateToProps = (state) => {
     return {
+        tags: state.tags.tags,
         canRedirectLogin: state.auth.canRedirectLogin,
         alert: state.alert.message,
         initialValues: {
@@ -173,6 +184,7 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps, {
         //some actions here
+        loadTags,
         userRegister,
         userLogin,
         clearAlert

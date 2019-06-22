@@ -220,8 +220,9 @@ class AddLongTermGoalModal extends Component {
                     fixedHeight
                     showMonthDropdown
                     showYearDropdown
+
                     minDate={new Date()}
-                    maxDate={new Date(this.props.deadline)}
+                    // maxDate={new Date(this.props.deadline)}
                     dropdownMode="select"
                     normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
                     component={DatePicker}
