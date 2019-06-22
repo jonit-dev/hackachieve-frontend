@@ -55,7 +55,7 @@ export default class User {
     }
 
     static login(credentials) {
-
+console.log(credentials,'cred')
         const userLogin = async () => {
 
             //login is a little bit different from other post routes.. we should use qs.stringify because it should emulate a form submission (django API.requirement)
@@ -69,7 +69,7 @@ export default class User {
 
                 }, baseURL: API.getConfig().baseUrl
             });
-
+            console.log(response.data,'response.data')
             return response.data
 
 
@@ -80,16 +80,16 @@ export default class User {
     }
 
     static isLoggedIn() {
-
+console.log(localStorage.getItem('userToken'),"localStorage.getItem('userToken')")
         //try to get token information from localstorage.
 
         try {
             // console.log("checking if user is logged in...");
-            let token = JSON.parse(localStorage.getItem('user')).token;
+            let token = JSON.parse(localStorage.getItem('userToken')).access;
             if (token) {
                 return true;
             }
-
+console.log(token,'yot')
             // console.log(`Yes, he's. Token: ${token}`);
         }
         catch (error) {

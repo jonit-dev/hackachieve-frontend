@@ -202,6 +202,30 @@ main.board-main {
             background-image: url('/images/icons/fun-icon-color.svg');
           }
 
+          &.recruitment-icon {
+            background-image: url('/images/icons/recruitment-icon.svg');
+          }
+          
+          &.other-icon {
+            background-image: url('/images/icons/other-icon.svg');
+          }
+
+          &.operations-icon {
+            background-image: url('/images/icons/operations-icon.svg');
+          }
+
+          &.marketing-icon {
+            background-image: url('/images/icons/marketing-icon.svg');
+          }
+
+          &.learning-icon {
+            background-image: url('/images/icons/learning-icon.svg');
+          }
+
+          &.sales-icon {
+            background-image: url('/images/icons/sales-icon.svg');
+          }          
+
           &.personal-development-icon {
             background-image: url('/images/icons/personal-dev-icon-color.svg');
           }
@@ -280,6 +304,27 @@ main.board-main {
         border-top: 0.5rem solid $hackachieve-pink;
       }
 
+      &.column-recruitment {
+        border-top: 0.5rem solid $hackachieve-dark-blue;
+      }
+
+      &.column-operations {
+        border-top: 0.5rem solid #EED69E;
+      }
+
+      &.column-marketing {
+        border-top: 0.5rem solid #8E436B;
+      }
+
+      &.column-learning {
+        border-top: 0.5rem solid #F175AA;
+      }
+
+      &.column-sales {
+        border-top: 0.5rem solid #45725C;
+      }
+
+
     }
 
   }
@@ -288,7 +333,7 @@ main.board-main {
     padding: .5rem;
     display: flex;
     flex-wrap: wrap;
-    opacity: 0.5;
+    
     transition: all .5s ease-in;
     justify-content: center;
     align-items: center;
@@ -297,6 +342,7 @@ main.board-main {
     margin-top: .5rem;
     margin-bottom: .5rem;
     border-radius: 5px;
+    //border-top:3px solid #17E09D;
 
     &:hover {
       cursor: pointer;
@@ -309,15 +355,16 @@ main.board-main {
       height: 33px;
       background: url('/images/icons/new-short-goal-icon.svg') no-repeat center;
       background-size: contain;
-
+opacity:1
     }
 
     .column-add-short-term-goal-text {
       font-family: $font-primary;
       font-size: 16px;
       font-weight: bold;
-      color: $hackachieve-dark-grey;
       margin-left: .5rem;
+      opacity: 1 !important;
+      color: darken($hackachieve-dark-grey, 5%);
     }
 
   }

@@ -84,9 +84,10 @@ export default class Joy extends React.Component {
     };
 
     handleJoyrideCallback = data => {
-        const {status, type, index, action} = data;
+        // const {status, type, index, action} = data;
+        const {status, index, action} = data;
 
-        console.log(data);
+        // console.log(status,'left');
 
 
         switch(action) {
@@ -164,9 +165,9 @@ export default class Joy extends React.Component {
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             this.setState({run: false}); // if user finishes or skips, stop it from running
         }
-        console.groupCollapsed(type);
-        console.log(data); //eslint-disable-line no-console
-        console.groupEnd();
+        // console.groupCollapsed(type);
+        // console.log(data); //eslint-disable-line no-console
+        // console.groupEnd();
     };
 
 

@@ -86,8 +86,8 @@ class LongTermGoal extends Component {
         if (this.props.modals.editLongTermGoal.status && this.props.modals.editLongTermGoal.id === this.props.myProps.id) {
 
 
-            console.log(`longtermgoal passing props=`);
-            console.log(this.props);
+            // console.log(`longtermgoal passing props=`);
+            // console.log(this.props);
 
             return <EditLongTermGoalModal longTermGoal={this.props.myProps}/>
         } else {
@@ -96,6 +96,7 @@ class LongTermGoal extends Component {
     }
 
     render() {
+        
         return (
             <React.Fragment>
                 <div
@@ -111,7 +112,7 @@ class LongTermGoal extends Component {
                             </div>
                         </div>
 
-                        <div className="column-title">
+                        <div className="column-title" onClick={()=>this.onEditLongTermGoalModal(this.props.myProps.id)}>
                             {this.props.myProps.title}
                         </div>
                         <Dropdown

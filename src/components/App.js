@@ -18,17 +18,21 @@ import TermsOfUse from "./pages/Landing/Legal/TermsOfUse";
 import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
 import Footer from "./pages/Base/Footer/Footer";
 import Preferences from "./pages/Landing/Preferences/Preferences";
+import FullStory from "react-fullstory";
 
+
+let isProd = env.env === 'prod';
 
 
 class App extends Component {
+
+
 
     componentDidMount() {
 
         this.props.checkLoggedIn(); //check logged in on app init
 
         console.log(`Initializing app. Environment is ${env.env}`);
-
 
         //Necessary for GTM
         window.dataLayer = window.dataLayer || [];
@@ -38,6 +42,7 @@ class App extends Component {
     render() {
         return (
             <Router history={history}>
+                {(isProd ? <FullStory org="MJK6R"/> : null)}
                 <Header/>
 
                 <Switch>

@@ -9,13 +9,24 @@ import cogoToast from 'cogo-toast';
 import {clearAlert} from '../../../../actions/uiActions';
 import Analytics from "../../../../analytics/Analytics";
 
+import {TagSelector} from "../Preferences/TagSelector";
+import {loadTags} from "../../../../actions/tagActions";
+import history from "../../../../history";
+import Text from '../../../../classes/Text';
+
+// import history from '../../../../history';
+
+
 class Register extends Component {
 
     componentDidMount() {
         Analytics.track('register_visit', {
             'eventCategory': 'pages',
             'eventAction': 'register_visit'
-        })
+        });
+
+        this.props.loadTags();
+
     }
 
     componentWillReceiveProps(newProps) {
@@ -28,8 +39,12 @@ class Register extends Component {
 
     onSubmit = (formValues) => {
 
-        // check if user agreed with terms of use
 
+        console.log('SUBMITTING VALUES...');
+        console.log(formValues);
+
+
+        // check if user agreed with terms of use
 
         if (!formValues.agreeTermsOfUse) {
             alert('Sorry, you must agree with our terms of use to create an account');
@@ -37,7 +52,15 @@ class Register extends Component {
         }
 
 
-        console.log(formValues);
+        /* Prepare skills for registering =========================================== */
+
+        let skillsArray = formValues.knowledgeSelector.map((skill) => {
+            return {name: Text.capitalizeFirstLetter(skill.label)}
+        });
+
+        formValues.areas_of_knowledge = skillsArray; //send it together with our formValues
+
+        /* first step: Register user =========================================== */
 
         this.props.userRegister(formValues).then(() => { //first register it
 
@@ -53,6 +76,7 @@ class Register extends Component {
 
                 }, 1500);
             }
+
         });
 
     };
@@ -113,6 +137,12 @@ class Register extends Component {
                         <Field name="lastName" component={this.renderInput} label="Last name"
                                placeholder="Last name" type="text" validate={required}/>
 
+                        <Field name="knowledgeSelector" component={TagSelector}
+                               label="Skills"
+                               tags={this.props.tags}
+                               validate={required}
+                        />
+
                         <Field type="email" name="email" component={this.renderInput} label="Email"
                                placeholder="Email" validate={required}/>
 
@@ -157,6 +187,7 @@ const formWrapped = reduxForm({
 
 const mapStateToProps = (state) => {
     return {
+        tags: state.tags.tags,
         canRedirectLogin: state.auth.canRedirectLogin,
         alert: state.alert.message,
         initialValues: {
@@ -173,6 +204,7 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps, {
         //some actions here
+        loadTags,
         userRegister,
         userLogin,
         clearAlert

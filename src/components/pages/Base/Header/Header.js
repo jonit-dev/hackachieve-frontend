@@ -22,12 +22,20 @@ class Header extends Component {
 
     componentDidMount() {
         console.log('refreshing user info');
-        this.props.userInfoRefresh();
+
+
+        if(this.props.location.pathname === '/board') {
+            this.props.userInfoRefresh();
+        }
 
     }
 
     componentWillMount() {
-        this.props.loadUserGoalsCategories();
+
+        if(this.props.location.pathname === '/board') {
+            this.props.loadUserGoalsCategories();
+        }
+
         this.props.updateLocation(history.location); //update for the first time on component mounting
 
         //listen for history changes and then update our current state properly
@@ -97,7 +105,7 @@ class Header extends Component {
                                 <div className="hackachieve-dropdown-wrapper">
                                     <select name="goalFilter" id="board-dropdown" className="hackachieve-dropdown"
                                             onChange={this.handleFilter}>
-                                        <option value="All">All</option>
+                                        <option value="All">All Goals</option>
                                         <option value="week" key="week">Week</option>
                                         {boardCategories && boardCategories.map((goalCategory, index) => {
                                             return <option value={goalCategory.name}
@@ -147,7 +155,6 @@ class Header extends Component {
 
                 return (
                     <React.Fragment>
-
 
 
                         <div className="header_menu">

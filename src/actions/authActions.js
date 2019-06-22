@@ -7,6 +7,12 @@ import history from '../history';
 import API from '../classes/API';
 import {Mixpanel as mixpanel} from '../analytics/mixpanel';
 import Analytics from "../analytics/Analytics";
+import env from "../env";
+import {FullStoryAPI} from "react-fullstory";
+
+
+let isProd = env.env === 'prod';
+
 
 export const userLogin = (credentials) => async (dispatch) => {
 
@@ -47,7 +53,7 @@ export const userLogin = (credentials) => async (dispatch) => {
             dispatch({type: LOGIN_USER, payload: response.data});
 
             const {access, refresh} = response.data;
-
+            console.log(access,refresh,'left')
             //also update our localStorage
 
             localStorage.setItem('userToken', JSON.stringify({
@@ -161,16 +167,19 @@ export const userRegister = (userInfo) => async (dispatch) => {
                 }
             });
 
-            /* Userstory: identify =========================================== */
 
-            // This is an example script - don't forget to change it!
-            window.FS.identify(userInfo.email, {
-                displayName: `${userInfo.firstName} ${userInfo.lastName}`,
-                email: `${userInfo.email}`,
-                // TODO: Add your own custom user variables here, details at
-                // http://help.fullstory.com/develop-js/setuservars
-                reviewsWritten_int: 14
-            });
+            //FullStory: Identify
+
+            if(isProd) {
+
+                // Identify method
+                FullStoryAPI('identify', userInfo.email, {
+                    created: new Date(),
+                    first_name: userInfo.firstName,
+                    last_name: userInfo.lastName
+                });
+
+            }
 
 
             /* Mixpanel: Identify =========================================== */
