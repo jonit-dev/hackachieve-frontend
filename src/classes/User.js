@@ -80,7 +80,7 @@ console.log(credentials,'cred')
     }
 
     static isLoggedIn() {
-console.log(localStorage.getItem('userToken'),"localStorage.getItem('userToken')")
+// console.log(localStorage.getItem('userToken'),"localStorage.getItem('userToken')")
         //try to get token information from localstorage.
 
         try {
