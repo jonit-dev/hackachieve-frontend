@@ -14,8 +14,13 @@ class AddShortTermGoalModal extends Component {
 
     onSubmit = (formValues) => {
         let formOutput = {...formValues, column_id: this.props.myProps.longTermGoalId};
+
+        formOutput.optional_duration_hrs = formOutput.duration_hrs || "";
+        delete formOutput.duration_hrs;
+
         // console.log('creating new goal ==> ');
         // console.log(formOutput);
+
         this.props.createGoal(formOutput).then((response) => {
             const {status} = response.data;
             if (status === 'success') {
@@ -33,7 +38,8 @@ class AddShortTermGoalModal extends Component {
 
         const content = <React.Fragment>
 
-            <p className="modal-subtitle">Short-term goals are defined in <strong>days or weeks</strong> and relate with your long term goal
+            <p className="modal-subtitle">Short-term goals are defined in <strong>days or weeks</strong> and relate with
+                your long term goal
                 purpose.</p>
 
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
@@ -45,7 +51,7 @@ class AddShortTermGoalModal extends Component {
                        label="Estimated duration (hrs)"/>
                 <Field
                     name="deadline"
-                    label="Deadline" 
+                    label="Deadline"
                     inputValueFormat="YYYY-MM-DD"
                     // dateFormat="L"
                     dateFormatCalendar="dddd"
@@ -59,7 +65,7 @@ class AddShortTermGoalModal extends Component {
                     normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
                     component={DatePicker}
                 />
-                
+
                 <Field name="priority" component={renderInputCheckbox}
                        label="Is this a priority goal?"/>
             </form>

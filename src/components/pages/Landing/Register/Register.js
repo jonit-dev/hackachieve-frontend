@@ -11,7 +11,6 @@ import Analytics from "../../../../analytics/Analytics";
 
 import {TagSelector} from "../Preferences/TagSelector";
 import {loadTags} from "../../../../actions/tagActions";
-import history from "../../../../history";
 import Text from '../../../../classes/Text';
 
 // import history from '../../../../history';
