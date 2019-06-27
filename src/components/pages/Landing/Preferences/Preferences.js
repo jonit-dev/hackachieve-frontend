@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import cogoToast from 'cogo-toast';
 
 import {loadTags, createTags} from "../../../../actions/tagActions";
 import {TagSelector} from "./TagSelector";
@@ -15,7 +16,7 @@ class Preferences extends Component {
     onSubmit = (formValues) => {
         
         if(validate(formValues)){
-            console.log(validate(formValues));
+            cogoToast.error(validate(formValues));
         }
         else{
             this.props.createTags(formValues).then((response) => {
