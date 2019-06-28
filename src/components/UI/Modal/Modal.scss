@@ -11,7 +11,6 @@
   }
 }
 
-
 .ui.active.modal {
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +24,7 @@
 
 .main-div {
   height: 90%;
-  overflow-Y: auto;
+  overflow-y: auto;
   overflow-x: hidden;
   width: calc(100% - 424px);
   position: absolute;
@@ -37,14 +36,14 @@
 
 .top-bar-popup a {
   margin: 0px 10px 0 0;
-  background: #F4F4FC;
+  background: #f4f4fc;
   border-radius: 30px;
   min-width: 148px;
   height: 46px;
   line-height: 46px;
   display: inline-block;
   font-size: 0.85rem !important;
-  color: #54575D;
+  color: #54575d;
   text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -57,21 +56,21 @@
 
 .top-bar-popup a {
   &.public {
-    background: #17E09D;
+    background: #17e09d;
     i {
       color: white;
     }
-
   }
 
   &.private {
-    background: $hackachieve-darker-purple;
+    background: $hackachieve-purple;
     i {
-      color: $hackachieve-dark-grey;
+      color: white;
     }
   }
 
-  &.public,&.private {
+  &.public,
+  &.private {
     margin: 0px 0px 0 0;
     border-radius: 30px;
     width: 115px;
@@ -90,14 +89,11 @@
       left: -0.6rem;
     }
   }
-
-
-
 }
 
 .tags {
-  border-top: solid 2px rgba(189, 189, 209, 0.50);
-  border-bottom: solid 2px rgba(189, 189, 209, 0.50);
+  border-top: solid 2px rgba(189, 189, 209, 0.5);
+  border-bottom: solid 2px rgba(189, 189, 209, 0.5);
   padding: 10px 0;
 }
 
@@ -108,7 +104,7 @@
 }
 
 .tags label {
-  color: #54575D;
+  color: #54575d;
   font-size: 14px;
   font-weight: 700;
   margin: 0 15px 0 0;
@@ -116,7 +112,7 @@
 
 .tags a.fitness {
   margin: 0px 10px 0 0;
-  background: #FFB833;
+  background: #ffb833;
   border-radius: 30px;
   width: 70px;
   height: 28px;
@@ -129,7 +125,7 @@
 
 .tags a.goal {
   margin: 0px 10px 0 0;
-  background: #5DC8E2;
+  background: #5dc8e2;
   border-radius: 30px;
   width: 115px;
   height: 28px;
@@ -142,14 +138,14 @@
 
 .tags a.add-tag {
   margin: 0px 0px 0 0;
-  background: #F4F4FC;
+  background: #f4f4fc;
   border-radius: 30px;
   width: 115px;
   height: 28px;
   line-height: 28px;
   display: inline-block;
   font-size: 15px;
-  color: #54575D;
+  color: #54575d;
   text-align: center;
   padding: 0 7px;
 }
@@ -159,7 +155,7 @@
 }
 
 .detail h3 {
-  color: #54575D;
+  color: #54575d;
   font-size: 14px;
   font-weight: 700;
   padding: 0 0 15px 0;
@@ -167,7 +163,7 @@
 }
 
 .detail p {
-  color: #54575D;
+  color: #54575d;
   font-size: 16px;
   font-weight: 300;
   padding: 0 0 0px 0;
@@ -179,7 +175,7 @@
 }
 
 .checklist h3 {
-  color: #54575D;
+  color: #54575d;
   font-size: 14px;
   font-weight: 700;
   padding: 0 0 15px 0;
@@ -223,8 +219,8 @@
 }
 
 .check-main input:checked ~ .checkmark {
-  background-color: #FFB833;
-  border: solid 1px #FFB833;
+  background-color: #ffb833;
+  border: solid 1px #ffb833;
 }
 
 .checkmark:after {
@@ -251,7 +247,7 @@
 
 button.add-task {
   margin: 10px 0px 2px 0;
-  background: #17E09D;
+  background: #17e09d;
   border-radius: 30px;
   margin-right: 2px;
   width: 90px;
@@ -280,7 +276,7 @@ button.cancel {
 
 a.add-task {
   margin: 20px 0px 0 0;
-  background: #17E09D;
+  background: #17e09d;
   border-radius: 30px;
   width: 145px;
   height: 35px;
@@ -308,7 +304,7 @@ a.add-task {
 }
 
 .comment-sec h3 {
-  color: #54575D;
+  color: #54575d;
   font-size: 14px;
   font-weight: 700;
   padding: 0 0 15px 0;
@@ -327,7 +323,7 @@ a.add-task {
 }
 
 .comment-client h4 {
-  color: #54575D;
+  color: #54575d;
   font-size: 15px;
   font-weight: 700;
   padding: 13px 0 0px 0;
@@ -336,7 +332,7 @@ a.add-task {
 }
 
 .client-text p {
-  color: #54575D;
+  color: #54575d;
   font-size: 16px;
   font-weight: 300;
   padding: 15px 0px;
@@ -350,7 +346,6 @@ a.up-arrow {
   border-radius: 100%;
   line-height: 35px;
   display: inline-block;
-
 }
 
 a.up-arrow img {
@@ -372,7 +367,7 @@ a.down-arrow img {
 }
 
 .cooment-left span {
-  color: #354AA4;
+  color: #354aa4;
   display: block;
   padding: 10px 0;
   font-size: 16px;
@@ -413,7 +408,7 @@ a.down-arrow img {
 a.send-mesage {
   width: 80px;
   height: 80px;
-  background: #17E09D;
+  background: #17e09d;
   border-radius: 100%;
   line-height: 80px;
   position: absolute;
@@ -464,7 +459,7 @@ a.more {
 span.time {
   float: right;
   font-size: 14px;
-  color: #54575D;
+  color: #54575d;
 }
 
 .pop-inner {
@@ -480,15 +475,12 @@ span.time {
     right: 12%;
   }
   a.close img {
-
     margin-top: -4px;
   }
   a.upload img {
-
     margin-top: -4px;
   }
   a.more img {
-
     margin-top: -4px;
   }
 }
@@ -498,22 +490,19 @@ span.time {
     right: 8%;
   }
   a.close img {
-
     margin-top: -4px;
   }
   a.upload img {
-
     margin-top: -4px;
   }
   a.more img {
-
     margin-top: -4px;
   }
 }
 
 @media screen and (max-width: 1200px) {
   .main-div {
-    overflow-Y: auto;
+    overflow-y: auto;
   }
   .top-bar-popup a.public {
     width: 87px;
@@ -529,27 +518,22 @@ span.time {
   .ui.modal {
     width: calc(100% - 219px) !important;
     margin: 0;
-
   }
   .popup-btns {
     right: 2%;
   }
   a.close img {
-
     margin-top: -4px;
   }
   a.upload img {
-
     margin-top: -4px;
   }
   a.more img {
-
     margin-top: -4px;
   }
 }
 
 @media screen and (max-width: 991px) {
-
   .top-bar-popup a.public {
     width: 87px;
     font-size: 12px;
@@ -563,7 +547,6 @@ span.time {
   }
   .pop-inner {
     width: 627px;
-
   }
   .popup-btns {
     right: 5%;
@@ -630,10 +613,9 @@ span.time {
   }
   .main-div {
     height: 80%;
-    overflow-Y: auto;
+    overflow-y: auto;
     width: calc(100% - 219px);
     position: absolute;
-
   }
   .popup-btns {
     right: 7%;
@@ -696,14 +678,13 @@ span.time {
   }
 }
 
-
 @media screen and (max-width: 630px) {
   .popup-btns {
     right: 26%;
   }
   .top-bar-popup a.public {
     margin: 0px 0px 0px 0;
-    background: #17E09D;
+    background: #17e09d;
     border-radius: 30px;
     width: 100%;
     height: 46px;
@@ -714,8 +695,6 @@ span.time {
     text-align: center;
     float: none;
   }
-
-
 
   .top-bar-popup a.private {
     margin: 0px 0px 0px 0;
@@ -728,23 +707,23 @@ span.time {
     font-size: 16px;
     color: #fff;
     text-align: center;
-    float:none
+    float: none;
   }
   .top-bar-popup a {
     margin: 0px 0px 10px 0;
-    background: #F4F4FC;
+    background: #f4f4fc;
     border-radius: 30px;
     width: 100%;
     height: 46px;
     line-height: 46px;
     display: block;
     font-size: 15px;
-    color: #54575D;
+    color: #54575d;
     text-align: center;
     padding: 0 7px;
   }
   .tags label {
-    color: #54575D;
+    color: #54575d;
     font-size: 14px;
     font-weight: 700;
     margin: 0 0px 10px 0;
@@ -753,7 +732,7 @@ span.time {
   a.send-mesage {
     width: 40px;
     height: 40px;
-    background: #17E09D;
+    background: #17e09d;
     border-radius: 100%;
     line-height: 40px;
     position: absolute;
@@ -806,7 +785,6 @@ span.time {
   }
 }
 
-
 // @media only screen and (max-width: 992px){
 // 	.ui.modal {
 // 		width: calc(100% - 457px) !important;
@@ -818,11 +796,11 @@ span.time {
     width: 90% !important;
     margin: 0;
     left: 15px;
-    overflow-y: auto
+    overflow-y: auto;
   }
   .main-div {
     height: 80%;
-    overflow-Y: auto;
+    overflow-y: auto;
     overflow: hidden;
     position: absolute;
     width: 226px;
@@ -847,5 +825,4 @@ span.time {
   a.send-mesage img {
     margin-top: 12px;
   }
-
 }
