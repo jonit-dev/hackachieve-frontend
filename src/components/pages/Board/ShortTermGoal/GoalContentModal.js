@@ -50,7 +50,7 @@ class GoalContentModal extends Component {
     }
 
 
-    changepublicstatus(){
+    onChangePublicStatus(){
         let formOutput = {
             goal_id: this.props.myProps.shortTermGoal.id,
             goal_data: {
@@ -80,6 +80,20 @@ class GoalContentModal extends Component {
         });
     }
 
+    onPublicPrivateSwitch() {
+
+        if(this.state.publicstatus === "Public") {
+            return <a className="public" href="# " onClick={() => this.onChangePublicStatus()}>
+                <i className="far fa-eye"></i>{this.state.publicstatus}</a>
+        } else {
+            return <a className="private" href="# " onClick={() => this.onChangePublicStatus()}><i
+                className="far fa-eye-slash"></i>{this.state.publicstatus}</a>
+        }
+
+
+
+    }
+
     render() {
         const {title, description, deadline, status} = this.props.myProps.shortTermGoal;
 
@@ -93,7 +107,7 @@ class GoalContentModal extends Component {
                     <strong>Deadline:</strong> <Moment format="D MMMM, YYYY">{deadline}</Moment>
                 </a>
                 {/*below a tag is use to make card public or private.*/}
-                <a className="public" href="# " onClick={() => this.changepublicstatus()}><img src="images/icons/eye.svg" alt=""/>{this.state.publicstatus}</a>
+                {this.onPublicPrivateSwitch()}
             </div>
 
 

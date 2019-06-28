@@ -12,7 +12,6 @@
 }
 
 
-
 .ui.active.modal {
   display: flex;
   flex-wrap: wrap;
@@ -56,18 +55,44 @@
   margin: -3px 5px 0 0;
 }
 
-.top-bar-popup a.public {
-  margin: 0px 0px 0 0;
-  background: #17E09D;
-  border-radius: 30px;
-  width: 115px;
-  height: 46px;
-  line-height: 46px;
-  display: inline-block;
-  font-size: 16px;
-  color: #fff;
-  text-align: center;
-  float: right;
+.top-bar-popup a {
+  &.public {
+    background: #17E09D;
+    i {
+      color: white;
+    }
+
+  }
+
+  &.private {
+    background: $hackachieve-darker-purple;
+    i {
+      color: $hackachieve-dark-grey;
+    }
+  }
+
+  &.public,&.private {
+    margin: 0px 0px 0 0;
+    border-radius: 30px;
+    width: 115px;
+    height: 46px;
+    line-height: 46px;
+    display: inline-block;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    float: right;
+    i {
+      font-size: 1.4rem;
+      margin-right: 0;
+      position: relative;
+      top: 2.7px;
+      left: -0.6rem;
+    }
+  }
+
+
+
 }
 
 .tags {
@@ -688,6 +713,22 @@ span.time {
     color: #fff;
     text-align: center;
     float: none;
+  }
+
+
+
+  .top-bar-popup a.private {
+    margin: 0px 0px 0px 0;
+    background: $hackachieve-grey;
+    border-radius: 30px;
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    display: inline-block;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    float:none
   }
   .top-bar-popup a {
     margin: 0px 0px 10px 0;
