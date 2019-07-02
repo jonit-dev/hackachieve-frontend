@@ -15,7 +15,7 @@ class TermsOfUse extends Component {
 
     render() {
         return (
-            <main>
+            <div className="site-wrap internal-page">
 
                 <div className="ui text container terms">
 
@@ -600,7 +600,7 @@ class TermsOfUse extends Component {
 
 
 
-            </main>
+            </div>
         );
     }
 }

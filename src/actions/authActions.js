@@ -53,7 +53,7 @@ export const userLogin = (credentials) => async (dispatch) => {
             dispatch({type: LOGIN_USER, payload: response.data});
 
             const {access, refresh} = response.data;
-            console.log(access,refresh,'left')
+            // console.log(access,refresh,'left')
             //also update our localStorage
 
             localStorage.setItem('userToken', JSON.stringify({

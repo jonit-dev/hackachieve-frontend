@@ -50,7 +50,7 @@ class Login extends Component {
     render() {
 
         return (
-            <main>
+            <div className="site-wrap internal-page">
 
                 <div className="ui text container">
 
@@ -75,7 +75,7 @@ class Login extends Component {
                 </div>
 
 
-            </main>
+            </div>
 
 
         );

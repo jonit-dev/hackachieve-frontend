@@ -155,25 +155,29 @@ class Header extends Component {
 
                 return (
                     <React.Fragment>
+  <div className="site-mobile-menu site-navbar-target">
+          <div className="site-mobile-menu-header">
+            <div className="site-mobile-menu-close mt-3">
+              <span className="icon-close2 js-menu-toggle" />
+            </div>
+          </div>
+          <div className="site-mobile-menu-body" />
+        </div>
+        <header className="site-navbar py-md-4 js-sticky-header site-navbar-target" role="banner">
+          <div className="container">
+            <div className="row align-items-center">
+              <div className="col-12 col-md-3">
+                <h1 className="mb-0 site-logo"><Link to={'/'}  className="text-black h2 mb-0"><img src="landing_resources/images/hackachieve-logo-vertical.svg" alt="hackachieve logo" /></Link></h1>
+              </div>
+              <div className="col-12 col-md-9">
+                <a href="# " className="site-menu-toggle js-menu-toggle text-black float-right d-lg-none"><span className="icon-menu h3" /></a>
+                <div className="button-main">
 
 
-                        <div className="header_menu">
-                            <div className="ui container">
-                                <div className="ui large secondary inverted pointing menu">
-                                    <a href=" #" className="mobile-menu" onClick={() => this.onOpenMenuClick()}>
-                                        <i className="sidebar icon"/>
-                                    </a>
-                                    <Link to={`/`} className="logo-link">
-                                        <img src="/images/logo_dark.png" alt="Logo" className="app-logo"/>
-                                    </Link>
-
-                                    <div className="right-items">
-                                        <div className="button-main">
-
-                                            {(this.props.isLoggedIn ?
+                {(this.props.isLoggedIn ?
                                                 <Link className="ui inverted button" to="/board">Board</Link> : null)}
 
-                                            {(!this.props.isLoggedIn ?
+                                                {(!this.props.isLoggedIn ?
                                                 <React.Fragment>
                                                     <Link id="btnLogin" to="/login" className="ui inverted button">
                                                         Log in
@@ -185,24 +189,27 @@ class Header extends Component {
                                                 <button id="btnLogout" onClick={() => this.props.userLogout()}
                                                         className="ui inverted button">Logout</button>)}
 
-                                        </div>
 
+                  {/* <a id="btnLogin" href="# ">Log in</a> */}
+                  {/* <a id="btnsignup" href="# ">Sign Up</a> */}
+                </div>
+                <div className="main-menu">
+                  <nav className="site-navigation position-relative text-right" role="navigation">
+                    <ul className="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                      <li><a href="#home-section" className="nav-link">Home</a></li>
+                      <li><a href="#features-section" className="nav-link">Features</a></li>
+                      {/* <li><a href="#about-section" className="nav-link">About Us</a></li> */}
+                      <li><a href="#connect-the-dots" className="nav-link">Testimonials</a></li>
+                      {/* <li><a href="#blog-section" className="nav-link">Blog</a></li> */}
+                      {/* <li><a href="#contact-section" className="nav-link">Contact</a></li> */}
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div></header>
 
-                                        <div className="navigation" id="mySidenav"
-                                             style={(this.state.userMenuOpen ? {'width': '100%'} : null)}>
-                                            <a href="# " className="closebtn"
-                                               onClick={() => this.onOpenMenuClick()}>&times;</a>
-                                            <ul className="nav-sub-menu">
-                                                <li><Link className="active" to='/'>Home</Link></li>
-                                                {/*<li><Link to='/terms'>Terms</Link></li>*/}
-                                                {/*<li><Link to="/privacy">Privacy</Link></li>*/}
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                     </React.Fragment>
                 )

@@ -15,6 +15,9 @@
   display: flex;
   flex-wrap: wrap;
   height: auto;
+  margin: 0 auto;
+  margin: 5vh auto;
+  max-height: 80vh;
 }
 
 .ui.modal > .actions {
@@ -127,13 +130,25 @@
   margin: 0px 10px 0 0;
   background: #5dc8e2;
   border-radius: 30px;
-  width: 115px;
+  min-width: 80px;
   height: 28px;
   line-height: 28px;
   display: inline-block;
-  font-size: 15px;
+  font-size: 1rem;
   color: #fff;
   text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  i {
+    color: white;
+    position: relative;
+    top: 7.2px;
+    left: 9px;
+    font-size: 0.9rem;
+  }
+
+
 }
 
 .tags a.add-tag {
