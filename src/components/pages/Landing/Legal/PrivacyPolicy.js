@@ -19,7 +19,7 @@ class PrivacyPolicy extends Component {
 
     render() {
         return (
-            <main>
+            <div className="site-wrap internal-page">
 
                 <div className="ui text container privacy">
 
@@ -218,7 +218,7 @@ class PrivacyPolicy extends Component {
                 </div>
 
 
-            </main>
+            </div>
         );
     }
 }

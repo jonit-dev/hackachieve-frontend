@@ -1,0 +1,222 @@
+.site-navbar {
+  padding: 20px 0px !important;
+  background: #1f2350; }
+
+.site-navbar .site-logo {
+  width: 100px;
+  top: 0; }
+
+.site-navbar .site-logo img {
+  width: 100px; }
+
+.site-navbar .site-navigation .site-menu {
+  padding-left: 0; }
+
+.site-navigation {
+  float: left; }
+
+.site-blocks-cover {
+  background: #1f2350; }
+
+.button-main {
+  float: right; }
+
+.button-main a {
+  width: 100px;
+  height: 34px;
+  border: none;
+  box-shadow: none !important;
+  padding: 0 !important;
+  line-height: 34px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: #fff;
+  margin-left: 10px;
+  display: inline-block;
+  border-radius: 30px;
+  text-align: center; }
+
+#btnLogin {
+  background: #8f91a8; }
+
+#btnsignup {
+  background: #18b47e; }
+
+.site-navbar .site-navigation .site-menu > li > a {
+  padding: 5px 14px;
+  color: #fff;
+  display: inline-block;
+  text-decoration: none !important; }
+
+.cracter-img {
+  padding: 90px 0 0; }
+
+.site-blocks-cover h1 {
+  font-size: 44px;
+  font-weight: 400;
+  color: #fff;
+  font-weight: 900;
+  padding: 150px 0 0; }
+
+.site-blocks-cover p {
+  color: #fff;
+  padding: 30px 0;
+  margin: 0; }
+
+.btn.btn-primary {
+  background: #EC5564;
+  border-color: #EC5564;
+  -webkit-box-shadow: 0 4px 20px -5px rgba(236, 85, 100, 0.4);
+  box-shadow: 0 4px 20px -5px rgba(236, 85, 100, 0.4); }
+  .btn.btn-primary:hover, .btn.btn-primary:active {
+    background: #EC5564;
+    border-color: #EC5564;
+    color: #fff; }
+
+.site-section {
+  padding: 60px 0; }
+
+.unit-4:hover .unit-4-icon .icon-wrap {
+  background-color: #fff; }
+
+.unit-4:hover .icon-wrap span {
+  color: #18b47e !important; }
+
+.unit-4 .unit-4-icon .icon-wrap {
+  background-color: #18b47e; }
+
+.unit-4:hover {
+  background: #18b47e; }
+
+.unit-4:hover p {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9); }
+
+.unit-4 {
+  min-height: 342px; }
+
+#about-section .btn.btn-primary:hover {
+  color: #000; }
+
+.section-title {
+  color: #000;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 !important; }
+
+.feature-big h2 {
+  font-size: 30px;
+  color: #fff !important; }
+
+.feature-big p {
+  color: #fff !important; }
+
+.feature-big ul li {
+  color: #fff !important; }
+
+.ul-check.success li::before {
+  color: #EC5564; }
+
+a.p-3 {
+  color: #18b47e;
+  font-size: 20px; }
+
+.author-box {
+  background: #EC5564;
+  border: 1px solid #EC5564; }
+
+.author-box strong {
+  color: #fff !important; }
+
+.author-box div {
+  color: #fff !important; }
+
+.author-box blockquote {
+  color: #fff !important; }
+
+.footer {
+  background: #1f2350;
+  padding: 10px 0 30px 0 !important; }
+
+.footer p {
+  font-weight: 300 !important;
+  font-size: 14px;
+  color: #fff;
+  padding: 20px 0 0 0; }
+
+.feature-big {
+  background: #1f2350; }
+
+#about-section h1 {
+  font-size: 30px;
+  color: #000 !important;
+  font-weight: 900;
+  margin-bottom: 30px; }
+
+@media screen and (max-width: 1199px) {
+  .site-navbar .site-navigation .site-menu > li > a {
+    padding: 6px 6px;
+    font-size: 14px; }
+
+  .site-blocks-cover h1 {
+    padding: 90px 0 0; } }
+@media screen and (max-width: 991px) {
+  .site-blocks-cover {
+    min-height: auto;
+    height: inherit;
+    padding: 100px 20px 50px; }
+
+  .site-blocks-cover h1 {
+    padding: 0px 0 0;
+    font-size: 30px;
+    text-align: center; }
+
+  .site-blocks-cover p {
+    padding: 20px 0;
+    text-align: center; }
+
+  .site-blocks-cover .btn.btn-primary {
+    margin: 0 auto !important;
+    display: table; }
+
+  .site-menu-toggle {
+    color: #fff !important;
+    margin: 0 0 0 20px; } }
+@media screen and (max-width: 767px) {
+  .site-navbar {
+    padding: 10px 0px !important;
+    background: #1f2350; }
+
+  .site-navbar .site-logo {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 0 auto 20px !important;
+    display: table; }
+
+  .button-main {
+    float: left; }
+
+  .button-main a {
+    margin: 0 15px 0 0; }
+
+  .site-blocks-cover {
+    padding: 150px 20px 50px; }
+
+  .unit-4 {
+    min-height: inherit; }
+
+  .section-title {
+    font-size: 30px; }
+
+  .feature-big img {
+    margin-bottom: 30px; }
+
+  #about-section h2 {
+    font-size: 27px; }
+
+  #about-section img {
+    margin-top: 30px; } }
+
+/*# sourceMappingURL=custom.css.map */

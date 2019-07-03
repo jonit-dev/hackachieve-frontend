@@ -118,7 +118,7 @@ class Register extends Component {
         return (
 
 
-            <main>
+            <div className="site-wrap internal-page">
 
                 <div className="ui text container">
 
@@ -166,7 +166,7 @@ class Register extends Component {
                         </button>
                     </form>
                 </div>
-            </main>
+            </div>
         );
     }
 }
