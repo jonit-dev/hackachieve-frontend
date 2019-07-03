@@ -134,7 +134,6 @@ class GoalContentModal extends Component {
                 title={title}
                 content={content}
                 actions={actions}
-                userid={this.props.myProps.shortTermGoal.user_id}
                 goalid={this.props.myProps.shortTermGoal.id}
             />
         );
