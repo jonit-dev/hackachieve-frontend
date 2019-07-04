@@ -2,22 +2,41 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "../../../UI/Modal/Modal";
 import { toggleModal } from "../../../../actions/uiActions";
+import _ from "lodash";
 import Moment from "react-moment";
 import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
 import LabelHandler from "../../../UI/forms/LabelHandler";
 import { loadGoals, editGoals } from "../../../../actions/goalsActions";
 import moment from "moment";
-
-// import Moment from "react-moment";
+import cogoToast from "cogo-toast";
+import {
+  loadComments,
+  CreateComment,
+  UserInfo,
+  DeleteComments,
+  UpdateComments,
+  CommentsVote
+} from "../../../../actions/commentAction";
 
 class GoalContentModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      publicstatus: ""
+      publicstatus: "",
+      CommentsTxt: "",
+      UpdateBox: false,
+      CommentDT: [],
+      LoginUser: []
     };
+    this.handleCreateChange = this.handleCreateChange.bind(this);
+    this.handleUpdateChange = this.handleUpdateChange.bind(this);
   }
   componentDidMount() {
+    UserInfo().then(response => {
+      this.setState({ LoginUser: response });
+      this.loadcomment();
+    });
+
     !this.props.myProps.shortTermGoal.is_public
       ? this.setState({ publicstatus: "Private" })
       : this.setState({ publicstatus: "Public" });
@@ -102,6 +121,83 @@ class GoalContentModal extends Component {
     }
   }
 
+  //############### comment realated functions #################
+  loadcomment() {
+    if (this.props.myProps.shortTermGoal.id) {
+      loadComments(this.props.myProps.shortTermGoal.id).then(response => {
+        this.setState({ CommentDT: response });
+      });
+    }
+  }
+
+  handleCreateChange(event) {
+    this.setState({ CommentsTxt: event.target.value });
+  }
+
+  handleUpdateChange(event) {
+    this.setState({ commentupdatedtext: event.target.value });
+  }
+
+  AddComments() {
+    if (!this.state.CommentsTxt) {
+      cogoToast.error("Please write some comment first");
+    } else {
+      let commentdata = {
+        text: this.state.CommentsTxt,
+        vote: "0",
+        goal: this.props.myProps.shortTermGoal.id
+      };
+
+      CreateComment(commentdata).then(response => {
+        this.setState({ CommentsTxt: "" });
+        this.loadcomment();
+      });
+    }
+  }
+
+  DeleteComments(commentid) {
+    DeleteComments(commentid).then(response => {
+      this.loadcomment();
+    });
+  }
+  UpdateCommentsbox(commentid, commenttext) {
+    this.setState({
+      UpdateBox: true,
+      Comment_id: commentid,
+      commentupdatedtext: commenttext
+    });
+  }
+
+  UpdateComment(id) {
+    let updated = {
+      text: this.state.commentupdatedtext
+    };
+    UpdateComments(id, updated).then(response => {
+      this.setState({ UpdateBox: false });
+      this.loadcomment();
+    });
+  }
+  UpvoteComments(commentid) {
+    let vote = {
+      upvote: "1",
+      downvote: "0",
+      comment: commentid
+    };
+    this.props.CommentsVote(vote).then(response => {
+      this.loadcomment();
+    });
+  }
+  DownvoteComments(commentid) {
+    let vote = {
+      upvote: "0",
+      downvote: "1",
+      comment: commentid
+    };
+    this.props.CommentsVote(vote).then(response => {
+      this.loadcomment();
+    });
+  }
+
   render() {
     const {
       title,
@@ -109,6 +205,131 @@ class GoalContentModal extends Component {
       deadline,
       status
     } = this.props.myProps.shortTermGoal;
+
+    const { UpdateBox, Comment_id } = this.state;
+    const commentcontent = (
+      <React.Fragment>
+        <div className="comment-sec">
+          <h3>
+            this is from main Comments ({this.state.CommentDT.length})
+            <img src="images/icons/chevron-up.svg" alt="" />
+          </h3>
+          <ul>
+            {this.state.CommentDT.map((comment, i) => (
+              <div className="comment-sec" key={comment.id}>
+                {/* {console.log(comment.voting[0])} */}
+                <div className="cooment-left">
+                  <a
+                    href="# "
+                    onClick={() => this.UpvoteComments(comment.id)}
+                    className="up-arrow"
+                  >
+                    <img src="images/icons/chevron-up.svg" alt="" />
+                  </a>
+                  {comment.voting[0] === undefined ? (
+                    <span className="count">{0}</span>
+                  ) : (
+                    <span className="count">
+                      {comment.voting[0].upvote - comment.voting[0].downvote}
+                    </span>
+                  )}
+                  <a
+                    href="# "
+                    onClick={() => this.DownvoteComments(comment.id)}
+                    className="down-arrow"
+                  >
+                    <img src="images/icons/chevron-up.svg" alt="" />
+                  </a>
+                </div>
+                <div className="cooment-right">
+                  <div className="comment-client">
+                    <img src="images/icons/avatar-generic.svg" alt="" />
+                    <h4>
+                      {comment.user.first_name + " " + comment.user.last_name}
+                    </h4>
+                    <span className="time">13:00 PM</span>
+                  </div>
+                  <div
+                    className="client-text"
+                    style={{
+                      display:
+                        UpdateBox === true && comment.id === Comment_id
+                          ? "none"
+                          : "block"
+                    }}
+                  >
+                    <p>{comment.text}</p>
+                  </div>
+                  {_.isEqual(comment.user, this.state.LoginUser) ? (
+                    <div>
+                      <div style={{ float: "right" }}>
+                        <button
+                          className="cancel"
+                          onClick={() => this.DeleteComments(comment.id)}
+                        >
+                          Delete
+                        </button>{" "}
+                        <button
+                          style={{ margin: "0px" }}
+                          className="add-task"
+                          onClick={() =>
+                            this.UpdateCommentsbox(comment.id, comment.text)
+                          }
+                        >
+                          Update
+                        </button>
+                      </div>
+                      <div
+                        style={{
+                          display:
+                            UpdateBox === true && comment.id === Comment_id
+                              ? "block"
+                              : "none"
+                        }}
+                      >
+                        <textarea
+                          style={{ width: "70%", borderRadius: "20px" }}
+                          value={this.state.commentupdatedtext}
+                          onChange={this.handleUpdateChange}
+                          className="textarea"
+                        />
+                        <button
+                          className="add-task"
+                          onClick={() => this.UpdateComment(comment.id)}
+                        >
+                          Save
+                        </button>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </ul>
+        </div>
+
+        <div className="leave-comment">
+          <div className="send-user">
+            <img src="images/icons/avatar-generic.svg" alt="" />
+          </div>
+          <div className="comment-box">
+            <textarea
+              className="textarea"
+              placeholder="Comment Here"
+              value={this.state.CommentsTxt}
+              onChange={this.handleCreateChange}
+            />
+            <a
+              className="send-mesage"
+              href="# "
+              onClick={() => this.AddComments()}
+            >
+              <img alt="" src="images/icons/send.svg" />
+            </a>
+          </div>
+        </div>
+      </React.Fragment>
+    );
 
     const content = (
       <React.Fragment>
@@ -154,15 +375,13 @@ class GoalContentModal extends Component {
         </button>
       </React.Fragment>
     );
-
     return (
       <Modal
         name="goalContent"
         title={title}
         content={content}
+        comment={commentcontent}
         actions={actions}
-        userid={this.props.myProps.shortTermGoal.user_id}
-        goalid={this.props.myProps.shortTermGoal.id}
       />
     );
   }
@@ -181,6 +400,12 @@ export default connect(
     //actions here
     toggleModal,
     editGoals,
-    loadGoals
+    loadGoals,
+    CreateComment,
+    loadComments,
+    UserInfo,
+    DeleteComments,
+    UpdateComments,
+    CommentsVote
   }
 )(GoalContentModal);

@@ -1,8 +1,8 @@
 import API from "../classes/API";
-import { USER_INFO_REFRESH } from "./types";
+// import { USER_INFO_REFRESH } from "./types";
 import Analytics from "../analytics/Analytics";
 
-export const loadComments = id => async (dispatch, getState) => {
+export const loadComments = id =>{
   /*
     short term comments from a specific goal id
     */
@@ -13,10 +13,11 @@ export const loadComments = id => async (dispatch, getState) => {
   );
 };
 
-export const createComment = data => async dispatch => {
+export const CreateComment = data => {
   return API.request("goals/comment/", "POST", data, "auth").then(response => {
+    console.log(response);
     const { status } = response.data;
-    if (status === "error") {
+    if (status === 400) {
       console.log("you have no permition to comment here..");
     }
     if (status === "success") {
@@ -35,7 +36,7 @@ export const createComment = data => async dispatch => {
   });
 };
 
-export const DeleteComments = id => async (dispatch, getState) => {
+export const DeleteComments = id => {
   /*
     Delete short term comments from a specific Comment id
     */
@@ -47,10 +48,7 @@ export const DeleteComments = id => async (dispatch, getState) => {
   );
 };
 
-export const UpdateComments = (id, updatedcomment) => async (
-  dispatch,
-  getState
-) => {
+export const UpdateComments = (id, updatedcomment) => {
   /*
     Update short term comments from a specific Comment id
     */
@@ -74,9 +72,9 @@ export const CommentsVote = commentvote => async (dispatch, getState) => {
   );
 };
 
-export const userInfo = () => async dispatch => {
+export const UserInfo = () => {
   return API.request("/user/info/", "GET", null, "auth").then(response => {
-    dispatch({ type: USER_INFO_REFRESH, payload: response.data });
+    // dispatch({ type: USER_INFO_REFRESH, payload: response.data });
     // console.log(response.data);
     return response.data;
   });
