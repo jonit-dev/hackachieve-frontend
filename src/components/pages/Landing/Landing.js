@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {NavLink} from "react-router-dom";
 import User from '../../../classes/User';
 import Analytics from "../../../analytics/Analytics";
+import {userFacebookLogin} from "../../../actions/authActions";
+import FacebookLogin from "react-facebook-login";
 
 
 class Landing extends Component {
@@ -16,6 +18,14 @@ class Landing extends Component {
         })
 
     }
+    responseFacebook = response => {
+      let facebookvalue = {
+        provider: "facebook",
+        access_token: response.accessToken
+      }
+      this.props.userFacebookLogin(facebookvalue).then((response) => { //first register it
+      });
+    };
 
     render() {
         // console.log(User.isLoggedIn(),'User.isLoggedIn()');
@@ -34,7 +44,16 @@ class Landing extends Component {
                     <p>In Hackachieve you can and double your results in half of your time</p>
                     <div>
                     {(User.isLoggedIn() ? <NavLink to="/board" className="btn btn-primary mr-2 mb-2">ACCESS YOUR GOALS</NavLink> :
-                            <NavLink to="/register" className="btn btn-primary mr-2 mb-2">FREE SIGN UP!</NavLink>)}
+                            <div><center><FacebookLogin 
+                            //put your app id below 
+                            appId=""
+                            autoLoad={false}
+                            fields="name,email,picture"
+                            onClick={this.componentClicked}
+                            callback={this.responseFacebook}
+                            /></center><br />
+                             <center><NavLink to="/register" className="btn" style={{border: "black"}}>Create your account with e-mail and password!</NavLink></center></div>
+                            )}
                    
                     </div>
                   </div>
@@ -404,5 +423,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     //actions here
+    userFacebookLogin
 })(Landing);
 

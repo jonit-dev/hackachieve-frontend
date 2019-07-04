@@ -100,6 +100,38 @@ export const userLogin = (credentials) => async (dispatch) => {
 
 };
 
+export const userFacebookLogin = (credentials) => async (dispatch) => {
+    return API.request('user/oauth/facebook/', 'POST', credentials).then((response) => {
+        setTimeout(() => {
+
+            // const {access, refresh} = response.data;
+            // console.log(access);
+            // console.log(access,refresh,'left')
+            //also update our localStorage
+
+            localStorage.setItem('userToken', JSON.stringify({
+                'access': response.data.token.access,
+                'refresh': response.data.token.refresh
+            }));
+
+            // //then move the user to the board
+
+
+            history.push('/board');
+
+            // if(credentials.register){
+            //     history.push('/preferences');
+            //
+            // }else{
+            //     history.push('/board');
+            // }
+
+        }, 1000);
+
+        return response;
+    });
+}
+
 
 export const userLogout = () => dispatch => {
 
