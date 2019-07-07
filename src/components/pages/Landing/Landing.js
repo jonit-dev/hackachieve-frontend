@@ -46,13 +46,13 @@ class Landing extends Component {
                     {(User.isLoggedIn() ? <NavLink to="/board" className="btn btn-primary mr-2 mb-2">ACCESS YOUR GOALS</NavLink> :
                             <div><center><FacebookLogin 
                             //put your app id below 
-                            appId=""
+                            appId="379010106063409"
                             autoLoad={false}
                             fields="name,email,picture"
                             onClick={this.componentClicked}
                             callback={this.responseFacebook}
                             /></center><br />
-                             <center><NavLink to="/register" className="btn" style={{border: "black"}}>Create your account with e-mail and password!</NavLink></center></div>
+                             <center><NavLink to="/register" className="btn" style={{border: "black"}}>or create your account with e-mail and password</NavLink></center></div>
                             )}
                    
                     </div>
