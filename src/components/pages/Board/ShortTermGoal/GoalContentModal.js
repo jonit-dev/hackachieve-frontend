@@ -211,7 +211,7 @@ class GoalContentModal extends Component {
       <React.Fragment>
         <div className="comment-sec">
           <h3>
-            this is from main Comments ({this.state.CommentDT.length})
+            Goal comments ({this.state.CommentDT.length})
             <img src="images/icons/chevron-up.svg" alt="" />
           </h3>
           <ul>

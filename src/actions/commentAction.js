@@ -52,7 +52,7 @@ export const UpdateComments = (id, updatedcomment) => {
   /*
     Update short term comments from a specific Comment id
     */
-  return API.request(`goals/comment/${id}`, "PUT", updatedcomment, "auth").then(
+  return API.request(`goals/comment/${id}/`, "PUT", updatedcomment, "auth").then(
     response => {
       return response.data;
     }
