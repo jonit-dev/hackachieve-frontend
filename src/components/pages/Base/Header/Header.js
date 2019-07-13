@@ -161,7 +161,12 @@ class Header extends Component {
               <span className="icon-close2 js-menu-toggle" />
             </div>
           </div>
-          <div className="site-mobile-menu-body" />
+          <div className="site-mobile-menu-body">
+
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/register" className="nav-link">Register</Link>
+
+          </div>
         </div>
         <header className="site-navbar py-md-4 js-sticky-header site-navbar-target" role="banner">
           <div className="container">
@@ -196,12 +201,13 @@ class Header extends Component {
                 <div className="main-menu">
                   <nav className="site-navigation position-relative text-right" role="navigation">
                     <ul className="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                      <li><a href="#home-section" className="nav-link">Home</a></li>
-                      <li><a href="#features-section" className="nav-link">Features</a></li>
-                      {/* <li><a href="#about-section" className="nav-link">About Us</a></li> */}
-                      <li><a href="#connect-the-dots" className="nav-link">Testimonials</a></li>
-                      {/* <li><a href="#blog-section" className="nav-link">Blog</a></li> */}
-                      {/* <li><a href="#contact-section" className="nav-link">Contact</a></li> */}
+                      <li>
+                        <Link to="/" className="nav-link">Home</Link>
+                        <Link to="/register" className="nav-link">Register</Link>
+                         
+                      </li>
+                      
+                       
                     </ul>
                   </nav>
                 </div>
