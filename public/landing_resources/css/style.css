@@ -560,7 +560,7 @@ h1, h2, h3, h4, h5,
   position: relative; }
   .site-blocks-cover:after {
     position: absolute;
-    background-image: url("../images/svg_1.svg");
+    /* background-image: url("../images/svg_1.svg"); */
     content: "";
     right: 0; }
   .site-blocks-cover.overlay {
