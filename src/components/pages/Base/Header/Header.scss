@@ -195,13 +195,19 @@
   }
 }
 
-.site-navbar {
-  max-width: 98% !important;
+/* Mobile Only ==============================*/
+@media (max-width: 700px) {
+  .site-navbar {
+    max-width: 98% !important;
+  }
 }
-
 .site-mobile-menu-body {
   text-decoration: none;
   font-size: 1.4rem;
   color: $hackachieve-dark-purple;
   margin-bottom: 0.5rem;
+}
+
+.nav-link {
+  color: $hackachieve-dark-purple;
 }
