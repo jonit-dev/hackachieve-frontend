@@ -29,7 +29,7 @@ ReactDOM.render(
  
       <meta itemprop="name" content="Hackachieve - Use smart goals to double your productivity!"/>
       <meta itemprop="description" content="se Hackachieve to apply smart goals in your business or personal life"/>
-      <meta itemprop="image" content="https://www.hackachieve.com/landing_resources/images/dashboard.png"/>
+      <meta itemprop="image" content="https://www.hackachieve.com/landing_resources/images/dashboard.webp"/>
  
       <meta name="twitter:card" content="summary"/>
       <meta name="twitter:title" content="Hackachieve - Use smart goals to double your productivity!"/>

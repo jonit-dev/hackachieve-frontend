@@ -75,7 +75,7 @@ class Landing extends Component {
                     </div>
                     <div className="col-lg-7">
                       <img
-                        src="landing_resources/images/landing_1.png"
+                        src="landing_resources/images/landing_1.webp"
                         alt="character with goals"
                         className="img-fluid cracter-img"
                       />
@@ -218,7 +218,7 @@ class Landing extends Component {
               <div className="row site-section" id="connect-the-dots">
                 <div className="col-lg-7">
                   <img
-                    src="landing_resources/images/dashboard.png"
+                    src="landing_resources/images/dashboard.webp"
                     alt="dashboard illustration"
                     className="img-fluid"
                   />
@@ -238,7 +238,7 @@ class Landing extends Component {
                     <div className="d-flex mb-4">
                       <div className="mr-3">
                         <img
-                          src="landing_resources/images/person_1.jpg"
+                          src="landing_resources/images/person_1.webp"
                           alt="testimonial person"
                           className="img-fluid rounded-circle"
                         />
