@@ -239,13 +239,7 @@ h1, h2, h3, h4, h5,
     padding-left: 35px;
     margin-bottom: 15px;
     line-height: 1.5; }
-    .ul-check li:before {
-      left: 0;
-      font-size: 20px;
-      top: -.3rem;
-      font-family: "icomoon";
-      content: "\e5ca";
-      position: absolute; }
+ 
   .ul-check.white li:before {
     color: #fff; }
   .ul-check.success li:before {

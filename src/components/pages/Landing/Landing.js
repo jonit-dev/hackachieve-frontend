@@ -100,7 +100,9 @@ class Landing extends Component {
                   <div className="unit-4 d-block">
                     <div className="unit-4-icon mb-3">
                       <span className="icon-wrap">
-                        <span className="text-primary icon-autorenew" />
+                        <span>
+                        <i className="far fa-calendar-check"></i>
+                        </span>
                       </span>
                     </div>
                     <div>
@@ -121,7 +123,9 @@ class Landing extends Component {
                   <div className="unit-4 d-block">
                     <div className="unit-4-icon mb-3">
                       <span className="icon-wrap">
-                        <span className="text-primary icon-store_mall_directory" />
+                           <span>
+                           <i className="fas fa-user-tie"></i>
+                           </span>
                       </span>
                     </div>
                     <div>
@@ -165,7 +169,9 @@ class Landing extends Component {
                   <div className="unit-4 d-block">
                     <div className="unit-4-icon mb-3">
                       <span className="icon-wrap">
-                        <span className="text-primary icon-settings_backup_restore" />
+                          <span>
+                          <i className="fas fa-tachometer-alt"></i>
+                          </span>
                       </span>
                     </div>
                     <div>
