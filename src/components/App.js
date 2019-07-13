@@ -19,7 +19,7 @@ import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
 import Footer from "./pages/Base/Footer/Footer";
 import Preferences from "./pages/Landing/Preferences/Preferences";
 import FullStory from "react-fullstory";
-
+import NotFound from './pages/Base/NotFound/NotFound';
 
 let isProd = env.env === 'prod';
 
@@ -54,6 +54,8 @@ class App extends Component {
                     <Route path="/privacy" component={PrivacyPolicy}/>
                     <Route path="/board" component={Board}/>
                     <Route path="/preferences" component={Preferences}/>
+                    <Route path="*" component={NotFound}/>
+
                 </Switch>
                 <Footer/>
             </Router>
