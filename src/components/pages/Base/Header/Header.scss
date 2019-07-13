@@ -4,10 +4,10 @@
   align-items: center;
   width: 100%;
   color: white;
-  position:absolute;
-  left:0;
-  top:0;
-  padding:0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
   background-color: $hackachieve-darker-purple !important;
 
   .logo-link {
@@ -28,10 +28,8 @@
     margin-left: 1rem;
   }
 
-
-
-
-  .login, .signup {
+  .login,
+  .signup {
     color: white;
     font-size: 0.9rem !important;
     text-transform: uppercase;
@@ -39,7 +37,7 @@
 }
 
 .ui.secondary.inverted.pointing.menu {
-  border:none !important;
+  border: none !important;
 }
 
 .ui.secondary.inverted.pointing.menu .active.item {
@@ -50,7 +48,7 @@
   height: 90vh;
   //background: url("/images/pattern-background.svg") repeat;
   background-color: $hackachieve-darker-purple;
-  padding:0;
+  padding: 0;
   .heading {
     display: flex;
     flex-direction: column;
@@ -59,13 +57,13 @@
       font-weight: 700;
       font-size: 50px;
       margin: 0;
-      color: #FFFFFF;
+      color: #ffffff;
       margin-top: 45px;
     }
     h2 {
       font-weight: 900;
       font-size: 18px;
-      color: #FFFFFF;
+      color: #ffffff;
       opacity: 0.6;
       margin: 0;
     }
@@ -74,7 +72,7 @@
       border-radius: 4px;
       width: 380px;
       height: 50px;
-      background-color: #F05765;
+      background-color: #f05765;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -83,8 +81,6 @@
       font-size: 18px;
     }
   }
-
-
 }
 
 .character_parent {
@@ -105,7 +101,6 @@
       }
     }
   }
-
 }
 
 .pusher {
@@ -117,13 +112,13 @@
   display: none;
 }
 
-.ui.inverted.segment, .ui.primary.inverted.segment {
+.ui.inverted.segment,
+.ui.primary.inverted.segment {
 }
 
 .masthead.segment {
   min-height: 700px;
   padding: 1em 0em;
-
 }
 
 .masthead .logo.item img {
@@ -176,7 +171,6 @@
   display: none;
 }
 
-
 @media only screen and (max-width: 700px) {
   .ui.fixed.menu {
     display: none !important;
@@ -199,4 +193,8 @@
     margin-top: 0.5em;
     font-size: 1.5em;
   }
+}
+
+.site-navbar {
+  max-width: 98% !important;
 }
