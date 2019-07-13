@@ -8,6 +8,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import reducers from './reducers';
 // import logger from 'redux-logger'
 import thunk from 'redux-thunk';
+import {Helmet} from 'react-helmet';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -18,11 +19,14 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
+      <Helmet>
+        <meta charSet="utf-8"></meta>
+        <title>Hackachieve - Double your productivity!</title>
+        <link rel="canonical" href="https://www.hackachieve.com" />
+        <meta name="description" content="Use Hackachieve to apply smart goals in your business or personal life"/>
+        <meta name="keywords" content="smart goals, productivity, kanban, scrum, personal productivity, business productivity"/>
+        <meta name="language" content="English"/>
+      </Helmet>
         <App/>
     </Provider>,
-
     document.querySelector("#root"));
-
-
-
-

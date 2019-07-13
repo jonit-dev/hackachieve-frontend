@@ -22,6 +22,7 @@ import FullStory from "react-fullstory";
 import NotFound from "./pages/Base/NotFound/NotFound";
 import ScrollToTop from './pages/Base/Routing/ScrollToTop';
 
+
 let isProd = env.env === "prod";
 
 class App extends Component {
@@ -36,7 +37,12 @@ class App extends Component {
 
   render() {
     return (
+
+     
+
+
       <Router history={history}>
+      
         <ScrollToTop>
           {isProd ? <FullStory org="MJK6R" /> : null}
           <Header />

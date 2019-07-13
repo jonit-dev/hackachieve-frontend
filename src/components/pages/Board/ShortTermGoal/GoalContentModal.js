@@ -212,7 +212,7 @@ class GoalContentModal extends Component {
         <div className="comment-sec">
           <h3>
             Goal comments ({this.state.CommentDT.length})
-            <img src="images/icons/chevron-up.svg" alt="" />
+            <img src="images/icons/chevron-up.svg" alt="vote up" />
           </h3>
           <ul>
             {this.state.CommentDT.map((comment, i) => (
@@ -224,7 +224,7 @@ class GoalContentModal extends Component {
                     onClick={() => this.UpvoteComments(comment.id)}
                     className="up-arrow"
                   >
-                    <img src="images/icons/chevron-up.svg" alt="" />
+                    <img src="images/icons/chevron-up.svg" alt="vote up" />
                   </a>
                   {comment.voting[0] === undefined ? (
                     <span className="count">{0}</span>
@@ -238,12 +238,12 @@ class GoalContentModal extends Component {
                     onClick={() => this.DownvoteComments(comment.id)}
                     className="down-arrow"
                   >
-                    <img src="images/icons/chevron-up.svg" alt="" />
+                    <img src="images/icons/chevron-up.svg" alt="vote up" />
                   </a>
                 </div>
                 <div className="cooment-right">
                   <div className="comment-client">
-                    <img src="images/icons/avatar-generic.svg" alt="" />
+                    <img src="images/icons/avatar-generic.svg" alt="user avatar" />
                     <h4>
                       {comment.user.first_name + " " + comment.user.last_name}
                     </h4>
@@ -310,7 +310,7 @@ class GoalContentModal extends Component {
 
         <div className="leave-comment">
           <div className="send-user">
-            <img src="images/icons/avatar-generic.svg" alt="" />
+            <img src="images/icons/avatar-generic.svg" alt="user avatar" />
           </div>
           <div className="comment-box">
             <textarea
@@ -324,7 +324,7 @@ class GoalContentModal extends Component {
               href="# "
               onClick={() => this.AddComments()}
             >
-              <img alt="" src="images/icons/send.svg" />
+              <img alt="post comment" src="images/icons/send.svg" />
             </a>
           </div>
         </div>
@@ -335,11 +335,11 @@ class GoalContentModal extends Component {
       <React.Fragment>
         <div className="top-bar-popup">
           <a href="# " onClick={() => this.onEdit()}>
-            <img src="/images/icons/alert-circle.svg" alt="" />
+            <img src="/images/icons/alert-circle.svg" alt="alert circle" />
             <strong>Status: {this.onRenderStatus(status)}</strong>
           </a>
           <a href="# " onClick={() => this.onEdit()}>
-            <img src="images/icons/alert-circle.svg" alt="" />
+            <img src="images/icons/alert-circle.svg" alt="alert circle" />
             <strong>Deadline:</strong>{" "}
             <Moment format="D MMMM, YYYY">{deadline}</Moment>
           </a>

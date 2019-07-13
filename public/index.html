@@ -1,80 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <link rel="shortcut icon" href="/favicon.ico"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#000000"/>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="/manifest.json"/>
+    <link rel="manifest" href="/manifest.json" />
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="/landing_resources/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="/landing_resources/css/bootstrap.min.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/landing_resources/fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="/landing_resources/css/bootstrap.min.css" />
     <!-- <link rel="stylesheet" href="/landing_resources/css/jquery-ui.css"> -->
     <!-- <link rel="stylesheet" href="/landing_resources/css/owl.carousel.min.css"> -->
     <!-- <link rel="stylesheet" href="/landing_resources/css/owl.theme.default.min.css"> -->
     <!-- <link rel="stylesheet" href="/landing_resources/css/owl.theme.default.min.css"> -->
     <!-- <link rel="stylesheet" href="/landing_resources/css/jquery.fancybox.min.css"> -->
     <!-- <link rel="stylesheet" href="/landing_resources/css/bootstrap-datepicker.css"> -->
-    <link rel="stylesheet" href="/landing_resources/fonts/flaticon/font/flaticon.css">
+    <link
+      rel="stylesheet"
+      href="/landing_resources/fonts/flaticon/font/flaticon.css"
+    />
 
     <!-- <link rel="stylesheet" href="/landing_resources/css/aos.css"> -->
-    <link rel="stylesheet" href="/landing_resources/css/style.css">
-	<link rel="stylesheet" href="/landing_resources/scss/custom.css">
+    <link rel="stylesheet" href="/landing_resources/css/style.css" />
+    <link rel="stylesheet" href="/landing_resources/scss/custom.css" />
 
- 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
     <!--SEMANTIC UI-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
     <!--FONT AWESOME-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
 
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap"
-          rel="stylesheet">
-
-
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- USER REPORT -->
     <script type="text/javascript">
-        window._urq = window._urq || [];
-        _urq.push(['initSite', 'dde6e31a-7ab3-4913-a6cc-298f4930950d']);
-        (function () {
-            var ur = document.createElement('script');
-            ur.type = 'text/javascript';
-            ur.async = true;
-            ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ur, s);
-        })();
+      window._urq = window._urq || [];
+      _urq.push(["initSite", "dde6e31a-7ab3-4913-a6cc-298f4930950d"]);
+      (function() {
+        var ur = document.createElement("script");
+        ur.type = "text/javascript";
+        ur.async = true;
+        ur.src =
+          "https:" == document.location.protocol
+            ? "https://cdn.userreport.com/userreport.js"
+            : "http://cdn.userreport.com/userreport.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(ur, s);
+      })();
     </script>
 
-
-
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
+    <script>
+      (function(w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js"
         });
         var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-WHL5QKB');</script>
+      })(window, document, "script", "dataLayer", "GTM-WHL5QKB");
+    </script>
     <!-- End Google Tag Manager -->
-
 
     <!--
       Notice the use of  in the tags above.
@@ -85,21 +98,43 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Hackachieve - Double your productivity!</title>
-</head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHL5QKB"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- JSON-LD markup generated by Google Structured Data Markup Helper. -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "SoftwareApplication",
+        "author": "Hackachieve",
+        "image": "https://www.hackachieve.com/landing_resources/images/landing_1.png",
+        "url": "https://www.hackachieve.com/",
+        "screenshot": "https://www.hackachieve.com/landing_resources/images/dashboard.png",
+        "review": {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Joao Paulo Furtado Full-stack developer. “I dont know what else to say. I would be lost without Hackachieve. Man, this thing is getting better and better as I learn more about it.”"
+          }
+        }
+      }
+    </script>
+  </head>
 
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root"></div>
-<div id="modal"></div>
-<!--
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WHL5QKB"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div id="modal"></div>
+    <!--
   This HTML file is a template.
   If you open it directly in the browser, you will see an empty page.
 
@@ -110,25 +145,21 @@
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
 
+    <!-- <script src="/landing_resources/js/jquery-3.3.1.min.js"></script> -->
+    <script src="/landing_resources/js/jquery-migrate-3.0.1.min.js"></script>
+    <!-- <script src="/landing_resources/js/jquery-ui.js"></script> -->
+    <!-- <script src="/landing_resources/js/popper.min.js"></script> -->
+    <!-- <script src="/landing_resources/js/bootstrap.min.js"></script> -->
+    <script src="/landing_resources/js/owl.carousel.min.js"></script>
+    <script src="/landing_resources/js/jquery.stellar.min.js"></script>
+    <script src="/landing_resources/js/jquery.countdown.min.js"></script>
+    <script src="/landing_resources/js/bootstrap-datepicker.min.js"></script>
+    <script src="/landing_resources/js/jquery.easing.1.3.js"></script>
 
- 
-<!-- <script src="/landing_resources/js/jquery-3.3.1.min.js"></script> -->
-  <script src="/landing_resources/js/jquery-migrate-3.0.1.min.js"></script>
-  <!-- <script src="/landing_resources/js/jquery-ui.js"></script> -->
-  <!-- <script src="/landing_resources/js/popper.min.js"></script> -->
-  <!-- <script src="/landing_resources/js/bootstrap.min.js"></script> -->
-  <script src="/landing_resources/js/owl.carousel.min.js"></script>
-  <script src="/landing_resources/js/jquery.stellar.min.js"></script>
-  <script src="/landing_resources/js/jquery.countdown.min.js"></script>
-  <script src="/landing_resources/js/bootstrap-datepicker.min.js"></script>
-  <script src="/landing_resources/js/jquery.easing.1.3.js"></script>
-  
-  <script src="/landing_resources/js/aos.js"></script>
-  <!-- <script src="/landing_resources/js/jquery.fancybox.min.js"></script> -->
-  <!-- <script src="/landing_resources/js/jquery.sticky.js"></script> -->
+    <script src="/landing_resources/js/aos.js"></script>
+    <!-- <script src="/landing_resources/js/jquery.fancybox.min.js"></script> -->
+    <!-- <script src="/landing_resources/js/jquery.sticky.js"></script> -->
 
-  
-  <script src="/landing_resources/js/main.js"></script>
-
-</body>
+    <script src="/landing_resources/js/main.js"></script>
+  </body>
 </html>

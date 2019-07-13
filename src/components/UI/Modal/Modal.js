@@ -77,7 +77,7 @@ class Modal extends Component {
               this.onClose();
             }}
           >
-            <img className="popup_img" src="images/icons/x.svg" alt="" />
+            <img className="popup_img" src="images/icons/x.svg" alt="popup img" />
           </a>
           <br></br>
           {/*<a href="# " className="upload"><img className="popup_img" src="images/icons/upload.svg" alt="" /></a>*/}

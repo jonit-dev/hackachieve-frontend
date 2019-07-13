@@ -106,7 +106,7 @@ class ChecklistHandler extends Component {
                 <div className="checklist-action-area">
 
                     {!this.state.showChecklistForm &&
-                    <a className="add-task" href="# " onClick={this.handleClick} ><img src="images/icons/plus-white.svg" alt="" /> New Task</a>
+                    <a className="add-task" href="# " onClick={this.handleClick} ><img src="images/icons/plus-white.svg" alt="new task" /> New Task</a>
                     }
                     {this.state.showChecklistForm && <div style={{ display: "inline-block" }}>
                         <CheckList goal_id={this.props.modals.goalContent.id} showChecklistForm={this.state.showChecklistForm} closeForm={this.closeForm} />

@@ -142,7 +142,7 @@ class Header extends Component {
                             <div className="board-profile" onClick={() => this.onOpenMenuClick()}>
                                 <div className="board-profile-username">{this.props.userInfo.firstName}</div>
                                 <div className="board-profile-user-picture"><img src="./images/icons/avatar-generic.svg"
-                                                                                 alt="user"/>
+                                                                                 alt="user avatar"/>
                                     {this.state.userMenuOpen && <UserMenu/>}
 
                                 </div>
