@@ -1,11 +1,14 @@
-@import 'other/normalize.scss';
-@import 'pages/Base/Base';
-@import 'pages/Pages';
-@import 'UI/UI';
- 
+@import "other/normalize.scss";
+@import "pages/Base/Base";
+@import "pages/Pages";
+@import "UI/UI";
 
+@import "./sass/fontawesome-free-5.9.0-web/scss/fontawesome.scss";
+@import "./sass/fontawesome-free-5.9.0-web/scss/solid.scss";
+@import "./sass/fontawesome-free-5.9.0-web/scss/brands.scss";
+@import "./sass/fontawesome-free-5.9.0-web/scss/regular.scss"; 
 
-  // * {
-  //    border: 1px solid #f00 !important;
-  //    box-sizing: border-box;
-  //  }
+// * {
+//    border: 1px solid #f00 !important;
+//    box-sizing: border-box;
+//  }
