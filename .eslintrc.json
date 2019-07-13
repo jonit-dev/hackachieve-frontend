@@ -20,6 +20,7 @@
     "no-unescaped-entities": 1,
     "no-unused-vars": 1,
     "no-console": 0,
-    "react/no-unescaped-entities": 1
+    "react/no-unescaped-entities": 1,
+    "react/no-unknown-property": 1
   }
 }
