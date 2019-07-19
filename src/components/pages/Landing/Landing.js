@@ -5,6 +5,7 @@ import User from "../../../classes/User";
 import Analytics from "../../../analytics/Analytics";
 import { userFacebookLogin } from "../../../actions/authActions";
 import FacebookLogin from "react-facebook-login";
+import { Helmet } from "react-helmet";
 
 class Landing extends Component {
   componentDidMount() {
@@ -27,6 +28,15 @@ class Landing extends Component {
     // console.log(User.isLoggedIn(),'User.isLoggedIn()');
     return (
       <React.Fragment>
+        <Helmet>
+          <title>
+            Hackachive - Double your productivity with Goal Setting Software
+          </title>
+          <meta
+            name="description"
+            content="Hackachieve is an online goal setting and management software that helps to manage all your goals and improves personal as well as business productivity."
+          />
+        </Helmet>
         <div className="site-wrap" id="home-section">
           <div className="site-blocks-cover">
             <div className="container">
@@ -101,7 +111,7 @@ class Landing extends Component {
                     <div className="unit-4-icon mb-3">
                       <span className="icon-wrap">
                         <span>
-                        <i className="far fa-calendar-check"></i>
+                          <i className="far fa-calendar-check"></i>
                         </span>
                       </span>
                     </div>
@@ -123,9 +133,9 @@ class Landing extends Component {
                   <div className="unit-4 d-block">
                     <div className="unit-4-icon mb-3">
                       <span className="icon-wrap">
-                           <span>
-                           <i className="fas fa-user-tie"></i>
-                           </span>
+                        <span>
+                          <i className="fas fa-user-tie"></i>
+                        </span>
                       </span>
                     </div>
                     <div>
@@ -169,9 +179,9 @@ class Landing extends Component {
                   <div className="unit-4 d-block">
                     <div className="unit-4-icon mb-3">
                       <span className="icon-wrap">
-                          <span>
+                        <span>
                           <i className="fas fa-tachometer-alt"></i>
-                          </span>
+                        </span>
                       </span>
                     </div>
                     <div>
