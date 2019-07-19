@@ -32,6 +32,7 @@ class Landing extends Component {
           <title>
             Hackachive - Double your productivity with Goal Setting Software
           </title>
+          <link rel="canonical" href="https://www.hackachieve.com/"></link>
           <meta
             name="description"
             content="Hackachieve is an online goal setting and management software that helps to manage all your goals and improves personal as well as business productivity."

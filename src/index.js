@@ -22,8 +22,6 @@ ReactDOM.render(
     <Helmet>
       <meta charSet="utf-8"></meta>
 
-      <link rel="canonical" href="https://www.hackachieve.com" />
-
       <meta
         name="keywords"
         content="smart goals, productivity, kanban, scrum, personal productivity, business productivity"
