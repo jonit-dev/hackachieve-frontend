@@ -1,6 +1,5 @@
 main.board-main {
-
-  background-color: darken($hackachieve-dark-purple,10%);
+  background-color: darken($hackachieve-dark-purple, 10%);
   min-height: 94vh;
   padding: 0 1rem;
 
@@ -22,7 +21,6 @@ main.board-main {
     //}
 
     .board-column-add {
-
       margin-right: 1rem;
       margin-bottom: 1rem;
       margin-top: 2rem;
@@ -47,16 +45,29 @@ main.board-main {
       border-top: 8px solid transparent;
     }
     .board-column-add:before {
-      content: '';
+      content: "";
       position: absolute;
       width: 100%;
       height: 8px;
-      background: linear-gradient(to right, #5dc8e2, #3ecedf, #15d3d8, #00d8cc, #00dcbb, #46d799, #6cd076, #8cc753, #b7b02e, #d79429, #ec7542, #f15864);
+      background: linear-gradient(
+        to right,
+        #5dc8e2,
+        #3ecedf,
+        #15d3d8,
+        #00d8cc,
+        #00dcbb,
+        #46d799,
+        #6cd076,
+        #8cc753,
+        #b7b02e,
+        #d79429,
+        #ec7542,
+        #f15864
+      );
       top: -8px;
       border-top-left-radius: 2px;
       left: 0;
       border-top-right-radius: 2px;
-
     }
 
     .board-column {
@@ -76,6 +87,7 @@ main.board-main {
       border-radius: 4px;
       border: 1px solid darken($hackachieve-light-gray, 1%);
       @include shadow;
+      z-index: 0;
 
       display: flex;
       flex-wrap: wrap;
@@ -124,20 +136,18 @@ main.board-main {
           align-items: center;
 
           .column-status-completed-icon {
-            background-image: url('/images/icons/list-icon.svg');
+            background-image: url("/images/icons/list-icon.svg");
             width: 12px;
             height: 12px;
             background-position: center;
             background-size: contain;
-
           }
           .column-status-deadline-icon {
-            background-image: url('/images/icons/calelndar-icon.svg');
+            background-image: url("/images/icons/calelndar-icon.svg");
             width: 12px;
             height: 12px;
             background-position: center;
             background-size: contain;
-
           }
           .column-status-completed-text,
           .column-status-deadline-text {
@@ -147,24 +157,20 @@ main.board-main {
             letter-spacing: 0.5px;
             color: lighten($hackachieve-dark-grey, 5%);
             margin-left: 0.5rem;
-
           }
-
         }
-
       }
 
-      .column-body, .column-footer {
+      .column-body,
+      .column-footer {
         flex: 1 1 100%;
         max-height: 65vh;
         padding-left: 1.2rem;
         padding-right: 1.2rem;
-
       }
       .column-footer {
         max-height: 50px;
         margin-bottom: 1.2rem;
-
       }
 
       .column-info {
@@ -180,75 +186,73 @@ main.board-main {
           background-repeat: no-repeat;
           background-size: contain;
           background-position: center;
-          margin-right: .5rem;
+          margin-right: 0.5rem;
           flex: 0 0 21px;
           width: 21px;
           height: 21px;
 
           &.health-icon {
-            background-image: url('/images/icons/health-icon-color.svg');
+            background-image: url("/images/icons/health-icon-color.svg");
           }
 
           &.family-icon {
-            background-image: url('/images/icons/family-icon-color.svg');
+            background-image: url("/images/icons/family-icon-color.svg");
           }
 
           &.career-icon {
-            background-image: url('/images/icons/career-icon-color.svg');
+            background-image: url("/images/icons/career-icon-color.svg");
           }
 
           &.finances-icon {
-            background-image: url('/images/icons/finances-icon-color.svg');
+            background-image: url("/images/icons/finances-icon-color.svg");
           }
 
           &.leisure-and-fun-icon {
-            background-image: url('/images/icons/fun-icon-color.svg');
+            background-image: url("/images/icons/fun-icon-color.svg");
           }
 
           &.recruitment-icon {
-            background-image: url('/images/icons/recruitment-icon.svg');
+            background-image: url("/images/icons/recruitment-icon.svg");
           }
-          
+
           &.other-icon {
-            background-image: url('/images/icons/other-icon.svg');
+            background-image: url("/images/icons/other-icon.svg");
           }
 
           &.operations-icon {
-            background-image: url('/images/icons/operations-icon.svg');
+            background-image: url("/images/icons/operations-icon.svg");
           }
 
           &.marketing-icon {
-            background-image: url('/images/icons/marketing-icon.svg');
+            background-image: url("/images/icons/marketing-icon.svg");
           }
 
           &.learning-icon {
-            background-image: url('/images/icons/learning-icon.svg');
+            background-image: url("/images/icons/learning-icon.svg");
           }
 
           &.sales-icon {
-            background-image: url('/images/icons/sales-icon.svg');
-          }          
+            background-image: url("/images/icons/sales-icon.svg");
+          }
 
           &.personal-development-icon {
-            background-image: url('/images/icons/personal-dev-icon-color.svg');
+            background-image: url("/images/icons/personal-dev-icon-color.svg");
           }
 
           &.spiritual-icon {
-            background-image: url('/images/icons/spiritual-icon-color.svg');
+            background-image: url("/images/icons/spiritual-icon-color.svg");
           }
-
         }
 
         .column-board {
           flex: 1 1 auto;
           font-family: $font-primary;
           font-size: 14px;
-		  text-transform:uppercase;
+          text-transform: uppercase;
           margin-top: 0.2rem;
           font-weight: bold;
           align-self: center;
         }
-
       }
 
       .column-title {
@@ -260,7 +264,6 @@ main.board-main {
         font-size: 18.1px;
         letter-spacing: 0.5px;
         color: $hackachieve-dark-grey;
-
       }
 
       .column-dropdown {
@@ -269,9 +272,9 @@ main.board-main {
         position: absolute;
         top: 1.2rem;
         right: 0.1rem;
-        background-size: contain; background: url('/images/icons/more.svg') no-repeat center;
         background-size: contain;
-
+        background: url("/images/icons/more.svg") no-repeat center;
+        background-size: contain;
       }
 
       /* Column colors =========================================== */
@@ -312,38 +315,35 @@ main.board-main {
       }
 
       &.column-operations {
-        border-top: 0.5rem solid #EED69E;
+        border-top: 0.5rem solid #eed69e;
       }
 
       &.column-marketing {
-        border-top: 0.5rem solid #8E436B;
+        border-top: 0.5rem solid #8e436b;
       }
 
       &.column-learning {
-        border-top: 0.5rem solid #F175AA;
+        border-top: 0.5rem solid #f175aa;
       }
 
       &.column-sales {
-        border-top: 0.5rem solid #45725C;
+        border-top: 0.5rem solid #45725c;
       }
-
-
     }
-
   }
 
   .column-add-short-term-goal {
-    padding: .5rem;
+    padding: 0.5rem;
     display: flex;
     flex-wrap: wrap;
-    
-    transition: all .5s ease-in;
+
+    transition: all 0.5s ease-in;
     justify-content: center;
     align-items: center;
     @include shadow();
     border: 1px solid $hackachieve-grey;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     border-radius: 5px;
     //border-top:3px solid #17E09D;
 
@@ -356,88 +356,92 @@ main.board-main {
       flex: 1 1 1;
       width: 33px;
       height: 33px;
-      background: url('/images/icons/new-short-goal-icon.svg') no-repeat center;
+      background: url("/images/icons/new-short-goal-icon.svg") no-repeat center;
       background-size: contain;
-opacity:1
+      opacity: 1;
     }
 
     .column-add-short-term-goal-text {
       font-family: $font-primary;
       font-size: 16px;
       font-weight: bold;
-      margin-left: .5rem;
+      margin-left: 0.5rem;
       opacity: 1 !important;
       color: darken($hackachieve-dark-grey, 5%);
     }
-
   }
-
 }
-
 
 .board-column.column-other.column-finances .column-card.column-card-priority {
-  background-color: #E69E56;
-  border: 1px solid #E69E56
+  background-color: #e69e56;
+  border: 1px solid #e69e56;
 }
 
-
-
 .i-phone {
-  display: none
+  display: none;
 }
 
 .column-body .column-card.white .column-card-deadline-icon {
-  background-image: url("/images/icons/calelndar-icon.svg") !important
+  background-image: url("/images/icons/calelndar-icon.svg") !important;
 }
 
 .column-card.white .column-card-body {
-  border-bottom: 1px solid rgba(189, 189, 208, 0.50)
+  border-bottom: 1px solid rgba(189, 189, 208, 0.5);
 }
 
 @media screen and (max-width: 850px) {
   header.board-header .board-header-bar {
-    height: 12.6rem
+    height: 12.6rem;
   }
 }
 
 @media screen and (min-width: 850px) {
   header.board-header .board-header-bar .board-header-logo .mobile-menu {
-    display: none
+    display: none;
   }
 }
 
 @media screen and (max-width: 850px) {
   header.board-header .board-header-bar .board-header-logo {
     flex: 1 1 100%;
-    height: 4rem
+    height: 4rem;
   }
 }
 
 @media screen and (max-width: 850px) {
   header.board-header .board-header-bar .board-profile {
-    display: none
+    display: none;
   }
 }
 
 @media screen and (max-width: 850px) {
   header.board-header .board-header-bar .board-switch {
-    flex: 1 1 100%
+    flex: 1 1 100%;
   }
 }
 
 @media screen and (max-width: 850px) {
   header.board-header .board-header-bar .board-switch .board-switch-item {
     height: 50px;
-    top: .3rem
+    top: 0.3rem;
   }
 }
 
-header.board-header .board-header-bar .board-switch .board-switch-item.switch-active .board-switch-icon {
-		background: url("/images/icons/completed-goal-active-icon.svg") center no-repeat;
+header.board-header
+  .board-header-bar
+  .board-switch
+  .board-switch-item.switch-active
+  .board-switch-icon {
+  background: url("/images/icons/completed-goal-active-icon.svg") center
+    no-repeat;
 }
 
-header.board-header .board-header-bar .board-switch .board-switch-item.switch-active .board-switch-text {
-  color: #F05765
+header.board-header
+  .board-header-bar
+  .board-switch
+  .board-switch-item.switch-active
+  .board-switch-text {
+  color: #f05765;
 }
 
 @media screen and (max-width: 850px) {
@@ -446,6 +450,6 @@ header.board-header .board-header-bar .board-switch .board-switch-item.switch-ac
     width: 100%;
     margin: 0 auto;
     padding-top: 1.6rem;
-    padding-bottom: 1.6rem
+    padding-bottom: 1.6rem;
   }
 }

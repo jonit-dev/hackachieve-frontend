@@ -1,10 +1,9 @@
 /* Cards =========================================== */
 
-.ui.dimmer{
-  position:fixed !important;
+.ui.dimmer {
+  position: fixed !important;
 }
 .column-body {
-
   box-sizing: border-box;
   max-height: 600px;
   min-height: 400px;
@@ -22,6 +21,7 @@
     background-color: $hackachieve-white;
     margin-bottom: 1rem;
     border-radius: 3px;
+    z-index: 10;
 
     &.column-card-priority {
       background-color: lighten($hackachieve-green, 0%);
@@ -31,18 +31,16 @@
     border: 1px solid $hackachieve-medium-gray;
     box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.04);
     transition-property: box-shadow;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 
     &:hover {
       cursor: pointer;
       box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.14);
-
     }
 
     &.column-card-completed {
       opacity: 0.5;
-
     }
 
     .column-card-body {
@@ -57,8 +55,6 @@
         color: $hackachieve-dark-grey;
         font-weight: bold;
       }
-
-
 
       .column-card-description {
         font-family: $font-primary;
@@ -78,12 +74,11 @@
         top: 8.7rem;
 
         .column-card-deadline-icon {
-          background-image: url('/images/icons/calelndar-icon.svg');
+          background-image: url("/images/icons/calelndar-icon.svg");
           width: 12px;
           height: 12px;
           background-position: center;
           background-size: contain;
-
         }
 
         .column-card-deadline-text {
@@ -97,15 +92,12 @@
           font-weight: bold;
           letter-spacing: 0.5px;
           color: lighten($hackachieve-dark-grey, 5%);
-
         }
-
       }
-
     }
-	.column-card.card-active-blue.column-card-priority .column-card-title{
-          color: $hackachieve-white;
-	  }
+    .column-card.card-active-blue.column-card-priority .column-card-title {
+      color: $hackachieve-white;
+    }
     .column-card-footer {
       display: flex;
       flex-wrap: wrap;
@@ -117,18 +109,21 @@
         background-size: contain;
         width: 30px;
         height: 29px;
-        background: $hackachieve-dark-grey url('/images/icons/star-icon.svg') no-repeat center;
+        background: $hackachieve-dark-grey url("/images/icons/star-icon.svg")
+          no-repeat center;
         cursor: pointer;
         border-radius: 4px;
 
         &.priority-icon-active {
-          background: $hackachieve-dark-yellow url('/images/icons/star-active-icon.svg') no-repeat center;
+          background: $hackachieve-dark-yellow
+            url("/images/icons/star-active-icon.svg") no-repeat center;
           opacity: 1;
         }
-
       }
-      .column-card-button, .repeat-icon, .priority-icon {
-        transition: all .25s ease-in;
+      .column-card-button,
+      .repeat-icon,
+      .priority-icon {
+        transition: all 0.25s ease-in;
         filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.04));
         opacity: 0.5;
         &:hover {
@@ -150,7 +145,7 @@
           width: 13.65px;
           height: 13.2px;
           background-size: contain;
-          background: url('/images/icons/revert-icon.svg') no-repeat center;
+          background: url("/images/icons/revert-icon.svg") no-repeat center;
           padding: 1rem;
           margin-left: 0.5rem;
           cursor: pointer;
@@ -158,13 +153,12 @@
 
           background-color: $hackachieve-dark-grey;
 
-          transition: all .25s ease-in;
+          transition: all 0.25s ease-in;
           box-shadow: 0;
           &:hover {
             box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
             opacity: 1;
           }
-
         }
 
         .column-card-text-button {
@@ -178,11 +172,9 @@
           font-size: 14px;
           box-sizing: border-box;
           margin-right: 0.5rem;
-
         }
 
         .column-card-button {
-
           display: flex;
           align-items: center;
           background-color: $hackachieve-dark-grey;
@@ -196,26 +188,25 @@
           border-radius: 4px;
 
           box-sizing: border-box;
-          transition: all .25s ease-in;
-          padding: 0 .8rem;
+          transition: all 0.25s ease-in;
+          padding: 0 0.8rem;
 
           &.column-card-active {
             background-color: lighten($hackachieve-light-green, 10%);
             color: darken($hackachieve-light-green, 10%);
             opacity: 1;
           }
-
         }
-
       }
-
     }
 
     /* CARD ACTIVE COLORS =========================================== */
 
     &.card-active-health {
       background-color: $hackachieve-blue;
-      .column-card-title, .column-card-description, .column-card-deadline-text {
+      .column-card-title,
+      .column-card-description,
+      .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
     }
@@ -223,7 +214,9 @@
     &.card-active-career {
       background-color: $hackachieve-light-purple;
       border: 1px solid $hackachieve-light-purple;
-      .column-card-title, .column-card-description, .column-card-deadline-text {
+      .column-card-title,
+      .column-card-description,
+      .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
     }
@@ -231,7 +224,9 @@
     &.card-active-leisure-and-fun {
       background-color: $hackachieve-light-green;
       border: 1px solid $hackachieve-light-green;
-      .column-card-title, .column-card-description, .column-card-deadline-text {
+      .column-card-title,
+      .column-card-description,
+      .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
     }
@@ -239,7 +234,9 @@
     &.card-active-family {
       background-color: $hackachieve-orange;
       border: 1px solid $hackachieve-orange;
-      .column-card-title, .column-card-description, .column-card-deadline-text {
+      .column-card-title,
+      .column-card-description,
+      .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
     }
@@ -247,7 +244,9 @@
     &.card-active-finances {
       background-color: $hackachieve-orange;
       border: 1px solid $hackachieve-orange;
-      .column-card-title, .column-card-description, .column-card-deadline-text {
+      .column-card-title,
+      .column-card-description,
+      .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
     }
@@ -255,7 +254,9 @@
     &.card-active-spiritual {
       background-color: $hackachieve-light-purple;
       border: 1px solid $hackachieve-light-purple;
-      .column-card-title, .column-card-description, .column-card-deadline-text {
+      .column-card-title,
+      .column-card-description,
+      .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
     }
@@ -263,11 +264,11 @@
     &.card-active-personal-development {
       background-color: $hackachieve-pink;
       border: 1px solid $hackachieve-pink;
-      .column-card-title, .column-card-description, .column-card-deadline-text {
+      .column-card-title,
+      .column-card-description,
+      .column-card-deadline-text {
         color: $hackachieve-white !important;
       }
     }
-
   }
-
 }
