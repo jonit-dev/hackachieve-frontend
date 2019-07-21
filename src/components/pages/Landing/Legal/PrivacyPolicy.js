@@ -21,7 +21,7 @@ class PrivacyPolicy extends Component {
           <title>Hackachieve | Privacy Policy</title>
           <meta
             name="description"
-            content="TRead our policies regarding the collection, use, and disclosure of personal data when you use our Service and
+            content="Read our policies regarding the collection, use, and disclosure of personal data when you use our Service and
 the choices you have associated with that data."
           />
         </Helmet>

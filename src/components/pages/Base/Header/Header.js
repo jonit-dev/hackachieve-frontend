@@ -203,6 +203,8 @@ class Header extends Component {
                     <ul className="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                       <li>
                         <Link to="/" className="nav-link">Home</Link>
+                        <Link to="/faq" className="nav-link">FAQ</Link>
+                        <Link to="/about-us" className="nav-link">About Us</Link>
                         <Link to="/register" className="nav-link">Register</Link>
                          
                       </li>

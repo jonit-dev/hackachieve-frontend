@@ -20,8 +20,9 @@ import Footer from "./pages/Base/Footer/Footer";
 import Preferences from "./pages/Landing/Preferences/Preferences";
 import FullStory from "react-fullstory";
 import NotFound from "./pages/Base/NotFound/NotFound";
-import ScrollToTop from './pages/Base/Routing/ScrollToTop';
-
+import ScrollToTop from "./pages/Base/Routing/ScrollToTop";
+import FAQ from "./pages/Landing/FAQ/FAQ";
+import AboutUs from "./pages/Landing/AboutUs/AboutUs";
 
 let isProd = env.env === "prod";
 
@@ -37,12 +38,7 @@ class App extends Component {
 
   render() {
     return (
-
-     
-
-
       <Router history={history}>
-      
         <ScrollToTop>
           {isProd ? <FullStory org="MJK6R" /> : null}
           <Header />
@@ -50,6 +46,8 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Landing} />
             <Route path="/login" component={Login} />
+            <Route path="/faq" component={FAQ} />
+            <Route path="/about-us" component={AboutUs} />
             <Route path="/register" component={Register} />
             <Route path="/terms" component={TermsOfUse} />
             <Route path="/privacy" component={PrivacyPolicy} />
