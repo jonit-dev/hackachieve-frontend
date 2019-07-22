@@ -147,6 +147,14 @@ class Board extends Component {
     console.log("onDragEnd!");
     console.log(result);
 
+    //we will use it to manipulate our current state
+    Array.prototype.swap = function(x, y) {
+      var b = this[x];
+      this[x] = this[y];
+      this[y] = b;
+      return this;
+    };
+
     const { destination, source, draggableId } = result;
 
     // if there's no destination, do nothing!
@@ -166,9 +174,6 @@ class Board extends Component {
 
     //we should get the target id
 
-    const destinationLongTermGoalId = destination.droppableId;
-
-    //sync it in database
     if (draggableId.includes("short-term-goal")) {
       // Same column d&d movement ========================================
 
@@ -183,13 +188,6 @@ class Board extends Component {
 
         const targetElement =
           destinationLongTermGoal.short_term_goals[destination.index];
-
-        Array.prototype.swap = function(x, y) {
-          var b = this[x];
-          this[x] = this[y];
-          this[y] = b;
-          return this;
-        };
 
         const swappedShortTermGoals = destinationLongTermGoal.short_term_goals.swap(
           source.index,
@@ -225,18 +223,45 @@ class Board extends Component {
 
         // get the source long term goal
 
-        const sourceLongTermGoal = this.findLongTermGoal(source.droppableId);
-        console.log("source LTG");
+        let sourceLongTermGoal = this.findLongTermGoal(source.droppableId);
+        let destinationLongTermGoal = this.findLongTermGoal(
+          destination.droppableId
+        );
 
-        console.log(sourceLongTermGoal);
-
-        // get the card that was tragged
-
+        // get the card that was dragged
         const sourceShortTermGoal = sourceLongTermGoal.short_term_goals.find(
           stg => stg.id == goalId
         );
 
-        //change column_id
+        //remove item from source long term goal
+
+        sourceLongTermGoal.short_term_goals = sourceLongTermGoal.short_term_goals.filter(
+          stg => stg.id !== goalId
+        );
+
+        console.log("updated source LTG");
+
+        console.log(sourceLongTermGoal);
+        this.props.updateLongTermGoalState(
+          sourceLongTermGoal.id,
+          sourceLongTermGoal
+        );
+
+        //add item into destination long term goal
+
+        destinationLongTermGoal.short_term_goals.push(sourceShortTermGoal);
+
+        console.log("updated destination LTG");
+        console.log(destinationLongTermGoal);
+
+        this.props.updateLongTermGoalState(
+          destinationLongTermGoal.id,
+          destinationLongTermGoal
+        );
+
+        //submit update request to server
+
+        // update column_id and then send updated short term goal
         console.log(sourceShortTermGoal);
         sourceShortTermGoal.column_id = destination.droppableId;
         sourceShortTermGoal.deadline = sourceShortTermGoal.deadline.split(
@@ -244,14 +269,9 @@ class Board extends Component {
         )[0];
         sourceShortTermGoal.order_position = destination.index;
 
-        //submit update request to server
         this.props.updateGoal(sourceShortTermGoal);
 
-        //refresh
-
-        this.props.loadGoals(0, this.props.boardShowGoals);
-
-        // console.log(this.props.goals);
+        console.log(this.props.goals);
       }
     }
   }
