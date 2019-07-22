@@ -148,6 +148,7 @@ class Board extends Component {
     console.log(result);
 
     //we will use it to manipulate our current state
+    //eslint-disable-next-line
     Array.prototype.swap = function(x, y) {
       var b = this[x];
       this[x] = this[y];
@@ -216,10 +217,10 @@ class Board extends Component {
       } else {
         // Swipe cards between columns ========================================
 
-        console.log("==> Swipe cards between columns!");
+        // console.log("==> Swipe cards between columns!");
 
         const goalId = parseInt(draggableId.split("-")[3]);
-        console.log(`GOALID => ${goalId}`);
+        // console.log(`GOALID => ${goalId}`);
 
         // get the source long term goal
 
@@ -230,7 +231,7 @@ class Board extends Component {
 
         // get the card that was dragged
         const sourceShortTermGoal = sourceLongTermGoal.short_term_goals.find(
-          stg => stg.id == goalId
+          stg => stg.id === goalId
         );
 
         //remove item from source long term goal

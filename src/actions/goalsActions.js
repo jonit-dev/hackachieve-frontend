@@ -287,6 +287,11 @@ export const reorderGoal = (type, goalId, newPosition) => async dispatch => {
       return API.request(`/columns/update-order/${goalId}/`, "PUT", {
         order_position: newPosition
       });
+
+    default:
+      return API.request(`/goals/update-order/${goalId}/`, "PUT", {
+        order_position: newPosition
+      });
   }
 };
 

@@ -233,13 +233,11 @@ const filteredGoals = (goals, filter) => {
   // console.log(moment('2019-06-06T07:00:00Z', "YYYYMMDD").isSame(new Date(),"week"))
   // eslint-disable-next-line
   return filter === "week"
-    ? goals.filter(goal => {
-        if (
-          goal &&
-          moment(goal.deadline, "YYYYMMDD").isSame(new Date(), "week")
-        )
-          return goal;
-      })
+    ? goals.filter(goal =>
+        goal && moment(goal.deadline, "YYYYMMDD").isSame(new Date(), "week")
+          ? goal
+          : null
+      )
     : goals;
 };
 
