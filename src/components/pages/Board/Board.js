@@ -271,7 +271,7 @@ class Board extends Component {
 
         this.props.updateGoal(sourceShortTermGoal);
 
-        console.log(this.props.goals);
+        // console.log(this.props.goals);
       }
     }
   }

@@ -25,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_LONG_TERM_GOAL_STATE:
       const { longTermGoalId, newLongTermGoal } = action.payload;
 
-      console.log(`updating long term goal id ${longTermGoalId}`);
+      // console.log(`updating long term goal id ${longTermGoalId}`);
 
       let stateCopy = state.goals.map(board => {
         if (board.long_term_goals.find(ltg => ltg.id === longTermGoalId)) {
