@@ -1,5 +1,11 @@
 import API from "../classes/API";
-import { LOAD_CATEGORIES, LOAD_GOALS, SHOW_ALERT, FILTER_GOALS } from "./types";
+import {
+  LOAD_CATEGORIES,
+  LOAD_GOALS,
+  SHOW_ALERT,
+  FILTER_GOALS,
+  UPDATE_LONG_TERM_GOAL_STATE
+} from "./types";
 import Analytics from "../analytics/Analytics";
 
 export const loadGoals = (id, status) => async (dispatch, getState) => {
@@ -190,6 +196,10 @@ export const editGoals = goal => dispatch => {
   });
 };
 
+export const updateGoal = goal => dispatch => {
+  return API.request(`/goals/update/${goal.id}/`, "PUT", goal, "auth");
+};
+
 export const editColumns = column => dispatch => {
   return API.request(
     `/columns/update/${column.column_id}/`,
@@ -265,6 +275,8 @@ export const deleteNewCategory = value => async dispatch => {
   );
 };
 
+// DRAG AND DROP ========================================
+
 export const reorderGoal = (type, goalId, newPosition) => async dispatch => {
   switch (type) {
     case "short-term-goal":
@@ -276,4 +288,17 @@ export const reorderGoal = (type, goalId, newPosition) => async dispatch => {
         order_position: newPosition
       });
   }
+};
+
+export const updateLongTermGoalState = (
+  longTermGoalId,
+  newLongTermGoal
+) => dispatch => {
+  dispatch({
+    type: UPDATE_LONG_TERM_GOAL_STATE,
+    payload: {
+      longTermGoalId,
+      newLongTermGoal
+    }
+  });
 };

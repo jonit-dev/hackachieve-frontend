@@ -191,19 +191,15 @@ class LongTermGoal extends Component {
             </div>
           </div>
 
-          <Droppable droppableId={this.props.myProps.id} isCombineEnabled>
+          <Droppable droppableId={this.props.myProps.id}>
             {provided => (
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
                 className="column-body"
-                data-simplebar
-                data-simplebar-auto-hide="false"
               >
-                <div>
-                  {this.onRenderShortTermGoals()}
-                  {provided.placeholder}
-                </div>
+                {this.onRenderShortTermGoals()}
+                {provided.placeholder}
               </div>
             )}
           </Droppable>

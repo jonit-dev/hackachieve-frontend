@@ -145,6 +145,17 @@ class ShortTermGoal extends Component {
     }
   }
 
+  getStyle(style, snapshot) {
+    if (!snapshot.isDropAnimating) {
+      return style;
+    }
+    return {
+      ...style,
+      // cannot be 0, but make it super tiny
+      transitionDuration: `0.001s`
+    };
+  }
+
   render() {
     let goalStyle, cardCategoryStyle;
 

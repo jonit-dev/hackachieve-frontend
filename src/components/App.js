@@ -3,8 +3,6 @@ import history from "./../history";
 import { connect } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.scss";
-import "simplebar"; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
-import "simplebar/dist/simplebar.css";
 
 /* Pages =========================================== */
 import Landing from "./pages/Landing/Landing";

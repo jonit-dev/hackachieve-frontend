@@ -87,7 +87,6 @@ main.board-main {
       border-radius: 4px;
       border: 1px solid darken($hackachieve-light-gray, 1%);
       @include shadow;
-      z-index: 0;
 
       display: flex;
       flex-wrap: wrap;

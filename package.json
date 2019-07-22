@@ -29,8 +29,7 @@
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "simplebar": "^4.0.0-alpha.6"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

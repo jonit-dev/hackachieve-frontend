@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import {
   loadGoals,
   loadUserGoalsCategories,
-  reorderGoal
+  reorderGoal,
+  updateGoal,
+  updateLongTermGoalState
 } from "../../../actions/goalsActions";
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
@@ -114,6 +116,23 @@ class Board extends Component {
 
   // React Drag and Drop callbacks ========================================
 
+  findLongTermGoal(id) {
+    const longTermGoals = [];
+    this.props.goals.forEach(board => {
+      if (board.long_term_goals.length) {
+        board.long_term_goals.forEach(ltg => {
+          longTermGoals.push(ltg);
+        });
+      }
+    });
+
+    return longTermGoals.find(ltg => ltg.id === id);
+  }
+
+  findShortTermGoal(longTermGoal, id) {
+    return longTermGoal.short_term_goals.find(stg => stg.id === id);
+  }
+
   onDragStart(start, provided) {
     console.log("onDragStart!");
     // console.log(start);
@@ -147,37 +166,92 @@ class Board extends Component {
 
     //we should get the target id
 
-    const longTermGoalId = destination.droppableId;
-
-    const longTermGoal = this.props.goals.find(
-      goal =>
-        goal.long_term_goals.length &&
-        goal.long_term_goals.find(ltg => ltg.id === longTermGoalId)
-    ).long_term_goals[0];
-
-    const targetElement = longTermGoal.short_term_goals[destination.index];
-
-    console.log("Target element:");
-    console.log(targetElement);
+    const destinationLongTermGoalId = destination.droppableId;
 
     //sync it in database
     if (draggableId.includes("short-term-goal")) {
-      //same column movement
+      // Same column d&d movement ========================================
+
+      const goalId = parseInt(draggableId.split("-")[3]);
+
       if (destination.droppableId === source.droppableId) {
-        console.log("same column movement");
-        const goalId = draggableId.split("-")[3];
+        console.log("==> same column movement !!");
+
+        const destinationLongTermGoal = this.findLongTermGoal(
+          destination.droppableId
+        );
+
+        const targetElement =
+          destinationLongTermGoal.short_term_goals[destination.index];
+
+        Array.prototype.swap = function(x, y) {
+          var b = this[x];
+          this[x] = this[y];
+          this[y] = b;
+          return this;
+        };
+
+        const swappedShortTermGoals = destinationLongTermGoal.short_term_goals.swap(
+          source.index,
+          destination.index
+        );
+
+        let updatedLongTermGoal = destinationLongTermGoal;
+        updatedLongTermGoal.short_term_goals = swappedShortTermGoals;
+
+        // console.log(swappedShortTermGoals);
+        this.props.updateLongTermGoalState(
+          destinationLongTermGoal.id,
+          updatedLongTermGoal
+        );
+
+        console.log(this.props.goals);
+
+        // sync with DB
+
         this.props.reorderGoal("short-term-goal", goalId, destination.index);
         this.props.reorderGoal(
           "short-term-goal",
           targetElement.id,
           source.index
         );
-
-        this.props.loadGoals(0, this.props.boardShowGoals); //refresh board
       } else {
-        //different column movements
+        // Swipe cards between columns ========================================
 
-        console.log("different columns movement");
+        console.log("==> Swipe cards between columns!");
+
+        const goalId = parseInt(draggableId.split("-")[3]);
+        console.log(`GOALID => ${goalId}`);
+
+        // get the source long term goal
+
+        const sourceLongTermGoal = this.findLongTermGoal(source.droppableId);
+        console.log("source LTG");
+
+        console.log(sourceLongTermGoal);
+
+        // get the card that was tragged
+
+        const sourceShortTermGoal = sourceLongTermGoal.short_term_goals.find(
+          stg => stg.id == goalId
+        );
+
+        //change column_id
+        console.log(sourceShortTermGoal);
+        sourceShortTermGoal.column_id = destination.droppableId;
+        sourceShortTermGoal.deadline = sourceShortTermGoal.deadline.split(
+          "T"
+        )[0];
+        sourceShortTermGoal.order_position = destination.index;
+
+        //submit update request to server
+        this.props.updateGoal(sourceShortTermGoal);
+
+        //refresh
+
+        this.props.loadGoals(0, this.props.boardShowGoals);
+
+        // console.log(this.props.goals);
       }
     }
   }
@@ -294,6 +368,8 @@ export default connect(
     toggleModal,
     changeBoardShowGoal,
     loadUserGoalsCategories,
-    reorderGoal
+    reorderGoal,
+    updateGoal,
+    updateLongTermGoalState
   }
 )(Board);

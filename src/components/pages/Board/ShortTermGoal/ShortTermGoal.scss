@@ -6,10 +6,11 @@
 .column-body {
   box-sizing: border-box;
   max-height: 600px;
-  min-height: 400px;
+  // min-height: 400px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  overflow-y: au5to;
 
   .column-card {
     position: relative;
@@ -21,7 +22,8 @@
     background-color: $hackachieve-white;
     margin-bottom: 1rem;
     border-radius: 3px;
-    z-index: 10;
+
+    max-height: 15.7rem;
 
     &.column-card-priority {
       background-color: lighten($hackachieve-green, 0%);
