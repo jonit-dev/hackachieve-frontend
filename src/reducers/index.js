@@ -10,6 +10,7 @@ import goalReducer from './goalReducer';
 import uiReducer from './UI/uiReducer';
 import checklistReducer from './checklistReducer';
 import goalLabelsReducers from './goalLabelsReducers'
+import projectReducer from './projectReducer'
 
 import tagReducer from './tagReducer';
 export default combineReducers({
@@ -20,7 +21,8 @@ export default combineReducers({
     ui: uiReducer,
     checklist: checklistReducer,
     tags: tagReducer,
-    labels: goalLabelsReducers
+    labels: goalLabelsReducers,
+    projects:projectReducer
 });
 
 

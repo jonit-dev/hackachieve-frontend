@@ -38,3 +38,8 @@ export const UPDATE_LABEL = "UPDATE_LABEL";
 // Update local state ========================================
 
 export const UPDATE_LONG_TERM_GOAL_STATE = "UPDATE_LONG_TERM_GOAL_STATE";
+
+//Project Page
+
+export const LOAD_PROJECTS = "LOAD_PROJECTS";
+

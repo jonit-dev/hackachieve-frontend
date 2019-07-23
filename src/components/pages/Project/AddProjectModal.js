@@ -4,42 +4,11 @@ import { connect } from 'react-redux';
 import Modal from "../../UI/Modal/Modal";
 import { toggleModal } from "../../../actions/uiActions";
 import {
-    createLongTermGoal,
-    loadGoals,
-    loadUserGoalsCategories,
-    createNewCategory,
-    deleteNewCategory
-} from "../../../actions/goalsActions";
+    createProject,
+    loadProjects,
+} from "../../../actions/projectActions";
 
 class AddProjectModal extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentSelectableValue: {
-                id: 0,
-                label: ""
-            },
-        }
-    }
-
-
-    componentDidMount() {
-
-        this.onLoadBoardCategories();
-
-
-    }
-
-    onLoadBoardCategories() {
-        //load user categories from db
-        return this.props.loadUserGoalsCategories().then(() => {
-            //set first category option as selected
-            this.props.change('board_id', this.props.boardCategories[0].id)
-        });
-    }
-
-
     onClose() {
         this.props.toggleModal('addProject');
     }
@@ -75,10 +44,6 @@ class AddProjectModal extends Component {
         )
     }
 
-
- 
-
-
     render() {
         const title = 'Add New Project';
 
@@ -109,43 +74,31 @@ class AddProjectModal extends Component {
         );
     }
 
-
     onSubmit = (formValues) => {
-
         let formOutput = { ...formValues };
-
-        formOutput.board_id = this.state.currentSelectableValue.id; //get category id
-
-        this.props.createLongTermGoal(formOutput).then((response) => {
-
-            const { status } = response.data;
-
-            if (status === 'success') {
-                this.props.loadGoals(0, this.props.boardShowGoals); //refresh goals (to display new one)
+        this.props.createProject(formOutput).then((response) => {
+            if (response.status === 'success') {
+                this.props.loadProjects(); //refresh projects (to display new one)
                 setTimeout(() => {
-                    this.props.toggleModal('addProject'); //close modal once goal is created
+                    this.props.toggleModal('addProject'); //close modal once project is created
                 }, 500)
             }
         });
 
     };
+
 }
 
 
 const mapStateToProps = (state, ownProps) => {
 
-    const { modals, boardCategories, boardShowGoals } = state.ui;
+    const { modals } = state.ui;
 
     return {
-        myProps: ownProps,
         modals: modals,
-        boardCategories: boardCategories,
-        boardShowGoals: boardShowGoals,
         initialValues: {
             name: '',
-            description: '',
-            deadline: '',
-            board_id: null
+            description: ''
         }
     };
 };
@@ -158,9 +111,6 @@ const formWrapped = reduxForm({
 export default connect(mapStateToProps, {
     //some actions here
     toggleModal,
-    createLongTermGoal,
-    loadGoals,
-    loadUserGoalsCategories,
-    createNewCategory, // This is for creating new category
-    deleteNewCategory
+    createProject,
+    loadProjects,
 })(formWrapped)

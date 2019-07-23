@@ -64,7 +64,7 @@ export const userLogin = (credentials) => async (dispatch) => {
             //then move the user to the board
 
 
-            history.push('/board');
+            history.push('/projects');
 
             // if(credentials.register){
             //     history.push('/preferences');
@@ -117,7 +117,7 @@ export const userFacebookLogin = (credentials) => async (dispatch) => {
             // //then move the user to the board
 
 
-            history.push('/board');
+            history.push('/projects');
 
             // if(credentials.register){
             //     history.push('/preferences');
