@@ -21,6 +21,7 @@ import NotFound from "./pages/Base/NotFound/NotFound";
 import ScrollToTop from "./pages/Base/Routing/ScrollToTop";
 import FAQ from "./pages/Landing/FAQ/FAQ";
 import AboutUs from "./pages/Landing/AboutUs/AboutUs";
+import Project from "./pages/Project/Project";
 
 let isProd = env.env === "prod";
 
@@ -50,6 +51,7 @@ class App extends Component {
             <Route path="/terms" component={TermsOfUse} />
             <Route path="/privacy" component={PrivacyPolicy} />
             <Route path="/board" component={Board} />
+            <Route path="/projects" component={Project} />
             <Route path="/preferences" component={Preferences} />
             <Route component={NotFound} />
           </Switch>

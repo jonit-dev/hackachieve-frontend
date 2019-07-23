@@ -3,16 +3,18 @@ import {connect} from 'react-redux'
 
 // import {Link, NavLink} from "react-router-dom";
 import {userLogout} from "../../../../actions/authActions";
-// import history from './../../../../history';
+import history from './../../../../history';
 
 class UserMenu extends Component{
     render(){
         return(
                 <div className="ui card hackachieve-user-menu">
                     { this.props.isLoggedIn &&
-                            <div className="content" onClick={()=> this.props.userLogout()}>
-                                <p>Logout</p>
+                            <div className="content" >
+                                <p onClick={()=> this.props.userLogout()}>Logout</p>
+                                <p onClick={()=> history.push("/projects")}>Projects</p>
                             </div>
+                            
                     }
                 </div>
         )

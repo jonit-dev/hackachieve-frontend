@@ -24,6 +24,10 @@ const INITIAL_STATE = {
         editLongTermGoal: {
             status: false,
             id: null
+        },
+        addProject: {
+            status: false,
+            id: null
         }
     },
     boardCategories: [],
