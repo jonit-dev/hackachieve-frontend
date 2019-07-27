@@ -49,7 +49,7 @@ export const deleteProject = value => async dispatch => {
         eventAction: "project_delete"
       });
 
-      console.log("Delete Project response", response);
+      // console.log("Delete Project response", response);
       return response;
     }
   );
@@ -58,7 +58,5 @@ export const deleteProject = value => async dispatch => {
 // this is responsible for setting the current project that is currently loaded by the user.
 
 export const setCurrentProject = projectId => dispatch => {
-  
-
   dispatch({ type: SET_CURRENT_PROJECT, payload: projectId });
 };

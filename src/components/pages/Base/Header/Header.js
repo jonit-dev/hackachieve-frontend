@@ -329,7 +329,7 @@ const mapStateToProps = state => {
     location: location,
     boardShowGoals: boardShowGoals,
     boardCategories: boardCategories,
-    currentProjectId: state.projects.currentProject
+    currentProjectId: state.projects.currentProjectId
   };
 };
 

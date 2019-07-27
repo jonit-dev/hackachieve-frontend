@@ -23,6 +23,11 @@
       align-items: center;
       justify-content: center;
 
+      .create-project-cta {
+        font-weight: bold;
+        color: $hackachieve-dark-grey;
+      }
+
       &:hover {
         box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
         border-radius: 0px;

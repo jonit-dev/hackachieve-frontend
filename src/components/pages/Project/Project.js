@@ -50,11 +50,14 @@ class Project extends Component {
                   </p>
                   <div
                     className="delete-btn"
-                    onClick={() => this.onDeleteProject(project.id)}
+                    onClick={e => {
+                      e.preventDefault();
+                      this.onDeleteProject(project.id);
+                    }}
                   >
                     &times;
                   </div>
-                  <div className="favicon"></div>
+                  {/* <div className="favicon"></div> */}
                   <img alt="img1" src="/images/gradient.png" />
                 </div>
               </Link>
@@ -63,7 +66,7 @@ class Project extends Component {
               className="cCard create-board"
               onClick={() => this.onOpenProjectModal()}
             >
-              <div>Create new project</div>
+              <div className="create-project-cta">Create new project</div>
             </div>
           </div>
         </div>
