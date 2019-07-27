@@ -55,7 +55,7 @@ class Project extends Component {
                     &times;
                   </div>
                   <div className="favicon"></div>
-                  <img alt="img1" src="images/gradient.png" />
+                  <img alt="img1" src="/images/gradient.png" />
                 </div>
               </Link>
             ))}

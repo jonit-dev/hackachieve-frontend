@@ -53,7 +53,7 @@ class CheckList extends Component {
 					validate={[required]}
 				/>
 				<div>
-				<button className="add-task" type="submit" onClick={this.props.handleSubmit(this.onSubmit)}><img src="images/icons/plus-white.svg" alt="add task" /> {id ? "Save" : "Add"}</button>
+				<button className="add-task" type="submit" onClick={this.props.handleSubmit(this.onSubmit)}><img src="/images/icons/plus-white.svg" alt="add task" /> {id ? "Save" : "Add"}</button>
 				{this.props.showChecklistForm &&
 					<button className="cancel" onClick={this.handleClick} >Cancel</button>
 			}

@@ -324,11 +324,12 @@ class EditLongTermGoalModal extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { modals, boardCategories } = state.ui;
+  const { modals, boardCategories, boardShowGoals } = state.ui;
 
   return {
     myProps: ownProps,
     modals: modals,
+    boardShowGoals: boardShowGoals,
     boardCategories: boardCategories,
     currentProjectId: state.projects.currentProjectId,
     initialValues: {

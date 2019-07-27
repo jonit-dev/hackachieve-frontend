@@ -16,10 +16,6 @@ import EditLongTermGoalModal from "./EditLongTermGoalModal";
 import { Droppable } from "react-beautiful-dnd";
 
 class LongTermGoal extends Component {
-  componentDidMount() {
-    console.log("My short term goals ids");
-  }
-
   onConvertBoardNameClass(boardName) {
     if (boardName.indexOf(" ") > -1) {
       return boardName

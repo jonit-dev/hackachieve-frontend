@@ -5,7 +5,7 @@ const NotFound = props => {
   return (
     <div className="home_header internal_header">
       <a className="mobile-logo" href="# ">
-        <img src="images/board/hackachieve-symbol.svg" alt="Logo" />
+        <img src="/images/board/hackachieve-symbol.svg" alt="Logo" />
       </a>
       <div className="site-wrap internal-page internal-sec">
         <h3>Sorry, Page Not Found</h3>

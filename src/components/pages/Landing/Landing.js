@@ -272,7 +272,7 @@ class Landing extends Component {
               </div>
               {/*div class="mt-5 row mb-5 site-section ">
           <div class="col-lg-7 order-1 order-lg-2">
-            <img src="images/do_ui_kit_hero_floating_devices-2x.png" alt="Image" class="img-fluid">
+            <img src="/images/do_ui_kit_hero_floating_devices-2x.png" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-5 pr-lg-5 mr-auto mt-5 order-2 order-lg-1">
             <h2 class="text-black">Create interactive prototypes</h2>
@@ -286,7 +286,7 @@ class Landing extends Component {
             <div class="author-box">
               <div class="d-flex mb-4">
                 <div class="mr-3">
-                  <img src="images/person_4.jpg" alt="Image" class="img-fluid rounded-circle">
+                  <img src="/images/person_4.jpg" alt="Image" class="img-fluid rounded-circle">
                 </div>
                 <div class="mr-auto text-black">
                   <strong class="font-weight-bold mb-0">Darren K.</strong> <br>
@@ -340,7 +340,7 @@ class Landing extends Component {
           <div>
             <div class="testimonial">
               <figure class="mb-4 d-block align-items-center justify-content-center">
-                <div><img src="images/person_3.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
+                <div><img src="/images/person_3.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
               </figure>
               <blockquote class="mb-3">
                 <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
@@ -354,7 +354,7 @@ class Landing extends Component {
             <div class="testimonial">
               
               <figure class="mb-4 d-block align-items-center justify-content-center">
-                <div><img src="images/person_2.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
+                <div><img src="/images/person_2.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
               </figure>
 
               <blockquote class="mb-3">
@@ -370,7 +370,7 @@ class Landing extends Component {
           <div>
             <div class="testimonial">
               <figure class="mb-4 d-block align-items-center justify-content-center">
-                <div><img src="images/person_4.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
+                <div><img src="/images/person_4.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
               </figure>
               <blockquote class="mb-3">
                 <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
@@ -385,7 +385,7 @@ class Landing extends Component {
           <div>
             <div class="testimonial">
               <figure class="mb-4 d-block align-items-center justify-content-center">
-                <div><img src="images/person_1.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
+                <div><img src="/images/person_1.jpg" alt="Image" class="w-100 img-fluid mb-3 shadow"></div>
               </figure>
               <blockquote class="mb-3">
                 <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
@@ -411,7 +411,7 @@ class Landing extends Component {
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
             <div class="h-entry">
-              <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+              <img src="/images/img_1.jpg" alt="Image" class="img-fluid">
               <h2><a href="# ">Create interactive prototypes</a></h2>
               <div class="meta mb-4">Ham Brook <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="# ">News</a></div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
@@ -420,7 +420,7 @@ class Landing extends Component {
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
             <div class="h-entry">
-              <img src="images/img_2.jpg" alt="Image" class="img-fluid">
+              <img src="/images/img_2.jpg" alt="Image" class="img-fluid">
               <h2><a href="# ">Create interactive prototypes</a></h2>
               <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="# ">News</a></div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
@@ -429,7 +429,7 @@ class Landing extends Component {
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
             <div class="h-entry">
-              <img src="images/img_3.jpg" alt="Image" class="img-fluid">
+              <img src="/images/img_3.jpg" alt="Image" class="img-fluid">
               <h2><a href="# ">Create interactive prototypes</a></h2>
               <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="# ">News</a></div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>

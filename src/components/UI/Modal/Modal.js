@@ -77,12 +77,12 @@ class Modal extends Component {
               this.onClose();
             }}
           >
-            <img className="popup_img" src="images/icons/x.svg" alt="popup img" />
+            <img className="popup_img" src="/images/icons/x.svg" alt="popup img" />
           </a>
           <br></br>
-          {/*<a href="# " className="upload"><img className="popup_img" src="images/icons/upload.svg" alt="" /></a>*/}
+          {/*<a href="# " className="upload"><img className="popup_img" src="/images/icons/upload.svg" alt="" /></a>*/}
           {/*<br></br>*/}
-          {/*<a href="# " className="more"><img className="popup_img" src="images/icons/more-vertical.svg" alt="" /></a>*/}
+          {/*<a href="# " className="more"><img className="popup_img" src="/images/icons/more-vertical.svg" alt="" /></a>*/}
         </div>
       </div>,
       document.querySelector("#modal")

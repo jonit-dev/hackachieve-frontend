@@ -20,8 +20,6 @@ import { setCurrentProject } from "../../../actions/projectActions";
 
 class Board extends Component {
   componentDidMount() {
-    console.log(this.props);
-
     const projectId = parseInt(this.props.match.params.projectId);
 
     this.props.setCurrentProject(projectId); //set currently loaded project to our state. It will be used by other components.

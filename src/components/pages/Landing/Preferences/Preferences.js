@@ -46,7 +46,7 @@ class Preferences extends Component {
         return (
 
             <div className="home_header internal_header">
-                <a className="mobile-logo" href="# "><img src="images/board/hackachieve-symbol.svg" alt="Logo"/></a>
+                <a className="mobile-logo" href="# "><img src="/images/board/hackachieve-symbol.svg" alt="Logo"/></a>
                 <div className="site-wrap internal-page internal-sec">
                     <h3>Your Skills</h3>
                     <div className="internal-inner">

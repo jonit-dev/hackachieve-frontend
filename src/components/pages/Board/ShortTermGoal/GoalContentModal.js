@@ -215,7 +215,7 @@ class GoalContentModal extends Component {
         <div className="comment-sec">
           <h3>
             Goal comments ({this.state.CommentDT.length})
-            <img src="images/icons/chevron-up.svg" alt="vote up" />
+            <img src="/images/icons/chevron-up.svg" alt="vote up" />
           </h3>
           <ul>
             {this.state.CommentDT.map((comment, i) => (
@@ -227,7 +227,7 @@ class GoalContentModal extends Component {
                     onClick={() => this.UpvoteComments(comment.id)}
                     className="up-arrow"
                   >
-                    <img src="images/icons/chevron-up.svg" alt="vote up" />
+                    <img src="/images/icons/chevron-up.svg" alt="vote up" />
                   </a>
                   {comment.voting[0] === undefined ? (
                     <span className="count">{0}</span>
@@ -241,13 +241,13 @@ class GoalContentModal extends Component {
                     onClick={() => this.DownvoteComments(comment.id)}
                     className="down-arrow"
                   >
-                    <img src="images/icons/chevron-up.svg" alt="vote up" />
+                    <img src="/images/icons/chevron-up.svg" alt="vote up" />
                   </a>
                 </div>
                 <div className="cooment-right">
                   <div className="comment-client">
                     <img
-                      src="images/icons/avatar-generic.svg"
+                      src="/images/icons/avatar-generic.svg"
                       alt="user avatar"
                     />
                     <h4>
@@ -316,7 +316,7 @@ class GoalContentModal extends Component {
 
         <div className="leave-comment">
           <div className="send-user">
-            <img src="images/icons/avatar-generic.svg" alt="user avatar" />
+            <img src="/images/icons/avatar-generic.svg" alt="user avatar" />
           </div>
           <div className="comment-box">
             <textarea
@@ -330,7 +330,7 @@ class GoalContentModal extends Component {
               href="# "
               onClick={() => this.AddComments()}
             >
-              <img alt="post comment" src="images/icons/send.svg" />
+              <img alt="post comment" src="/images/icons/send.svg" />
             </a>
           </div>
         </div>
@@ -345,7 +345,7 @@ class GoalContentModal extends Component {
             <strong>Status: {this.onRenderStatus(status)}</strong>
           </a>
           <a href="# " onClick={() => this.onEdit()}>
-            <img src="images/icons/alert-circle.svg" alt="alert circle" />
+            <img src="/images/icons/alert-circle.svg" alt="alert circle" />
             <strong>Deadline:</strong>{" "}
             <Moment format="D MMMM, YYYY">{deadline}</Moment>
           </a>
@@ -357,7 +357,7 @@ class GoalContentModal extends Component {
         {/* <label>Tags</label>*/}
         {/* <a className="fitness" href="# "> Fitness</a>*/}
         {/*<a className="goal" href="# "> Personal goals</a>*/}
-        {/*<a className="add-tag" href="# " > <img src="images/icons/plus.svg" alt=""/> Add</a>*/}
+        {/*<a className="add-tag" href="# " > <img src="/images/icons/plus.svg" alt=""/> Add</a>*/}
         {/*</div>*/}
 
         <LabelHandler goalId={this.props.myProps.shortTermGoal.id} />

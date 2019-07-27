@@ -12,8 +12,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOAD_GOALS:
-      console.log("goal reducer");
-      console.log(action.payload);
       const goals = action.payload.board;
 
       return {

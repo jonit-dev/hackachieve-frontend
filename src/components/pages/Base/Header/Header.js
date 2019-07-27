@@ -164,7 +164,7 @@ class Header extends Component {
                 </div>
                 <div className="board-profile-user-picture">
                   <img
-                    src="./images/icons/avatar-generic.svg"
+                    src="/images/icons/avatar-generic.svg"
                     alt="user avatar"
                   />
                   {this.state.userMenuOpen && <UserMenu />}
@@ -186,7 +186,9 @@ class Header extends Component {
               >
                 <i className="fas fa-ellipsis-v mobile-menu" />
               </NavLink>
-              <div className="board-selector"></div>
+              <div className="board-selector">
+                <div className="header-title">Projects</div>
+              </div>
               <div className="board-switch"></div>
               <div
                 className="board-profile"
@@ -197,7 +199,7 @@ class Header extends Component {
                 </div>
                 <div className="board-profile-user-picture">
                   <img
-                    src="./images/icons/avatar-generic.svg"
+                    src="/images/icons/avatar-generic.svg"
                     alt="user avatar"
                   />
                   {this.state.userMenuOpen && <UserMenu />}
@@ -250,8 +252,8 @@ class Header extends Component {
                   </a>
                   <div className="button-main">
                     {this.props.isLoggedIn ? (
-                      <Link className="ui inverted button" to="/board">
-                        Board
+                      <Link className="ui inverted button" to="/projects">
+                        Projects
                       </Link>
                     ) : null}
 
@@ -326,7 +328,7 @@ const mapStateToProps = state => {
     isLoggedIn: state.auth.isLoggedIn,
     location: location,
     boardShowGoals: boardShowGoals,
-    boardCategories,
+    boardCategories: boardCategories,
     currentProjectId: state.projects.currentProject
   };
 };
