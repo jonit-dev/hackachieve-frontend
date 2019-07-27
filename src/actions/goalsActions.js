@@ -238,14 +238,17 @@ export const editColumns = column => dispatch => {
 };
 
 // The following API will create the new category, 'category' is 'boards' in backend
-export const createNewCategory = value => async dispatch => {
+export const createNewCategory = value => async (dispatch, getState) => {
   console.log("CREATING NEW CATEGORY");
   console.log(value);
+
+  const projectId = getState().projects.currentProjectId;
 
   // const response = await guest_axios.post('/user/register', userInfo);
   return API.request("/boards/create/", "POST", {
     name: value,
-    description: "1"
+    description: "1",
+    project: projectId
   }).then(response => {
     // Need to figure out the response as the server is giving 500 error,
     // https://hackachieve.slack.com/messages/DK2GCP79R/
