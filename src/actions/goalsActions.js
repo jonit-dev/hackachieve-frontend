@@ -8,22 +8,24 @@ import {
 } from "./types";
 import Analytics from "../analytics/Analytics";
 
-export const loadGoals = (id, status) => async (dispatch, getState) => {
+export const loadGoals = (projectId, goalStatus) => async dispatch => {
   /*
-    load both short term and long term goals from a specific goal status
-    if id = 0 it will load all goals from a specific user
-     status available are:
+    load all content (boards, short term and long term goals from a specific project)
 
+    Goal status
     - all (all status below)
     - standby
     - ongoing
     - completed
     */
-  return API.request(`/boards/show/${id}/${status}`, "GET", null, "auth").then(
-    response => {
-      dispatch({ type: LOAD_GOALS, payload: response.data });
-    }
-  );
+  return API.request(
+    `/project/content/${projectId}/?goal_status=${goalStatus}`,
+    "GET",
+    null,
+    "auth"
+  ).then(response => {
+    dispatch({ type: LOAD_GOALS, payload: response.data });
+  });
 };
 
 export const deleteGoal = id => async dispatch => {

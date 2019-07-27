@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  toggleModal
-} from "../../../actions/uiActions";
-import {
-  loadProjects,
-  deleteProject
-} from "../../../actions/projectActions";
+import { toggleModal } from "../../../actions/uiActions";
+import { loadProjects, deleteProject } from "../../../actions/projectActions";
 import Analytics from "../../../analytics/Analytics";
 import AddProjectModal from "./AddProjectModal";
+import { Link } from "react-router-dom";
 
 class Project extends Component {
-
   componentDidMount() {
     this.props.loadProjects();
     Analytics.track("project_visit", {
@@ -47,15 +42,27 @@ class Project extends Component {
       <main className="board-main">
         <div className="board-columns">
           <div className="card-container">
-            {this.props.projects.map(project =>
-              <div className="cCard" key={project.id}>
-                <p>{project.name} - {project.description}</p>
-                <div className="delete-btn" onClick={() => this.onDeleteProject(project.id)}>&times;</div>
-                <div className="favicon"></div>
-                <img alt="img1" src="images/gradient.png" />
-              </div>
-            )}
-            <div className="cCard create-board" onClick={() => this.onOpenProjectModal()}>
+            {this.props.projects.map(project => (
+              <Link to={`project/${project.id}/board`} key={project.id}>
+                <div className="cCard">
+                  <p>
+                    {project.name} - {project.description}
+                  </p>
+                  <div
+                    className="delete-btn"
+                    onClick={() => this.onDeleteProject(project.id)}
+                  >
+                    &times;
+                  </div>
+                  <div className="favicon"></div>
+                  <img alt="img1" src="images/gradient.png" />
+                </div>
+              </Link>
+            ))}
+            <div
+              className="cCard create-board"
+              onClick={() => this.onOpenProjectModal()}
+            >
               <div>Create new project</div>
             </div>
           </div>
@@ -66,11 +73,10 @@ class Project extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   return {
     projects: state.projects.projects,
-    modals: state.ui.modals,
+    modals: state.ui.modals
   };
 };
 

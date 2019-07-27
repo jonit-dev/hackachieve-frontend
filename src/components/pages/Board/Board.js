@@ -16,10 +16,17 @@ import Joy from "../../onboarding";
 import Analytics from "../../../analytics/Analytics";
 import { isMobile } from "react-device-detect";
 import { DragDropContext } from "react-beautiful-dnd";
+import { setCurrentProject } from "../../../actions/projectActions";
 
 class Board extends Component {
   componentDidMount() {
-    this.props.loadGoals(0, this.props.boardShowGoals);
+    console.log(this.props);
+
+    const projectId = parseInt(this.props.match.params.projectId);
+
+    this.props.setCurrentProject(projectId); //set currently loaded project to our state. It will be used by other components.
+
+    this.props.loadGoals(projectId, this.props.boardShowGoals);
 
     this.props.loadUserGoalsCategories();
 
@@ -99,7 +106,10 @@ class Board extends Component {
 
   onBoardSwitch(type) {
     this.props.changeBoardShowGoal(type).then(() => {
-      this.props.loadGoals(0, this.props.boardShowGoals);
+      this.props.loadGoals(
+        this.props.currentProjectId,
+        this.props.boardShowGoals
+      );
     });
   }
 
@@ -377,7 +387,9 @@ const mapStateToProps = state => {
     goals: filteredGoals(state.goal.goals, state.goal.filter),
     boardShowGoals: state.ui.boardShowGoals,
     modals: state.ui.modals,
-    filter: state.goal.filter
+    filter: state.goal.filter,
+    projects: state.projects,
+    currentProjectId: state.projects.currentProjectId
   };
 };
 
@@ -391,6 +403,7 @@ export default connect(
     loadUserGoalsCategories,
     reorderGoal,
     updateGoal,
-    updateLongTermGoalState
+    updateLongTermGoalState,
+    setCurrentProject
   }
 )(Board);

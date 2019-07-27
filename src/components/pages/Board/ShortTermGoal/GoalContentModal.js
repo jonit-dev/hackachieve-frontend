@@ -87,7 +87,10 @@ class GoalContentModal extends Component {
       const { status } = response.data;
 
       if (status === "success") {
-        this.props.loadGoals(0, this.props.boardShowGoals); //refresh goals (to display new one)
+        this.props.loadGoals(
+          this.props.currentProjectId,
+          this.props.boardShowGoals
+        ); //refresh goals (to display new one)
         setTimeout(() => {
           this.props.toggleModal("goalContent"); //close modal once goal public status is change.
         }, 500);
@@ -243,7 +246,10 @@ class GoalContentModal extends Component {
                 </div>
                 <div className="cooment-right">
                   <div className="comment-client">
-                    <img src="images/icons/avatar-generic.svg" alt="user avatar" />
+                    <img
+                      src="images/icons/avatar-generic.svg"
+                      alt="user avatar"
+                    />
                     <h4>
                       {comment.user.first_name + " " + comment.user.last_name}
                     </h4>
@@ -390,7 +396,8 @@ class GoalContentModal extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     myProps: ownProps,
-    modals: state.ui.modals
+    modals: state.ui.modals,
+    currentProjectId: state.projects.currentProjectId
   };
 };
 

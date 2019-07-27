@@ -62,7 +62,10 @@ class LongTermGoal extends Component {
 
   onDeleteLongTermGoal() {
     this.props.deleteLongTermGoal(this.props.myProps.id).then(() => {
-      this.props.loadGoals(0, this.props.boardShowGoals);
+      this.props.loadGoals(
+        this.props.currentProjectId,
+        this.props.boardShowGoals
+      );
     });
   }
 

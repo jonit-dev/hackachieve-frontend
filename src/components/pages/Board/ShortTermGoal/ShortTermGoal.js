@@ -22,7 +22,10 @@ class ShortTermGoal extends Component {
     this.props
       .goalChangeStatus(this.props.myProps.shortTermGoal.id, statusId)
       .then(() => {
-        this.props.loadGoals(0, this.props.boardShowGoals);
+        this.props.loadGoals(
+          this.props.currentProjectId,
+          this.props.boardShowGoals
+        );
       });
   }
 
@@ -33,18 +36,27 @@ class ShortTermGoal extends Component {
 
     if (!priority) {
       this.props.goalSetPriority(id, 1).then(() => {
-        this.props.loadGoals(0, this.props.boardShowGoals);
+        this.props.loadGoals(
+          this.props.currentProjectId,
+          this.props.boardShowGoals
+        );
       });
     } else {
       this.props.goalSetPriority(id, 0).then(() => {
-        this.props.loadGoals(0, this.props.boardShowGoals);
+        this.props.loadGoals(
+          this.props.currentProjectId,
+          this.props.boardShowGoals
+        );
       });
     }
   }
 
   onDeleteGoal(id) {
     this.props.deleteGoal(id).then(() => {
-      this.props.loadGoals(0, this.props.boardShowGoals);
+      this.props.loadGoals(
+        this.props.currentProjectId,
+        this.props.boardShowGoals
+      );
     });
   }
 
@@ -255,7 +267,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     myProps: ownProps,
     modals: modals,
-    boardShowGoals: boardShowGoals
+    boardShowGoals: boardShowGoals,
+    currentProjectId: state.projects.currentProjectId
   };
 };
 

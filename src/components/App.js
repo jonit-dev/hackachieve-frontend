@@ -50,7 +50,10 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/terms" component={TermsOfUse} />
             <Route path="/privacy" component={PrivacyPolicy} />
+
+            <Route path="/project/:projectId/board" component={Board} />
             <Route path="/board" component={Board} />
+
             <Route path="/projects" component={Project} />
             <Route path="/preferences" component={Preferences} />
             <Route component={NotFound} />
