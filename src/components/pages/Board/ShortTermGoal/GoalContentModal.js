@@ -91,7 +91,7 @@ class GoalContentModal extends Component {
         this.props.loadGoals(
           this.props.currentProjectId,
           this.props.boardShowGoals
-        ); //refresh goals (to display new one)
+        ); //refresh goals
         setTimeout(() => {
           this.props.toggleModal("goalContent"); //close modal once goal public status is change.
         }, 500);
