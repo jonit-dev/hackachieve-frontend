@@ -17,6 +17,8 @@ import {
   UpdateComments,
   CommentsVote
 } from "../../../../actions/commentAction";
+import { Markup } from "interweave";
+import Linkify from "react-linkify";
 
 class GoalContentModal extends Component {
   constructor(props) {
@@ -364,7 +366,9 @@ class GoalContentModal extends Component {
 
         <div className="detail">
           <h3>Description</h3>
-          <p>{description}</p>
+          <p>
+            <Linkify>{description}</Linkify>
+          </p>
 
           <ChecklistHandler />
         </div>
