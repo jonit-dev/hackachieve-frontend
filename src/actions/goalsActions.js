@@ -199,6 +199,10 @@ export const editGoals = goal => dispatch => {
 };
 
 export const updateGoal = goal => dispatch => {
+  // Todo: we should use a PATCH request to update this goal. I have to remove the label, otherwise the drag and drop crashes.
+
+  console.log(goal);
+
   return API.request(`/goals/update/${goal.id}/`, "PUT", goal, "auth");
 };
 

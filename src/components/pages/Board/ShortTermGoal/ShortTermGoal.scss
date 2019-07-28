@@ -66,6 +66,8 @@
           height: 18px;
           margin-right: 0.2rem;
           background-color: $hackachieve-blue;
+          padding-left: 0.7rem;
+          padding-right: 0.7rem;
         }
       }
 
@@ -78,7 +80,7 @@
 
       .column-card-description {
         font-family: $font-primary;
-        font-size: 16px;
+        font-size: 1rem;
         color: $hackachieve-dark-grey;
         line-height: 1.28;
         margin-top: 0.7rem;

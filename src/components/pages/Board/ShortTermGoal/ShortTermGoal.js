@@ -170,13 +170,15 @@ class ShortTermGoal extends Component {
   onRenderLabels() {
     const { labels } = this.props.myProps.shortTermGoal;
 
-    return labels.map(label => {
-      return (
-        <div className="label" key={label.id}>
-          {label.name}
-        </div>
-      );
-    });
+    if (labels) {
+      return labels.map(label => {
+        return (
+          <div className="label" key={label.id}>
+            {label.name}
+          </div>
+        );
+      });
+    }
   }
 
   render() {
