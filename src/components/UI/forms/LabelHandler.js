@@ -16,6 +16,8 @@ import {
   updateLabel
 } from "../../../actions/goalLabelsAction";
 
+import { loadGoals } from "../../../actions/goalsActions";
+
 class LabelHandler extends Component {
   state = {
     showTagsInput: false,
@@ -48,7 +50,8 @@ class LabelHandler extends Component {
         this.resetFields("AddLabels", {
           tag: ""
         });
-        this.props.loadLabels(goalId); //refresh afte radding
+        this.props.loadLabels(goalId); //refresh after adding
+        // refresh board as well
       });
     }
 
@@ -64,6 +67,8 @@ class LabelHandler extends Component {
 
   deleteLabels = label => {
     this.props.deleteLabels(label);
+    console.log("labels updated, refreshing board...");
+    this.props.loadGoals(this.props.projectId, this.props.boardShowGoals);
   };
 
   hideLabelUpdateForm = add => {
@@ -78,6 +83,8 @@ class LabelHandler extends Component {
 
     if (add) {
       this.props.loadLabels(goalId);
+      console.log("labels updated, refreshing board...");
+      this.props.loadGoals(this.props.projectId, this.props.boardShowGoals);
     }
   };
 
@@ -90,6 +97,8 @@ class LabelHandler extends Component {
         tag: ""
       });
       this.props.loadLabels(goalId);
+      console.log("labels updated, refreshing board...");
+      this.props.loadGoals(this.props.projectId, this.props.boardShowGoals);
 
       //close tag
       this.onCloseTagAdd();
@@ -208,10 +217,14 @@ class LabelHandler extends Component {
 const mapStateToProps = (state, ownProps) => {
   const selector = formValueSelector("AddLabels");
 
+  const { boardShowGoals } = state.ui;
+
   return {
     tag: selector(state, "tag"), //we use this selector here to pass our input field (tag) to our props
     myProps: ownProps,
-    labels: state.labels.labels
+    boardShowGoals: boardShowGoals,
+    labels: state.labels.labels,
+    projectId: state.projects.currentProjectId
   };
 };
 
@@ -226,6 +239,7 @@ export default connect(
     createLabels,
     loadLabels,
     deleteLabels,
-    updateLabel
+    updateLabel,
+    loadGoals
   }
 )(formWrapped);

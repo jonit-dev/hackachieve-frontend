@@ -116,7 +116,6 @@ class ShortTermGoal extends Component {
   }
 
   onOpenGoalContentModal() {
-    console.log("opening goal content modal");
     this.props.toggleModal("goalContent", this.props.myProps.shortTermGoal.id);
   }
 
@@ -166,6 +165,18 @@ class ShortTermGoal extends Component {
       // cannot be 0, but make it super tiny
       transitionDuration: `0.001s`
     };
+  }
+
+  onRenderLabels() {
+    const { labels } = this.props.myProps.shortTermGoal;
+
+    return labels.map(label => {
+      return (
+        <div className="label" key={label.id}>
+          {label.name}
+        </div>
+      );
+    });
   }
 
   render() {
@@ -223,6 +234,7 @@ class ShortTermGoal extends Component {
             />
 
             <div className="column-card-body">
+              <div className="column-card-labels">{this.onRenderLabels()}</div>
               <div className="column-card-title">{title}</div>
               {description.length <= this.characterLimit ? (
                 <div className="column-card-description">{description}</div>

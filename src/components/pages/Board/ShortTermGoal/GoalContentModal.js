@@ -350,7 +350,7 @@ class GoalContentModal extends Component {
             <Moment format="D MMMM, YYYY">{deadline}</Moment>
           </a>
           {/*below a tag is use to make card public or private.*/}
-          {this.onPublicPrivateSwitch()}
+          {/* {this.onPublicPrivateSwitch()} */}
         </div>
 
         {/*<div className="tags">*/}

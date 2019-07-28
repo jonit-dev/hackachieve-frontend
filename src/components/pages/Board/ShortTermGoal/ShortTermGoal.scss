@@ -51,6 +51,24 @@
       padding-bottom: 0.8rem;
       border-bottom: 1px solid lighten($hackachieve-medium-gray, 5%);
 
+      .column-card-labels {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .label {
+          position: relative;
+          flex: 0 1 50px;
+          color: white;
+          font-size: 0.8rem;
+          text-align: center;
+          border-radius: 4.6px;
+          height: 18px;
+          margin-right: 0.2rem;
+          background-color: $hackachieve-blue;
+        }
+      }
+
       .column-card-title {
         font-family: $font-primary;
         font-size: 18px;
