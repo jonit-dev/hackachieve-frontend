@@ -58,6 +58,7 @@ class LongTermGoal extends Component {
 
   onDeleteLongTermGoal() {
     this.props.deleteLongTermGoal(this.props.myProps.id).then(() => {
+      console.log("deleting long term goal");
       this.props.loadGoals(
         this.props.currentProjectId,
         this.props.boardShowGoals
@@ -246,7 +247,8 @@ const mapStateToProps = (state, ownProps) => {
     myProps: ownProps,
     shortTermGoals: filteredGoals(ownProps.shortTermGoals, ownProps.filter),
     modals: modals,
-    boardShowGoals: boardShowGoals
+    boardShowGoals: boardShowGoals,
+    currentProjectId: state.projects.currentProjectId
   };
 };
 

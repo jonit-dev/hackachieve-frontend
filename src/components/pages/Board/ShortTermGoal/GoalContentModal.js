@@ -17,7 +17,6 @@ import {
   UpdateComments,
   CommentsVote
 } from "../../../../actions/commentAction";
-import { Markup } from "interweave";
 import Linkify from "react-linkify";
 
 class GoalContentModal extends Component {
