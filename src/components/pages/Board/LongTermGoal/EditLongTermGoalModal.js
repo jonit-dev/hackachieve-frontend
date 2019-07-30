@@ -32,29 +32,31 @@ class EditLongTermGoalModal extends Component {
   }
 
   onLoadBoardCategories() {
-    return this.props.loadUserGoalsCategories().then(() => {
-      //set first option as selected
+    return this.props
+      .loadUserGoalsCategories(this.props.currentProjectId)
+      .then(() => {
+        //set first option as selected
 
-      console.log("loading board categories");
+        console.log("loading board categories");
 
-      const boardName = this.props.myProps.longTermGoal.boardName;
-      const boardCategory = this.props.boardCategories.find(
-        category => category.name === boardName
-      );
+        const boardName = this.props.myProps.longTermGoal.boardName;
+        const boardCategory = this.props.boardCategories.find(
+          category => category.name === boardName
+        );
 
-      //set current selected option on state, after loading current categories
-      this.setState(
-        {
-          currentSelectableValue: {
-            id: boardCategory.id,
-            label: boardCategory.name
+        //set current selected option on state, after loading current categories
+        this.setState(
+          {
+            currentSelectableValue: {
+              id: boardCategory.id,
+              label: boardCategory.name
+            }
+          },
+          () => {
+            console.log(this.state);
           }
-        },
-        () => {
-          console.log(this.state);
-        }
-      );
-    });
+        );
+      });
   }
 
   onClose() {

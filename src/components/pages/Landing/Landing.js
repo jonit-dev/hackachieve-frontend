@@ -57,10 +57,10 @@ class Landing extends Component {
                       <div>
                         {User.isLoggedIn() ? (
                           <NavLink
-                            to="/board"
+                            to="/projects"
                             className="btn btn-primary mr-2 mb-2"
                           >
-                            ACCESS YOUR GOALS
+                            ACCESS YOUR PROJECTS
                           </NavLink>
                         ) : (
                           <div className="fb-login">

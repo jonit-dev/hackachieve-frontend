@@ -37,7 +37,7 @@ class Header extends Component {
 
   componentWillMount() {
     if (this.props.location.pathname === "/board") {
-      this.props.loadUserGoalsCategories();
+      this.props.loadUserGoalsCategories(this.props.currentProjectId);
     }
 
     this.props.updateLocation(history.location); //update for the first time on component mounting

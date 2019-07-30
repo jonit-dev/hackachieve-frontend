@@ -26,7 +26,7 @@ class Board extends Component {
 
     this.props.loadGoals(projectId, this.props.boardShowGoals);
 
-    this.props.loadUserGoalsCategories();
+    this.props.loadUserGoalsCategories(projectId);
 
     Analytics.track("board_visit", {
       eventCategory: "pages",
