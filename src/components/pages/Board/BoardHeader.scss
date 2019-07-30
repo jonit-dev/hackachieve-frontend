@@ -210,3 +210,63 @@ header.board-header {
     }
   }
 }
+.board-header-subnav{
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  ul{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    li{
+      display: flex;
+    align-items: center;
+    justify-content: center;
+
+      a{
+        &.board-name{
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        padding: 10px;
+        display: block;
+        margin-right: 30px;
+        }
+        &.board-invite-btn{
+          display: flex;
+          align-items: center;
+          background-color: #5aac44;
+          font-family: "Lato", sans-serif;
+          font-weight: bold;
+          height: 29px;
+          color: white;
+          text-align: center;
+          font-size: 14px;
+          cursor: pointer;
+          border-radius: 4px;
+          box-sizing: border-box;
+          transition: all 0.25s ease-in;
+          padding: 0 0.8rem;
+          margin-left: 20px;
+        }
+      }
+     span{
+       &.member{
+         display: flex;
+         width: 35px;
+         height: 35px;
+         border-radius: 50%;
+         background-color: #dfe1e6;
+        color: #172b4d;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: -2px;
+       }
+     }
+    }
+  }
+}

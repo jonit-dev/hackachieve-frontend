@@ -1,5 +1,5 @@
 import API from "../classes/API";
-import { LOAD_PROJECTS, SHOW_ALERT } from "./types";
+import { LOAD_PROJECTS, SHOW_ALERT, SEARCH_USERS, SET_LOADING } from "./types";
 import { SET_CURRENT_PROJECT } from "./types";
 import Analytics from "../analytics/Analytics";
 
@@ -58,5 +58,19 @@ export const deleteProject = value => async dispatch => {
 // this is responsible for setting the current project that is currently loaded by the user.
 
 export const setCurrentProject = projectId => dispatch => {
-  dispatch({ type: SET_CURRENT_PROJECT, payload: projectId });
+  return API.request(`/project/` + projectId, "GET", null, "auth").then(response => {
+    dispatch({ type: SET_CURRENT_PROJECT, payload: response.data });
+  });
+
+
 };
+
+// this is responsible for searching user by name or email.
+export const searchUsers = (keyword) => async dispatch => {
+  dispatch({ type: SET_LOADING, payload: true });
+  return API.request(`/user/search/` + keyword, "GET", null, "auth").then(response => {
+    dispatch({ type: SEARCH_USERS, payload: response.data });
+  });
+};
+
+

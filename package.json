@@ -27,6 +27,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "react-select": "^3.0.4",
+    "react-tag-autocomplete": "^5.11.1",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-logger": "^3.0.6",

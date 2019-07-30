@@ -17,6 +17,7 @@ import Analytics from "../../../analytics/Analytics";
 import { isMobile } from "react-device-detect";
 import { DragDropContext } from "react-beautiful-dnd";
 import { setCurrentProject } from "../../../actions/projectActions";
+import InviteMemberModal from "./InviteMemberModal";
 
 class Board extends Component {
   componentDidMount() {
@@ -33,6 +34,23 @@ class Board extends Component {
       eventAction: "board_visit"
     });
   }
+
+  onRenderProjectModal() {
+    if (
+      this.props.modals.addProject.status === true &&
+      !this.props.modals.addProject.id
+    ) {
+      //when there's not id, the board component is the one responsible for opening the modal.
+      return <InviteMemberModal />;
+    } else {
+      return null;
+    }
+  }
+
+  onOpenProjectModal() {
+    this.props.toggleModal("addProject"); //toggle a specific modal by triggering this action
+  }
+
 
   onOpenLongTermModal() {
     console.log("opening long term modal");
@@ -159,7 +177,7 @@ class Board extends Component {
 
     //we will use it to manipulate our current state
     //eslint-disable-next-line
-    Array.prototype.swap = function(x, y) {
+    Array.prototype.swap = function (x, y) {
       var b = this[x];
       this[x] = this[y];
       this[y] = b;
@@ -288,10 +306,28 @@ class Board extends Component {
   }
 
   render() {
+    const {name}=this.props.currentProject;
     return (
       <React.Fragment>
         <main className="board-main">
           <div className="board-columns">
+            <div className="board-header-subnav">
+              <ul>
+                <li><a className="board-name" href="#/">{name}</a></li>
+                <li>
+                  <span className="member">D</span>
+                </li>
+                <li>
+                  <span className="member">K</span>
+                </li>
+                <li>
+                  <span className="member">M</span>
+                </li>
+                <li>
+                  <a className="board-invite-btn" href="#/" onClick={() => this.onOpenProjectModal()}>Invite</a>
+                </li>
+              </ul>
+            </div>
             {isMobile ? (
               <div
                 className="board-column-add column-add-short-term-goal"
@@ -303,8 +339,8 @@ class Board extends Component {
                 </div>
               </div>
             ) : (
-              <p></p>
-            )}
+                <p></p>
+              )}
 
             {/* Drag And drop context */}
             <DragDropContext
@@ -328,11 +364,12 @@ class Board extends Component {
                 </div>
               </div>
             ) : (
-              <p></p>
-            )}
+                <p></p>
+              )}
           </div>
 
           {this.onRenderLongTermGoalModal()}
+          {this.onRenderProjectModal()}
         </main>
 
         <div className="i-phone">
@@ -390,7 +427,8 @@ const mapStateToProps = (state, ownProps) => {
     modals: state.ui.modals,
     filter: state.goal.filter,
     projects: state.projects,
-    currentProjectId: state.projects.currentProjectId
+    currentProjectId: state.projects.currentProjectId,
+    currentProject: state.projects.currentProject
   };
 };
 
