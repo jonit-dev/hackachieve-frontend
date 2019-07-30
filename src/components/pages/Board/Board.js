@@ -20,13 +20,13 @@ import { setCurrentProject } from "../../../actions/projectActions";
 
 class Board extends Component {
   componentDidMount() {
-    const projectId = parseInt(this.props.match.params.projectId);
+    const projectId = parseInt(this.props.myProps.projectId);
 
     this.props.setCurrentProject(projectId); //set currently loaded project to our state. It will be used by other components.
 
     this.props.loadGoals(projectId, this.props.boardShowGoals);
 
-    this.props.loadUserGoalsCategories();
+    this.props.loadUserGoalsCategories(projectId);
 
     Analytics.track("board_visit", {
       eventCategory: "pages",
@@ -146,11 +146,13 @@ class Board extends Component {
     // console.log(start);
     // console.log(provided);
   }
+
   onDragUpdate(update, provided) {
     console.log("onDragUpdate!");
     // console.log(update);
     // console.log(provided);
   }
+
   onDragEnd(result) {
     console.log("onDragEnd!");
     console.log(result);
@@ -380,8 +382,9 @@ const filteredGoals = (goals, filter) => {
     : goals.filter(goal => goal.name === filter);
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    myProps: ownProps,
     goals: filteredGoals(state.goal.goals, state.goal.filter),
     boardShowGoals: state.ui.boardShowGoals,
     modals: state.ui.modals,

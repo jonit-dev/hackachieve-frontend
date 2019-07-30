@@ -34,10 +34,12 @@ class AddLongTermGoalModal extends Component {
 
   onLoadBoardCategories() {
     //load user categories from db
-    return this.props.loadUserGoalsCategories().then(() => {
-      //set first category option as selected
-      this.props.change("board_id", this.props.boardCategories[0].id);
-    });
+    return this.props
+      .loadUserGoalsCategories(this.props.currentProjectId)
+      .then(() => {
+        //set first category option as selected
+        this.props.change("board_id", this.props.boardCategories[0].id);
+      });
   }
 
   onClose() {
