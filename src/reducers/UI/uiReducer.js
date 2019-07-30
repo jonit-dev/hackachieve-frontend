@@ -1,88 +1,99 @@
-import {OPEN_MODAL, CLOSE_MODAL, UPDATE_LOCATION, LOAD_CATEGORIES, CHANGE_BOARD_SHOW_GOAL} from "../../actions/types";
+import {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  UPDATE_LOCATION,
+  LOAD_CATEGORIES,
+  CHANGE_BOARD_SHOW_GOAL,
+  CHANGE_SELECTED_PANEL
+} from "../../actions/types";
 
 // This is a generic UI reducer to handle state related with location, etc...
 
 const INITIAL_STATE = {
-    location: {pathname: '/'},
-    modals: { //controls opening and closing of modals
-        shortTermGoal: {
-            status: false,
-            id: null
-        },
-        longTermGoal: {
-            status: false,
-            id: null
-        },
-        goalContent: {
-            status: false,
-            id: null
-        },
-        editShortTermGoal: {
-            status: false,
-            id: null
-        },
-        editLongTermGoal: {
-            status: false,
-            id: null
-        },
-        addProject: {
-            status: false,
-            id: null
-        }
+  location: { pathname: "/" },
+  selectedPanel: "board",
+  modals: {
+    //controls opening and closing of modals
+    shortTermGoal: {
+      status: false,
+      id: null
     },
-    boardCategories: [],
-    boardShowGoals: 'all'
+    longTermGoal: {
+      status: false,
+      id: null
+    },
+    goalContent: {
+      status: false,
+      id: null
+    },
+    editShortTermGoal: {
+      status: false,
+      id: null
+    },
+    editLongTermGoal: {
+      status: false,
+      id: null
+    },
+    addProject: {
+      status: false,
+      id: null
+    }
+  },
+  boardCategories: [],
+  boardShowGoals: "all"
 };
 
 export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case UPDATE_LOCATION:
+      return { ...state, location: action.payload };
 
-    switch (action.type) {
-        case UPDATE_LOCATION:
-            return {...state, location: action.payload};
+    case OPEN_MODAL:
+      return {
+        ...state,
+        modals: {
+          ...state.modals,
+          [action.payload.name]: {
+            status: true,
+            id: action.payload.id
+          }
+        }
+      };
 
-        case OPEN_MODAL:
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        modals: {
+          ...state.modals,
+          [action.payload.name]: {
+            status: false,
+            id: action.payload.id
+          }
+        }
+      };
 
-            return {
-                ...state, modals: {
-                    ...state.modals,
-                    [action.payload.name]: {
-                        status: true,
-                        id: action.payload.id
-                    }
-                }
-            };
+    case LOAD_CATEGORIES:
+      return {
+        ...state,
+        boardCategories: action.payload
+      };
 
-        case CLOSE_MODAL:
+    case CHANGE_BOARD_SHOW_GOAL:
+      return {
+        ...state,
+        boardShowGoals: action.payload
+      };
 
-            return {
-                ...state, modals: {
-                    ...state.modals,
-                    [action.payload.name]: {
-                        status: false,
-                        id: action.payload.id
-                    }
-                }
-            };
+    case CHANGE_SELECTED_PANEL:
+      return {
+        ...state,
+        selectedPanel: action.payload
+      };
 
-        case LOAD_CATEGORIES:
-
-            return {
-                ...state,
-                boardCategories: action.payload
-            };
-
-        case CHANGE_BOARD_SHOW_GOAL:
-            return {
-                ...state,
-                boardShowGoals: action.payload
-            };
-
-
-        default:
-            return state;
-    }
-}
-
+    default:
+      return state;
+  }
+};
 
 /*
 

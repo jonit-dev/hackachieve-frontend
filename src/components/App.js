@@ -10,7 +10,6 @@ import Header from "./pages/Base/Header/Header";
 import Login from "./pages/Landing/Login/Login";
 import Register from "./pages/Landing/Register/Register";
 import { checkLoggedIn } from "../actions/authActions";
-import Board from "./pages/Board/Board";
 import env from "../env";
 import TermsOfUse from "./pages/Landing/Legal/TermsOfUse";
 import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
@@ -22,6 +21,7 @@ import ScrollToTop from "./pages/Base/Routing/ScrollToTop";
 import FAQ from "./pages/Landing/FAQ/FAQ";
 import AboutUs from "./pages/Landing/AboutUs/AboutUs";
 import Project from "./pages/Project/Project";
+import Panel from "./pages/Panel/Panel";
 
 let isProd = env.env === "prod";
 
@@ -51,8 +51,7 @@ class App extends Component {
             <Route path="/terms" component={TermsOfUse} />
             <Route path="/privacy" component={PrivacyPolicy} />
 
-            <Route path="/project/:projectId/board" component={Board} />
-            <Route path="/board" component={Board} />
+            <Route path="/project/:projectId/board" component={Panel} />
 
             <Route path="/projects" component={Project} />
             <Route path="/preferences" component={Preferences} />

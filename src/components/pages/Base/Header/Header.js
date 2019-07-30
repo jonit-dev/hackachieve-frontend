@@ -8,7 +8,11 @@ import {
   filterGoals
 } from "../../../../actions/goalsActions";
 import history from "./../../../../history";
-import { showAlert, updateLocation } from "../../../../actions/uiActions";
+import {
+  showAlert,
+  updateLocation,
+  changeSelectedPanel
+} from "../../../../actions/uiActions";
 import { changeBoardShowGoal } from "../../../../actions/boardActions";
 import { loadGoals } from "../../../../actions/goalsActions";
 
@@ -18,7 +22,8 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userMenuOpen: false
+      userMenuOpen: false,
+      currentPanel: "board"
     };
   }
 
@@ -57,28 +62,32 @@ class Header extends Component {
   }
 
   onHandleBoardSwitchItem(type) {
-    if (type === this.props.boardShowGoals) {
+    if (type === this.state.currentPanel) {
       return "board-switch-item switch-active";
     } else {
       return "board-switch-item";
     }
   }
 
-  onBoardSwitch(type) {
-    this.props.changeBoardShowGoal(type).then(() => {
-      this.props.loadGoals(
-        this.props.currentProjectId,
-        this.props.boardShowGoals
-      );
+  onBoardSwitch(panel) {
+    this.props.changeSelectedPanel(panel);
+
+    this.setState({
+      currentPanel: panel
     });
+
+    // this.props.changeBoardShowGoal(type).then(() => {
+    //   this.props.loadGoals(
+    //     this.props.currentProjectId,
+    //     this.props.boardShowGoals
+    //   );
+    // });
   }
 
   onOpenMenuClick() {
     this.setState({
       userMenuOpen: !this.state.userMenuOpen
     });
-
-    console.log(this.state.userMenuOpen);
   }
 
   handleFilter = e => {
@@ -127,6 +136,30 @@ class Header extends Component {
               </div>
               <div className="board-switch">
                 <div
+                  className={this.onHandleBoardSwitchItem("board")}
+                  onClick={() => this.onBoardSwitch("board")}
+                >
+                  <div className="board-switch-icon"></div>
+                  <div className="board-switch-text">Board</div>
+                </div>
+
+                {/* <div
+                  className={this.onHandleBoardSwitchItem("tasks")}
+                  onClick={() => this.onBoardSwitch("tasks")}
+                >
+                  <div className="board-switch-icon"></div>
+                  <div className="board-switch-text">Tasks</div>
+                </div> */}
+
+                <div
+                  className={this.onHandleBoardSwitchItem("projects")}
+                  onClick={() => this.onBoardSwitch("projects")}
+                >
+                  <div className="board-switch-icon"></div>
+                  <div className="board-switch-text">Projects</div>
+                </div>
+
+                {/* <div
                   className={this.onHandleBoardSwitchItem("all")}
                   onClick={() => this.onBoardSwitch("all")}
                 >
@@ -153,7 +186,7 @@ class Header extends Component {
                 >
                   <div className="board-switch-icon"></div>
                   <div className="board-switch-text">COMPLETED</div>
-                </div>
+                </div> */}
               </div>
               <div
                 className="board-profile"
@@ -344,6 +377,7 @@ export default connect(
     loadGoals,
     loadUserGoalsCategories,
     filterGoals,
-    userInfoRefresh
+    userInfoRefresh,
+    changeSelectedPanel
   }
 )(Header);
