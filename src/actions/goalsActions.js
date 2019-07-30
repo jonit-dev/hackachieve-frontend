@@ -286,7 +286,9 @@ export const deleteNewCategory = value => async dispatch => {
   );
 };
 
-// DRAG AND DROP ========================================
+/*#############################################################|
+|  >>> DRAG AND DROP SYSTEM
+*##############################################################*/
 
 export const reorderGoal = (type, goalId, newPosition) => async dispatch => {
   switch (type) {

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Board from "../Board/Board";
-import Project from "../Project/Project";
 import Task from "../Task/Task";
 import { connect } from "react-redux";
+import history from "../../../history.js";
+import { changeSelectedPanel } from "../../../actions/uiActions.js";
 
 class Panel extends Component {
   state = {
@@ -18,7 +19,10 @@ class Panel extends Component {
         return <Task />;
 
       case "projects":
-        return <Project />;
+        this.props.changeSelectedPanel("board").then(() => {
+          history.push("/projects");
+        });
+        break;
 
       default:
         return <Board projectId={this.state.projectId} />;
@@ -39,5 +43,6 @@ export default connect(
   mapStateToProps,
   {
     //actions here
+    changeSelectedPanel
   }
 )(Panel);

@@ -44,5 +44,12 @@ export const changeSelectedPanel = panel => dispatch => {
     eventAction: "change_selected_panel"
   });
 
-  dispatch({ type: CHANGE_SELECTED_PANEL, payload: panel });
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(dispatch({ type: CHANGE_SELECTED_PANEL, payload: panel }));
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
 };
