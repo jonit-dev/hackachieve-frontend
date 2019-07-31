@@ -6,7 +6,9 @@ import Modal from "../../UI/InviteModal/InviteModal";
 import { toggleModal } from "../../../actions/uiActions";
 
 import {
-    searchUsers
+    searchUsers,
+    inviteMember,
+    setCurrentProject
 } from "../../../actions/projectActions";
 
 class Tags extends React.Component {
@@ -33,6 +35,7 @@ class Tags extends React.Component {
     handleAddition(tag) {
         const tags = [].concat(this.state.tags, tag)
         this.setState({ tags })
+        this.props.updateTags(tags)
     }
 
     render() {
@@ -61,6 +64,13 @@ class Tags extends React.Component {
 
 class InviteMemberModal extends Component {
 
+    updateTags = tags => {
+        this.setState({
+            tags
+        });
+    };
+
+
     renderInputTextArea({ input, label, meta, optional, placeholder }) {
         return (
             <div className="field">
@@ -74,8 +84,7 @@ class InviteMemberModal extends Component {
 
         const content = <React.Fragment>
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-
-                <Field name="name" component={Tags} customProps={this.props} label="Email or name"
+                <Field name="name" component={Tags} customProps={this.props} updateTags={this.updateTags} label="Email or name"
                     placeholder="Email address or name" />
 
                 <Field name="description" textarea={true} component={this.renderInputTextArea}
@@ -100,12 +109,27 @@ class InviteMemberModal extends Component {
         </React.Fragment>;
 
         return (
-            <Modal name='addProject' footer={footer} title={title} content={content} actions={actions} />
+            <Modal name='inviteMember' footer={footer} title={title} content={content} actions={actions} />
         );
     }
 
-    onSubmit = (formValues) => {
-
+    onSubmit = formValues => {
+        let formOutput = { ...formValues };
+        let members = [];
+        this.state.tags.map(member => members.push({ id: member.id }));
+        const invitePayload = {
+            name: this.props.currentProject.name,
+            description: formOutput.description,
+            member: members
+        };
+        this.props
+            .inviteMember(this.props.currentProjectId, invitePayload)
+            .then(response => {
+                this.props.setCurrentProject(this.props.currentProjectId); //refresh projects (to display new one)
+                setTimeout(() => {
+                    this.props.toggleModal("inviteMember"); //close modal once project is created
+                }, 500);
+            });
     };
 
 }
@@ -113,6 +137,8 @@ class InviteMemberModal extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         users: state.projects.users,
+        currentProjectId: state.projects.currentProjectId,
+        currentProject: state.projects.currentProject,
         isLoading: state.projects.isLoading,
         initialValues: {
             name: '',
@@ -129,5 +155,7 @@ const formWrapped = reduxForm({
 export default connect(mapStateToProps, {
     //some actions here
     toggleModal,
-    searchUsers
+    searchUsers,
+    inviteMember,
+    setCurrentProject
 })(formWrapped)

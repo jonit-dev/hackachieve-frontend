@@ -35,10 +35,10 @@ class Board extends Component {
     });
   }
 
-  onRenderProjectModal() {
+  onRenderInviteModal() {
     if (
-      this.props.modals.addProject.status === true &&
-      !this.props.modals.addProject.id
+      this.props.modals.inviteMember.status === true &&
+      !this.props.modals.inviteMember.id
     ) {
       //when there's not id, the board component is the one responsible for opening the modal.
       return <InviteMemberModal />;
@@ -47,8 +47,8 @@ class Board extends Component {
     }
   }
 
-  onOpenProjectModal() {
-    this.props.toggleModal("addProject"); //toggle a specific modal by triggering this action
+  onOpenInviteModal() {
+    this.props.toggleModal("inviteMember"); //toggle a specific modal by triggering this action
   }
 
 
@@ -324,7 +324,7 @@ class Board extends Component {
                   <span className="member">M</span>
                 </li>
                 <li>
-                  <a className="board-invite-btn" href="#/" onClick={() => this.onOpenProjectModal()}>Invite</a>
+                  <a className="board-invite-btn" href="#/" onClick={() => this.onOpenInviteModal()}>Invite</a>
                 </li>
               </ul>
             </div>
@@ -369,7 +369,7 @@ class Board extends Component {
           </div>
 
           {this.onRenderLongTermGoalModal()}
-          {this.onRenderProjectModal()}
+          {this.onRenderInviteModal()}
         </main>
 
         <div className="i-phone">

@@ -37,6 +37,10 @@ const INITIAL_STATE = {
     addProject: {
       status: false,
       id: null
+    },
+    inviteMember: {
+      status: false,
+      id: null
     }
   },
   boardCategories: [],

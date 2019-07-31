@@ -58,7 +58,7 @@ export const deleteProject = value => async dispatch => {
 // this is responsible for setting the current project that is currently loaded by the user.
 
 export const setCurrentProject = projectId => dispatch => {
-  return API.request(`/project/` + projectId, "GET", null, "auth").then(response => {
+  return API.request(`/project/${projectId}/`, "GET", null, "auth").then(response => {
     dispatch({ type: SET_CURRENT_PROJECT, payload: response.data });
   });
 
@@ -71,6 +71,42 @@ export const searchUsers = (keyword) => async dispatch => {
   return API.request(`/user/search/` + keyword, "GET", null, "auth").then(response => {
     dispatch({ type: SEARCH_USERS, payload: response.data });
   });
+};
+
+// this is responsible for inviting member to project.
+export const inviteMember = (projectId, payload) => async dispatch => {
+  console.log("payload", projectId, payload);
+
+  return API.request(`/project/${projectId}/`, "PUT", payload, "auth").then(
+    response => {
+      const { name } = response.data;
+
+      if (name !== "") {
+        response.status = "success";
+        Analytics.track("invite_member", {
+          eventCategory: "projects",
+          eventAction: "invite_member"
+        });
+      } else {
+        response.status = "fail";
+        Analytics.track("invite_member_error", {
+          eventCategory: "projects",
+          eventAction: "invite_member_error"
+        });
+      }
+
+      dispatch({
+        type: SHOW_ALERT,
+        payload: {
+          type: name !== "" ? "positive" : "negative",
+          title: name !== "" ? "New member added!" : "Oops!",
+          content: "New members added on your project"
+        }
+      });
+
+      return response;
+    }
+  );
 };
 
 
