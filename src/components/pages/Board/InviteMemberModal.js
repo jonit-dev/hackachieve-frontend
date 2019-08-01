@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import ReactTags from 'react-tag-autocomplete';
 import Modal from "../../UI/InviteModal/InviteModal";
+import Tags from "../../UI/forms/Tags";
 import { toggleModal } from "../../../actions/uiActions";
 
 import {
@@ -11,56 +11,7 @@ import {
     setCurrentProject
 } from "../../../actions/projectActions";
 
-class Tags extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            tags: [
-            ]
-        }
-    }
 
-    handleInputChange(input) {
-        if (!this.props.customProps.isLoading) {
-            this.props.customProps.searchUsers(input);
-        }
-    }
-
-    handleDelete(i) {
-        const tags = this.state.tags.slice(0)
-        tags.splice(i, 1)
-        this.setState({ tags })
-    }
-
-    handleAddition(tag) {
-        const tags = [].concat(this.state.tags, tag)
-        this.setState({ tags })
-        this.props.updateTags(tags)
-    }
-
-    render() {
-        const suggestions = [];
-        const { users } = this.props.customProps;
-        users.map((user) =>
-            suggestions.push({
-                id: user.id,
-                name: `${user.first_name} ${user.last_name}`
-            })
-        )
-        return (
-            <div className="field">
-                <ReactTags
-                    placeholder="Email address or name"
-                    minQueryLength={1}
-                    tags={this.state.tags}
-                    suggestions={suggestions}
-                    handleInputChange={this.handleInputChange.bind(this)}
-                    handleDelete={this.handleDelete.bind(this)}
-                    handleAddition={this.handleAddition.bind(this)} />
-            </div>
-        )
-    }
-}
 
 class InviteMemberModal extends Component {
 
@@ -84,7 +35,7 @@ class InviteMemberModal extends Component {
 
         const content = <React.Fragment>
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-                <Field name="name" component={Tags} customProps={this.props} updateTags={this.updateTags} label="Email or name"
+                <Field name="name" component={Tags} isLoading={this.props.isLoading} searchUsers={this.props.searchUsers} users={this.props.users} updateTags={this.updateTags} label="Email or name"
                     placeholder="Email address or name" />
 
                 <Field name="description" textarea={true} component={this.renderInputTextArea}

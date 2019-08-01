@@ -307,6 +307,8 @@ class Board extends Component {
 
   render() {
     const {name}=this.props.currentProject;
+    let member=this.props.currentProject.member?this.props.currentProject.member:[];
+    console.log("this.props.currentProject",this.props.currentProject);
     return (
       <React.Fragment>
         <main className="board-main">
@@ -314,15 +316,10 @@ class Board extends Component {
             <div className="board-header-subnav">
               <ul>
                 <li><a className="board-name" href="#/">{name}</a></li>
-                <li>
-                  <span className="member">D</span>
-                </li>
-                <li>
-                  <span className="member">K</span>
-                </li>
-                <li>
-                  <span className="member">M</span>
-                </li>
+                {member.map(user=>
+                <li key={user.id}>
+                  <span className="member">{user.first_name.charAt(0).toUpperCase()}</span>
+                </li>)}
                 <li>
                   <a className="board-invite-btn" href="#/" onClick={() => this.onOpenInviteModal()}>Invite</a>
                 </li>

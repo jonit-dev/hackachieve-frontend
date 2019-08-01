@@ -188,7 +188,7 @@ class LabelHandler extends Component {
   render() {
     return (
       <div className="tags">
-        <label>Tags</label>
+        <label>{this.props.label}</label>
 
         {this.state.showTagsInput && (
           <form
