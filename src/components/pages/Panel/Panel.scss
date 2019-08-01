@@ -1,9 +1,13 @@
 .panel {
   .panel-content {
     padding-top: 3rem;
-    max-width: 80vw;
+
     margin: 0 auto;
     min-height: 80vh;
     width: 100%;
+    /* Desktop Only ==============================*/
+    @media (min-width: 700px) {
+      max-width: 80vw;
+    }
   }
 }

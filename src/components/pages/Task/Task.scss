@@ -3,10 +3,62 @@
   flex-wrap: wrap;
   justify-content: center;
 
+  .no-tasks {
+    color: white;
+  }
+
+  .task-delete {
+    color: $hackachieve-dark-grey;
+    cursor: pointer;
+  }
+
+  .task-add {
+    .fas {
+      cursor: pointer;
+    }
+
+    form,
+    form * {
+      flex: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    form {
+      input {
+        width: 100%;
+        background-color: transparent;
+        border-bottom: 0.1rem solid $hackachieve-medium-gray;
+
+        &::placeholder {
+          color: lighten($hackachieve-dark-grey, 50%);
+        }
+      }
+    }
+
+    border-radius: 5px;
+    background-color: #f4f4fc;
+    flex: 100% 1;
+    margin-bottom: 5rem;
+    height: 4rem;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 50px;
+    }
+    .task-add-input {
+      flex: 1;
+    }
+  }
+
   .task-item {
     flex: 100%;
     background-color: $hackachieve-light-gray;
-    height: 4rem;
+    min-height: 4rem;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 1rem;
@@ -52,18 +104,30 @@
       flex: 1;
       align-items: center;
       justify-content: flex-start;
-      padding-left: 1.5rem;
-      font-size: 1.1rem;
+      padding-left: 0.8rem;
+      font-size: 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       box-sizing: border-box;
+      padding: 0.5rem 1.4rem;
+
       span {
-        flex: 70%;
+        flex: 1;
         strong {
           padding-right: 1rem;
         }
       }
+
+      /* Desktop Only ==============================*/
+      @media (min-width: 700px) {
+        font-size: 1.1rem;
+
+        span {
+          flex: 60% 1;
+        }
+      }
+
       .task-deadline {
         i {
           padding-right: 1rem;
