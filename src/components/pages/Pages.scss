@@ -1,8 +1,9 @@
-@import 'Landing/Landing';
-@import 'Board/Board';
-@import 'Board/BoardHeader';
-@import 'Landing/Register/Register';
-@import 'Landing/Login/Login'; 
-@import 'Landing/Legal/Legal';      
-@import 'Project/Project';     
- 
+@import "Landing/Landing";
+@import "Board/Board";
+@import "Board/BoardHeader";
+@import "Landing/Register/Register";
+@import "Landing/Login/Login";
+@import "Landing/Legal/Legal";
+@import "Project/Project";
+@import "./Panel/Panel.scss";
+@import "./Task/Task.scss";

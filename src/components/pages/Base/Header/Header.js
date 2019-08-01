@@ -138,13 +138,13 @@ class Header extends Component {
                   <div className="board-switch-text">Board</div>
                 </div>
 
-                {/* <div
+                <div
                   className={this.onHandleBoardSwitchItem("tasks")}
                   onClick={() => this.onBoardSwitch("tasks")}
                 >
                   <div className="board-switch-icon"></div>
                   <div className="board-switch-text">Tasks</div>
-                </div> */}
+                </div>
 
                 <div
                   className={this.onHandleBoardSwitchItem("projects")}

@@ -1,0 +1,80 @@
+.tasks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .task-item {
+    flex: 100%;
+    background-color: $hackachieve-light-gray;
+    height: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    transition: all 1s;
+
+    &.done {
+      opacity: 0.5;
+    }
+
+    &.priority {
+      .task-check {
+        background-color: lighten($hackachieve-dark-yellow, 15%);
+        color: white;
+      }
+      .task-description {
+        background-color: lighten($hackachieve-yellow, 20%);
+      }
+    }
+
+    .task-check {
+      cursor: pointer;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 60px;
+      height: inherit;
+      font-size: 1.8rem;
+      background-color: darken($hackachieve-medium-gray, 15%);
+      color: $hackachieve-light-gray;
+
+      &.completed {
+        background-color: darken($hackachieve-green, 15%);
+        color: $hackachieve-light-green;
+      }
+    }
+    .task-description {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 1.5rem;
+      font-size: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      box-sizing: border-box;
+      span {
+        flex: 70%;
+        strong {
+          padding-right: 1rem;
+        }
+      }
+      .task-deadline {
+        i {
+          padding-right: 1rem;
+        }
+
+        flex: 1;
+        color: $hackachieve-dark-grey;
+        font-size: 1rem;
+        text-align: right;
+        padding-right: 1rem;
+      }
+    }
+  }
+}

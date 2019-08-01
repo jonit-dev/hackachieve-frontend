@@ -36,6 +36,12 @@ export const LOAD_LABELS = "LOAD_LABELS";
 export const DELETE_LABELS = "DELETE_LABELS";
 export const UPDATE_LABEL = "UPDATE_LABEL";
 
+// Tasks ========================================
+export const LOAD_TASKS = "LOAD_TASKS";
+export const CREATE_TASK = "CREATE_TASK";
+export const DELETE_TASK = "DELETE_TASK";
+export const UPDATE_TASK = "UPDATE_TASK";
+
 // Update local state ========================================
 
 export const UPDATE_LONG_TERM_GOAL_STATE = "UPDATE_LONG_TERM_GOAL_STATE";
