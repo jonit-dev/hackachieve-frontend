@@ -1,8 +1,92 @@
 .checklist {
-
-  padding-top: 2rem;
-  padding-bottom: 2rem;
   max-width: 500px;
+
+  h3 {
+    color: #54575d;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0 0 15px 0;
+    letter-spacing: 1px;
+  }
+
+  .check-main {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 300;
+  }
+
+  .check-main input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: solid 1px #d7d7d7;
+  }
+
+  .check-main:hover input ~ .checkmark {
+    background-color: #fff;
+  }
+
+  .check-main input:checked ~ .checkmark {
+    background-color: #ffb833;
+    border: solid 1px #ffb833;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .check-main input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .check-main .checkmark:after {
+    left: 6px;
+    top: 1px;
+    width: 7px;
+    height: 13px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  a.add-task {
+    background: $hackachieve-light-green;
+    border-radius: 30px;
+    width: 145px;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 300;
+    text-align: center;
+
+    display: block;
+  }
 
   .checklist-warning {
     padding-left: 0.5rem;
@@ -14,9 +98,9 @@
   .checklist-action-area {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
-
-
-
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   h4 {
@@ -25,7 +109,6 @@
   }
 
   .checklist-item {
-
     padding-left: 1rem;
 
     display: flex;
@@ -33,6 +116,7 @@
     position: relative;
 
     label {
+      margin-top: 0.5rem;
       font-size: 1rem;
       cursor: pointer;
     }
@@ -50,30 +134,26 @@
     .icon {
       flex: auto;
       display: block;
-      font-size: 1.5rem;
+      font-size: 1.1rem;
+
       position: absolute;
-      top: 1.2rem;
-      right: 1rem;
-
+      top: 4.8px;
+      right: 0;
       color: $hackachieve-dark-purple;
-
     }
 
     .checklist-info-small {
       display: none;
-      color: darken($hackachieve-light-gray,10%);
+      color: darken($hackachieve-light-gray, 10%);
       cursor: pointer;
       font-size: 0.8rem;
       margin-left: 1.8rem;
-
     }
 
     &:hover {
-
       .checklist-info-small {
         display: block;
       }
-
 
       background-color: darken($hackachieve-light-gray, 1%);
 
@@ -82,10 +162,5 @@
         cursor: pointer;
       }
     }
-
-
   }
-
-
 }
-
