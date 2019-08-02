@@ -1,10 +1,10 @@
-.modals {
+.modal {
   position: relative;
   .modal-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    color: white;
+    color: darken($hackachieve-grey, 15%);
     font-size: 2rem;
     /* Mobile Only ==============================*/
     @media (max-width: 700px) {

@@ -50,17 +50,16 @@ class Modal extends Component {
         }}
       >
         <div
-          className="fas fa-times modal-close"
-          onClick={e => {
-            e.stopPropagation();
-            this.onClose();
-          }}
-        ></div>
-
-        <div
           className="ui  modal  active main-div"
           onClick={e => e.stopPropagation()}
         >
+          <div
+            className="fas fa-times modal-close"
+            onClick={e => {
+              e.stopPropagation();
+              this.onClose();
+            }}
+          ></div>
           <div className="content">
             <div className="pop-inner">
               <h2>{this.props.myProps.title}</h2>
