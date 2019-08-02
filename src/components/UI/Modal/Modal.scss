@@ -6,6 +6,10 @@
     right: 1rem;
     color: white;
     font-size: 2rem;
+    /* Mobile Only ==============================*/
+    @media (max-width: 700px) {
+      font-size: 1.5rem;
+    }
   }
 }
 
