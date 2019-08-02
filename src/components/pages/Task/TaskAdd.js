@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, reset } from "redux-form";
 import { connect } from "react-redux";
 import { createTask } from "../../../actions/taskActions";
 
@@ -7,7 +7,7 @@ class TaskAdd extends Component {
   renderInput({ input, placeholder, meta }) {
     return (
       <div className="field">
-        <input {...input} placeholder={placeholder} />
+        <input {...input} placeholder={placeholder} autoComplete="off" />
       </div>
     );
   }
@@ -17,6 +17,7 @@ class TaskAdd extends Component {
     console.log(formValues);
     this.props.createTask(this.props.currentProjectId, formValues);
   };
+
   onHandleKeyDown(e) {
     if (e.key === "Enter") {
       this.props.handleSubmit(this.onSubmit);
@@ -63,9 +64,12 @@ const mapStateToProps = state => {
   };
 };
 
+const clearAfterSubmit = (result, dispatch) => dispatch(reset("TaskAdd"));
+
 const formWrapped = reduxForm({
   form: "TaskAdd",
-  validate: validate
+  validate: validate,
+  onSubmitSuccess: clearAfterSubmit
 })(TaskAdd);
 
 export default connect(

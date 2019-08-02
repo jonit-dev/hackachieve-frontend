@@ -37,6 +37,10 @@ const INITIAL_STATE = {
     addProject: {
       status: false,
       id: null
+    },
+    editTaskModal: {
+      status: false,
+      id: null
     }
   },
   boardCategories: [],

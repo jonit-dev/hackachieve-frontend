@@ -25,3 +25,25 @@ export const createTask = (projectId, task) => async dispatch => {
     dispatch({ type: CREATE_TASK, payload: response.data });
   });
 };
+
+export const deleteTask = taskId => dispatch => {
+  return API.request(`/tasks/${taskId}`, "DELETE", null, "auth").then(
+    response => {
+      dispatch({ type: DELETE_TASK, payload: taskId });
+    }
+  );
+};
+
+export const updateTask = (taskId, updatedTask) => dispatch => {
+  return API.request(`/tasks/${taskId}/`, "PUT", updatedTask, "auth").then(
+    response => {
+      dispatch({
+        type: UPDATE_TASK,
+        payload: {
+          id: taskId,
+          updatedTask: updatedTask
+        }
+      });
+    }
+  );
+};

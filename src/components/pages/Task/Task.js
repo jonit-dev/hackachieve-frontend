@@ -4,6 +4,7 @@ import TaskItem from "./TaskItem";
 import { loadTasks } from "../../../actions/taskActions";
 import Loading from "../../UI/Loading/Loading";
 import TaskAdd from "./TaskAdd";
+import EditTaskModal from "./EditTaskModal";
 
 class Task extends Component {
   componentDidMount() {
@@ -27,17 +28,7 @@ class Task extends Component {
     return !this.props.tasks.length ? (
       <Loading />
     ) : (
-      this.props.tasks.map(task => (
-        <TaskItem
-          key={task.id}
-          title={task.title}
-          completed={task.completed}
-          checklist={task.checklist}
-          deadline={task.deadline}
-          description={task.description}
-          priority={task.priority}
-        />
-      ))
+      this.props.tasks.map(task => <TaskItem key={task.id} {...task} />)
     );
   }
 
@@ -60,7 +51,8 @@ class Task extends Component {
 const mapStateToProps = state => {
   return {
     tasks: state.tasks.taskItems,
-    currentProjectId: state.projects.currentProjectId
+    currentProjectId: state.projects.currentProjectId,
+    modals: state.ui.modals
   };
 };
 

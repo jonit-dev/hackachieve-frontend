@@ -1,4 +1,9 @@
-import { LOAD_TASKS, CREATE_TASK } from "../actions/types";
+import {
+  LOAD_TASKS,
+  CREATE_TASK,
+  DELETE_TASK,
+  UPDATE_TASK
+} from "../actions/types";
 
 const INITIAL_STATE = {
   taskItems: []
@@ -15,6 +20,27 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         taskItems: [...state.taskItems, { ...action.payload }]
+      };
+
+    case UPDATE_TASK:
+      const { taskId, updatedTask } = action.payload;
+
+      return {
+        ...state,
+        taskItems: state.taskItems.map(element => {
+          if (element.id === taskId) {
+            element = updatedTask;
+          }
+          return element;
+        })
+      };
+
+    case DELETE_TASK:
+      return {
+        ...state,
+        taskItems: state.taskItems.filter(
+          element => element.id !== action.payload
+        )
       };
 
     default:
