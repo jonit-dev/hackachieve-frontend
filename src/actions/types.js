@@ -41,6 +41,7 @@ export const LOAD_TASKS = "LOAD_TASKS";
 export const CREATE_TASK = "CREATE_TASK";
 export const DELETE_TASK = "DELETE_TASK";
 export const UPDATE_TASK = "UPDATE_TASK";
+export const PATCH_TASK = "PATCH_TASK";
 
 // Update local state ========================================
 

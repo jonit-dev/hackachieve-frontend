@@ -1,4 +1,10 @@
-import { LOAD_TASKS, CREATE_TASK, UPDATE_TASK, DELETE_TASK } from "./types";
+import {
+  LOAD_TASKS,
+  CREATE_TASK,
+  UPDATE_TASK,
+  DELETE_TASK,
+  PATCH_TASK
+} from "./types";
 import API from "../classes/API";
 
 export const loadTasks = projectId => async dispatch => {
@@ -42,6 +48,20 @@ export const updateTask = (taskId, updatedTask) => dispatch => {
         payload: {
           id: taskId,
           updatedTask: { ...updatedTask, id: taskId }
+        }
+      });
+    }
+  );
+};
+
+export const toggleTaskStatus = (taskId, payload) => dispatch => {
+  return API.request(`/tasks/${taskId}/`, "PATCH", payload, "auth").then(
+    response => {
+      dispatch({
+        type: UPDATE_TASK,
+        payload: {
+          id: taskId,
+          updatedTask: { ...response.data, id: taskId }
         }
       });
     }

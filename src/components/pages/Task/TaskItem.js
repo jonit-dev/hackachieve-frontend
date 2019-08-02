@@ -2,9 +2,10 @@ import Text from "../../../classes/Text";
 import moment from "moment";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteTask } from "../../../actions/taskActions";
+import { deleteTask, toggleTaskStatus } from "../../../actions/taskActions";
 import { toggleModal } from "../../../actions/uiActions";
 import EditTaskModal from "./EditTaskModal";
+import cogoToast from "cogo-toast";
 
 class TaskItem extends Component {
   componentDidMount() {
@@ -26,12 +27,22 @@ class TaskItem extends Component {
     }
   }
 
+  onToggleTaskStatus() {
+    this.props
+      .toggleTaskStatus(this.props.myProps.id, {
+        completed: this.props.myProps.completed ? false : true
+      })
+      .then(() => {
+        cogoToast.success("Good job!");
+      });
+  }
+
   render() {
     const {
       id,
       title,
       completed,
-      checklist,
+      // checklist,
       deadline,
       description,
       priority
@@ -47,7 +58,10 @@ class TaskItem extends Component {
               : `task-item ${priority ? "priority" : ""}`
           }
         >
-          <div className={completed ? "task-check completed" : "task-check"}>
+          <div
+            onClick={() => this.onToggleTaskStatus(id)}
+            className={completed ? "task-check completed" : "task-check"}
+          >
             <i className="far fa-check-circle"></i>
           </div>
           <div className="task-description">
@@ -85,6 +99,7 @@ export default connect(
   {
     //actions here
     deleteTask,
-    toggleModal
+    toggleModal,
+    toggleTaskStatus
   }
 )(TaskItem);

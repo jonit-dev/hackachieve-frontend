@@ -15,8 +15,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, taskItems: action.payload.task };
 
     case CREATE_TASK:
-      const taskLength = state.taskItems.length;
-
       return {
         ...state,
         taskItems: [...state.taskItems, { ...action.payload }]
@@ -30,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         taskItems: state.taskItems.map(element => {
-          if (element.id == id) {
+          if (element.id === parseInt(id)) {
             element = updatedTask;
           }
           return element;

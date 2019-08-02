@@ -4,7 +4,6 @@ import TaskItem from "./TaskItem";
 import { loadTasks } from "../../../actions/taskActions";
 import Loading from "../../UI/Loading/Loading";
 import TaskAdd from "./TaskAdd";
-import EditTaskModal from "./EditTaskModal";
 
 class Task extends Component {
   componentDidMount() {
