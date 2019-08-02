@@ -50,6 +50,14 @@ class Modal extends Component {
         }}
       >
         <div
+          className="fas fa-times modal-close"
+          onClick={e => {
+            e.stopPropagation();
+            this.onClose();
+          }}
+        ></div>
+
+        <div
           className="ui  modal  active main-div"
           onClick={e => e.stopPropagation()}
         >
@@ -63,22 +71,8 @@ class Modal extends Component {
             {this.props.myProps.content}
             {this.props.myProps.comment}
           </div>
+
           <div className="actions">{this.props.myProps.actions}</div>
-        </div>
-        <div className="popup-btns">
-          <a
-            href="# "
-            onClick={e => {
-              e.stopPropagation();
-              this.onClose();
-            }}
-          >
-            <i className="fas fa-times popup-close"></i>
-          </a>
-          <br></br>
-          {/*<a href="# " className="upload"><img className="popup_img" src="/images/icons/upload.svg" alt="" /></a>*/}
-          {/*<br></br>*/}
-          {/*<a href="# " className="more"><img className="popup_img" src="/images/icons/more-vertical.svg" alt="" /></a>*/}
         </div>
       </div>,
       document.querySelector("#modal")
