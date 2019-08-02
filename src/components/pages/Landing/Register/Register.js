@@ -33,9 +33,6 @@ class Register extends Component {
   }
 
   onSubmit = formValues => {
-    console.log("SUBMITTING VALUES...");
-    console.log(formValues);
-
     // check if user agreed with terms of use
 
     if (!formValues.agreeTermsOfUse) {
