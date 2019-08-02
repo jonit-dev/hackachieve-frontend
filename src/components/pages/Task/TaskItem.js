@@ -59,7 +59,10 @@ class TaskItem extends Component {
           }
         >
           <div
-            onClick={() => this.onToggleTaskStatus(id)}
+            onClick={e => {
+              e.stopPropagation();
+              this.onToggleTaskStatus(id);
+            }}
             className={completed ? "task-check completed" : "task-check"}
           >
             <i className="far fa-check-circle"></i>
