@@ -313,26 +313,25 @@ class GoalContentModal extends Component {
               </div>
             ))}
           </ul>
-        </div>
-
-        <div className="leave-comment">
-          <div className="send-user">
-            <img src="/images/icons/avatar-generic.svg" alt="user avatar" />
-          </div>
-          <div className="comment-box">
-            <textarea
-              className="textarea"
-              placeholder="Comment Here"
-              value={this.state.CommentsTxt}
-              onChange={this.handleCreateChange}
-            />
-            <a
-              className="send-mesage"
-              href="# "
-              onClick={() => this.AddComments()}
-            >
-              <img alt="post comment" src="/images/icons/send.svg" />
-            </a>
+          <div className="leave-comment">
+            <div className="send-user">
+              <img src="/images/icons/avatar-generic.svg" alt="user avatar" />
+            </div>
+            <div className="comment-box">
+              <textarea
+                className="textarea"
+                placeholder="Comment Here"
+                value={this.state.CommentsTxt}
+                onChange={this.handleCreateChange}
+              />
+              <a
+                className="send-mesage"
+                href="# "
+                onClick={() => this.AddComments()}
+              >
+                <img alt="post comment" src="/images/icons/send.svg" />
+              </a>
+            </div>
           </div>
         </div>
       </React.Fragment>
@@ -364,10 +363,12 @@ class GoalContentModal extends Component {
         <LabelHandler goalId={this.props.myProps.shortTermGoal.id} />
 
         <div className="detail">
-          <h3>Description</h3>
-          <p>
-            <Linkify>{description}</Linkify>
-          </p>
+          <div className="goal-description">
+            <h3>Description</h3>
+            <p>
+              <Linkify>{description}</Linkify>
+            </p>
+          </div>
 
           <ChecklistHandler />
         </div>

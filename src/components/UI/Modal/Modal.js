@@ -10,12 +10,12 @@ class Modal extends Component {
 
                             >>>>  WARNING <<<<<
 
-    YOU CAN ONLY ADD TO THIS COMPONENT FUNCIONALITIES THAT ARE >> SHARED <<
-    AMONG ALL OTHER MODALS (like the close button, etc).
-    IF THE FUNCTIONALITY THAT YOU WANT TO CREATE IS NOT SUPPOSED
-    TO APPEAR IN EVERY MODAL, DO NOT ADD IT HERE.
+    //!YOU CAN ONLY ADD TO THIS COMPONENT FUNCIONALITIES THAT ARE >> SHARED <<
+    //!AMONG ALL OTHER MODALS (like the close button, etc).
+    //!IF THE FUNCTIONALITY THAT YOU WANT TO CREATE IS NOT SUPPOSED
+    //!TO APPEAR IN EVERY MODAL, DO NOT ADD IT HERE.
 
-    THANK YOU
+    //!THANK YOU
 
     *##############################################################*/
 
@@ -41,8 +41,6 @@ class Modal extends Component {
   }
 
   render() {
-    
-
     return ReactDOM.createPortal(
       <div
         className="ui dimmer modals visible active"
@@ -55,34 +53,25 @@ class Modal extends Component {
           className="ui  modal  active main-div"
           onClick={e => e.stopPropagation()}
         >
+          <div
+            className="fas fa-times modal-close"
+            onClick={e => {
+              e.stopPropagation();
+              this.onClose();
+            }}
+          ></div>
           <div className="content">
             <div className="pop-inner">
               <h2>{this.props.myProps.title}</h2>
             </div>
 
             {this.onRenderAlert()}
-                
-                {this.props.myProps.content}
-                {this.props.myProps.comment}
 
+            {this.props.myProps.content}
+            {this.props.myProps.comment}
           </div>
+
           <div className="actions">{this.props.myProps.actions}</div>
-        </div>
-        <div className="popup-btns">
-          <a
-            href="# "
-            className="close"
-            onClick={e => {
-              e.stopPropagation();
-              this.onClose();
-            }}
-          >
-            <img className="popup_img" src="/images/icons/x.svg" alt="popup img" />
-          </a>
-          <br></br>
-          {/*<a href="# " className="upload"><img className="popup_img" src="/images/icons/upload.svg" alt="" /></a>*/}
-          {/*<br></br>*/}
-          {/*<a href="# " className="more"><img className="popup_img" src="/images/icons/more-vertical.svg" alt="" /></a>*/}
         </div>
       </div>,
       document.querySelector("#modal")
