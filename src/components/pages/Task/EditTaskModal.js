@@ -151,6 +151,8 @@ class EditTaskModal extends Component {
   onSubmit = formValues => {
     console.log("updating tasks...");
 
+    formValues.priority ? (formValues.priority = 1) : (formValues.priority = 0);
+
     formValues = {
       ...formValues,
       project: this.props.currentProjectId
@@ -159,7 +161,7 @@ class EditTaskModal extends Component {
     this.props.updateTask(this.props.myProps.task.id, formValues).then(() => {
       console.log("task updated!");
       cogoToast.success("Your task was updated successfully!");
-      this.props.toggleModal("editTaskModal", this.props.myProps.task.id);
+      this.onClose();
     });
   };
 }

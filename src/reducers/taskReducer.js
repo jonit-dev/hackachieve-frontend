@@ -23,12 +23,14 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case UPDATE_TASK:
-      const { taskId, updatedTask } = action.payload;
+      const { id, updatedTask } = action.payload;
+
+      console.log(action.payload);
 
       return {
         ...state,
         taskItems: state.taskItems.map(element => {
-          if (element.id === taskId) {
+          if (element.id == id) {
             element = updatedTask;
           }
           return element;

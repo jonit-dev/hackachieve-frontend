@@ -41,7 +41,7 @@ export const updateTask = (taskId, updatedTask) => dispatch => {
         type: UPDATE_TASK,
         payload: {
           id: taskId,
-          updatedTask: updatedTask
+          updatedTask: { ...updatedTask, id: taskId }
         }
       });
     }
