@@ -146,3 +146,36 @@ export const inviteShortTermGoalMember = (
     }
   );
 };
+
+export const inviteLongTermGoalMember = (goalId, payload) => async dispatch => {
+  return API.request(`/columns/member/${goalId}/`, "PUT", payload, "auth").then(
+    response => {
+      const { member } = response.data;
+
+      if (member !== "") {
+        response.status = "success";
+        Analytics.track("invite_long_term_goal_member", {
+          eventCategory: "goals",
+          eventAction: "invite_long_term_goal_member"
+        });
+      } else {
+        response.status = "fail";
+        Analytics.track("invite_long_term_goal_member_error", {
+          eventCategory: "goals",
+          eventAction: "invite_long_term_goal_member_error"
+        });
+      }
+
+      dispatch({
+        type: SHOW_ALERT,
+        payload: {
+          type: member !== "" ? "positive" : "negative",
+          title: member !== "" ? "New member added to your goal!" : "Oops!",
+          content: "New members added on your goal"
+        }
+      });
+
+      return response;
+    }
+  );
+};

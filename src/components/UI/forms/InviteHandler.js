@@ -54,38 +54,6 @@ class InviteHandler extends Component {
     this.props.loadLabels(goalId);
   }
 
-  deleteLabels = label => {
-    this.props.deleteLabels(label);
-    console.log("labels updated, refreshing board...");
-    this.props.loadGoals(this.props.projectId, this.props.boardShowGoals);
-  };
-
-  hideLabelUpdateForm = add => {
-    const goalId = this.props.myProps.goalId;
-
-    this.setState({
-      editableTag: {
-        id: null,
-        name: null
-      }
-    });
-
-    if (add) {
-      this.props.loadLabels(goalId);
-      console.log("labels updated, refreshing board...");
-      this.props.loadGoals(this.props.projectId, this.props.boardShowGoals);
-    }
-  };
-
-  renderInput({ input, type, placeholder }) {
-    return (
-      <div className="ui left icon right labeled input">
-        <input {...input} type={type} placeholder={placeholder} />
-        <i aria-hidden="true" className="tags icon"></i>
-      </div>
-    );
-  }
-
   resetFields = (formName, fieldsObj) => {
     Object.keys(fieldsObj).forEach(fieldKey => {
       //reset the field's value
@@ -97,13 +65,13 @@ class InviteHandler extends Component {
   };
 
   render() {
-    let members=[];
-    this.props.myProps.members.map((user) =>
-    members.push({
+    let members = [];
+    this.props.myProps.members.map(user =>
+      members.push({
         id: user.id,
         name: `${user.first_name} ${user.last_name}`
-    })
-)
+      })
+    );
 
     return (
       <div className="tags">

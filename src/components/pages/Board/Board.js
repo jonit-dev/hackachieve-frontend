@@ -88,6 +88,7 @@ class Board extends Component {
                   shortTermGoals={long_term_goal.short_term_goals}
                   percentageComplete={percentageCompleteString}
                   filter={this.props.filter}
+                  member={long_term_goal.member}
                 />
               );
             });

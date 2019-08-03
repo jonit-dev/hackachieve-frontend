@@ -12,8 +12,11 @@ import {
   createNewCategory,
   deleteNewCategory
 } from "../../../../actions/goalsActions";
+import { searchUsers, inviteMember } from "../../../../actions/projectActions";
+
 import Loading from "../../../UI/Loading/Loading";
 import { CategorySelector } from "./CategorySelector";
+import Tags from "../../../UI/forms/Tags";
 
 class AddLongTermGoalModal extends Component {
   constructor(props) {
@@ -22,9 +25,16 @@ class AddLongTermGoalModal extends Component {
       currentSelectableValue: {
         id: 0,
         label: ""
-      }
+      },
+      tags: []
     };
   }
+
+  updateTags = tags => {
+    this.setState({
+      tags
+    });
+  };
 
   componentDidMount() {
     this.onLoadBoardCategories();
@@ -172,6 +182,16 @@ class AddLongTermGoalModal extends Component {
     }
   }
 
+  renderInputInviteMember(props) {
+    console.log("invite member", props);
+    return (
+      <div className="field">
+        <label>{props.label}</label>
+        <Tags {...props} />
+      </div>
+    );
+  }
+
   render() {
     const title = "Add your Long Term goal!";
 
@@ -200,6 +220,7 @@ class AddLongTermGoalModal extends Component {
             label="Enter your long term goal description"
             placeholder="Describe what you have to do in details, to accomplish it"
           />
+
           {this.props.boardCategories ? (
             <Field
               name="board_id"
@@ -219,6 +240,18 @@ class AddLongTermGoalModal extends Component {
           ) : (
             <Loading />
           )}
+
+          <Field
+            name="name"
+            tags={[]}
+            component={this.renderInputInviteMember}
+            isLoading={this.props.isLoading}
+            searchUsers={this.props.searchUsers}
+            users={this.props.users}
+            updateTags={this.updateTags}
+            label="Add member to your long term goal"
+            placeholder="Email address or name"
+          />
 
           <Field
             name="deadline"
@@ -269,11 +302,13 @@ class AddLongTermGoalModal extends Component {
   onSubmit = formValues => {
     let formOutput = { ...formValues };
 
+    let members = [];
+    this.state.tags.map(member => members.push({ id: member.id }));
     formOutput.board_id = this.state.currentSelectableValue.id; //get category id
-
     this.props.createLongTermGoal(formOutput).then(response => {
       const { status } = response.data;
 
+      console.log("response.data", response.data);
       if (status === "success") {
         this.props.loadGoals(
           this.props.currentProjectId,
@@ -296,6 +331,8 @@ const mapStateToProps = (state, ownProps) => {
     boardCategories: boardCategories,
     boardShowGoals: boardShowGoals,
     currentProjectId: state.projects.currentProjectId,
+    users: state.projects.users,
+    isLoading: state.projects.isLoading,
     initialValues: {
       name: "",
       description: "",
@@ -319,6 +356,8 @@ export default connect(
     loadGoals,
     loadUserGoalsCategories,
     createNewCategory, // This is for creating new category
-    deleteNewCategory
+    deleteNewCategory,
+    searchUsers,
+    inviteMember
   }
 )(formWrapped);
