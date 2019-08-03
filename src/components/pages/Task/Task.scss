@@ -1,0 +1,145 @@
+.tasks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .no-tasks {
+    color: white;
+  }
+
+  .task-delete {
+    color: $hackachieve-dark-grey;
+    cursor: pointer;
+  }
+
+  .task-add {
+    .fas {
+      cursor: pointer;
+    }
+
+    form,
+    form * {
+      flex: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    form {
+      input {
+        width: 100%;
+        background-color: transparent;
+        border-bottom: 0.1rem solid $hackachieve-medium-gray;
+
+        &::placeholder {
+          color: lighten($hackachieve-dark-grey, 50%);
+        }
+      }
+    }
+
+    border-radius: 5px;
+    background-color: #f4f4fc;
+    flex: 100% 1;
+    margin-bottom: 5rem;
+    height: 4rem;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 50px;
+    }
+    .task-add-input {
+      flex: 1;
+    }
+  }
+
+  .task-item {
+    cursor: pointer;
+    flex: 100%;
+    background-color: $hackachieve-light-gray;
+    min-height: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    transition: all 1s;
+
+    &.done {
+      opacity: 0.5;
+    }
+
+    &.priority {
+      .task-check {
+        background-color: lighten($hackachieve-dark-yellow, 15%);
+        color: white;
+      }
+      .task-description {
+        background-color: lighten($hackachieve-yellow, 20%);
+      }
+    }
+
+    .task-check {
+      cursor: pointer;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 60px;
+      height: inherit;
+      font-size: 1.8rem;
+      background-color: darken($hackachieve-medium-gray, 15%);
+      color: $hackachieve-light-gray;
+
+      &.completed {
+        background-color: darken($hackachieve-green, 15%);
+        color: $hackachieve-light-green;
+      }
+    }
+    .task-description {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 0.8rem;
+      font-size: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0.5rem 1.4rem;
+
+      span {
+        flex: 1;
+        strong {
+          padding-right: 1rem;
+        }
+      }
+
+      /* Desktop Only ==============================*/
+      @media (min-width: 700px) {
+        font-size: 1.1rem;
+
+        span {
+          flex: 60% 1;
+        }
+      }
+
+      .task-deadline {
+        i {
+          padding-right: 1rem;
+        }
+
+        flex: 1;
+        color: $hackachieve-dark-grey;
+        font-size: 1rem;
+        text-align: right;
+        padding-right: 1rem;
+      }
+    }
+  }
+}

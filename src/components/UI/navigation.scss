@@ -10,9 +10,9 @@
   }
 
   @media screen and (max-width: 991px) {
-  .character_parent .character {
-	top: 68vh;
-}
+    .character_parent .character {
+      top: 68vh;
+    }
     .navigation {
       height: 100%;
       width: 0;
@@ -20,12 +20,12 @@
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: #F05765;
+      background-color: #f05765;
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
       z-index: 9999;
-      overflow-y: scroll
+      overflow-y: scroll;
     }
 
     .closebtn {
@@ -41,11 +41,11 @@
       width: 40px;
       height: 40px;
       text-align: center;
-      line-height: 34px
+      line-height: 34px;
     }
 
     .header.fixed h1.mobile-menu {
-      top: 5px
+      top: 5px;
     }
 
     a.mobile-menu {
@@ -55,67 +55,67 @@
       left: 14px;
       color: #fff;
       font-size: 29px;
-      cursor: pointer
+      cursor: pointer;
     }
 
     .navigation ul {
       width: 100%;
       float: none;
-      padding: 0
+      padding: 0;
     }
 
     .navigation ul li {
       margin: 0px 5px;
       padding: 5px 0;
       display: block;
-      text-align: center
+      text-align: center;
     }
     #btnLogin {
-	margin-right: 0rem;
-}
+      margin-right: 0rem;
+    }
     .navigation ul li a {
-      padding: 10px 0
+      padding: 10px 0;
     }
 
     .navigation ul li a:hover {
-      color: #000
+      color: #000;
     }
 
     .navigation ul li a.active {
-      color: #000
+      color: #000;
     }
 
     .right-items {
       width: 80%;
       width: 70%;
       float: right;
-      margin-top: 3px
+      margin-top: 3px;
     }
 
     .ui.vertical.stripe {
-      padding: 50px 0
+      padding: 50px 0;
     }
 
     .ui.vertical.stripe h3 {
-      font-size: 31px
+      font-size: 31px;
     }
 
     .pusher .mar-top-60 {
-      margin-top: 40px !important
+      margin-top: 40px !important;
     }
 
     .eight.wide.column.mar-top-60.head-left {
-      width: 100% !important
+      width: 100% !important;
     }
 
     .eight.wide.column.mar-top-60.head-right {
-      width: 100% !important
+      width: 100% !important;
     }
 
     .header_menu .logo-link {
       min-width: 30%;
       float: left;
-      padding: 0 0 0 45px
+      padding: 0 0 0 45px;
     }
 
     main.board-main .board-columns .board-column {
@@ -128,7 +128,7 @@
       position: relative;
       flex: 0 0 100%;
       max-width: 100%;
-      background-color: #F8F8FF;
+      background-color: #f8f8ff;
       min-height: inherit;
       height: 100%;
       border-radius: 4px;
@@ -136,37 +136,37 @@
       box-shadow: 2.1px 3px 8px 1px rgba(0, 0, 0, 0.04);
       display: block;
       flex-wrap: wrap-reverse;
-      width: 100%
+      width: 100%;
     }
 
     main.board-main {
-      padding: 10rem 1rem 35px
+      padding: 10rem 1rem 35px;
     }
 
     header.board-header .board-header-bar {
-      height: 14rem
+      height: 14rem;
     }
 
     header.board-header .board-header-bar .board-switch .board-switch-item {
       height: 70px;
-      top: 0
+      top: 0;
     }
 
     .pusher {
-      margin-top: 300px
+      margin-top: 300px;
     }
 
     .character_parent .character {
       height: auto;
       position: absolute;
       top: 0;
-      top: 67vh
+      top: 67vh;
     }
-     .ui.vertical.stripe h3 {
-	font-size: 29px;
-	font-weight: 900;
-	color: #344DA1 !important;
-}
+    .ui.vertical.stripe h3 {
+      font-size: 29px;
+      font-weight: 900;
+      color: #344da1 !important;
+    }
   }
 
   @media screen and (max-width: 767px) {
@@ -174,7 +174,7 @@
       width: 100%;
       float: none;
       margin-top: 10px;
-      text-align: center
+      text-align: center;
     }
 
     .header_menu .logo-link {
@@ -184,7 +184,7 @@
       width: auto;
       height: auto;
       text-align: center;
-      display: block
+      display: block;
     }
 
     .header_menu {
@@ -197,7 +197,7 @@
     }
 
     .ui.menu {
-      display: block
+      display: block;
     }
 
     .button-main {
@@ -210,31 +210,31 @@
     .home_header {
       height: 75vh;
       padding: 130px 15px 0;
-      height: inherit
+      height: inherit;
     }
 
     .home_header .heading h1 {
       font-weight: 900;
       font-size: 42px;
-      color: #FFF;
-      margin-top: 50px
+      color: #fff;
+      margin-top: 50px;
     }
 
     .home_header .heading h2 {
       font-weight: 600;
       font-size: 18px;
-      color: rgba(255, 255, 255, 0.60);
+      color: rgba(255, 255, 255, 0.6);
       margin: 10px 0 40px;
-      text-align: center
+      text-align: center;
     }
 
     .home_header .heading a {
-      width: 100%
+      width: 100%;
     }
 
     .character_parent .character img {
       max-width: inherit;
-      width: 100%
+      width: 100%;
     }
 
     .character_parent .character {
@@ -243,25 +243,25 @@
       top: 0;
       top: 0;
       padding: 45px 15px;
-      background: #1F2350
+      background: #1f2350;
     }
 
     .pusher {
-      margin-top: 0
+      margin-top: 0;
     }
 
     .ui.vertical.stripe h3 {
-      font-size: 24px
+      font-size: 24px;
     }
 
     .ui.vertical.stripe p br {
-      display: none
+      display: none;
     }
 
     .footer {
-      background: #1F2350;
+      background: #1f2350;
       text-align: center;
-      padding: 50px 0 100px
+      padding: 50px 0 100px;
     }
 
     header.board-header .board-header-bar .board-selector {
@@ -275,20 +275,24 @@
       align-items: inherit;
       align-self: inherit;
       margin: 15px 0 15px 15px !important;
-      flex: auto
+      flex: auto;
     }
 
     .board-switch {
-      display: none !important
+      display: none !important;
     }
 
     header.board-header .board-header-bar .board-header-logo {
-      background: #1F2350 url("/images/board/hackachieve-symbol.svg") 15px center no-repeat
+      background: #1f2350 url("/images/board/hackachieve-symbol.svg") 15px
+        center no-repeat;
     }
 
-    header.board-header .board-header-bar .board-selector .board-selector-title {
-      margin: 0 0 0px !important;
-      color: #fff
+    header.board-header
+      .board-header-bar
+      .board-selector
+      .board-selector-title {
+      margin: 0 0 5px !important;
+      color: $hackachieve-dark-grey;
     }
 
     .hackachieve-dropdown-wrapper {
@@ -296,15 +300,15 @@
       width: 100%;
       position: relative;
       clear: both;
-      display: none
+      display: none;
     }
 
     header.board-header .board-header-bar {
       height: auto;
-      background-color: #1f2350;
+      background-color: $hackachieve-light-gray;
       flex: 1 1 auto;
       display: flex;
-      flex-wrap: wrap
+      flex-wrap: wrap;
     }
 
     header.board-header .board-header-bar .board-profile {
@@ -318,20 +322,23 @@
       flex-wrap: nowrap;
       position: absolute;
       right: 5px;
-      top: 8px
+      top: 8px;
     }
 
     main.board-main {
-      padding: 10px 1rem 35px
+      padding: 10px 1rem 35px;
     }
 
     .board-profile-username {
-      display: none
+      display: none;
     }
 
-    header.board-header .board-header-bar .board-profile .board-profile-user-picture {
+    header.board-header
+      .board-header-bar
+      .board-profile
+      .board-profile-user-picture {
       margin-right: 0;
-      border-radius: 100%
+      border-radius: 100%;
     }
 
     .i-phone {
@@ -342,11 +349,11 @@
       background: #fff;
       left: 0;
       border-top: 1px solid #e4e4ef;
-      z-index: 999
+      z-index: 999;
     }
 
     .i-phone .board-switch {
-      display: block !important
+      display: block !important;
     }
 
     .board-switch-item {
@@ -354,13 +361,13 @@
       width: 20%;
       text-align: center;
       padding: 15px 0;
-      cursor: pointer
+      cursor: pointer;
     }
 
     .add-main {
       width: 20%;
       float: left;
-      padding: 15px 0
+      padding: 15px 0;
     }
 
     .plus {
@@ -371,41 +378,40 @@
       background-size: 30px;
       padding: 10px;
       border-radius: 100%;
-      cursor: pointer
+      cursor: pointer;
     }
 
     .board-switch-text {
       font-size: 11px;
-      padding: 6px 0px
+      padding: 6px 0px;
     }
 
     .board-switch-item.switch-active {
-      background-image: linear-gradient(-90deg, #fff, #e7e7f5)
+      background-image: linear-gradient(-90deg, #fff, #e7e7f5);
     }
 
-  .board-switch-item.switch-active .board-switch-icon {
-		background: url("/images/icons/completed-goal-active-icon.svg") center no-repeat;
-		height: 26px;
-}
+    .board-switch-item.switch-active .board-switch-icon {
+      background: url("/images/icons/completed-goal-active-icon.svg") center
+        no-repeat;
+      height: 26px;
+    }
 
     .board-switch-item.switch-active .board-switch-text {
-      color: #F05765
+      color: #f05765;
     }
 
-	  .board-switch-item .board-switch-icon {
-		background: url("/images/icons/completed-goal-icon.svg") center no-repeat;
-		height: 26px;
-}
-
-
+    .board-switch-item .board-switch-icon {
+      background: url("/images/icons/completed-goal-icon.svg") center no-repeat;
+      height: 26px;
+    }
 
     .board-header-logo.active {
-      display: none
+      display: none;
     }
 
     header.board-header {
       display: flex;
-      min-height: auto
+      min-height: auto;
     }
 
     a.mobile-menu {
@@ -415,7 +421,7 @@
       left: 14px;
       color: #fff;
       font-size: 29px;
-      cursor: pointer
+      cursor: pointer;
     }
   }
 
@@ -423,34 +429,34 @@
     .b-img {
       float: none;
       width: 115px;
-      margin: 0 auto 22px
+      margin: 0 auto 22px;
     }
 
     .ui.vertical.stripe h3 {
       font-size: 20px;
-      text-align: center !important
+      text-align: center !important;
     }
 
     .eight.wide.column.mar-top-60.head-right .b-img {
       float: none;
       width: 115px;
-      margin: 0 auto 15px
+      margin: 0 auto 15px;
     }
 
     .eight.wide.column.mar-top-60.head-right h3 {
-      text-align: center !important
+      text-align: center !important;
     }
 
     .eight.wide.column.mar-top-60.head-right p {
-      text-align: center !important
+      text-align: center !important;
     }
 
     .ui.vertical.stripe p {
-      text-align: center !important
+      text-align: center !important;
     }
 
     .column-body .column-card .column-card-body .column-card-description {
-      font-size: 14px
+      font-size: 14px;
     }
   }
 }

@@ -52,10 +52,12 @@ export const deleteLongTermGoal = id => async dispatch => {
   return API.request(`/columns/delete/${id}/`, "DELETE", null, "auth");
 };
 
-export const loadUserGoalsCategories = () => async dispatch => {
-  return API.request(`/boards/`, "GET", null, "auth").then(response => {
-    dispatch({ type: LOAD_CATEGORIES, payload: response.data });
-  });
+export const loadUserGoalsCategories = projectId => async dispatch => {
+  return API.request(`/project/boards/${projectId}/`, "GET", null, "auth").then(
+    response => {
+      dispatch({ type: LOAD_CATEGORIES, payload: response.data.board });
+    }
+  );
 };
 
 export const goalChangeStatus = (goalId, status) => async dispatch => {
@@ -284,7 +286,9 @@ export const deleteNewCategory = value => async dispatch => {
   );
 };
 
-// DRAG AND DROP ========================================
+/*#############################################################|
+|  >>> DRAG AND DROP SYSTEM
+*##############################################################*/
 
 export const reorderGoal = (type, goalId, newPosition) => async dispatch => {
   switch (type) {

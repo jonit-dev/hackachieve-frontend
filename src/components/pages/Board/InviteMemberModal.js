@@ -31,11 +31,19 @@ class InviteMemberModal extends Component {
     }
 
     render() {
+        let members=[];
+        this.props.currentProject.member.map((user) =>
+        members.push({
+            id: user.id,
+            name: `${user.first_name} ${user.last_name}`
+        })
+        )
+
         const title = 'Invite To Board';
 
         const content = <React.Fragment>
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-                <Field name="name" component={Tags} isLoading={this.props.isLoading} searchUsers={this.props.searchUsers} users={this.props.users} updateTags={this.updateTags} label="Email or name"
+                <Field name="name" tags={members} component={Tags} isLoading={this.props.isLoading} searchUsers={this.props.searchUsers} users={this.props.users} updateTags={this.updateTags} label="Email or name"
                     placeholder="Email address or name" />
 
                 <Field name="description" textarea={true} component={this.renderInputTextArea}

@@ -27,7 +27,7 @@ class Board extends Component {
 
     this.props.loadGoals(projectId, this.props.boardShowGoals);
 
-    this.props.loadUserGoalsCategories();
+    this.props.loadUserGoalsCategories(projectId);
 
     Analytics.track("board_visit", {
       eventCategory: "pages",
@@ -308,7 +308,6 @@ class Board extends Component {
   render() {
     const {name}=this.props.currentProject;
     let member=this.props.currentProject.member?this.props.currentProject.member:[];
-    console.log("this.props.currentProject",this.props.currentProject);
     return (
       <React.Fragment>
         <main className="board-main">

@@ -97,7 +97,14 @@ class InviteHandler extends Component {
   };
 
   render() {
-    console.log("goalId", this.props);
+    let members=[];
+    this.props.myProps.members.map((user) =>
+    members.push({
+        id: user.id,
+        name: `${user.first_name} ${user.last_name}`
+    })
+)
+
     return (
       <div className="tags">
         <label>{this.props.label}</label>{" "}
@@ -105,7 +112,7 @@ class InviteHandler extends Component {
           <Field
             name="tag"
             component={Tags}
-            members={this.props.myProps.members}
+            tags={members}
             isLoading={this.props.isLoading}
             searchUsers={this.props.searchUsers}
             users={this.props.users}

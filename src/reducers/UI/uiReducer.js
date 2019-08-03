@@ -41,6 +41,10 @@ const INITIAL_STATE = {
     inviteMember: {
       status: false,
       id: null
+    },
+    editTaskModal: {
+      status: false,
+      id: null
     }
   },
   boardCategories: [],

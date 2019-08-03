@@ -22,8 +22,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userMenuOpen: false,
-      currentPanel: "board"
+      userMenuOpen: false
     };
   }
 
@@ -37,7 +36,7 @@ class Header extends Component {
 
   componentWillMount() {
     if (this.props.location.pathname === "/board") {
-      this.props.loadUserGoalsCategories();
+      this.props.loadUserGoalsCategories(this.props.currentProjectId);
     }
 
     this.props.updateLocation(history.location); //update for the first time on component mounting
@@ -62,7 +61,7 @@ class Header extends Component {
   }
 
   onHandleBoardSwitchItem(type) {
-    if (type === this.state.currentPanel) {
+    if (type === this.props.selectedPanel) {
       return "board-switch-item switch-active";
     } else {
       return "board-switch-item";
@@ -71,10 +70,6 @@ class Header extends Component {
 
   onBoardSwitch(panel) {
     this.props.changeSelectedPanel(panel);
-
-    this.setState({
-      currentPanel: panel
-    });
 
     // this.props.changeBoardShowGoal(type).then(() => {
     //   this.props.loadGoals(
@@ -143,13 +138,13 @@ class Header extends Component {
                   <div className="board-switch-text">Board</div>
                 </div>
 
-                {/* <div
+                <div
                   className={this.onHandleBoardSwitchItem("tasks")}
                   onClick={() => this.onBoardSwitch("tasks")}
                 >
                   <div className="board-switch-icon"></div>
                   <div className="board-switch-text">Tasks</div>
-                </div> */}
+                </div>
 
                 <div
                   className={this.onHandleBoardSwitchItem("projects")}
@@ -362,7 +357,8 @@ const mapStateToProps = state => {
     location: location,
     boardShowGoals: boardShowGoals,
     boardCategories: boardCategories,
-    currentProjectId: state.projects.currentProjectId
+    currentProjectId: state.projects.currentProjectId,
+    selectedPanel: state.ui.selectedPanel
   };
 };
 
