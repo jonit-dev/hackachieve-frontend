@@ -224,7 +224,7 @@ class EditLongTermGoalModal extends Component {
     member.map(user =>
       members.push({
         id: user.id,
-        name: `${user.first_name} ${user.last_name}`
+        name: user.email
       })
     );
 

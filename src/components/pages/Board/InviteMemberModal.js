@@ -14,6 +14,9 @@ import {
 
 
 class InviteMemberModal extends Component {
+    state = {
+        tags:[]
+      };
 
     updateTags = tags => {
         this.setState({
@@ -35,7 +38,7 @@ class InviteMemberModal extends Component {
         this.props.currentProject.member.map((user) =>
         members.push({
             id: user.id,
-            name: `${user.first_name} ${user.last_name}`
+            name: user.email
         })
         )
 

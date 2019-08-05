@@ -69,7 +69,7 @@ class InviteHandler extends Component {
     this.props.myProps.members.map(user =>
       members.push({
         id: user.id,
-        name: `${user.first_name} ${user.last_name}`
+        name: user.email
       })
     );
 
