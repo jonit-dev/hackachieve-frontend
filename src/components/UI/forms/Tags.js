@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { userInfoRefresh } from "../../../actions/authActions";
 import ReactTags from 'react-tag-autocomplete';
 class Tags extends React.Component {
     constructor(props) {
@@ -8,6 +10,9 @@ class Tags extends React.Component {
         }
     }
 
+    componentDidMount(){
+        this.props.userInfoRefresh();
+    }
     handleInputChange(input) {
         if (!this.props.isLoading) {
             this.props.searchUsers(input);
@@ -32,12 +37,16 @@ class Tags extends React.Component {
 
     render() {
         const suggestions = [];
-        this.props.users.map((user) =>
-            suggestions.push({
-                id: user.id,
-                name: `${user.first_name} ${user.last_name}`,
-                email: user.email
-            })
+        this.props.users.map((user) => {
+            if(this.props.userInfo.email!==user.email){
+                 suggestions.push({
+                    id: user.id,
+                    name: `${user.first_name} ${user.last_name}`,
+                    email: user.email
+                })
+            }
+            return suggestions;
+        }
         )
         return (
             <div className="field">
@@ -54,4 +63,16 @@ class Tags extends React.Component {
     }
 }
 
-export default Tags;
+
+const mapStateToProps = state => {
+    return {
+      userInfo: state.auth.user,
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    {
+        userInfoRefresh
+      }
+  )(Tags);

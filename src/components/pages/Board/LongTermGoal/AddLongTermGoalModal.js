@@ -120,19 +120,13 @@ class AddLongTermGoalModal extends Component {
 
   createCategory(data) {
     const { value, label } = data;
-
     let board_id = parseInt(value);
-
-    console.log("createCategory()");
-    console.log(data);
-
+    
     switch (data.action) {
       case "clear":
         //delete category
-        const delete_board_id = this.state.currentSelectableValue.id;
-
-        this.props.deleteNewCategory(delete_board_id).then(response => {
-          this.onLoadBoardCategories(); //refresh board categories
+        this.setState({
+          currentSelectableValue: null
         });
 
         break;
@@ -183,7 +177,6 @@ class AddLongTermGoalModal extends Component {
   }
 
   renderInputInviteMember(props) {
-    console.log("invite member", props);
     return (
       <div className="field">
         <label>{props.label}</label>

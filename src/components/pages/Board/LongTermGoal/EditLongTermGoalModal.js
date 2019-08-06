@@ -147,21 +147,14 @@ class EditLongTermGoalModal extends Component {
 
   handleCategorySelection(data) {
     const { value, label } = data;
-
     let board_id = parseInt(value);
-
     console.log("handleCategorySelection()");
-    console.log(data);
 
     switch (data.action) {
       case "clear":
-        //delete category
-        const delete_board_id = this.state.currentSelectableValue.id;
-
-        this.props.deleteNewCategory(delete_board_id).then(response => {
-          this.onLoadBoardCategories(); //refresh board categories
+        this.setState({
+          currentSelectableValue: null
         });
-
         break;
 
       case "select-option":
