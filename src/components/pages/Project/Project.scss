@@ -1,7 +1,20 @@
+.project-image-wrapper {
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .project-image {
+    width: 500px;
+  }
+}
+
 .card-container {
   display: flex;
   padding: 30px 10px;
   flex-wrap: wrap;
+
   .cCard {
     width: 300px;
     height: 150px;

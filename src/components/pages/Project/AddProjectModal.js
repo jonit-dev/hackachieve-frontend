@@ -63,13 +63,13 @@ class AddProjectModal extends Component {
             placeholder="A summary about what's your project about"
           />
 
-          <Field
-            name="description"
-            textarea={true}
-            component={this.renderInputTextArea}
-            label="Enter your project description"
-            placeholder="Describe what you have to do in details, to accomplish it"
-          />
+          <div className="project-image-wrapper">
+            <img
+              src="/images/project.svg"
+              alt="project kickstart svg"
+              className="project-image"
+            />
+          </div>
         </form>
       </React.Fragment>
     );
@@ -99,7 +99,10 @@ class AddProjectModal extends Component {
   }
 
   onSubmit = formValues => {
-    let formOutput = { ...formValues };
+    let formOutput = {
+      ...formValues,
+      description: "..."
+    };
     this.props.createProject(formOutput).then(response => {
       if (response.status === "success") {
         this.props.loadProjects(); //refresh projects (to display new one)
@@ -117,8 +120,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     modals: modals,
     initialValues: {
-      name: "",
-      description: ""
+      name: ""
     }
   };
 };
