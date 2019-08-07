@@ -12,7 +12,7 @@ import {
   createNewCategory,
   deleteNewCategory
 } from "../../../../actions/goalsActions";
-import { searchUsers, inviteMember } from "../../../../actions/projectActions";
+import { searchUsers, inviteLongTermGoalMember } from "../../../../actions/projectActions";
 
 import Loading from "../../../UI/Loading/Loading";
 import { CategorySelector } from "./CategorySelector";
@@ -120,19 +120,13 @@ class AddLongTermGoalModal extends Component {
 
   createCategory(data) {
     const { value, label } = data;
-
     let board_id = parseInt(value);
-
-    console.log("createCategory()");
-    console.log(data);
-
+    
     switch (data.action) {
       case "clear":
         //delete category
-        const delete_board_id = this.state.currentSelectableValue.id;
-
-        this.props.deleteNewCategory(delete_board_id).then(response => {
-          this.onLoadBoardCategories(); //refresh board categories
+        this.setState({
+          currentSelectableValue: null
         });
 
         break;
@@ -183,7 +177,6 @@ class AddLongTermGoalModal extends Component {
   }
 
   renderInputInviteMember(props) {
-    console.log("invite member", props);
     return (
       <div className="field">
         <label>{props.label}</label>
@@ -307,16 +300,21 @@ class AddLongTermGoalModal extends Component {
     formOutput.board_id = this.state.currentSelectableValue.id; //get category id
     this.props.createLongTermGoal(formOutput).then(response => {
       const { status } = response.data;
-
-      console.log("response.data", response.data);
       if (status === "success") {
-        this.props.loadGoals(
-          this.props.currentProjectId,
-          this.props.boardShowGoals
-        ); //refresh goals (to display new one)
-        setTimeout(() => {
-          this.props.toggleModal("longTermGoal"); //close modal once goal is created
-        }, 500);
+        const invitePayload = {
+          member: members
+        };
+        this.props.inviteLongTermGoalMember(response.data.response.id, invitePayload).then(response => {
+          this.props.loadGoals(
+            this.props.currentProjectId,
+            this.props.boardShowGoals
+          ); //refresh goals (to display new one)
+
+          setTimeout(() => {
+            this.props.toggleModal("longTermGoal"); //close modal once goal is created
+          }, 500);
+        });
+
       }
     });
   };
@@ -358,6 +356,6 @@ export default connect(
     createNewCategory, // This is for creating new category
     deleteNewCategory,
     searchUsers,
-    inviteMember
+    inviteLongTermGoalMember
   }
 )(formWrapped);

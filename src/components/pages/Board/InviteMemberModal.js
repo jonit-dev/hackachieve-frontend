@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Modal from "../../UI/InviteModal/InviteModal";
 import Tags from "../../UI/forms/Tags";
 import { toggleModal } from "../../../actions/uiActions";
+import cogoToast from 'cogo-toast';
 
 import {
     searchUsers,
@@ -14,6 +15,9 @@ import {
 
 
 class InviteMemberModal extends Component {
+    state = {
+        tags:[]
+      };
 
     updateTags = tags => {
         this.setState({
@@ -35,7 +39,7 @@ class InviteMemberModal extends Component {
         this.props.currentProject.member.map((user) =>
         members.push({
             id: user.id,
-            name: `${user.first_name} ${user.last_name}`
+            name: user.email
         })
         )
 
@@ -72,6 +76,7 @@ class InviteMemberModal extends Component {
         );
     }
 
+
     onSubmit = formValues => {
         let formOutput = { ...formValues };
         let members = [];
@@ -81,7 +86,10 @@ class InviteMemberModal extends Component {
             description: formOutput.description,
             member: members
         };
-        this.props
+        if(validate(formOutput.description, members)){
+            cogoToast.error(validate(formOutput.description, members));
+        }else{
+            this.props
             .inviteMember(this.props.currentProjectId, invitePayload)
             .then(response => {
                 this.props.setCurrentProject(this.props.currentProjectId); //refresh projects (to display new one)
@@ -89,6 +97,7 @@ class InviteMemberModal extends Component {
                     this.props.toggleModal("inviteMember"); //close modal once project is created
                 }, 500);
             });
+        }
     };
 
 }
@@ -105,6 +114,19 @@ const mapStateToProps = (state, ownProps) => {
         }
     };
 };
+
+const validate = (description,members) => {
+    const errors = {};
+    if (!description) {
+        errors.title = 'You must enter a description';
+    }
+    if (members.length<1) {
+        errors.title = 'You must enter atleast one member';
+    }
+    return errors.title;
+};
+
+
 
 const formWrapped = reduxForm({
     form: 'InviteMemberModal',

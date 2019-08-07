@@ -3,10 +3,7 @@ import CreatableSelect from "react-select/creatable/dist/react-select.esm";
 
 
 export const CategorySelector = props => {
-    // console.log('props', props);
     const {input, options, label, selectedOption} = props;
-    // console.log(input, options, 'find')
-
     return (
         <>
             <div className="field">
