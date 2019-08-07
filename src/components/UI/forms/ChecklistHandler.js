@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Linkify from "react-linkify";
 import { connect } from "react-redux";
 import CheckList from "./CheckList";
 import {
@@ -101,7 +101,7 @@ class ChecklistHandler extends Component {
                           }
                         >
                           <span onClick={() => this.editChecklist(item.id)}>
-                            {item.description}
+                            <Linkify>{item.description}</Linkify>
                           </span>
                           <input
                             type="checkbox"

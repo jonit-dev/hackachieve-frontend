@@ -1,6 +1,16 @@
 .checklist {
   max-width: 500px;
 
+  .checklist-form {
+    display: flex;
+    flex-wrap: wrap;
+
+    .field,
+    textarea {
+      flex: 100%;
+    }
+  }
+
   h3 {
     color: #54575d;
     font-size: 14px;
@@ -90,7 +100,6 @@
 
   .checklist-warning {
     padding-left: 0.5rem;
-    padding-top: 1rem;
     padding-bottom: 1rem;
     color: darken($hackachieve-grey, 30%);
   }

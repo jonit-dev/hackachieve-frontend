@@ -11,6 +11,11 @@
       font-size: 1.5rem;
     }
   }
+
+  .content,
+  .comment-sec {
+    background: transparent !important;
+  }
 }
 
 .modal-description {
@@ -32,12 +37,13 @@
 .ui.active.modal {
   display: flex;
   flex-wrap: wrap;
+  background-color: lighten($hackachieve-light-gray, 20%);
 
   margin: 0 auto;
   margin: 5vh auto;
   min-height: 70%;
 
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 .ui.modal > .actions {
@@ -421,13 +427,13 @@ span.time {
 }
 
 .pop-inner {
-  background: #fff;
   width: 790px;
   display: table;
   border-radius: 10px;
   position: relative;
   h2 {
-    font-size: 2rem;
+    color: $hackachieve-dark-grey;
+    font-size: 1.6rem;
     font-weight: bold;
     letter-spacing: 1.3px;
   }
