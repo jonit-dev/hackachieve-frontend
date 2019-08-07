@@ -31,7 +31,7 @@ class Tags extends React.Component {
             id: tag.id,
             name: tag.email
         })
-        this.setState({ tags })
+        this.setState({ tags });
         this.props.updateTags(tags)
     }
 
