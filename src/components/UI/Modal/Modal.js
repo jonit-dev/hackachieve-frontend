@@ -10,7 +10,7 @@ class Modal extends Component {
 
                             >>>>  WARNING <<<<<
 
-    //!YOU CAN ONLY ADD TO THIS COMPONENT FUNCIONALITIES THAT ARE >> SHARED <<
+    //!YOU CAN ONLY ADD TO THIS COMPONENT FUNCTIONALITIES THAT ARE >> SHARED <<
     //!AMONG ALL OTHER MODALS (like the close button, etc).
     //!IF THE FUNCTIONALITY THAT YOU WANT TO CREATE IS NOT SUPPOSED
     //!TO APPEAR IN EVERY MODAL, DO NOT ADD IT HERE.
@@ -44,9 +44,13 @@ class Modal extends Component {
     return ReactDOM.createPortal(
       <div
         className="ui dimmer modals visible active"
-        onClick={e => {
-          e.stopPropagation();
-          this.onClose();
+        onMouseDown={e => {
+          //if the user click or drag the modal shadow, it will stop all event propagation (avoiding bugs like triggering card drag and drop) and close the modal
+
+          if (Array.from(e.target.classList).includes("modals")) {
+            e.stopPropagation();
+            this.onClose();
+          }
         }}
       >
         <div
