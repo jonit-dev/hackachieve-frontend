@@ -48,6 +48,7 @@ export const PATCH_TASK = "PATCH_TASK";
 export const UPDATE_LONG_TERM_GOAL_STATE = "UPDATE_LONG_TERM_GOAL_STATE";
 
 //Project Page
-
 export const LOAD_PROJECTS = "LOAD_PROJECTS";
 export const SET_CURRENT_PROJECT = "SET_CURRENT_PROJECT";
+export const SEARCH_USERS = "SEARCH_USERS";
+export const SET_LOADING = "SET_LOADING";

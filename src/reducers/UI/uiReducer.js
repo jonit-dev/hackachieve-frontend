@@ -38,6 +38,10 @@ const INITIAL_STATE = {
       status: false,
       id: null
     },
+    inviteMember: {
+      status: false,
+      id: null
+    },
     editTaskModal: {
       status: false,
       id: null

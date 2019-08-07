@@ -6,6 +6,7 @@ import _ from "lodash";
 import Moment from "react-moment";
 import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
 import LabelHandler from "../../../UI/forms/LabelHandler";
+import InviteHandler from "../../../UI/forms/InviteHandler";
 import { loadGoals, editGoals } from "../../../../actions/goalsActions";
 import moment from "moment";
 import cogoToast from "cogo-toast";
@@ -207,7 +208,8 @@ class GoalContentModal extends Component {
       title,
       description,
       deadline,
-      status
+      status,
+      member
     } = this.props.myProps.shortTermGoal;
 
     const { UpdateBox, Comment_id } = this.state;
@@ -360,7 +362,8 @@ class GoalContentModal extends Component {
         {/*<a className="add-tag" href="# " > <img src="/images/icons/plus.svg" alt=""/> Add</a>*/}
         {/*</div>*/}
 
-        <LabelHandler goalId={this.props.myProps.shortTermGoal.id} />
+        <LabelHandler label="Tags" goalId={this.props.myProps.shortTermGoal.id} />
+        <InviteHandler label="Add members to card" goalId={this.props.myProps.shortTermGoal.id} members={member}  />
 
         <div className="detail">
           <div className="goal-description">

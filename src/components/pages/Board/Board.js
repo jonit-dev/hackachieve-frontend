@@ -17,6 +17,7 @@ import Analytics from "../../../analytics/Analytics";
 import { isMobile } from "react-device-detect";
 import { DragDropContext } from "react-beautiful-dnd";
 import { setCurrentProject } from "../../../actions/projectActions";
+import InviteMemberModal from "./InviteMemberModal";
 import BoardSwitch from "../Base/BoardSwitch";
 
 class Board extends Component {
@@ -34,6 +35,23 @@ class Board extends Component {
       eventAction: "board_visit"
     });
   }
+
+  onRenderInviteModal() {
+    if (
+      this.props.modals.inviteMember.status === true &&
+      !this.props.modals.inviteMember.id
+    ) {
+      //when there's not id, the board component is the one responsible for opening the modal.
+      return <InviteMemberModal />;
+    } else {
+      return null;
+    }
+  }
+
+  onOpenInviteModal() {
+    this.props.toggleModal("inviteMember"); //toggle a specific modal by triggering this action
+  }
+
 
   onOpenLongTermModal() {
     console.log("opening long term modal");
@@ -71,6 +89,7 @@ class Board extends Component {
                   shortTermGoals={long_term_goal.short_term_goals}
                   percentageComplete={percentageCompleteString}
                   filter={this.props.filter}
+                  member={long_term_goal.member}
                 />
               );
             });
@@ -143,7 +162,7 @@ class Board extends Component {
 
     //we will use it to manipulate our current state
     //eslint-disable-next-line
-    Array.prototype.swap = function(x, y) {
+    Array.prototype.swap = function (x, y) {
       var b = this[x];
       this[x] = this[y];
       this[y] = b;
@@ -272,10 +291,24 @@ class Board extends Component {
   }
 
   render() {
+    const {name}=this.props.currentProject;
+    let member=this.props.currentProject.member?this.props.currentProject.member:[];
     return (
       <React.Fragment>
         <main className="board-main">
           <div className="board-columns">
+            <div className="board-header-subnav">
+              <ul>
+                <li><a className="board-name" href="#/">{name}</a></li>
+                {member.map(user=>
+                <li key={user.id}>
+                  <span className="member">{user.first_name.charAt(0).toUpperCase()}</span>
+                </li>)}
+                <li>
+                  <a className="board-invite-btn" href="#/" onClick={() => this.onOpenInviteModal()}>Invite</a>
+                </li>
+              </ul>
+            </div>
             {isMobile ? (
               <div
                 className="board-column-add column-add-short-term-goal"
@@ -287,8 +320,8 @@ class Board extends Component {
                 </div>
               </div>
             ) : (
-              <p></p>
-            )}
+                <p></p>
+              )}
 
             {/* Drag And drop context */}
             <DragDropContext
@@ -312,11 +345,12 @@ class Board extends Component {
                 </div>
               </div>
             ) : (
-              <p></p>
-            )}
+                <p></p>
+              )}
           </div>
 
           {this.onRenderLongTermGoalModal()}
+          {this.onRenderInviteModal()}
         </main>
 
         <BoardSwitch />
@@ -340,7 +374,8 @@ const mapStateToProps = (state, ownProps) => {
     filter: state.goal.filter,
     projects: state.projects,
     currentProjectId: state.projects.currentProjectId,
-    selectedPanel: state.ui.selectedPanel
+    selectedPanel: state.ui.selectedPanel,
+    currentProject: state.projects.currentProject
   };
 };
 

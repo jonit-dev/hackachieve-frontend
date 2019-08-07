@@ -13,8 +13,13 @@ import {
   createNewCategory,
   deleteNewCategory
 } from "../../../../actions/goalsActions";
+import {
+  searchUsers,
+  inviteLongTermGoalMember
+} from "../../../../actions/projectActions";
 import Loading from "../../../UI/Loading/Loading";
 import { CategorySelector } from "./CategorySelector";
+import Tags from "../../../UI/forms/Tags";
 
 class EditLongTermGoalModal extends Component {
   constructor(props) {
@@ -26,6 +31,22 @@ class EditLongTermGoalModal extends Component {
       }
     };
   }
+
+  updateTags = tags => {
+    let members = [];
+    tags.map(member => members.push({ id: member.id }));
+    const { id } = this.props.myProps.longTermGoal;
+    const invitePayload = {
+      member: members
+    };
+
+    this.props.inviteLongTermGoalMember(id, invitePayload).then(response => {
+      this.props.loadGoals(
+        this.props.currentProjectId,
+        this.props.boardShowGoals
+      );
+    });
+  };
 
   componentDidMount() {
     this.onLoadBoardCategories();
@@ -188,7 +209,25 @@ class EditLongTermGoalModal extends Component {
     }
   }
 
+  renderInputInviteMember(props) {
+    return (
+      <div className="field">
+        <label>{props.label}</label>
+        <Tags {...props} />
+      </div>
+    );
+  }
+
   render() {
+    const { member } = this.props.myProps.longTermGoal;
+    let members = [];
+    member.map(user =>
+      members.push({
+        id: user.id,
+        name: `${user.first_name} ${user.last_name}`
+      })
+    );
+
     const title = "Edit your Long Term goal!";
 
     const content = (
@@ -248,6 +287,18 @@ class EditLongTermGoalModal extends Component {
           ) : (
             <Loading />
           )}
+
+          <Field
+            name="name"
+            tags={members}
+            component={this.renderInputInviteMember}
+            isLoading={this.props.isLoading}
+            searchUsers={this.props.searchUsers}
+            users={this.props.users}
+            updateTags={this.updateTags}
+            label="Edit member to your long term goal"
+            placeholder="Email address or name"
+          />
 
           <Field
             name="deadline"
@@ -334,6 +385,8 @@ const mapStateToProps = (state, ownProps) => {
     boardShowGoals: boardShowGoals,
     boardCategories: boardCategories,
     currentProjectId: state.projects.currentProjectId,
+    users: state.projects.users,
+    isLoading: state.projects.isLoading,
     initialValues: {
       name: ownProps.longTermGoal.title,
       description: ownProps.longTermGoal.description,
@@ -358,6 +411,8 @@ export default connect(
     loadUserGoalsCategories,
     editColumns,
     createNewCategory, // This is for creating new category
-    deleteNewCategory
+    deleteNewCategory,
+    searchUsers,
+    inviteLongTermGoalMember
   }
 )(formWrapped);
