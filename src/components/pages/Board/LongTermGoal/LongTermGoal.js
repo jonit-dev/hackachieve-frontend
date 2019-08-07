@@ -126,7 +126,7 @@ class LongTermGoal extends Component {
           <div className="column-header">
             <div className="column-info">
               <div
-                className={`column-icon ${this.onConvertBoardNameClass(
+                className={`column-icon other-icon ${this.onConvertBoardNameClass(
                   this.props.myProps.boardName
                 )}-icon truncate`}
               ></div>
