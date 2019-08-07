@@ -191,55 +191,56 @@ main.board-main {
           height: 21px;
 
           &.health-icon {
-            background-image: url("/images/icons/health-icon-color.svg");
+            background-image: url("/images/icons/health-icon-color.svg") !important;
           }
 
           &.family-icon {
-            background-image: url("/images/icons/family-icon-color.svg");
+            background-image: url("/images/icons/family-icon-color.svg") !important;
           }
 
           &.career-icon {
-            background-image: url("/images/icons/career-icon-color.svg");
+            background-image: url("/images/icons/career-icon-color.svg") !important;
           }
 
           &.finances-icon {
-            background-image: url("/images/icons/finances-icon-color.svg");
+            background-image: url("/images/icons/finances-icon-color.svg") !important;
           }
 
           &.leisure-and-fun-icon {
-            background-image: url("/images/icons/fun-icon-color.svg");
+            background-image: url("/images/icons/fun-icon-color.svg") !important;
           }
 
           &.recruitment-icon {
-            background-image: url("/images/icons/recruitment-icon.svg");
+            background-image: url("/images/icons/recruitment-icon.svg") !important;
           }
 
+          /*Other icon should NEVER be !important, since it's only a fallback in case no icon is found!*/
           &.other-icon {
             background-image: url("/images/icons/other-icon.svg");
           }
 
           &.operations-icon {
-            background-image: url("/images/icons/operations-icon.svg");
+            background-image: url("/images/icons/operations-icon.svg") !important;
           }
 
           &.marketing-icon {
-            background-image: url("/images/icons/marketing-icon.svg");
+            background-image: url("/images/icons/marketing-icon.svg") !important;
           }
 
           &.learning-icon {
-            background-image: url("/images/icons/learning-icon.svg");
+            background-image: url("/images/icons/learning-icon.svg") !important;
           }
 
           &.sales-icon {
-            background-image: url("/images/icons/sales-icon.svg");
+            background-image: url("/images/icons/sales-icon.svg") !important;
           }
 
           &.personal-development-icon {
-            background-image: url("/images/icons/personal-dev-icon-color.svg");
+            background-image: url("/images/icons/personal-dev-icon-color.svg") !important;
           }
 
           &.spiritual-icon {
-            background-image: url("/images/icons/spiritual-icon-color.svg");
+            background-image: url("/images/icons/spiritual-icon-color.svg") !important;
           }
         }
 
