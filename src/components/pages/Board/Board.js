@@ -9,7 +9,7 @@ import {
 } from "../../../actions/goalsActions";
 import Loading from "../../UI/Loading/Loading";
 import LongTermGoal from "./LongTermGoal/LongTermGoal";
-import { toggleModal } from "../../../actions/uiActions";
+import { toggleModal, changeSelectedPanel } from "../../../actions/uiActions";
 import AddLongTermGoalModal from "./LongTermGoal/AddLongTermGoalModal";
 import { changeBoardShowGoal } from "../../../actions/boardActions";
 import Joy from "../../onboarding";
@@ -17,6 +17,7 @@ import Analytics from "../../../analytics/Analytics";
 import { isMobile } from "react-device-detect";
 import { DragDropContext } from "react-beautiful-dnd";
 import { setCurrentProject } from "../../../actions/projectActions";
+import BoardSwitch from "../Base/BoardSwitch";
 
 class Board extends Component {
   componentDidMount() {
@@ -92,23 +93,6 @@ class Board extends Component {
     } else {
       return null;
     }
-  }
-
-  onHandleBoardSwitchItem(type) {
-    if (type === this.props.boardShowGoals) {
-      return "board-switch-item switch-active";
-    } else {
-      return "board-switch-item";
-    }
-  }
-
-  onBoardSwitch(type) {
-    this.props.changeBoardShowGoal(type).then(() => {
-      this.props.loadGoals(
-        this.props.currentProjectId,
-        this.props.boardShowGoals
-      );
-    });
   }
 
   onStartOnboardingTutorial() {
@@ -335,42 +319,7 @@ class Board extends Component {
           {this.onRenderLongTermGoalModal()}
         </main>
 
-        <div className="i-phone">
-          <div className="board-switch">
-            <div
-              className={this.onHandleBoardSwitchItem("all")}
-              onClick={() => this.onBoardSwitch("all")}
-            >
-              <div className="board-switch-icon"></div>
-              <div className="board-switch-text">ALL</div>
-            </div>
-            <div
-              className={this.onHandleBoardSwitchItem("standby")}
-              onClick={() => this.onBoardSwitch("standby")}
-            >
-              <div className="board-switch-icon"></div>
-              <div className="board-switch-text">PENDING</div>
-            </div>
-
-            <div className="add-main">
-              <div className="plus"></div>
-            </div>
-            <div
-              className={this.onHandleBoardSwitchItem("ongoing")}
-              onClick={() => this.onBoardSwitch("ongoing")}
-            >
-              <div className="board-switch-icon"></div>
-              <div className="board-switch-text">ON GOING</div>
-            </div>
-            <div
-              className={this.onHandleBoardSwitchItem("completed")}
-              onClick={() => this.onBoardSwitch("completed")}
-            >
-              <div className="board-switch-icon"></div>
-              <div className="board-switch-text">COMPLETED</div>
-            </div>
-          </div>
-        </div>
+        <BoardSwitch />
       </React.Fragment>
     );
   }
@@ -390,7 +339,8 @@ const mapStateToProps = (state, ownProps) => {
     modals: state.ui.modals,
     filter: state.goal.filter,
     projects: state.projects,
-    currentProjectId: state.projects.currentProjectId
+    currentProjectId: state.projects.currentProjectId,
+    selectedPanel: state.ui.selectedPanel
   };
 };
 
@@ -405,6 +355,7 @@ export default connect(
     reorderGoal,
     updateGoal,
     updateLongTermGoalState,
-    setCurrentProject
+    setCurrentProject,
+    changeSelectedPanel
   }
 )(Board);

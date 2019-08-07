@@ -4,6 +4,7 @@ import TaskItem from "./TaskItem";
 import { loadTasks } from "../../../actions/taskActions";
 import Loading from "../../UI/Loading/Loading";
 import TaskAdd from "./TaskAdd";
+import BoardSwitch from "../Base/BoardSwitch";
 
 class Task extends Component {
   componentDidMount() {
@@ -33,17 +34,20 @@ class Task extends Component {
 
   render() {
     return (
-      <main className="board-main">
-        <div className="board-columns panel">
-          <div className="panel-content">
-            <div className="tasks">
-              <TaskAdd />
+      <>
+        <main className="board-main">
+          <div className="board-columns panel">
+            <div className="panel-content">
+              <div className="tasks">
+                <TaskAdd />
 
-              {this.onRenderTaskItems()}
+                {this.onRenderTaskItems()}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+        <BoardSwitch />
+      </>
     );
   }
 }
