@@ -55,6 +55,10 @@ class Tags extends React.Component {
                     minQueryLength={1}
                     tags={this.state.tags}
                     suggestions={suggestions}
+                    autofocus="false"
+                    inputAttributes={{
+                        autoComplete: "new-password"
+                    }}
                     handleInputChange={this.handleInputChange.bind(this)}
                     handleDelete={this.handleDelete.bind(this)}
                     handleAddition={this.handleAddition.bind(this)} />
