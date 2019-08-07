@@ -63,9 +63,9 @@ class InviteModal extends Component {
 
           </div>
           <div className="actions">{this.props.myProps.actions}</div>
-          <div className="modal-footer">
+          {/* <div className="modal-footer">
               {this.props.myProps.footer}
-          </div>
+          </div> */}
         </div>
       </div>,
       document.querySelector("#modal")
