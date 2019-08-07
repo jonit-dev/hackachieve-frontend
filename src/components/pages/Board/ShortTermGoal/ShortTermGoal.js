@@ -237,7 +237,7 @@ class ShortTermGoal extends Component {
 
             <div className="column-card-body">
               <div className="column-card-labels">{this.onRenderLabels()}</div>
-              <div className="column-card-title">{title}</div>
+              <div className="column-card-title truncate">{title}</div>
               {description.length <= this.characterLimit ? (
                 <div className="column-card-description">{description}</div>
               ) : (

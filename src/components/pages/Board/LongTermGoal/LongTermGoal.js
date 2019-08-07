@@ -128,19 +128,19 @@ class LongTermGoal extends Component {
               <div
                 className={`column-icon ${this.onConvertBoardNameClass(
                   this.props.myProps.boardName
-                )}-icon`}
+                )}-icon truncate`}
               ></div>
               <div
                 className={`column-board color-other color-${this.onConvertBoardNameClass(
                   this.props.myProps.boardName
-                )}`}
+                )} truncate`}
               >
                 {this.props.myProps.boardName}
               </div>
             </div>
 
             <div
-              className="column-title"
+              className="column-title truncate"
               onClick={() =>
                 this.onEditLongTermGoalModal(this.props.myProps.id)
               }

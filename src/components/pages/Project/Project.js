@@ -45,7 +45,7 @@ class Project extends Component {
             {this.props.projects.map(project => (
               <Link to={`project/${project.id}/board`} key={project.id}>
                 <div className="cCard">
-                  <p>
+                  <p className="truncate">
                     {project.name} - {project.description}
                   </p>
                   <div
