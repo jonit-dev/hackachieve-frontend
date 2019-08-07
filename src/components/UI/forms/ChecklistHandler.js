@@ -11,7 +11,7 @@ import {
 class ChecklistHandler extends Component {
   state = {
     showChecklistForm: false,
-    //status: true,
+
     editChecklist: ""
   };
   handleClick = () => {
