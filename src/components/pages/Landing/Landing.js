@@ -7,6 +7,8 @@ import { userFacebookLogin } from "../../../actions/authActions";
 import FacebookLogin from "react-facebook-login";
 import { Helmet } from "react-helmet";
 import BenefitItem from "./BenefitItem";
+import FeatureSection from "./FeatureSection";
+import FeatureSectionReverse from "./FeatureSectionReverse";
 
 class Landing extends Component {
   componentDidMount() {
@@ -149,77 +151,37 @@ class Landing extends Component {
           </div>
           <div className="feature-big">
             <div className="container">
-              <div className="row site-section" id="connect-the-dots">
-                <div className="col-lg-7">
-                  <img
-                    src="landing_resources/images/dashboard.webp"
-                    alt="dashboard illustration"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="col-lg-5 ml-auto">
-                  <h2 className="text-black">Connect the dots</h2>
-                  <p className="mb-4">
-                    Hackachieve helps you to “connect the dots” between your
+              <FeatureSection
+                featureImg="landing_resources/images/dashboard.webp"
+                title="All your goals in one place"
+                description="Hackachieve helps you to “connect the dots” between your
                     long and short term goals, doubling your productivity in
-                    half of the time! Stop losing time procastinating.
-                  </p>
-                  <ul className="ul-check mb-5 list-unstyled success">
-                    <li>- Engage and organize your team</li>
-                    <li>- Set your own personal goals</li>
-                  </ul>
-                  <div className="author-box">
-                    <div className="d-flex mb-4">
-                      <div className="mr-3">
-                        <img
-                          src="landing_resources/images/person_1.webp"
-                          alt="testimonial person"
-                          className="img-fluid rounded-circle"
-                        />
-                      </div>
-                      <div className="mr-auto text-black">
-                        <strong className="font-weight-bold mb-0">
-                          Joao Paulo Furtado
-                        </strong>{" "}
-                        <br />
-                        Full-stack developer.
-                      </div>
-                    </div>
-                    <blockquote>
-                      “I dont know what else to say. I would be lost without
-                      Hackachieve. Man, this thing is getting better and better
-                      as I learn more about it.”
-                    </blockquote>
-                  </div>
-                </div>
-              </div>
-              {/*div class="mt-5 row mb-5 site-section ">
-          <div class="col-lg-7 order-1 order-lg-2">
-            <img src="/images/do_ui_kit_hero_floating_devices-2x.png" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-lg-5 pr-lg-5 mr-auto mt-5 order-2 order-lg-1">
-            <h2 class="text-black">Create interactive prototypes</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem neque nisi architecto autem molestias corrupti officia veniam</p>
-            <ul class="ul-check mb-5 list-unstyled success">
-              <li>Laborum enim quasi at modi</li>
-              <li>Ad at tempore</li>
-            </ul>
-            
+                    half of the time! Stop losing time procastinating."
+                benefitsArray={[
+                  "- Engage and organize your team",
+                  "- Set your own personal goals"
+                ]}
+                testimonialImg="landing_resources/images/person_1.webp"
+                testimonialAuthor="Joao Paulo Furtado"
+                testimonialRole="Full-stack developer."
+                testimonialQuote="“I dont know what else to say. I would be lost without Hackachieve. Man, this thing is getting better and better as I learn more about it.”"
+              />
 
-            <div class="author-box">
-              <div class="d-flex mb-4">
-                <div class="mr-3">
-                  <img src="/images/person_4.jpg" alt="Image" class="img-fluid rounded-circle">
-                </div>
-                <div class="mr-auto text-black">
-                  <strong class="font-weight-bold mb-0">Darren K.</strong> <br>
-                  Co-Founder, XYZ Inc.
-                </div>
-              </div>
-              <blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus vitae ipsa asperiores inventore aperiam iure?&rdquo;</blockquote>
-            </div>
-          </div>
-        </div*/}
+              <FeatureSectionReverse
+                featureImg="landing_resources/images/dashboard.webp"
+                title="All your goals in one place"
+                description="Hackachieve helps you to “connect the dots” between your
+                    long and short term goals, doubling your productivity in
+                    half of the time! Stop losing time procastinating."
+                benefitsArray={[
+                  "- Engage and organize your team",
+                  "- Set your own personal goals"
+                ]}
+                testimonialImg="landing_resources/images/person_1.webp"
+                testimonialAuthor="Joao Paulo Furtado"
+                testimonialRole="Full-stack developer."
+                testimonialQuote="“I dont know what else to say. I would be lost without Hackachieve. Man, this thing is getting better and better as I learn more about it.”"
+              />
             </div>
 
             <div className="">
