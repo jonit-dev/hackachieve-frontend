@@ -6,6 +6,7 @@ import Analytics from "../../../analytics/Analytics";
 import { userFacebookLogin } from "../../../actions/authActions";
 import FacebookLogin from "react-facebook-login";
 import { Helmet } from "react-helmet";
+import BenefitItem from "./BenefitItem";
 
 class Landing extends Component {
   componentDidMount() {
@@ -40,6 +41,10 @@ class Landing extends Component {
         </Helmet>
         <div className="site-wrap" id="home-section">
           <div className="site-blocks-cover">
+            <video autoPlay muted loop className="landing-bkg-video">
+              <source src="/videos/landing-bkg.mp4" type="video/mp4" />
+            </video>
+
             <div className="container">
               <div className="row align-items-center justify-content-center">
                 <div
@@ -48,11 +53,11 @@ class Landing extends Component {
                   data-aos="fade-up"
                 >
                   <div className="row">
-                    <div className="col-lg-5">
-                      <h1>Productivity Doesn’t Need To Be Boring!</h1>
+                    <div className="col-lg-5 landing-main-text">
+                      <h1>Organize Your Project Goals!</h1>
                       <p>
-                        In Hackachieve you can and double your results in half
-                        of your time
+                        Stay on top of things by keeping track of your goals,
+                        tasks and your team member tasks!
                       </p>
                       <div>
                         {User.isLoggedIn() ? (
@@ -77,20 +82,21 @@ class Landing extends Component {
 
                             <div className="fb-login-email-pw">
                               <NavLink to="/register" className="btn">
-                                or create your account with e-mail and password
+                                or create your free account with e-mail and
+                                password
                               </NavLink>
                             </div>
                           </div>
                         )}
                       </div>
                     </div>
-                    <div className="col-lg-7">
+                    {/* <div className="col-lg-7">
                       <img
                         src="landing_resources/images/landing_1.webp"
                         alt="character with goals"
                         className="img-fluid cracter-img"
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -104,123 +110,40 @@ class Landing extends Component {
                 </div>
               </div>
               <div className="row align-items-stretch">
-                <div
-                  className="col-md-6 col-lg-4 mb-4 mb-lg-4"
-                  data-aos="fade-up"
-                >
-                  <div className="unit-4 d-block">
-                    <div className="unit-4-icon mb-3">
-                      <span className="icon-wrap">
-                        <span>
-                          <i className="far fa-calendar-check"></i>
-                        </span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Never miss a deadline</h3>
-                      <p>
-                        We’ll promptly notify you if some of your goals is about
+                <BenefitItem
+                  iconClasses="far fa-grin-stars"
+                  title="Personal or Business use"
+                  description="Hackachieve is a pretty flexible tool: It can be used for your own personal goals, small or big projects or even to manage your entire company."
+                />
+
+                <BenefitItem
+                  iconClasses="far fa-calendar-check"
+                  title="Never miss a deadline"
+                  description=" We’ll promptly notify you if some of your goals is about
                         to expire, avoiding the headaches that a missing it
-                        could cause.
-                      </p>
-                      {/* <p><a href="# ">Learn More</a></p> */}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 mb-4 mb-lg-4"
-                  data-aos="fade-up"
-                >
-                  <div className="unit-4 d-block">
-                    <div className="unit-4-icon mb-3">
-                      <span className="icon-wrap">
-                        <span>
-                          <i className="fas fa-user-tie"></i>
-                        </span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>For Businesses</h3>
-                      <p>
-                        Manage your business in an engaging way: allow your
-                        teammates to earn points if certain goals are achieved
-                        and reward the best performing ones!
-                      </p>
-                      {/* <p><a href="# ">Learn More</a></p> */}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 mb-4 mb-lg-4"
-                  data-aos="fade-up"
-                >
-                  <div className="unit-4 d-block">
-                    <div className="unit-4-icon mb-3">
-                      <span className="icon-wrap">
-                        <span>
-                          <i className="fas fa-users" />
-                        </span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Community-oriented platform</h3>
-                      <p>
-                        We bring social to a productivity context! In our
-                        platform, you can share your goals, see a goal feed and
-                        even follow people that you admire
-                      </p>
-                      {/* <p><a href="# ">Learn More</a></p> */}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 mb-4 mb-lg-4"
-                  data-aos="fade-up"
-                >
-                  <div className="unit-4 d-block">
-                    <div className="unit-4-icon mb-3">
-                      <span className="icon-wrap">
-                        <span>
-                          <i className="fas fa-tachometer-alt"></i>
-                        </span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Productivity Tools</h3>
-                      <p>
-                        Hackachieve allows you to easily create short term and
+                        could cause."
+                />
+
+                <BenefitItem
+                  iconClasses="fas fa-users"
+                  title="Coordinate your team"
+                  description="Assign them and track tasks, staying in touch with what everyone is doing! Leverage your project potential by making everyone work towards a common goal!"
+                />
+
+                <BenefitItem
+                  iconClasses="fas fa-tachometer-alt"
+                  title="Easy-to-use productivity tool"
+                  description=" Hackachieve allows you to easily create short term and
                         long term goals, checklists, labels, set deadlines, and
                         etc. Everything you need to manage your own life or the
-                        daily operations of your business!
-                      </p>
-                      {/* <a><a href="# ">Learn More</a></a> */}
-                    </div>
-                  </div>
-                </div>
-                {/* <div className="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                <div className="unit-4 d-block">
-                  <div className="unit-4-icon mb-3">
-                    <span className="icon-wrap"><span className="text-primary icon-sentiment_satisfied" /></span>
-                  </div>
-                  <div>
-                    <h3>Gamification Features</h3>
-                    <p>Engage yourself or your team with points and rewards, boosting their productivity and keeping a long term alignment with your goals.</p>
-                    <p><a href="# ">Learn More</a></p>
-                  </div>
-                </div>
-              </div> */}
-                {/* <div className="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                <div className="unit-4 d-block">
-                  <div className="unit-4-icon mb-3">
-                    <span className="icon-wrap"><span><i className="fas fa-comments" /></span></span>
-                  </div>
-                  <div>
-                    <h3>Crowd Help</h3>
-                    <p>Receive suggestions from other skilled users in your card goals, assisting you to overcome obstacles in an interactive way.</p>
-                    <p><a href="# ">Learn More</a></p>
-                  </div>
-                </div>
-              </div> */}
+                        daily operations of your business!"
+                />
+
+                <BenefitItem
+                  iconClasses="fas fa-cloud"
+                  title="Replace paperwork"
+                  description="Have all of your information in a single place that can be accessed from anywhere! It's way easier to coordinate with other team members and to focus in what's important."
+                />
               </div>
             </div>
           </div>

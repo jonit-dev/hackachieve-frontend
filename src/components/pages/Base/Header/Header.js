@@ -272,12 +272,6 @@ class Header extends Component {
                   </h1>
                 </div>
                 <div className="col-12 col-md-9">
-                  <a
-                    href="# "
-                    className="site-menu-toggle js-menu-toggle text-black float-right d-lg-none"
-                  >
-                    <span className="icon-menu h3" />
-                  </a>
                   <div className="button-main">
                     {this.props.isLoggedIn ? (
                       <Link className="ui inverted button" to="/projects">
@@ -303,13 +297,12 @@ class Header extends Component {
                         </Link>
                       </React.Fragment>
                     ) : (
-                      <button
-                        id="btnLogout"
+                      <Link
                         onClick={() => this.props.userLogout()}
                         className="ui inverted button"
                       >
                         Logout
-                      </button>
+                      </Link>
                     )}
 
                     {/* <a id="btnLogin" href="# ">Log in</a> */}

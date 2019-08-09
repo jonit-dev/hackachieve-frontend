@@ -521,4 +521,40 @@ a.mobile-menu {
   }
 }
 
-@import './scss/style.scss';
+.benefit-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-blocks-cover {
+  position: relative;
+  box-sizing: border-box;
+
+  /* Mobile Only ==============================*/
+  @media (max-width: 700px) {
+    padding: 0 0.5rem !important;
+  }
+
+  .landing-bkg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    object-fit: cover;
+    height: 100%;
+    opacity: 0.05;
+    z-index: 0;
+  }
+  .container {
+    z-index: 1;
+  }
+
+  h1 {
+    padding: 0 !important;
+  }
+}
+
+.landing-main-text {
+}
+
+@import "./scss/style.scss";

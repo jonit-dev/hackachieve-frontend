@@ -1,7 +1,13 @@
 .internal-page {
   min-height: 88vh;
-  padding-top: 12rem;
+  padding-top: 14rem;
   padding-bottom: 3rem;
+
+  h1 {
+    font-size: 2rem;
+    color: #54575d;
+    font-weight: bold;
+  }
 }
 
 .internal_header {

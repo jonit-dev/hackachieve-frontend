@@ -1,3 +1,23 @@
+.site-navbar {
+  width: 100%;
+
+  img {
+    /* Mobile Only ==============================*/
+    @media (max-width: 700px) {
+      padding-top: 1rem;
+      margin-left: 0.8rem;
+    }
+  }
+
+  /* Mobile Only ==============================*/
+  @media (max-width: 700px) {
+    .button-main {
+      margin-left: 0;
+      padding-bottom: 1rem;
+    }
+  }
+}
+
 .header_menu {
   height: 10vh;
   display: flex;
@@ -196,7 +216,7 @@
 }
 
 /* Mobile Only ==============================*/
- 
+
 .site-mobile-menu-body {
   text-decoration: none;
   font-size: 1.4rem;
