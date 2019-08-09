@@ -1,6 +1,8 @@
 import React from "react";
 
 const HowItWorks = props => {
+  //how it works section on landing page
+
   return (
     <>
       <div className="site-section bg-light" id="about-section">
