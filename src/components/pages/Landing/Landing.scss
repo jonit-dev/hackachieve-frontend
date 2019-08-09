@@ -544,6 +544,11 @@ a.mobile-menu {
     height: 100%;
     opacity: 0.05;
     z-index: 0;
+
+    /* Mobile Only ==============================*/
+    @media (max-width: 700px) {
+      display: none;
+    }
   }
   .container {
     z-index: 1;
@@ -554,7 +559,12 @@ a.mobile-menu {
   }
 }
 
-.landing-main-text {
+.feature-img {
+  object-fit: scale-down;
+  height: 100%;
+  height: 466px !important;
+  width: 635px;
+  object-position: top left;
 }
 
 @import "./scss/style.scss";

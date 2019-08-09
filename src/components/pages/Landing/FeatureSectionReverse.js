@@ -16,7 +16,11 @@ const FeatureSectionReverse = props => {
     <>
       <div className="mt-5 row mb-5 site-section ">
         <div className="col-lg-7 order-1 order-lg-2">
-          <img src={featureImg} alt="Image" className="img-fluid" />
+          <img
+            src={featureImg}
+            alt="feature representation"
+            className="img-fluid feature-img"
+          />
         </div>
         <div className="col-lg-5 pr-lg-5 mr-auto mt-5 order-2 order-lg-1">
           <h2 className="text-black">{title}</h2>
@@ -32,7 +36,7 @@ const FeatureSectionReverse = props => {
               <div className="mr-3">
                 <img
                   src={testimonialImg}
-                  alt="Image"
+                  alt="testimonial owner"
                   className="img-fluid rounded-circle"
                 />
               </div>

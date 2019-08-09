@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import BenefitItem from "./BenefitItem";
 import FeatureSection from "./FeatureSection";
 import FeatureSectionReverse from "./FeatureSectionReverse";
+import HowItWorks from "./HowItWorks";
 
 class Landing extends Component {
   componentDidMount() {
@@ -56,10 +57,10 @@ class Landing extends Component {
                 >
                   <div className="row">
                     <div className="col-lg-5 landing-main-text">
-                      <h1>Organize Your Project Goals!</h1>
+                      <h1>Organize Your Team Goals Easily!</h1>
                       <p>
                         Stay on top of things by keeping track of your goals,
-                        tasks and your team member tasks!
+                        tasks and your team members work!
                       </p>
                       <div>
                         {User.isLoggedIn() ? (
@@ -104,6 +105,9 @@ class Landing extends Component {
               </div>
             </div>
           </div>
+
+          <HowItWorks />
+
           <div className="site-section bg-light" id="features-section">
             <div className="container">
               <div className="row mb-5">
@@ -114,28 +118,27 @@ class Landing extends Component {
               <div className="row align-items-stretch">
                 <BenefitItem
                   iconClasses="far fa-grin-stars"
-                  title="Personal or Business use"
+                  title="Personal or Business use-cases"
                   description="Hackachieve is a pretty flexible tool: It can be used for your own personal goals, small or big projects or even to manage your entire company."
                 />
 
                 <BenefitItem
                   iconClasses="far fa-calendar-check"
-                  title="Never miss a deadline"
+                  title="Never Miss a Deadline"
                   description=" We’ll promptly notify you if some of your goals is about
-                        to expire, avoiding the headaches that a missing it
-                        could cause."
+                        to expire, avoiding potential headaches."
                 />
 
                 <BenefitItem
                   iconClasses="fas fa-users"
-                  title="Coordinate your team"
-                  description="Assign them and track tasks, staying in touch with what everyone is doing! Leverage your project potential by making everyone work towards a common goal!"
+                  title="Coordinate your Team"
+                  description="Assign and track tasks, staying in touch with what everyone is doing! Leverage your project potential by making everyone work towards a common goal!"
                 />
 
                 <BenefitItem
                   iconClasses="fas fa-tachometer-alt"
-                  title="Easy-to-use productivity tool"
-                  description=" Hackachieve allows you to easily create short term and
+                  title="Easy-to-use Productivity Tool"
+                  description="Hackachieve allows you to easily create short term and
                         long term goals, checklists, labels, set deadlines, and
                         etc. Everything you need to manage your own life or the
                         daily operations of your business!"
@@ -143,8 +146,14 @@ class Landing extends Component {
 
                 <BenefitItem
                   iconClasses="fas fa-cloud"
-                  title="Replace paperwork"
+                  title="Replace Paperwork"
                   description="Have all of your information in a single place that can be accessed from anywhere! It's way easier to coordinate with other team members and to focus in what's important."
+                />
+
+                <BenefitItem
+                  iconClasses="fas fa-comments"
+                  title="Easy Communication"
+                  description="Use our built-in chat features to communicate with your own team"
                 />
               </div>
             </div>
@@ -153,10 +162,8 @@ class Landing extends Component {
             <div className="container">
               <FeatureSection
                 featureImg="landing_resources/images/dashboard.webp"
-                title="All your goals in one place"
-                description="Hackachieve helps you to “connect the dots” between your
-                    long and short term goals, doubling your productivity in
-                    half of the time! Stop losing time procastinating."
+                title="All of Your Goals in One Place"
+                description="Adopt a paper-less approach and store all of your project documentation safely on the cloud. That way you improve team communication and double your results"
                 benefitsArray={[
                   "- Engage and organize your team",
                   "- Set your own personal goals"
@@ -168,19 +175,31 @@ class Landing extends Component {
               />
 
               <FeatureSectionReverse
-                featureImg="landing_resources/images/dashboard.webp"
-                title="All your goals in one place"
-                description="Hackachieve helps you to “connect the dots” between your
-                    long and short term goals, doubling your productivity in
-                    half of the time! Stop losing time procastinating."
+                featureImg="landing_resources/images/team-work.png"
+                title="Work Together as a Team"
+                description="In Hackachieve you can invite members to your projects, long-term and short-goals and work collaboratively towards a common goal"
                 benefitsArray={[
-                  "- Engage and organize your team",
-                  "- Set your own personal goals"
+                  "- Plan your family's next vacation",
+                  "- Setup your business project team workflow"
                 ]}
-                testimonialImg="landing_resources/images/person_1.webp"
-                testimonialAuthor="Joao Paulo Furtado"
-                testimonialRole="Full-stack developer."
-                testimonialQuote="“I dont know what else to say. I would be lost without Hackachieve. Man, this thing is getting better and better as I learn more about it.”"
+                testimonialImg="landing_resources/images/denis.webp"
+                testimonialAuthor="Denis Calixto"
+                testimonialRole="System's Architect."
+                testimonialQuote="“I finally can work collaboratively with a team of 5 people in a very intuitive way”"
+              />
+
+              <FeatureSection
+                featureImg="landing_resources/images/prioritize.png"
+                title="Prioritize by Relevance"
+                description="Pin goals to the top so you and your team can focus on what's more relevant first"
+                benefitsArray={[
+                  "- Pin relevant goals to the top",
+                  "- Make the most important ones more visible"
+                ]}
+                testimonialImg="landing_resources/images/alex.png"
+                testimonialAuthor="Alex Buzachero"
+                testimonialRole="Front-end developer."
+                testimonialQuote="“With Hackachieve I can focus in only one thing at a time, improving my team's overall performance.”"
               />
             </div>
 
@@ -198,21 +217,7 @@ class Landing extends Component {
               </div>
             </div>
           </div>
-          {/* <div className="site-section bg-light" id="about-section">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-5">
-                <h1>How it works</h1>
-                <h2 className="text-black mb-4">Step by step explanation</h2>
-                <p className="mb-4">See how your team can structure the work to convert all of your goals into workable plans</p>
-                <p><a href="# " className="btn btn-primary">GET STARTED</a></p>
-              </div>
-              <div className="col-lg-7">
-                <img src="landing_resources/images/about_1.jpg" alt="more information video" className="img-fluid mb-lg-0 rounded shadow" />
-              </div>
-            </div>
-          </div>
-        </div> */}
+
           {/*div class="site-section testimonial-wrap" id="testimonials-section">
       <div class="container">
         <div class="row mb-5">

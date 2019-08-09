@@ -19,7 +19,7 @@ const FeatureSection = props => {
           <img
             src={featureImg}
             alt="dashboard illustration"
-            className="img-fluid"
+            className="img-fluid feature-img"
           />
         </div>
         <div className="col-lg-5 ml-auto">

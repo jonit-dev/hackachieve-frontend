@@ -1,7 +1,12 @@
 .internal-page {
   min-height: 88vh;
-  padding-top: 14rem;
+  padding-top: 12rem;
   padding-bottom: 3rem;
+
+  /* Mobile Only ==============================*/
+  @media (max-width: 700px) {
+    padding-top: 14rem;
+  }
 
   h1 {
     font-size: 2rem;
