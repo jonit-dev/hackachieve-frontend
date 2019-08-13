@@ -297,12 +297,13 @@ class Header extends Component {
                         </Link>
                       </React.Fragment>
                     ) : (
-                      <Link
+                      <a
+                        href="# "
                         onClick={() => this.props.userLogout()}
                         className="ui inverted button"
                       >
                         Logout
-                      </Link>
+                      </a>
                     )}
 
                     {/* <a id="btnLogin" href="# ">Log in</a> */}
