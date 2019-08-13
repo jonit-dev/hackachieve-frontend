@@ -565,6 +565,11 @@ a.mobile-menu {
   height: 466px !important;
   width: 635px;
   object-position: top left;
+
+  /* Mobile Only ==============================*/
+  @media (max-width: 700px) {
+    max-height: 316px;
+  }
 }
 
 @import "./scss/style.scss";

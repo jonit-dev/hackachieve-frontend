@@ -1,11 +1,41 @@
-.footer-item {
-  margin-right: 2rem;
-  font-size: 1rem !important;
-}
-
 .copyright {
   text-align: center;
   color: gray;
   font-size: 0.7rem;
   padding-bottom: 0.8rem;
+}
+
+.footer {
+  .footer-item {
+    margin-right: 2rem;
+    font-size: 1rem !important;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      flex: 0 0 30px;
+
+      a {
+        text-decoration: none;
+        i {
+          opacity: 0.5;
+          color: white;
+          font-size: 1.8rem;
+          padding: 1rem;
+          transition: all 0.5s;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
 }
