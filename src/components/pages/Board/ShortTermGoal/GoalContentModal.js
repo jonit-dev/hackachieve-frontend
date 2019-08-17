@@ -7,7 +7,7 @@ import Moment from "react-moment";
 import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
 import LabelHandler from "../../../UI/forms/LabelHandler";
 import InviteHandler from "../../../UI/forms/InviteHandler";
-import { loadGoals, editGoals } from "../../../../actions/goalsActions";
+import { loadGoals, editGoals,uploadFile,attachFileToGoal,clearFileUpload } from "../../../../actions/goalsActions";
 import moment from "moment";
 import cogoToast from "cogo-toast";
 import {
@@ -32,6 +32,7 @@ class GoalContentModal extends Component {
     };
     this.handleCreateChange = this.handleCreateChange.bind(this);
     this.handleUpdateChange = this.handleUpdateChange.bind(this);
+    this.handleFileinputChange=this.handleFileinputChange.bind(this);
   }
   componentDidMount() {
     UserInfo().then(response => {
@@ -42,6 +43,20 @@ class GoalContentModal extends Component {
     !this.props.myProps.shortTermGoal.is_public
       ? this.setState({ publicstatus: "Private" })
       : this.setState({ publicstatus: "Public" });
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props!==nextProps){
+      if(nextProps.type==="FILE_UPLOAD_SUCCESS"){
+        const goalId= this.props.myProps.shortTermGoal.id;
+        const payload={
+          file:nextProps.file.id
+        }
+        this.props.attachFileToGoal(goalId,payload);
+        this.props.clearFileUpload();
+
+      }
+    }
   }
 
   onClose() {
@@ -203,6 +218,16 @@ class GoalContentModal extends Component {
     });
   }
 
+  handleFileinputChange = () => {
+    const file = this.fileInput.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("name", file.name);
+    formData.append("title", file.name);
+    this.props.uploadFile(formData);
+  };
+
+
   render() {
     const {
       title,
@@ -351,6 +376,7 @@ class GoalContentModal extends Component {
             <strong>Deadline:</strong>{" "}
             <Moment format="D MMMM, YYYY">{deadline}</Moment>
           </a>
+
           {/*below a tag is use to make card public or private.*/}
           {/* {this.onPublicPrivateSwitch()} */}
         </div>
@@ -375,6 +401,15 @@ class GoalContentModal extends Component {
 
           <ChecklistHandler />
         </div>
+
+        <div className="fluid segment">
+         <input type="file"  className="inputfile" id="embedpollfileinput" ref={fileInput => (this.fileInput = fileInput)}  key="fileInput" onChange={this.handleFileinputChange}/>
+        <label htmlFor="embedpollfileinput" className="ui fileuploader right floated button">
+          <i className="ui upload icon"></i> 
+          Upload File
+        </label>
+        </div>
+        
       </React.Fragment>
     );
 
@@ -395,6 +430,7 @@ class GoalContentModal extends Component {
         content={content}
         comment={commentcontent}
         actions={actions}
+        loading={this.props.loading}
       />
     );
   }
@@ -404,7 +440,10 @@ const mapStateToProps = (state, ownProps) => {
   return {
     myProps: ownProps,
     modals: state.ui.modals,
-    currentProjectId: state.projects.currentProjectId
+    currentProjectId: state.projects.currentProjectId,
+    file:state.goal.uploadFile,
+    type:state.goal.type,
+    loading:state.goal.loading
   };
 };
 
@@ -420,6 +459,9 @@ export default connect(
     UserInfo,
     DeleteComments,
     UpdateComments,
-    CommentsVote
+    CommentsVote,
+    uploadFile,
+    attachFileToGoal,
+    clearFileUpload
   }
 )(GoalContentModal);

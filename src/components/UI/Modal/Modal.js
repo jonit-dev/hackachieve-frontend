@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { toggleModal, clearAlert } from "../../../actions/uiActions";
 import Alert from "../Alert/Alert";
 import cogoToast from "cogo-toast";
+import Loading from "../Loading/Loading";
 
 class Modal extends Component {
   /*#############################################################|
@@ -41,6 +42,7 @@ class Modal extends Component {
   }
 
   render() {
+    console.log("Modal props",this.props);
     return ReactDOM.createPortal(
       <div
         className="ui dimmer modals visible active"
@@ -57,6 +59,8 @@ class Modal extends Component {
           className="ui  modal  active main-div"
           onClick={e => e.stopPropagation()}
         >
+          {this.props.loading? <Loading />:""}
+          
           <div
             className="fas fa-times modal-close"
             onClick={e => {

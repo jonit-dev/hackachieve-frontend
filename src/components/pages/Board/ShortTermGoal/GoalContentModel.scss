@@ -1,0 +1,16 @@
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.fluid .fileuploader {
+  background: $hackachieve-light-green;
+  border-radius: 30px;
+  width: 145px;
+  height: 35px;
+  color: #fff;
+}

@@ -18,6 +18,8 @@ export const USER_INFO_REFRESH = "USER_INFO_REFRESH";
 /* Goals =========================================== */
 export const LOAD_GOALS = "LOAD_GOALS";
 export const FILTER_GOALS = "FILTER_GOALS";
+export const FILE_UPLOAD_SUCCESS = "FILE_UPLOAD_SUCCESS";
+export const CLEAR_FILE_UPLOAD = "CLEAR_FILE_UPLOAD";
 
 /* Checklist =========================================== */
 export const SET_CHECKLIST_ITEM = "SET_CHECKLIST_ITEM";
