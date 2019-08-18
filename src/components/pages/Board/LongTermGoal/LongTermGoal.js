@@ -147,6 +147,14 @@ class LongTermGoal extends Component {
             >
               {this.props.myProps.title}
             </div>
+            <div className="member-icons">
+              <ul>
+                {this.props.member.map(user=>
+                <li key={user.id}>
+                  <span className="member">{user.first_name.charAt(0).toUpperCase()}</span>
+                </li>)}
+              </ul>
+            </div>
             <Dropdown
               triggerParentDelete={() => this.onDeleteLongTermGoal()}
               triggerParentOpenModal={() =>

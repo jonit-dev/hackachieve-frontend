@@ -90,12 +90,75 @@
         word-break: break-word;
       }
 
+      .member-icons{
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 8.4rem;
+        width: 90%;
+        flex-direction: row;
+        justify-content: flex-end;
+        ul{
+          margin: 0;
+          padding: 0;
+          li{
+            display: inline-block;
+            padding: 0px;
+      
+            a{
+              &.board-name{
+              font-size: 16px;
+              font-weight: bold;
+              color: #fff;
+              padding: 10px;
+              display: block;
+              margin-right: 30px;
+              }
+              &.board-invite-btn{
+                display: flex;
+                align-items: center;
+                background-color: #5aac44;
+                font-family: "Lato", sans-serif;
+                font-weight: bold;
+                height: 29px;
+                color: white;
+                text-align: center;
+                font-size: 14px;
+                cursor: pointer;
+                border-radius: 4px;
+                box-sizing: border-box;
+                transition: all 0.25s ease-in;
+                padding: 0 0.8rem;
+                margin-left: 20px;
+              }
+            }
+           span{
+             &.member{
+               display: flex;
+               width: 28px;
+               height: 28px;
+               border-radius: 50%;
+               background-color: #dfe1e6;
+              color: #172b4d;
+              cursor: pointer;
+              justify-content: center;
+              align-items: center;
+              font-size: 14px;
+              font-weight: bold;
+              margin-left: -2px;
+             }
+           }
+          }
+        }
+
+      }
+
       .column-card-deadline {
         flex: 0 0 auto;
         display: flex;
         align-items: center;
         position: absolute;
-        top: 8.7rem;
+        top: 6.7rem;
 
         .column-card-deadline-icon {
           background-image: url("/images/icons/calelndar-icon.svg");

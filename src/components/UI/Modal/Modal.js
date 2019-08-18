@@ -59,7 +59,7 @@ class Modal extends Component {
           className="ui  modal  active main-div"
           onClick={e => e.stopPropagation()}
         >
-          {this.props.loading? <Loading />:""}
+          {/* {this.props.loading? <Loading />:""} */}
           
           <div
             className="fas fa-times modal-close"

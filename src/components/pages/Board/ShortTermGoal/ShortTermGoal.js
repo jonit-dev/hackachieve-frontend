@@ -190,7 +190,8 @@ class ShortTermGoal extends Component {
       deadline,
       title,
       priority,
-      status
+      status,
+      member
     } = this.props.myProps.shortTermGoal;
 
     cardCategoryStyle = "card-active-" + this.props.myProps.longTermBoardName;
@@ -251,6 +252,15 @@ class ShortTermGoal extends Component {
                   <Moment format="D MMMM, YY">{deadline}</Moment>
                 </div>
               </div>
+
+            <div className="member-icons">
+              <ul>
+                {member.map(user=>
+                <li key={user.id}>
+                  <span className="member">{user.first_name.charAt(0).toUpperCase()}</span>
+                </li>)}
+              </ul>
+            </div>
             </div>
 
             <div className="column-card-footer">
@@ -260,11 +270,15 @@ class ShortTermGoal extends Component {
                   e.stopPropagation();
                   this.onGoalSetPriority();
                 }}
-              ></div>
+              >
+              </div>
               <div className="column-footer-actions-group">
                 {this.onRenderActions()}
               </div>
             </div>
+                        
+
+
 
             {this.onRenderGoalContentModal()}
             {this.renderEditShortTermModal()}
