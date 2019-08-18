@@ -43,6 +43,10 @@ class AddShortTermGoalModal extends Component {
     });
   };
 
+  onClose() {
+    this.props.toggleModal("shortTermGoal");
+  }
+
   render() {
     const title = "Add your short-term goal!";
 
