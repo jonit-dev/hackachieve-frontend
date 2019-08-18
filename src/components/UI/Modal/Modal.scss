@@ -63,8 +63,16 @@
   margin: 25px 0 25px;
 
   i {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding-right: 0.5rem;
+  }
+
+  .complete-status,
+  .on-going-status,
+  .pending-status {
+    padding-left: 0.3rem;
+    position: relative;
+    top: 1px;
   }
 
   .complete-status {
@@ -73,6 +81,10 @@
   .on-going-status {
     color: $hackachieve-yellow;
   }
+  .pending-status {
+    color: $hackachieve-grey;
+  }
+
   .status-icon {
     padding-right: 0.5rem;
   }
