@@ -1,0 +1,14 @@
+.message {
+  .header {
+    color: white;
+  }
+  .alert-list {
+    margin-top: 0.5rem;
+
+    li {
+      strong {
+        text-transform: capitalize;
+      }
+    }
+  }
+}

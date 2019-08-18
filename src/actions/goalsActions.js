@@ -93,32 +93,41 @@ export const goalSetPriority = (goalId, newPriority) => async dispatch => {
 };
 
 export const createGoal = data => async dispatch => {
-  return API.request("/goals/create/", "POST", data, "auth").then(response => {
-    const { status, message } = response.data;
-
-    if (status === "success") {
+  return API.request("/goals/create/", "POST", data, "auth")
+    .then(response => {
       Analytics.track("short_goal_create", {
         eventCategory: "goals",
         eventAction: "short_goal_create"
       });
-    } else {
+
+      dispatch({
+        type: SHOW_ALERT,
+        payload: {
+          type: "positive",
+          title: "Goal created",
+          content: "Your goal was created successfully!"
+        }
+      });
+
+      return response;
+    })
+    .catch(err => {
+      // If an error occured while trying to create your goal....
+      console.log(err);
       Analytics.track("short_goal_create_error", {
         eventCategory: "goals",
         eventAction: "short_goal_create_error"
       });
-    }
 
-    dispatch({
-      type: SHOW_ALERT,
-      payload: {
-        type: status === "success" ? "positive" : "negative",
-        title: status === "success" ? "Your goal was created!" : "Oops!",
-        content: message
-      }
+      dispatch({
+        type: SHOW_ALERT,
+        payload: {
+          type: "negative",
+          title: "Oops!",
+          content: err.data
+        }
+      });
     });
-
-    return response;
-  });
 };
 
 export const createLongTermGoal = data => async dispatch => {
@@ -190,7 +199,7 @@ export const editGoals = goal => dispatch => {
         eventAction: "short_goal_edit_error"
       });
       status = "error";
-      message = "Please, double check your form fields.";
+      message = response.data.message;
     }
 
     dispatch({

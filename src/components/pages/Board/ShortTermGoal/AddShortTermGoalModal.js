@@ -29,15 +29,16 @@ class AddShortTermGoalModal extends Component {
     // console.log(formOutput);
 
     this.props.createGoal(formOutput).then(response => {
-      const { status } = response.data;
-      if (status === "success") {
-        this.props.loadGoals(
-          this.props.currentProjectId,
-          this.props.boardShowGoals
-        ); //refresh goals (to display new one)
-        setTimeout(() => {
-          this.props.toggleModal("shortTermGoal"); //close modal once goal is created
-        }, 500);
+      if (response !== undefined) {
+        if (response.status === 200 || response.status === 201) {
+          this.props.loadGoals(
+            this.props.currentProjectId,
+            this.props.boardShowGoals
+          ); //refresh goals (to display new one)
+          setTimeout(() => {
+            this.props.toggleModal("shortTermGoal"); //close modal once goal is created
+          }, 500);
+        }
       }
     });
   };
