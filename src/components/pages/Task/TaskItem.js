@@ -79,7 +79,10 @@ class TaskItem extends Component {
             </div>
             <div
               className="task-delete"
-              onClick={() => this.props.deleteTask(id)}
+              onClick={e => {
+                e.stopPropagation();
+                this.props.deleteTask(id);
+              }}
             >
               <i className="fas fa-trash-alt"></i>
             </div>
