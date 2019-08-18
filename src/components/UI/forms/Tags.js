@@ -29,7 +29,7 @@ class Tags extends React.Component {
     handleAddition(tag) {
         const tags = [].concat(this.state.tags, {
             id: tag.id,
-            name: tag.email
+            name: `${tag.name}:${tag.email}`
         })
         this.setState({ tags });
         this.props.updateTags(tags)

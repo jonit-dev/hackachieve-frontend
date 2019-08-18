@@ -39,7 +39,7 @@ class InviteMemberModal extends Component {
         this.props.currentProject.member.map((user) =>
         members.push({
             id: user.id,
-            name: user.email
+            name: `${user.first_name} ${user.last_name}:${user.email}`
         })
         )
 

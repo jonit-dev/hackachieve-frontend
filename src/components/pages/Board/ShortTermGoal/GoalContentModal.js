@@ -430,7 +430,7 @@ class GoalContentModal extends Component {
         content={content}
         comment={commentcontent}
         actions={actions}
-        loading={this.props.loading}
+        uploadLoading={this.props.loading}
       />
     );
   }
