@@ -1,0 +1,12 @@
+@mixin card-active-color($color) {
+  background-color: $color;
+  .column-card-title,
+  .column-card-description,
+  .column-card-deadline-text {
+    color: $hackachieve-white !important;
+  }
+
+  i[class*="calendar"] {
+    color: $hackachieve-white !important;
+  }
+}

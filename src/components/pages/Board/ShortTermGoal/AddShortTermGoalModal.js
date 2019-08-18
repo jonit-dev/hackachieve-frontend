@@ -14,8 +14,13 @@ class AddShortTermGoalModal extends Component {
   onSubmit = formValues => {
     let formOutput = {
       ...formValues,
-      column_id: this.props.myProps.longTermGoalId
+      column: this.props.myProps.longTermGoalId
     };
+
+    //remove all empty fields from formOutput
+    Object.keys(formOutput).forEach(key =>
+      !formOutput[key] ? delete formOutput[key] : null
+    );
 
     formOutput.optional_duration_hrs = formOutput.duration_hrs || "";
     delete formOutput.duration_hrs;

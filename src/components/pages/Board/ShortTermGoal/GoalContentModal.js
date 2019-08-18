@@ -56,24 +56,11 @@ class GoalContentModal extends Component {
     );
   }
 
-  onRenderStatus(status) {
-    switch (status) {
-      case 1:
-        return "Pending";
-      case 2:
-        return "On going...";
-      case 3:
-        return "Done";
-      default:
-        return null;
-    }
-  }
-
   onChangePublicStatus() {
     let formOutput = {
       goal_id: this.props.myProps.shortTermGoal.id,
       goal_data: {
-        column_id: this.props.myProps.shortTermGoal.column_id,
+        column: this.props.myProps.shortTermGoal.column,
         deadline: moment(this.props.myProps.shortTermGoal.deadline).format(
           "YYYY-MM-DD"
         ),
@@ -201,6 +188,32 @@ class GoalContentModal extends Component {
     this.props.CommentsVote(vote).then(response => {
       this.loadcomment();
     });
+  }
+
+  onRenderStatus(status) {
+    switch (status) {
+      case 1:
+        return "Pending";
+      case 2:
+        return "On going...";
+      case 3:
+        return "Done";
+      default:
+        return null;
+    }
+  }
+
+  onRenderStatusIcon(status) {
+    switch (status) {
+      case 1:
+        return <i className="fas fa-circle pending-status"></i>;
+      case 2:
+        return <i className="fas fa-circle on-going-status"></i>;
+      case 3:
+        return <i className="fas fa-circle complete-status"></i>;
+      default:
+        return <i className="fas fa-circle pending-status"></i>;
+    }
   }
 
   render() {
@@ -343,13 +356,21 @@ class GoalContentModal extends Component {
       <React.Fragment>
         <div className="top-bar-popup">
           <a href="# " onClick={() => this.onEdit()}>
-            <img src="/images/icons/alert-circle.svg" alt="alert circle" />
-            <strong>Status: {this.onRenderStatus(status)}</strong>
+            <strong>
+              Status: {this.onRenderStatus(status)}{" "}
+              <span className="status-icon">
+                {this.onRenderStatusIcon(status)}
+              </span>
+            </strong>
           </a>
           <a href="# " onClick={() => this.onEdit()}>
-            <img src="/images/icons/alert-circle.svg" alt="alert circle" />
+            <i className="far fa-calendar-alt"></i>
             <strong>Deadline:</strong>{" "}
-            <Moment format="D MMMM, YYYY">{deadline}</Moment>
+            {deadline ? (
+              <Moment format="D MMMM, YYYY">{deadline}</Moment>
+            ) : (
+              "No deadline set"
+            )}
           </a>
           {/*below a tag is use to make card public or private.*/}
           {/* {this.onPublicPrivateSwitch()} */}
@@ -362,14 +383,25 @@ class GoalContentModal extends Component {
         {/*<a className="add-tag" href="# " > <img src="/images/icons/plus.svg" alt=""/> Add</a>*/}
         {/*</div>*/}
 
-        <LabelHandler label="Tags" goalId={this.props.myProps.shortTermGoal.id} />
-        <InviteHandler label="Add members to card" goalId={this.props.myProps.shortTermGoal.id} members={member}  />
+        <LabelHandler
+          label="Tags"
+          goalId={this.props.myProps.shortTermGoal.id}
+        />
+        <InviteHandler
+          label="Add members to card"
+          goalId={this.props.myProps.shortTermGoal.id}
+          members={member}
+        />
 
         <div className="detail">
           <div className="goal-description">
             <h3>Description</h3>
-            <p>
-              <Linkify>{description}</Linkify>
+            <p onClick={() => this.onEdit()}>
+              {description ? (
+                <Linkify>{description}</Linkify>
+              ) : (
+                "Click to set your card description..."
+              )}
             </p>
           </div>
 

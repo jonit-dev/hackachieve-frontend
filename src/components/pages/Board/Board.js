@@ -52,7 +52,6 @@ class Board extends Component {
     this.props.toggleModal("inviteMember"); //toggle a specific modal by triggering this action
   }
 
-
   onOpenLongTermModal() {
     console.log("opening long term modal");
     this.props.toggleModal("longTermGoal", 0);
@@ -162,7 +161,7 @@ class Board extends Component {
 
     //we will use it to manipulate our current state
     //eslint-disable-next-line
-    Array.prototype.swap = function (x, y) {
+    Array.prototype.swap = function(x, y) {
       var b = this[x];
       this[x] = this[y];
       this[y] = b;
@@ -189,9 +188,9 @@ class Board extends Component {
     //we should get the target id
 
     if (draggableId.includes("short-term-goal")) {
-      // Same column d&d movement ========================================
-
       const goalId = parseInt(draggableId.split("-")[3]);
+
+      // Same column d&d movement ========================================
 
       if (destination.droppableId === source.droppableId) {
         console.log("==> same column movement !!");
@@ -248,21 +247,19 @@ class Board extends Component {
         );
 
         //remove item from source long term goal
-
         sourceLongTermGoal.short_term_goals = sourceLongTermGoal.short_term_goals.filter(
           stg => stg.id !== goalId
         );
 
         console.log("updated source LTG");
-
         console.log(sourceLongTermGoal);
+
         this.props.updateLongTermGoalState(
           sourceLongTermGoal.id,
           sourceLongTermGoal
         );
 
         //add item into destination long term goal
-
         destinationLongTermGoal.short_term_goals.push(sourceShortTermGoal);
 
         console.log("updated destination LTG");
@@ -277,11 +274,18 @@ class Board extends Component {
 
         // update column_id and then send updated short term goal
         console.log(sourceShortTermGoal);
-        sourceShortTermGoal.column_id = destination.droppableId;
-        sourceShortTermGoal.deadline = sourceShortTermGoal.deadline.split(
-          "T"
-        )[0];
+        sourceShortTermGoal.column = destination.droppableId;
+        sourceShortTermGoal.deadline = sourceShortTermGoal.deadline
+          ? sourceShortTermGoal.deadline.split("T")[0]
+          : null;
         sourceShortTermGoal.order_position = destination.index;
+
+        //remove all empty fields from sourceShortTermGoal
+        Object.keys(sourceShortTermGoal).forEach(key =>
+          sourceShortTermGoal[key] === null || sourceShortTermGoal[key] === ""
+            ? delete sourceShortTermGoal[key]
+            : null
+        );
 
         this.props.updateGoal(sourceShortTermGoal);
 
@@ -291,21 +295,36 @@ class Board extends Component {
   }
 
   render() {
-    const {name}=this.props.currentProject;
-    let member=this.props.currentProject.member?this.props.currentProject.member:[];
+    const { name } = this.props.currentProject;
+    let member = this.props.currentProject.member
+      ? this.props.currentProject.member
+      : [];
     return (
       <React.Fragment>
         <main className="board-main">
           <div className="board-columns">
             <div className="board-header-subnav">
               <ul>
-                <li><a className="board-name" href="#/">{name}</a></li>
-                {member.map(user=>
-                <li key={user.id}>
-                  <span className="member">{user.first_name.charAt(0).toUpperCase()}</span>
-                </li>)}
                 <li>
-                  <a className="board-invite-btn" href="#/" onClick={() => this.onOpenInviteModal()}>Invite</a>
+                  <a className="board-name" href="#/">
+                    {name}
+                  </a>
+                </li>
+                {member.map(user => (
+                  <li key={user.id}>
+                    <span className="member">
+                      {user.first_name.charAt(0).toUpperCase()}
+                    </span>
+                  </li>
+                ))}
+                <li>
+                  <a
+                    className="board-invite-btn"
+                    href="#/"
+                    onClick={() => this.onOpenInviteModal()}
+                  >
+                    Invite
+                  </a>
                 </li>
               </ul>
             </div>
@@ -320,8 +339,8 @@ class Board extends Component {
                 </div>
               </div>
             ) : (
-                <p></p>
-              )}
+              <p></p>
+            )}
 
             {/* Drag And drop context */}
             <DragDropContext
@@ -345,8 +364,8 @@ class Board extends Component {
                 </div>
               </div>
             ) : (
-                <p></p>
-              )}
+              <p></p>
+            )}
           </div>
 
           {this.onRenderLongTermGoalModal()}

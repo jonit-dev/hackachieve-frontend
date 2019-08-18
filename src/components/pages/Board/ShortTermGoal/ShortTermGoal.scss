@@ -95,12 +95,10 @@
         position: absolute;
         top: 8.7rem;
 
-        .column-card-deadline-icon {
-          background-image: url("/images/icons/calelndar-icon.svg");
-          width: 12px;
-          height: 12px;
-          background-position: center;
-          background-size: contain;
+        i[class*="calendar"] {
+          font-size: 1rem;
+          padding-right: 0.2rem;
+          color: lighten($hackachieve-dark-grey, 20%);
         }
 
         .column-card-deadline-text {
@@ -194,6 +192,12 @@
           font-size: 14px;
           box-sizing: border-box;
           margin-right: 0.5rem;
+
+          i {
+            color: white;
+            font-size: 1.2rem;
+            padding-right: 0.5rem;
+          }
         }
 
         .column-card-button {
@@ -225,72 +229,57 @@
     /* CARD ACTIVE COLORS =========================================== */
 
     &.card-active-health {
-      background-color: $hackachieve-blue;
-      .column-card-title,
-      .column-card-description,
-      .column-card-deadline-text {
-        color: $hackachieve-white !important;
-      }
+      @include card-active-color($hackachieve-blue);
     }
 
     &.card-active-career {
-      background-color: $hackachieve-light-purple;
-      border: 1px solid $hackachieve-light-purple;
-      .column-card-title,
-      .column-card-description,
-      .column-card-deadline-text {
-        color: $hackachieve-white !important;
-      }
+      @include card-active-color($hackachieve-light-purple);
     }
 
     &.card-active-leisure-and-fun {
-      background-color: $hackachieve-light-green;
-      border: 1px solid $hackachieve-light-green;
-      .column-card-title,
-      .column-card-description,
-      .column-card-deadline-text {
-        color: $hackachieve-white !important;
-      }
+      @include card-active-color($hackachieve-light-green);
     }
 
     &.card-active-family {
-      background-color: $hackachieve-orange;
-      border: 1px solid $hackachieve-orange;
-      .column-card-title,
-      .column-card-description,
-      .column-card-deadline-text {
-        color: $hackachieve-white !important;
-      }
+      @include card-active-color($hackachieve-orange);
     }
 
     &.card-active-finances {
-      background-color: $hackachieve-orange;
-      border: 1px solid $hackachieve-orange;
-      .column-card-title,
-      .column-card-description,
-      .column-card-deadline-text {
-        color: $hackachieve-white !important;
-      }
+      @include card-active-color($hackachieve-orange);
     }
 
     &.card-active-spiritual {
-      background-color: $hackachieve-light-purple;
-      border: 1px solid $hackachieve-light-purple;
-      .column-card-title,
-      .column-card-description,
-      .column-card-deadline-text {
-        color: $hackachieve-white !important;
-      }
+      @include card-active-color($hackachieve-light-purple);
     }
 
     &.card-active-personal-development {
-      background-color: $hackachieve-pink;
-      border: 1px solid $hackachieve-pink;
-      .column-card-title,
-      .column-card-description,
-      .column-card-deadline-text {
-        color: $hackachieve-white !important;
-      }
+      @include card-active-color($hackachieve-pink);
+    }
+
+    &.card-active-other {
+      @include card-active-color($hackachieve-darker-purple);
+    }
+    &.card-active-recruitment {
+      @include card-active-color($hackachieve-dark-purple);
+    }
+
+    &.card-active-sales {
+      @include card-active-color($hackachieve-color-sales);
+    }
+    &.card-active-marketing {
+      @include card-active-color($hackachieve-color-marketing);
+    }
+
+    &.card-active-learning {
+      @include card-active-color($hackachieve-color-learning);
+    }
+
+    &.card-active-operations {
+      @include card-active-color($hackachieve-color-operations);
+    }
+
+    &.card-active-operations {
+      @include card-active-color($hackachieve-dark-blue);
     }
   }
 }

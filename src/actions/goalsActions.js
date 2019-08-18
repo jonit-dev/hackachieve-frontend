@@ -172,18 +172,25 @@ export const editGoals = goal => dispatch => {
     goal.goal_data,
     "auth"
   ).then(response => {
-    const { status, message } = response.data;
+    console.log(response);
 
-    if (status === "success") {
+    const { column } = response.data;
+    let message, status;
+
+    if (column) {
       Analytics.track("short_goal_edit", {
         eventCategory: "goals",
         eventAction: "short_goal_edit"
       });
+      status = "success";
+      message = "Your goal was updated!";
     } else {
       Analytics.track("short_goal_edit_error", {
         eventCategory: "goals",
         eventAction: "short_goal_edit_error"
       });
+      status = "error";
+      message = "Please, double check your form fields.";
     }
 
     dispatch({
@@ -196,7 +203,7 @@ export const editGoals = goal => dispatch => {
       }
     });
 
-    return response;
+    return status;
   });
 };
 
@@ -210,7 +217,7 @@ export const updateGoal = goal => dispatch => {
 
 export const editColumns = column => dispatch => {
   return API.request(
-    `/columns/update/${column.column_id}/`,
+    `/columns/update/${column.column}/`,
     "PUT",
     column.column_data,
     "auth"

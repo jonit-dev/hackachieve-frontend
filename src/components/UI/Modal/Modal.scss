@@ -61,6 +61,21 @@
 
 .top-bar-popup {
   margin: 25px 0 25px;
+
+  i {
+    font-size: 1rem;
+    padding-right: 0.5rem;
+  }
+
+  .complete-status {
+    color: $hackachieve-green;
+  }
+  .on-going-status {
+    color: $hackachieve-yellow;
+  }
+  .status-icon {
+    padding-right: 0.5rem;
+  }
 }
 
 .top-bar-popup a {
@@ -210,6 +225,7 @@
     letter-spacing: 1px;
   }
   p {
+    cursor: pointer;
     color: #54575d;
     font-size: 16px;
     font-weight: 300;

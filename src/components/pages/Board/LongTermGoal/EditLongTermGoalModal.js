@@ -347,7 +347,7 @@ class EditLongTermGoalModal extends Component {
       column_data: {
         ...formValues
       },
-      column_id: this.props.myProps.longTermGoal.id
+      column: this.props.myProps.longTermGoal.id
     };
 
     formOutput.column_data.board_id = this.state.currentSelectableValue.id; //get category id
@@ -383,7 +383,9 @@ const mapStateToProps = (state, ownProps) => {
     initialValues: {
       name: ownProps.longTermGoal.title,
       description: ownProps.longTermGoal.description,
-      deadline: ownProps.longTermGoal.deadline.split("T")[0]
+      deadline: ownProps.deadline
+        ? ownProps.longTermGoal.deadline.split("T")[0]
+        : ""
       //board id is set on componentDidMount
     }
   };

@@ -103,7 +103,9 @@ class ShortTermGoal extends Component {
               COMPLETE
             </div>
 
-            <div className="column-card-text-button">ON GOING</div>
+            <div className="column-card-text-button">
+              <i className="fas fa-hourglass-half"></i>
+            </div>
           </React.Fragment>
         );
 
@@ -238,17 +240,17 @@ class ShortTermGoal extends Component {
             <div className="column-card-body">
               <div className="column-card-labels">{this.onRenderLabels()}</div>
               <div className="column-card-title truncate">{title}</div>
-              {description.length <= this.characterLimit ? (
-                <div className="column-card-description">{description}</div>
-              ) : (
-                <div className="column-card-description">
-                  {description.substring(0, this.characterLimit) + " ..."}
-                </div>
-              )}
+              <div className="column-card-description truncate">
+                {description}
+              </div>
               <div className="column-card-deadline">
-                <div className="column-card-deadline-icon"></div>
+                <i className="fas fa-calendar-alt"></i>
                 <div className="column-card-deadline-text">
-                  <Moment format="D MMMM, YY">{deadline}</Moment>
+                  {deadline ? (
+                    <Moment format="D MMMM, YY">{deadline}</Moment>
+                  ) : (
+                    "No deadline"
+                  )}
                 </div>
               </div>
             </div>

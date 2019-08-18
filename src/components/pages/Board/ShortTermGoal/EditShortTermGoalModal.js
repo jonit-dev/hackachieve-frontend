@@ -146,12 +146,17 @@ class EditShortTermGoalModal extends Component {
       goal_id: this.props.myProps.shortTermGoal.id,
       goal_data: {
         ...formValues,
-        column_id: this.props.myProps.shortTermGoal.column_id
+        column: this.props.myProps.shortTermGoal.column_id
       }
     };
 
+    //remove all empty fields from formOutput
+    Object.keys(formOutput.goal_data).forEach(key =>
+      !formOutput.goal_data[key] ? delete formOutput.goal_data[key] : null
+    );
+
     this.props.editGoals(formOutput).then(response => {
-      const { status } = response.data;
+      const status = response;
 
       if (status === "success") {
         this.props.loadGoals(
@@ -170,7 +175,9 @@ class EditShortTermGoalModal extends Component {
 const mapStateToProps = (state, ownProps) => {
   const { boardShowGoals, modals } = state.ui;
 
-  const deadline = ownProps.shortTermGoal.deadline.split("T")[0];
+  const deadline = ownProps.shortTermGoal.deadline
+    ? ownProps.shortTermGoal.deadline.split("T")[0]
+    : "";
 
   return {
     myProps: ownProps,
