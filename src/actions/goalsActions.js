@@ -4,7 +4,10 @@ import {
   LOAD_GOALS,
   SHOW_ALERT,
   FILTER_GOALS,
-  UPDATE_LONG_TERM_GOAL_STATE
+  UPDATE_LONG_TERM_GOAL_STATE,
+  FILE_UPLOAD_SUCCESS,
+  SET_LOADING,
+  CLEAR_FILE_UPLOAD
 } from "./types";
 import Analytics from "../analytics/Analytics";
 
@@ -334,5 +337,71 @@ export const updateLongTermGoalState = (
       longTermGoalId,
       newLongTermGoal
     }
+  });
+};
+
+export const uploadFile = data => async dispatch => {
+  dispatch({
+    type: SET_LOADING
+  });
+  return API.request("/upload/", "POST", data, "auth").then(response => {
+    const { status } = response.data;
+
+    if (status === "success") {
+      Analytics.track("upload_file", {
+        eventCategory: "goals",
+        eventAction: "upload_file"
+      });
+    } else {
+      Analytics.track("upload_file_error", {
+        eventCategory: "goals",
+        eventAction: "upload_file_error"
+      });
+    }
+    dispatch({
+      type: FILE_UPLOAD_SUCCESS,
+      payload: response.data
+    });
+    return response;
+  });
+};
+
+export const attachFileToGoal = (goalId, payload) => dispatch => {
+  return API.request(
+    `/goals/update-file/${goalId}/`,
+    "PUT",
+    payload,
+    "auth"
+  ).then(response => {
+    const { file } = response.data;
+
+    if (file) {
+      Analytics.track("attach_file_to_goal", {
+        eventCategory: "goals",
+        eventAction: "attach_file_to_goal"
+      });
+    } else {
+      Analytics.track("attach_file_to_goal_error", {
+        eventCategory: "goals",
+        eventAction: "attach_file_to_goal_error"
+      });
+    }
+
+    dispatch({
+      type: SHOW_ALERT,
+      payload: {
+        type: file ? "positive" : "negative",
+        title: file ? "File attached to goal!" : "Oops!",
+        content: "File attached to goal!"
+      }
+    });
+
+    return response;
+  });
+};
+
+export const clearFileUpload = () => dispatch => {
+  dispatch({
+    type: CLEAR_FILE_UPLOAD
   });
 };

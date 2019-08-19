@@ -1,12 +1,18 @@
 import {
   LOAD_GOALS,
   FILTER_GOALS,
-  UPDATE_LONG_TERM_GOAL_STATE
+  UPDATE_LONG_TERM_GOAL_STATE,
+  FILE_UPLOAD_SUCCESS,
+  CLEAR_FILE_UPLOAD,
+  SET_LOADING
 } from "../actions/types";
 
 const INITIAL_STATE = {
   goals: null,
-  filter: "All"
+  filter: "All",
+  uploadFile:{},
+  type:"",
+  loading:false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -42,6 +48,32 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         goals: stateCopy
       };
+
+
+      
+
+    case CLEAR_FILE_UPLOAD:
+      return {
+        ...state,
+        loading:false,
+        uploadFile:{},
+        type:""
+      };
+  
+      
+    case SET_LOADING:
+      return {
+        ...state,
+        loading:true
+      };
+
+    case FILE_UPLOAD_SUCCESS:
+      return {
+        ...state,
+        uploadFile: action.payload,
+        type:FILE_UPLOAD_SUCCESS
+      };
+      
 
     default:
       return state;

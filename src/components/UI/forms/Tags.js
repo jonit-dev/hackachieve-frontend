@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { userInfoRefresh } from "../../../actions/authActions";
 import ReactTags from "react-tag-autocomplete";
 class Tags extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tags: this.props.tags
-    };
-  }
+    constructor(props) {
+        super(props)
+        this.state = {
+            tags: this.props.tags
+        }
+    }
 
   componentDidMount() {
     this.props.userInfoRefresh();
@@ -29,7 +29,7 @@ class Tags extends React.Component {
   handleAddition(tag) {
     const tags = [].concat(this.state.tags, {
       id: tag.id,
-      name: tag.email
+      name: `${tag.name}:${tag.email}`
     });
     this.setState({ tags });
     this.props.updateTags(tags);
@@ -65,6 +65,7 @@ class Tags extends React.Component {
     );
   }
 }
+
 
 const mapStateToProps = state => {
   return {

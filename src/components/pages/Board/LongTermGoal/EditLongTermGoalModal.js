@@ -217,7 +217,7 @@ class EditLongTermGoalModal extends Component {
     member.map(user =>
       members.push({
         id: user.id,
-        name: user.email
+        name: `${user.first_name} ${user.last_name}:${user.email}`
       })
     );
 
@@ -229,7 +229,7 @@ class EditLongTermGoalModal extends Component {
           A long-term goal is something you want to do in the future, for
           example, in the next 3 months.
         </p>
-
+        cards
         <form
           onSubmit={this.props.handleSubmit(this.onSubmit)}
           className="ui form"
