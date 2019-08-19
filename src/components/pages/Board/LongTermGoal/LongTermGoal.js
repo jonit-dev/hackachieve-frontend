@@ -72,7 +72,7 @@ class LongTermGoal extends Component {
   }
 
   onOpenShortTermGoalModal(longTermGoalId) {
-    this.props.toggleModal("shortTermGoal", longTermGoalId); //toggle a specific modal by triggering this action
+    this.props.toggleModal("shortTermGoal", longTermGoalId); //toggle a specific modal by triggering this action.
   }
 
   onOpenLongTermGoalModal() {
