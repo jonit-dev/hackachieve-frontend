@@ -386,7 +386,7 @@ const mapStateToProps = (state, ownProps) => {
       deadline: ownProps.longTermGoal.deadline
         ? ownProps.longTermGoal.deadline.split("T")[0]
         : ""
-      //board id is set on componentDidMount
+      //board id is set on componentDidMount...
     }
   };
 };
