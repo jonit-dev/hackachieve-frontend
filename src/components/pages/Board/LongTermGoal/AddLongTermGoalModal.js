@@ -313,7 +313,8 @@ class AddLongTermGoalModal extends Component {
         };
 
         if (invitePayload.member.members) {
-          //if there are some members to add to this long term goal, add it. If not, skip
+          //if there are some members to add to this long term goal, add it.  If not, just skip
+
           this.props
             .inviteLongTermGoalMember(response.data.response.id, invitePayload)
             .then(response => {
