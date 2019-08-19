@@ -383,7 +383,7 @@ const mapStateToProps = (state, ownProps) => {
     initialValues: {
       name: ownProps.longTermGoal.title,
       description: ownProps.longTermGoal.description,
-      deadline: ownProps.deadline
+      deadline: ownProps.longTermGoal.deadline
         ? ownProps.longTermGoal.deadline.split("T")[0]
         : ""
       //board id is set on componentDidMount
