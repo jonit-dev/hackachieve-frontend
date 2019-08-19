@@ -103,7 +103,7 @@ main.board-main {
         padding-bottom: 5.2rem;
         width: 100%;
 
-        .member-icons{
+        .member-icons {
           display: flex;
           align-items: center;
           position: absolute;
@@ -111,23 +111,23 @@ main.board-main {
           width: 90%;
           flex-direction: row;
           justify-content: flex-end;
-          ul{
+          ul {
             margin: 0;
             padding: 0;
-            li{
+            li {
               display: inline-block;
               padding: 0px;
-        
-              a{
-                &.board-name{
-                font-size: 16px;
-                font-weight: bold;
-                color: #fff;
-                padding: 10px;
-                display: block;
-                margin-right: 30px;
+
+              a {
+                &.board-name {
+                  font-size: 16px;
+                  font-weight: bold;
+                  color: #fff;
+                  padding: 10px;
+                  display: block;
+                  margin-right: 30px;
                 }
-                &.board-invite-btn{
+                &.board-invite-btn {
                   display: flex;
                   align-items: center;
                   background-color: #5aac44;
@@ -145,29 +145,26 @@ main.board-main {
                   margin-left: 20px;
                 }
               }
-             span{
-               &.member{
-                 display: flex;
-                 width: 28px;
-                 height: 28px;
-                 border-radius: 50%;
-                 background-color: #dfe1e6;
-                color: #172b4d;
-                cursor: pointer;
-                justify-content: center;
-                align-items: center;
-                font-size: 14px;
-                font-weight: bold;
-                margin-left: -2px;
-               }
-             }
+              span {
+                &.member {
+                  display: flex;
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  background-color: #dfe1e6;
+                  color: #172b4d;
+                  cursor: pointer;
+                  justify-content: center;
+                  align-items: center;
+                  font-size: 14px;
+                  font-weight: bold;
+                  margin-left: -2px;
+                }
+              }
             }
           }
-  
         }
       }
-
-
 
       .column-status {
         flex: 1 1 100%;
@@ -228,13 +225,13 @@ main.board-main {
       .column-body,
       .column-footer {
         flex: 1 1 100%;
-        max-height: 65vh;
+        max-height: 55vh;
         padding-left: 1.2rem;
         padding-right: 1.2rem;
       }
       .column-footer {
         margin-bottom: 1.2rem;
-
+        margin-top: 1rem;
         display: flex;
         flex-wrap: wrap;
         align-items: flex-end;
@@ -346,6 +343,10 @@ main.board-main {
         font-size: 18.1px;
         letter-spacing: 0.5px;
         color: $hackachieve-dark-grey;
+
+        &.truncate {
+          max-width: 286px;
+        }
       }
 
       .column-dropdown {
