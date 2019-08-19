@@ -14,8 +14,13 @@ import AddShortTermGoalModal from "../ShortTermGoal/AddShortTermGoalModal";
 import AddLongTermGoalModal from "./AddLongTermGoalModal";
 import EditLongTermGoalModal from "./EditLongTermGoalModal";
 import { Droppable } from "react-beautiful-dnd";
+import QuickAddShortTermGoal from "./QuickAddShortTermGoal";
 
 class LongTermGoal extends Component {
+  state = {
+    showQuickAddShortTermGoal: false
+  };
+
   onConvertBoardNameClass(boardName) {
     if (boardName.indexOf(" ") > -1) {
       return boardName
@@ -115,6 +120,14 @@ class LongTermGoal extends Component {
     }
   }
 
+  onOpenQuickAddShortTermGoal() {
+    //toggle quick add short term goal
+
+    this.setState({
+      showQuickAddShortTermGoal: !this.state.showQuickAddShortTermGoal
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -205,10 +218,21 @@ class LongTermGoal extends Component {
           </Droppable>
 
           <div className="column-footer">
+            <QuickAddShortTermGoal
+              column={this.props.myProps.id}
+              showQuickAddShortTermGoal={this.state.showQuickAddShortTermGoal}
+              onOpenQuickAddShortTermGoal={() =>
+                this.onOpenQuickAddShortTermGoal()
+              }
+            />
+
             <div
               className="column-add-short-term-goal"
+              // onClick={() => {
+              //   this.onOpenShortTermGoalModal(this.props.myProps.id);
+              // }}
               onClick={() => {
-                this.onOpenShortTermGoalModal(this.props.myProps.id);
+                this.onOpenQuickAddShortTermGoal();
               }}
             >
               <div className="column-add-short-term-goal-btn"></div>

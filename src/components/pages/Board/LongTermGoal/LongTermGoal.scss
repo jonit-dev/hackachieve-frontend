@@ -168,8 +168,25 @@ main.board-main {
         padding-right: 1.2rem;
       }
       .column-footer {
-        max-height: 50px;
         margin-bottom: 1.2rem;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+
+        .column-add-short-term-goal {
+          flex: 100%;
+        }
+
+        textarea {
+          border-radius: 5px;
+          flex: 100%;
+
+          &::placeholder {
+            color: $hackachieve-grey;
+            font-size: 1rem;
+          }
+        }
       }
 
       .column-info {
