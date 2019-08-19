@@ -4,7 +4,7 @@ import { clearAlert } from "../../../actions/uiActions";
 
 class Alert extends Component {
   componentDidMount() {
-    //set time out to auto clear message
+    // set time out to auto clear message
     window.setTimeout(() => {
       this.props.clearAlert();
     }, 6000);
@@ -48,7 +48,9 @@ class Alert extends Component {
         <div className={`ui ${this.props.alert.type} message`}>
           <i className="close icon"></i>
           <div className="header">{this.props.alert.title}</div>
-          {this.onRenderContent(this.props.alert.content)}
+          <div className="content">
+            {this.onRenderContent(this.props.alert.content)}
+          </div>
         </div>
       </React.Fragment>
     );

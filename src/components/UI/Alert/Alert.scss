@@ -1,7 +1,12 @@
 .message {
   .header {
-    color: white;
+    color: white !important;
   }
+  .content {
+    margin-top: 0.5rem;
+  }
+  color: white !important;
+
   .alert-list {
     margin-top: 0.5rem;
 
