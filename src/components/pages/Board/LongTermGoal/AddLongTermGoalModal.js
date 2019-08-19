@@ -12,11 +12,15 @@ import {
   createNewCategory,
   deleteNewCategory
 } from "../../../../actions/goalsActions";
-import { searchUsers, inviteLongTermGoalMember } from "../../../../actions/projectActions";
+import {
+  searchUsers,
+  inviteLongTermGoalMember
+} from "../../../../actions/projectActions";
 
 import Loading from "../../../UI/Loading/Loading";
 import { CategorySelector } from "./CategorySelector";
 import Tags from "../../../UI/forms/Tags";
+import FormHelper from "../../../../classes/FormHelper";
 
 class AddLongTermGoalModal extends Component {
   constructor(props) {
@@ -121,7 +125,7 @@ class AddLongTermGoalModal extends Component {
   createCategory(data) {
     const { value, label } = data;
     let board_id = parseInt(value);
-    
+
     switch (data.action) {
       case "clear":
         //delete category
@@ -293,7 +297,10 @@ class AddLongTermGoalModal extends Component {
   }
 
   onSubmit = formValues => {
-    let formOutput = { ...formValues };
+    let formOutput = FormHelper.cleanFormOutput({
+      ...formValues,
+      project_id: this.props.currentProjectId
+    });
 
     let members = [];
     this.state.tags.map(member => members.push({ id: member.id }));
@@ -304,17 +311,33 @@ class AddLongTermGoalModal extends Component {
         const invitePayload = {
           member: members
         };
-        this.props.inviteLongTermGoalMember(response.data.response.id, invitePayload).then(response => {
-          this.props.loadGoals(
-            this.props.currentProjectId,
-            this.props.boardShowGoals
-          ); //refresh goals (to display new one)
 
+        if (invitePayload.member.members) {
+          //if there are some members to add to this long term goal, add it. If not, skip
+          this.props
+            .inviteLongTermGoalMember(response.data.response.id, invitePayload)
+            .then(response => {
+              this.props.loadGoals(
+                this.props.currentProjectId,
+                this.props.boardShowGoals
+              ); //refresh goals (to display new one)
+
+              setTimeout(() => {
+                this.props.toggleModal("longTermGoal"); //close modal once goal is created
+              }, 500);
+            });
+        } else {
           setTimeout(() => {
-            this.props.toggleModal("longTermGoal"); //close modal once goal is created
-          }, 500);
-        });
+            this.props.loadGoals(
+              this.props.currentProjectId,
+              this.props.boardShowGoals
+            ); //refresh goals (to display new one)
 
+            setTimeout(() => {
+              this.props.toggleModal("longTermGoal"); //close modal once goal is created
+            }, 500);
+          }, 500);
+        }
       }
     });
   };
