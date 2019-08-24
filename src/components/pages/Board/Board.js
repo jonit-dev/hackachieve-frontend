@@ -19,6 +19,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { setCurrentProject } from "../../../actions/projectActions";
 import InviteMemberModal from "./InviteMemberModal";
 import BoardSwitch from "../Base/BoardSwitch";
+import UploadLoading from "../../UI/Loading/UploadLoading";
 
 class Board extends Component {
   componentDidMount() {
@@ -301,6 +302,7 @@ class Board extends Component {
       : [];
     return (
       <React.Fragment>
+        {this.props.fileUploadingStatus ? <UploadLoading />:""}
         <main className="board-main">
           <div className="board-columns">
             <div className="board-header-subnav">
@@ -394,7 +396,8 @@ const mapStateToProps = (state, ownProps) => {
     projects: state.projects,
     currentProjectId: state.projects.currentProjectId,
     selectedPanel: state.ui.selectedPanel,
-    currentProject: state.projects.currentProject
+    currentProject: state.projects.currentProject,
+    fileUploadingStatus: state.goal.fileUploadingStatus
   };
 };
 

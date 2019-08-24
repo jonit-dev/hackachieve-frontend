@@ -20,6 +20,10 @@ export const LOAD_GOALS = "LOAD_GOALS";
 export const FILTER_GOALS = "FILTER_GOALS";
 export const FILE_UPLOAD_SUCCESS = "FILE_UPLOAD_SUCCESS";
 export const CLEAR_FILE_UPLOAD = "CLEAR_FILE_UPLOAD";
+export const SET_FILE_UPLOADING = "SET_FILE_UPLOADING";
+export const ATTACH_UPLOAD_SUCCESS = "ATTACH_UPLOAD_SUCCESS";
+export const CLEAR_ATTACH_UPLOAD_SUCCESS = "CLEAR_ATTACH_UPLOAD_SUCCESS";
+
 
 /* Checklist =========================================== */
 export const SET_CHECKLIST_ITEM = "SET_CHECKLIST_ITEM";
@@ -54,3 +58,4 @@ export const LOAD_PROJECTS = "LOAD_PROJECTS";
 export const SET_CURRENT_PROJECT = "SET_CURRENT_PROJECT";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const SET_LOADING = "SET_LOADING";
+

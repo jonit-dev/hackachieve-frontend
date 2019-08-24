@@ -4,7 +4,9 @@ import {
   UPDATE_LONG_TERM_GOAL_STATE,
   FILE_UPLOAD_SUCCESS,
   CLEAR_FILE_UPLOAD,
-  SET_LOADING
+  SET_FILE_UPLOADING,
+  ATTACH_UPLOAD_SUCCESS,
+  CLEAR_ATTACH_UPLOAD_SUCCESS
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -12,7 +14,8 @@ const INITIAL_STATE = {
   filter: "All",
   uploadFile:{},
   type:"",
-  loading:false
+  loading:false,
+  fileUploadingStatus:false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -55,16 +58,27 @@ export default (state = INITIAL_STATE, action) => {
     case CLEAR_FILE_UPLOAD:
       return {
         ...state,
-        loading:false,
+        fileUploadingStatus:false,
         uploadFile:{},
         type:""
       };
-  
+    case CLEAR_ATTACH_UPLOAD_SUCCESS:
+        return {
+          ...state,
+          fileUploadingStatus:false,
+          type:""
+        };
+    case ATTACH_UPLOAD_SUCCESS:
+        return {
+          ...state,
+          uploadFile:{},
+          type:ATTACH_UPLOAD_SUCCESS
+        };
       
-    case SET_LOADING:
+    case SET_FILE_UPLOADING:
       return {
         ...state,
-        loading:true
+        fileUploadingStatus:true
       };
 
     case FILE_UPLOAD_SUCCESS:

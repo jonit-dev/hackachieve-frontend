@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { toggleModal, clearAlert } from "../../../actions/uiActions";
 import Alert from "../Alert/Alert";
 import cogoToast from "cogo-toast";
-// import UploadLoading from "../Loading/UploadLoading";
 
 class Modal extends Component {
   /*#############################################################|
@@ -42,9 +41,10 @@ class Modal extends Component {
   }
 
   render() {
+
     return ReactDOM.createPortal(
       <div
-        className="ui dimmer modals visible active"
+      className="ui dimmer modals visible active"
         onMouseDown={e => {
           //if the user click or drag the modal shadow, it will stop all event propagation (avoiding bugs like triggering card drag and drop) and close the modal
 
@@ -58,7 +58,6 @@ class Modal extends Component {
           className="ui  modal  active main-div"
           onClick={e => e.stopPropagation()}
         >
-          {/* {this.props.uploadLoading? <UploadLoading />:""} */}
 
           <div
             className="fas fa-times modal-close"

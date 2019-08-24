@@ -12,7 +12,8 @@ import {
   editGoals,
   uploadFile,
   attachFileToGoal,
-  clearFileUpload
+  clearFileUpload,
+  clearAttachFileUpload
 } from "../../../../actions/goalsActions";
 import moment from "moment";
 import cogoToast from "cogo-toast";
@@ -56,11 +57,20 @@ class GoalContentModal extends Component {
       if (nextProps.type === "FILE_UPLOAD_SUCCESS") {
         const goalId = this.props.myProps.shortTermGoal.id;
         const payload = {
-          file: nextProps.file.id
+          file: [{id:nextProps.file.id}]
         };
         this.props.attachFileToGoal(goalId, payload);
-        this.props.clearFileUpload();
       }
+
+      if (nextProps.type === "ATTACH_UPLOAD_SUCCESS") {
+        console.log("ATTACH_UPLOAD_SUCCESS");
+        this.props.clearAttachFileUpload();
+        this.props.loadGoals(
+          this.props.currentProjectId,
+          this.props.boardShowGoals
+        );
+      }
+
     }
   }
 
@@ -251,7 +261,8 @@ class GoalContentModal extends Component {
       description,
       deadline,
       status,
-      member
+      member,
+      file
     } = this.props.myProps.shortTermGoal;
 
     const { UpdateBox, Comment_id } = this.state;
@@ -437,14 +448,31 @@ class GoalContentModal extends Component {
 
           <ChecklistHandler />
         </div>
-        {/* 
+        
         <label className="fluid segment">
          <input type="file"  className="inputfile" id="embedpollfileinput" ref={fileInput => (this.fileInput = fileInput)}  key="fileInput" onChange={this.handleFileinputChange}/>
         <label htmlFor="embedpollfileinput" className="ui fileuploader right floated button">
           <i className="ui upload icon"></i>
           Upload File
         </label>
-        </label> */}
+        </label>
+
+
+        {file.length >0 &&
+        <React.Fragment>
+        <h3 className="attachment"> Attachments</h3>
+        <div className="ui list">
+          {file.map((data,index)=>
+                    <div className="item" key={index}>
+                    <i className="file icon"></i>
+                    <div className="content">
+                      <div className="header"><a className="item" href={data.file} target="_blank" rel="noopener noreferrer">{data.title}</a></div>
+                    </div>
+                  </div>
+            )}
+            </div>
+      </React.Fragment>
+      }
       </React.Fragment>
     );
 
@@ -465,7 +493,7 @@ class GoalContentModal extends Component {
         content={content}
         comment={commentcontent}
         actions={actions}
-        uploadLoading={this.props.loading}
+        fileUploadingStatus={this.props.fileUploadingStatus}
       />
     );
   }
@@ -475,10 +503,11 @@ const mapStateToProps = (state, ownProps) => {
   return {
     myProps: ownProps,
     modals: state.ui.modals,
+    boardShowGoals: state.ui.boardShowGoals,
     currentProjectId: state.projects.currentProjectId,
     file: state.goal.uploadFile,
     type: state.goal.type,
-    loading: state.goal.loading
+    fileUploadingStatus: state.goal.fileUploadingStatus
   };
 };
 
@@ -497,6 +526,7 @@ export default connect(
     CommentsVote,
     uploadFile,
     attachFileToGoal,
-    clearFileUpload
+    clearFileUpload,
+    clearAttachFileUpload
   }
 )(GoalContentModal);

@@ -138,7 +138,7 @@ export const inviteShortTermGoalMember = (
         payload: {
           type: member !== "" ? "positive" : "negative",
           title: member !== "" ? "New member added to your goal!" : "Oops!",
-          content: "New members added on your goal"
+          content: "member updated on your goal"
         }
       });
 
@@ -170,7 +170,7 @@ export const inviteLongTermGoalMember = (goalId, payload) => async dispatch => {
         type: SHOW_ALERT,
         payload: {
           type: member !== "" ? "positive" : "negative",
-          title: member !== "" ? "New member added to your goal!" : "Oops!",
+          title: member !== "" ? "member updated to your goal!" : "Oops!",
           content: "New members added on your goal"
         }
       });
