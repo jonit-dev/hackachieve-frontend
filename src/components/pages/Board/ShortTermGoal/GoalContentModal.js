@@ -26,7 +26,6 @@ import UploadFile from "../../../UI/Modal/UploadFile";
 import Attachments from "../../../UI/Modal/Attachments";
 import Description from "../../../UI/Modal/Description";
 import GrayPills from "../../../UI/Modal/GrayPills";
-import PublicPrivateSwitch from "../../../UI/Modal/PublicPrivateSwitch";
 
 class GoalContentModal extends Component {
   constructor(props) {
