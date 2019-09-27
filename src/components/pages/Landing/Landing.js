@@ -10,6 +10,7 @@ import BenefitItem from "./BenefitItem";
 import FeatureSection from "./FeatureSection";
 import FeatureSectionReverse from "./FeatureSectionReverse";
 import HowItWorks from "./HowItWorks";
+import Footer from "../Base/Footer/Footer";
 
 class Landing extends Component {
   componentDidMount() {
@@ -397,6 +398,7 @@ class Landing extends Component {
     </div*/}
         </div>{" "}
         {/* .site-wrap */}
+        <Footer />
       </React.Fragment>
     );
   }

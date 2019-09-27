@@ -1,7 +1,6 @@
 main {
-  margin-top: 6rem;
+  padding-top: 8rem !important;
   min-height: 84vh;
-  padding-top: 2rem;
 
   /*MOBILE ONLY CODE*/
   @media screen and (max-width: 770px) {
@@ -31,7 +30,7 @@ main {
 }
 
 body {
-  background: #f4f4fc;
+  background-color: $hackachieve-background-purple !important;
   overflow-x: hidden;
   font-family: "Lato", sans-serif;
 }

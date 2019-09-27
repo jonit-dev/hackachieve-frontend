@@ -1,5 +1,5 @@
 main.board-main {
-  background-color: darken($hackachieve-dark-purple, 10%);
+  background-color: $hackachieve-background-purple;
   min-height: 94vh;
   padding: 0 1rem;
 
@@ -225,7 +225,7 @@ main.board-main {
       .column-body,
       .column-footer {
         flex: 1 1 100%;
-        max-height: 55vh;
+        max-height: 45vh;
         padding-left: 1.2rem;
         padding-right: 1.2rem;
       }

@@ -13,7 +13,7 @@ import { checkLoggedIn } from "../actions/authActions";
 import env from "../env";
 import TermsOfUse from "./pages/Landing/Legal/TermsOfUse";
 import PrivacyPolicy from "./pages/Landing/Legal/PrivacyPolicy";
-import Footer from "./pages/Base/Footer/Footer";
+
 import Preferences from "./pages/Landing/Preferences/Preferences";
 import FullStory from "react-fullstory";
 import NotFound from "./pages/Base/NotFound/NotFound";
@@ -57,7 +57,6 @@ class App extends Component {
             <Route path="/preferences" component={Preferences} />
             <Route component={NotFound} />
           </Switch>
-          <Footer />
         </ScrollToTop>
       </Router>
     );
