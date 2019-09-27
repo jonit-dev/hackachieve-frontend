@@ -6,7 +6,7 @@
     right: 1rem;
     color: darken($hackachieve-grey, 15%);
     font-size: 2rem;
-    /* Mobile Only ==============================*/
+    z-index: 999; /* Mobile Only ==============================*/
     @media (max-width: 700px) {
       font-size: 1.5rem;
     }
@@ -32,17 +32,20 @@
     margin-bottom: 1rem;
     color: lighten($hackachieve-dark-grey, 30%);
   }
+
+  &.small-modal {
+    max-width: 517px;
+    height: 35%;
+    max-height: 70%;
+  }
 }
 
 .ui.active.modal {
   display: flex;
   flex-wrap: wrap;
   background-color: lighten($hackachieve-light-gray, 20%);
-
   margin: 0 auto;
   margin: 5vh auto;
-  min-height: 70%;
-
   border-radius: 5px;
 }
 

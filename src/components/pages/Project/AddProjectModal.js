@@ -62,14 +62,6 @@ class AddProjectModal extends Component {
             label="Enter your project name"
             placeholder="A summary about what's your project about"
           />
-
-          <div className="project-image-wrapper">
-            <img
-              src="/images/project.svg"
-              alt="project kickstart svg"
-              className="project-image"
-            />
-          </div>
         </form>
       </React.Fragment>
     );
@@ -94,6 +86,7 @@ class AddProjectModal extends Component {
         title={title}
         content={content}
         actions={actions}
+        type={"small-modal"}
       />
     );
   }

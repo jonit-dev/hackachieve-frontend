@@ -41,10 +41,9 @@ class Modal extends Component {
   }
 
   render() {
-
     return ReactDOM.createPortal(
       <div
-      className="ui dimmer modals visible active"
+        className="ui dimmer modals visible active "
         onMouseDown={e => {
           //if the user click or drag the modal shadow, it will stop all event propagation (avoiding bugs like triggering card drag and drop) and close the modal
 
@@ -55,10 +54,11 @@ class Modal extends Component {
         }}
       >
         <div
-          className="ui  modal  active main-div"
+          className={`ui  modal  active main-div ${
+            this.props.type ? this.props.type : ""
+          }`}
           onClick={e => e.stopPropagation()}
         >
-
           <div
             className="fas fa-times modal-close"
             onClick={e => {
