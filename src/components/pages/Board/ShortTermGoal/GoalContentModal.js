@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import Modal from "../../../UI/Modal/Modal";
 import { toggleModal } from "../../../../actions/uiActions";
 import _ from "lodash";
-
-import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
 import LabelHandler from "../../../UI/forms/LabelHandler";
 import InviteHandler from "../../../UI/forms/InviteHandler";
 import {
@@ -15,7 +13,6 @@ import {
   clearFileUpload,
   clearAttachFileUpload
 } from "../../../../actions/goalsActions";
-import moment from "moment";
 import cogoToast from "cogo-toast";
 import {
   loadComments,
@@ -25,17 +22,16 @@ import {
   UpdateComments,
   CommentsVote
 } from "../../../../actions/commentAction";
-import Linkify from "react-linkify";
 import UploadFile from "../../../UI/Modal/UploadFile";
 import Attachments from "../../../UI/Modal/Attachments";
 import Description from "../../../UI/Modal/Description";
 import GrayPills from "../../../UI/Modal/GrayPills";
+import PublicPrivateSwitch from "../../../UI/Modal/PublicPrivateSwitch";
 
 class GoalContentModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      publicstatus: "",
       CommentsTxt: "",
       UpdateBox: false,
       CommentDT: [],
@@ -49,10 +45,6 @@ class GoalContentModal extends Component {
       this.setState({ LoginUser: response });
       this.loadcomment();
     });
-
-    !this.props.myProps.shortTermGoal.is_public
-      ? this.setState({ publicstatus: "Private" })
-      : this.setState({ publicstatus: "Public" });
   }
 
   onClose() {
@@ -65,63 +57,6 @@ class GoalContentModal extends Component {
       "editShortTermGoal",
       this.props.myProps.shortTermGoal.id
     );
-  }
-
-  onChangePublicStatus() {
-    let formOutput = {
-      goal_id: this.props.myProps.shortTermGoal.id,
-      goal_data: {
-        column: this.props.myProps.shortTermGoal.column,
-        deadline: moment(this.props.myProps.shortTermGoal.deadline).format(
-          "YYYY-MM-DD"
-        ),
-        description: this.props.myProps.shortTermGoal.description,
-        duration_hrs: this.props.myProps.shortTermGoal.duration_hrs,
-        priority: this.props.myProps.shortTermGoal.priority,
-        title: this.props.myProps.shortTermGoal.title,
-        is_public: !this.props.myProps.shortTermGoal.is_public
-      }
-    };
-
-    this.props.editGoals(formOutput).then(response => {
-      const { status } = response.data;
-
-      if (status === "success") {
-        this.props.loadGoals(
-          this.props.currentProjectId,
-          this.props.boardShowGoals
-        ); //refresh goals
-        setTimeout(() => {
-          this.props.toggleModal("goalContent"); //close modal once goal public status is change.
-        }, 500);
-      }
-    });
-  }
-
-  onPublicPrivateSwitch() {
-    if (this.state.publicstatus === "Public") {
-      return (
-        <a
-          className="public"
-          href="# "
-          onClick={() => this.onChangePublicStatus()}
-        >
-          <i className="far fa-eye" />
-          {this.state.publicstatus}
-        </a>
-      );
-    } else {
-      return (
-        <a
-          className="private"
-          href="# "
-          onClick={() => this.onChangePublicStatus()}
-        >
-          <i className="far fa-eye-slash" />
-          {this.state.publicstatus}
-        </a>
-      );
-    }
   }
 
   //############### comment related functions #################
@@ -337,7 +272,6 @@ class GoalContentModal extends Component {
         </div>
       </React.Fragment>
     );
-
     const content = (
       <React.Fragment>
         <div className="top-bar-popup">
@@ -350,7 +284,9 @@ class GoalContentModal extends Component {
           </div>
 
           {/*below a tag is use to make card public or private.*/}
-          {/* {this.onPublicPrivateSwitch()} */}
+          {/* <PublicPrivateSwitch
+            shortTermGoal={this.props.myProps.shortTermGoal}
+          /> */}
 
           <UploadFile
             fileInput={this.fileInput}
@@ -412,7 +348,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   {
-    //actions here
     toggleModal,
     editGoals,
     loadGoals,
