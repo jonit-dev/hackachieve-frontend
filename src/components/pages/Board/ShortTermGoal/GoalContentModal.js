@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Modal from "../../../UI/Modal/Modal";
 import { toggleModal } from "../../../../actions/uiActions";
 import _ from "lodash";
-import Moment from "react-moment";
+
 import ChecklistHandler from "../../../UI/forms/ChecklistHandler";
 import LabelHandler from "../../../UI/forms/LabelHandler";
 import InviteHandler from "../../../UI/forms/InviteHandler";
@@ -26,6 +26,10 @@ import {
   CommentsVote
 } from "../../../../actions/commentAction";
 import Linkify from "react-linkify";
+import UploadFile from "../../../UI/Modal/UploadFile";
+import Attachments from "../../../UI/Modal/Attachments";
+import Description from "../../../UI/Modal/Description";
+import GrayPills from "../../../UI/Modal/GrayPills";
 
 class GoalContentModal extends Component {
   constructor(props) {
@@ -39,7 +43,6 @@ class GoalContentModal extends Component {
     };
     this.handleCreateChange = this.handleCreateChange.bind(this);
     this.handleUpdateChange = this.handleUpdateChange.bind(this);
-    this.handleFileinputChange = this.handleFileinputChange.bind(this);
   }
   componentDidMount() {
     UserInfo().then(response => {
@@ -50,28 +53,6 @@ class GoalContentModal extends Component {
     !this.props.myProps.shortTermGoal.is_public
       ? this.setState({ publicstatus: "Private" })
       : this.setState({ publicstatus: "Public" });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      if (nextProps.type === "FILE_UPLOAD_SUCCESS") {
-        const goalId = this.props.myProps.shortTermGoal.id;
-        const payload = {
-          file: [{id:nextProps.file.id}]
-        };
-        this.props.attachFileToGoal(goalId, payload);
-      }
-
-      if (nextProps.type === "ATTACH_UPLOAD_SUCCESS") {
-        console.log("ATTACH_UPLOAD_SUCCESS");
-        this.props.clearAttachFileUpload();
-        this.props.loadGoals(
-          this.props.currentProjectId,
-          this.props.boardShowGoals
-        );
-      }
-
-    }
   }
 
   onClose() {
@@ -143,7 +124,7 @@ class GoalContentModal extends Component {
     }
   }
 
-  //############### comment realated functions #################
+  //############### comment related functions #################
   loadcomment() {
     if (this.props.myProps.shortTermGoal.id) {
       loadComments(this.props.myProps.shortTermGoal.id).then(response => {
@@ -219,41 +200,6 @@ class GoalContentModal extends Component {
       this.loadcomment();
     });
   }
-
-  onRenderStatus(status) {
-    switch (status) {
-      case 1:
-        return "Pending";
-      case 2:
-        return "On going...";
-      case 3:
-        return "Done";
-      default:
-        return null;
-    }
-  }
-
-  onRenderStatusIcon(status) {
-    switch (status) {
-      case 1:
-        return <i className="fas fa-circle pending-status"></i>;
-      case 2:
-        return <i className="fas fa-circle on-going-status"></i>;
-      case 3:
-        return <i className="fas fa-circle complete-status"></i>;
-      default:
-        return <i className="fas fa-circle pending-status"></i>;
-    }
-  }
-
-  handleFileinputChange = () => {
-    const file = this.fileInput.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("name", file.name);
-    formData.append("title", file.name);
-    this.props.uploadFile(formData);
-  };
 
   render() {
     const {
@@ -395,34 +341,22 @@ class GoalContentModal extends Component {
     const content = (
       <React.Fragment>
         <div className="top-bar-popup">
-          <a href="# " onClick={() => this.onEdit()}>
-            <strong>
-              Status: {this.onRenderStatus(status)}{" "}
-              <span className="status-icon">
-                {this.onRenderStatusIcon(status)}
-              </span>
-            </strong>
-          </a>
-          <a href="# " onClick={() => this.onEdit()}>
-            <i className="far fa-calendar-alt"></i>
-            <strong>Deadline:</strong>{" "}
-            {deadline ? (
-              <Moment format="D MMMM, YYYY">{deadline}</Moment>
-            ) : (
-              "No deadline set"
-            )}
-          </a>
+          <div className="top-bar-gray-pills">
+            <GrayPills
+              status={status}
+              deadline={deadline}
+              onEdit={() => this.onEdit()}
+            />
+          </div>
 
           {/*below a tag is use to make card public or private.*/}
           {/* {this.onPublicPrivateSwitch()} */}
-        </div>
 
-        {/*<div className="tags">*/}
-        {/* <label>Tags</label>*/}
-        {/* <a className="fitness" href="# "> Fitness</a>*/}
-        {/*<a className="goal" href="# "> Personal goals</a>*/}
-        {/*<a className="add-tag" href="# " > <img src="/images/icons/plus.svg" alt=""/> Add</a>*/}
-        {/*</div>*/}
+          <UploadFile
+            fileInput={this.fileInput}
+            goalId={this.props.myProps.shortTermGoal.id}
+          />
+        </div>
 
         <LabelHandler
           label="Tags"
@@ -434,45 +368,9 @@ class GoalContentModal extends Component {
           members={member}
         />
 
-        <div className="detail">
-          <div className="goal-description">
-            <h3>Description</h3>
-            <p onClick={() => this.onEdit()}>
-              {description ? (
-                <Linkify>{description}</Linkify>
-              ) : (
-                "Click to set your card description..."
-              )}
-            </p>
-          </div>
+        <Description description={description} />
 
-          <ChecklistHandler />
-        </div>
-        
-        <label className="fluid segment">
-         <input type="file"  className="inputfile" id="embedpollfileinput" ref={fileInput => (this.fileInput = fileInput)}  key="fileInput" onChange={this.handleFileinputChange}/>
-        <label htmlFor="embedpollfileinput" className="ui fileuploader right floated button">
-          <i className="ui upload icon"></i>
-          Upload File
-        </label>
-        </label>
-
-
-        {file.length >0 &&
-        <React.Fragment>
-        <h3 className="attachment"> Attachments</h3>
-        <div className="ui list">
-          {file.map((data,index)=>
-                    <div className="item" key={index}>
-                    <i className="file icon"></i>
-                    <div className="content">
-                      <div className="header"><a className="item" href={data.file} target="_blank" rel="noopener noreferrer">{data.title}</a></div>
-                    </div>
-                  </div>
-            )}
-            </div>
-      </React.Fragment>
-      }
+        {file.length > 0 && <Attachments file={file} />}
       </React.Fragment>
     );
 

@@ -1,6 +1,7 @@
 .modal {
   position: relative;
   .modal-close {
+    cursor: pointer;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -16,6 +17,10 @@
   .comment-sec {
     background: transparent !important;
   }
+}
+
+.ui.modal > .content {
+  padding: 2.5rem;
 }
 
 .modal-description {
@@ -47,6 +52,7 @@
   margin: 0 auto;
   margin: 5vh auto;
   border-radius: 5px;
+  overflow-y: scroll;
 }
 
 .ui.modal > .actions {
@@ -56,7 +62,7 @@
 
 .main-div {
   height: 90%;
-  overflow-y: auto;
+  // overflow-y: auto;
   overflow-x: hidden;
   width: calc(100% - 424px);
   position: absolute;
@@ -64,6 +70,13 @@
 
 .top-bar-popup {
   margin: 25px 0 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .top-bar-gray-pills {
+  }
 
   i {
     font-size: 0.9rem;

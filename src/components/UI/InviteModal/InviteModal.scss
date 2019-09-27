@@ -204,7 +204,10 @@
 }
 
 .checklist {
-  padding: 25px 0;
+  /* Mobile Only ==============================*/
+  @media (max-width: 700px) {
+    padding: 25px 0;
+  }
 }
 
 .checklist h3 {
@@ -993,22 +996,22 @@ span.time {
   cursor: auto;
 }
 
-.modal-footer{
+.modal-footer {
   display: flex;
-    flex-direction: column;
-  p{
+  flex-direction: column;
+  p {
     font-size: 14px;
     width: 100%;
     margin-bottom: 5px;
   }
-  .footer-header-section{
+  .footer-header-section {
     display: flex;
     flex-direction: row;
     width: 100%;
     color: #888;
-    p{
-      span{
-        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfjBx4ULhfNGbh3AAAA9klEQVQ4y+3SMS9DURgG4KeXNGV0F1sHNlaidgkbm9+g5v4Cfo1FYpC4JhJVK7oRP0BvJKTaQY/BIXpJyt73JCf53vf7kvd7z2GM0SjFe8OmqiSyHdsqDlRiPfDg0PHnUOpUGDpvmC1wwYkUypqR6Mrl+kMDfblcN3Y0ldkVBLdq0VBD5gQzMpkGSNS0BUG95MqSngX3UZgqbPmqaYA5NypavAjOorj/w3cQ7EX1XPCcfMuKwa9JhuFYW5b1LLpDYsV0ob3r0gDzrj8s1QVBe8TSq3HpHcou/hcrqexPD5dJmUTHmnVbqiai70c8OfqKuPA1xhiFdwsaj0Dx74VaAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE5LTA3LTMwVDE4OjQ2OjIzKzAyOjAwbrkpdQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOS0wNy0zMFQxODo0NjoyMyswMjowMB/kkckAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC');
+    p {
+      span {
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfjBx4ULhfNGbh3AAAA9klEQVQ4y+3SMS9DURgG4KeXNGV0F1sHNlaidgkbm9+g5v4Cfo1FYpC4JhJVK7oRP0BvJKTaQY/BIXpJyt73JCf53vf7kvd7z2GM0SjFe8OmqiSyHdsqDlRiPfDg0PHnUOpUGDpvmC1wwYkUypqR6Mrl+kMDfblcN3Y0ldkVBLdq0VBD5gQzMpkGSNS0BUG95MqSngX3UZgqbPmqaYA5NypavAjOorj/w3cQ7EX1XPCcfMuKwa9JhuFYW5b1LLpDYsV0ob3r0gDzrj8s1QVBe8TSq3HpHcou/hcrqexPD5dJmUTHmnVbqiai70c8OfqKuPA1xhiFdwsaj0Dx74VaAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE5LTA3LTMwVDE4OjQ2OjIzKzAyOjAwbrkpdQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOS0wNy0zMFQxODo0NjoyMyswMjowMB/kkckAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC");
         background-repeat: no-repeat;
         width: 24px;
         height: 24px;
@@ -1020,9 +1023,9 @@ span.time {
       font-weight: bold;
       text-align: left;
       font-size: 15px;
-      color:#333;
+      color: #333;
     }
-    a{
+    a {
       width: 100px;
       color: #354aa4;
       text-decoration: underline;
