@@ -6,6 +6,8 @@
 
 Hackachieve is a productivity management system oriented towards short term and long term goals, where users can collaborate with each other to achieve their personal or business goals!
 
+This front-end code is supposed to run together with our [Django powered back-end](https://github.com/jonit-dev/hackachieve-backend)
+
 [Support this initiative through Patreon](https://www.patreon.com/hackachieve)
 
 ![](https://www.hackachieve.com/landing_resources/images/dashboard.webp)
